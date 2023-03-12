@@ -1,0 +1,119 @@
+.our-friends {
+    background: $gray;
+    display: flex;
+}
+
+.our-friends-container {
+    flex-direction: column;
+    align-items: center;
+}
+
+.our-friends-title {
+    max-width: 400px;
+    > h2 {
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 3.5rem;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+    color: $dark;
+    margin-top: 80px;
+    text-align: center;
+    }
+}
+
+.our-friends_slider {
+    margin-top: 60px;
+}
+
+.our-friends_slider-items {
+    display: flex;
+    margin-bottom: 58px;
+    align-items: center;
+}
+
+.our-friends_button {
+    display: flex;
+    width: 261px;
+    height: 52px;
+    background: $beige;
+    border-radius: 100px;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.7rem;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+    color: $dark-gray;
+    margin: 0 auto;
+    margin-bottom: 100px;
+}
+
+.arrow-prev {
+    width: 52px;
+    height: 52px;
+    border: 2px solid $beige;
+    border-radius: 50%;
+    margin-right: 53px;
+    background: url("./../assets/icons/arrow.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.arrow-next {
+    width: 52px;
+    height: 52px;
+    border: 2px solid $beige;
+    border-radius: 50%;
+    margin-left: 53px;
+    background: url("./../assets/icons/arrow.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: rotate(180deg);
+}
+
+.slider_item {
+    width: 270px;
+    height: 435px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: $lite;
+    border-radius: 9px;
+    > h3 {
+        font-family: 'Georgia';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 2rem;
+        line-height: 2.3rem;
+        letter-spacing: 0.06em;
+        color: $dark;
+        margin-bottom: 30px;
+    }
+    > img {
+        margin-bottom: 28px;
+    }
+    > button {
+        width: 187px;
+        height: 52px;
+        border: 2px solid $beige;
+        border-radius: 100px;
+        background: $lite;
+        font-family: 'Georgia';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1.7rem;
+        line-height: 130%;
+        letter-spacing: 0.06em;
+        color: $dark-gray;
+    }
+}
+
+.layout-3-columns {
+    display: flex;
+    justify-content: space-between;
+    width: 990px;
+}

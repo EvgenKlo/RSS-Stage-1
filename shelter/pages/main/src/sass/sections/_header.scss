@@ -1,0 +1,68 @@
+header {
+    background: #211F20;
+    background: linear-gradient(to left, #262425, #5B483A);
+}
+
+nav {
+    margin-top: 64px;
+}
+
+.container-header {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    margin-top: 59px;
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 3.2rem;
+    letter-spacing: 0.06em;
+    color: $beige;
+}
+
+.logo_text {
+    margin: 9px 0 0 3px;
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.3rem;
+    letter-spacing: 0.1em;
+    color: $white;
+}
+
+.header_menu {
+    display: flex;
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: $lite;
+}
+
+.menu_item {
+    margin-left: 36px;
+    padding-bottom: 5px;
+    color: $dark-lite;
+    :hover {
+        border-bottom: 3px solid $beige;
+        padding-bottom: 5px;
+        color: $lite;
+    }
+    > a {
+        color: $dark-lite;
+    }
+}
+
+.menu_item:hover {
+    border-bottom: 3px solid $beige;
+    color: $lite;
+}
+
+.selected {
+    border-bottom: 3px solid $beige;
+    > a {
+        color: $lite;
+    }
+}
