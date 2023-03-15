@@ -28,10 +28,9 @@
         color: $dark;
     }
     > a {
-        width: 96%;
-        min-height: 39px;
+        width: 97%;
+        min-height: 43px;
         background: $beige;
-        border: 2px solid $beige;
         border-radius: 9px;
         margin-bottom: 20px;
         transition: .3s;
@@ -46,14 +45,14 @@
     line-height: 110%;
     letter-spacing: 0.06em;
     color: $dark;
-    margin-bottom: 19px;
+    margin-bottom: 20px;
 }
 
 .bank_link {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 13px;
+    margin: 0 15px;
     height: 100%;
     > p {
         font-family: 'Georgia';
@@ -77,6 +76,6 @@
 
 @include hover-for-desktop {
     .in-addition_text > a:hover {
-        background: $white;
+        background: $beige-ligth;
     }
 }
