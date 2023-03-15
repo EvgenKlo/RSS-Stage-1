@@ -95,10 +95,10 @@ nav {
 
 .selected {
   border-bottom: 3px solid #F1CDB3;
-  color: #292929;
+  color: #545454;
 }
 .selected > a {
-  color: #292929;
+  color: #545454;
 }
 
 .menu_item-link {
@@ -236,13 +236,15 @@ main {
 
 @media (hover: hover) {
   .circle.active:hover {
-    background: #F1CDB3;
+    background: #FDDCC4;
+    border: 2px solid #FDDCC4;
   }
   .our-friends_item:hover {
     background: #FFFFFF;
   }
   .our-friends_item:hover > button {
-    background: #F1CDB3;
+    background: #FDDCC4;
+    border: 2px solid #FDDCC4;
   }
 }
 footer {

@@ -138,13 +138,16 @@
     .slider_item:hover {
         background: $white;
         > button {
-            background: $beige;
+            background: $beige-ligth;
+            border: 2px solid $beige-ligth;
         }
     }
     .our-friends_button:hover {
-        background-color: $lite;
+        background-color: $beige-ligth;
+        border: 2px solid $beige-ligth;
     }
     .arrow-prev:hover, .arrow-next:hover {
-        background-color: $beige;
+        background-color: $beige-ligth;
+        border: 2px solid $beige-ligth;
     }
 }

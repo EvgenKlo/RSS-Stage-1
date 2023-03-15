@@ -114,12 +114,14 @@ main {
 
 @include hover-for-desktop {
     .circle.active:hover {
-        background: $beige;
+        background: $beige-ligth;
+        border: 2px solid $beige-ligth;
     }
     .our-friends_item:hover {
         background: $white;
         > button {
-            background: $beige;
+            background: $beige-ligth;
+            border: 2px solid $beige-ligth;
         }
     }
 }

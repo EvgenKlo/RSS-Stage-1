@@ -166,8 +166,8 @@ nav {
 }
 
 .not-only_button {
-  width: 203px;
-  height: 48px;
+  width: 207px;
+  height: 52px;
   background: #F1CDB3;
   border-radius: 100px;
   display: flex;
@@ -180,7 +180,6 @@ nav {
   letter-spacing: 0.06em;
   color: #292929;
   transition: all 0.3s;
-  border: 2px solid #F1CDB3;
 }
 
 .not-only_image {
@@ -196,7 +195,7 @@ nav {
 
 @media (hover: hover) {
   .not-only_button:hover {
-    background: #FAFAFA;
+    background: #FDDCC4;
   }
 }
 .about-container {
@@ -376,13 +375,16 @@ nav {
     background: #FFFFFF;
   }
   .slider_item:hover > button {
-    background: #F1CDB3;
+    background: #FDDCC4;
+    border: 2px solid #FDDCC4;
   }
   .our-friends_button:hover {
-    background-color: #FAFAFA;
+    background-color: #FDDCC4;
+    border: 2px solid #FDDCC4;
   }
   .arrow-prev:hover, .arrow-next:hover {
-    background-color: #F1CDB3;
+    background-color: #FDDCC4;
+    border: 2px solid #FDDCC4;
   }
 }
 .help-container {
@@ -467,10 +469,9 @@ nav {
   color: #545454;
 }
 .in-addition_text > a {
-  width: 96%;
-  min-height: 39px;
+  width: 97%;
+  min-height: 43px;
   background: #F1CDB3;
-  border: 2px solid #F1CDB3;
   border-radius: 9px;
   margin-bottom: 20px;
   transition: 0.3s;
@@ -484,14 +485,14 @@ nav {
   line-height: 110%;
   letter-spacing: 0.06em;
   color: #545454;
-  margin-bottom: 19px;
+  margin-bottom: 20px;
 }
 
 .bank_link {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 13px;
+  margin: 0 15px;
   height: 100%;
 }
 .bank_link > p {
@@ -515,7 +516,7 @@ nav {
 
 @media (hover: hover) {
   .in-addition_text > a:hover {
-    background: #FFFFFF;
+    background: #FDDCC4;
   }
 }
 footer {
