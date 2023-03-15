@@ -1,35 +1,35 @@
 header {
-    background: #211F20;
-    background: linear-gradient(to left, #262425, #5B483A);
+    min-height: 120px;
+}
+
+nav {
+    margin-top: 3px;
 }
 
 .container-header {
     justify-content: space-between;
     align-items: center;
-    padding-top: 59px;
+    padding-top: 30px;
 }
 
 .logo {
+    /* margin-top: 30px; */
     font-family: 'Georgia';
     font-style: normal;
     font-weight: 400;
     font-size: 3.2rem;
     letter-spacing: 0.06em;
-    color: $beige;
+    color: $dark;
 }
 
 .logo_text {
-    margin: 9px 0 0 3px;
+    margin: 9px 0 0 4px;
     font-family: 'Arial';
     font-style: normal;
     font-weight: 400;
     font-size: 1.3rem;
     letter-spacing: 0.1em;
-    color: $white;
-}
-
-nav {
-    padding-top: 3px;
+    color: $dark-gray;
 }
 
 .header_menu {
@@ -38,17 +38,17 @@ nav {
     font-style: normal;
     font-weight: 400;
     font-size: 1.5rem;
-    color: $lite;
+    color: $dark;
 }
 
 .menu_item {
     margin-left: 36px;
     padding-bottom: 5px;
-    color: $dark-lite;
+    color: $dark;
     :hover {
         border-bottom: 3px solid $beige;
         padding-bottom: 5px;
-        color: $lite;
+        color: $dark;
     }
     > a {
         color: $dark-lite;
@@ -57,7 +57,8 @@ nav {
 
 .selected {
     border-bottom: 3px solid $beige;
+    color: $dark-gray;
     > a {
-        color: $lite;
+        color: $dark-gray;
     }
 }
