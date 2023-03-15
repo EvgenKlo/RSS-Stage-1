@@ -1,0 +1,55 @@
+footer {
+    background: #211F20;
+    background: linear-gradient(to left, #262425, #5B483A);
+}
+
+.footer-container {
+    justify-content: space-between;
+    padding-top: 40px;
+}
+
+.footer_item {
+    margin-top: 16px;
+    margin-bottom: 60px;
+    max-width: 310px;
+    min-height: 234px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    > h2 {
+        font-family: 'Georgia';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 35px;
+        line-height: 130%;
+        letter-spacing: 0.06em;
+        color: $white;
+    }
+}
+
+.footer_link {
+    display: flex;
+    > p {
+        font-family: 'Georgia';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 2rem;
+        line-height: 115%;
+        letter-spacing: 0.06em;
+        color: $beige;
+        transition: .3s;
+    }
+    > img {
+        margin-right: 20px;
+    }
+}
+
+.footer_pet {
+    margin-left: 23px;
+}
+
+@include hover-for-desktop {
+    .footer_link:hover > p {
+        color: $white;
+    }
+}

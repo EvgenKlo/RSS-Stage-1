@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    font-size: 1.6rem;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 10px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    text-decoration: none;
+
+}
+
+.container {
+    display: flex;
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: $container_max-width;
+    padding: 0 40px;
+    /* border: 1px solid red; */
+}
