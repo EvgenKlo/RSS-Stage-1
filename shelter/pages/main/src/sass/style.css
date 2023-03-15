@@ -58,6 +58,7 @@ header {
   font-size: 3.2rem;
   letter-spacing: 0.06em;
   color: #F1CDB3;
+  transition: 0.3s;
 }
 
 .logo_text {
@@ -68,6 +69,7 @@ header {
   font-size: 1.3rem;
   letter-spacing: 0.1em;
   color: #FFFFFF;
+  transition: 0.3s;
 }
 
 nav {
@@ -87,11 +89,7 @@ nav {
   margin-left: 36px;
   padding-bottom: 5px;
   color: #CDCDCD;
-}
-.menu_item :hover {
-  border-bottom: 3px solid #F1CDB3;
-  padding-bottom: 5px;
-  color: #FAFAFA;
+  transition: 0.3s;
 }
 .menu_item > a {
   color: #CDCDCD;
@@ -104,6 +102,25 @@ nav {
   color: #FAFAFA;
 }
 
+.menu_item-link {
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s;
+  padding-bottom: 5px;
+}
+
+@media (hover: hover) {
+  .menu_item-link:hover {
+    border-bottom: 3px solid #F1CDB3;
+    padding-bottom: 5px;
+    color: #FAFAFA;
+  }
+  .container-header > a:hover .logo {
+    color: #FFFFFF;
+  }
+  .container-header > a:hover .logo_text {
+    color: #F1CDB3;
+  }
+}
 .not-only {
   background: #211F20;
   background: linear-gradient(to left, #262425, #5B483A);
@@ -147,8 +164,8 @@ nav {
 }
 
 .not-only_button {
-  width: 207px;
-  height: 52px;
+  width: 203px;
+  height: 48px;
   background: #F1CDB3;
   border-radius: 100px;
   display: flex;
@@ -160,6 +177,8 @@ nav {
   font-size: 1.7rem;
   letter-spacing: 0.06em;
   color: #292929;
+  transition: all 0.3s;
+  border: 2px solid #F1CDB3;
 }
 
 .not-only_image {
@@ -173,6 +192,11 @@ nav {
   max-width: 100%;
 }
 
+@media (hover: hover) {
+  .not-only_button:hover {
+    background: #FAFAFA;
+  }
+}
 .about-container {
   padding-top: 80px;
   justify-content: center;
@@ -250,8 +274,8 @@ nav {
 
 .our-friends_button {
   display: flex;
-  width: 261px;
-  height: 52px;
+  width: 257px;
+  height: 48px;
   background: #F1CDB3;
   border-radius: 100px;
   justify-content: center;
@@ -265,6 +289,8 @@ nav {
   color: #292929;
   margin: 0 auto;
   margin-bottom: 100px;
+  border: 2px solid #F1CDB3;
+  transition: 0.3s;
 }
 
 .arrow-prev {
@@ -277,6 +303,8 @@ nav {
   background-repeat: no-repeat;
   background-position: center;
   flex-shrink: 0;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .arrow-next {
@@ -290,6 +318,8 @@ nav {
   background-position: center;
   transform: rotate(180deg);
   flex-shrink: 0;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .slider_item {
@@ -300,6 +330,8 @@ nav {
   flex-direction: column;
   background: #FAFAFA;
   border-radius: 9px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 .slider_item > h3 {
   font-family: "Georgia";
@@ -327,6 +359,8 @@ nav {
   line-height: 130%;
   letter-spacing: 0.06em;
   color: #292929;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .layout-3-columns {
@@ -335,6 +369,20 @@ nav {
   width: 100%;
 }
 
+@media (hover: hover) {
+  .slider_item:hover {
+    background: #FFFFFF;
+  }
+  .slider_item:hover > button {
+    background: #F1CDB3;
+  }
+  .our-friends_button:hover {
+    background-color: #FAFAFA;
+  }
+  .arrow-prev:hover, .arrow-next:hover {
+    background-color: #F1CDB3;
+  }
+}
 .help-container {
   flex-direction: column;
   align-items: center;
@@ -417,11 +465,13 @@ nav {
   color: #545454;
 }
 .in-addition_text > a {
-  width: 97%;
-  min-height: 43px;
+  width: 96%;
+  min-height: 39px;
   background: #F1CDB3;
+  border: 2px solid #F1CDB3;
   border-radius: 9px;
   margin-bottom: 20px;
+  transition: 0.3s;
 }
 
 .name_bank {
@@ -439,7 +489,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 15px;
+  margin: 0 13px;
   height: 100%;
 }
 .bank_link > p {
@@ -461,6 +511,11 @@ nav {
   color: #B2B2B2;
 }
 
+@media (hover: hover) {
+  .in-addition_text > a:hover {
+    background: #FFFFFF;
+  }
+}
 footer {
   background: #211F20;
   background: linear-gradient(to left, #262425, #5B483A);
@@ -501,6 +556,7 @@ footer {
   line-height: 115%;
   letter-spacing: 0.06em;
   color: #F1CDB3;
+  transition: 0.3s;
 }
 .footer_link > img {
   margin-right: 20px;
@@ -508,6 +564,12 @@ footer {
 
 .footer_pet {
   margin-left: 23px;
+}
+
+@media (hover: hover) {
+  .footer_link:hover > p {
+    color: #FFFFFF;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

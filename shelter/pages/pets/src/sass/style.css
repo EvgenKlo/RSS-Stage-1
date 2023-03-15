@@ -55,13 +55,13 @@ nav {
 }
 
 .logo {
-  /* margin-top: 30px; */
   font-family: "Georgia";
   font-style: normal;
   font-weight: 400;
   font-size: 3.2rem;
   letter-spacing: 0.06em;
   color: #545454;
+  transition: 0.3s;
 }
 
 .logo_text {
@@ -72,6 +72,7 @@ nav {
   font-size: 1.3rem;
   letter-spacing: 0.1em;
   color: #292929;
+  transition: 0.3s;
 }
 
 .header_menu {
@@ -88,13 +89,8 @@ nav {
   padding-bottom: 5px;
   color: #545454;
 }
-.menu_item :hover {
-  border-bottom: 3px solid #F1CDB3;
-  padding-bottom: 5px;
-  color: #545454;
-}
 .menu_item > a {
-  color: #CDCDCD;
+  color: #545454;
 }
 
 .selected {
@@ -105,6 +101,25 @@ nav {
   color: #292929;
 }
 
+.menu_item-link {
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s;
+  padding-bottom: 5px;
+}
+
+@media (hover: hover) {
+  .menu_item-link:hover {
+    border-bottom: 3px solid #F1CDB3;
+    padding-bottom: 5px;
+    color: #292929;
+  }
+  .container-header > a:hover .logo {
+    color: #F1CDB3;
+  }
+  .container-header > a:hover .logo_text {
+    color: #F1CDB3;
+  }
+}
 main {
   background: #F6F6F6;
 }
@@ -141,6 +156,8 @@ main {
   background: #FAFAFA;
   align-items: center;
   border-radius: 9px;
+  transition: 0.3s;
+  cursor: pointer;
 }
 .our-friends_item > img {
   margin-bottom: 30px;
@@ -171,6 +188,7 @@ main {
   letter-spacing: 0.06em;
   color: #292929;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .our-friends_nav {
@@ -187,25 +205,27 @@ main {
   font-size: 2rem;
   line-height: 115%;
   letter-spacing: 0.06em;
-  cursor: pointer;
 }
 
 .circle {
   width: 52px;
   height: 52px;
   border-radius: 50%;
+  transition: 0.3s;
 }
 
-.gray {
+.disabled {
   border: 2px solid #CDCDCD;
   background: #F6F6F6;
   color: #CDCDCD;
+  cursor: not-allowed;
 }
 
-.beige {
+.active {
   border: 2px solid #F1CDB3;
   background: #F6F6F6;
   color: #292929;
+  cursor: pointer;
 }
 
 .full {
@@ -214,6 +234,17 @@ main {
   color: #292929;
 }
 
+@media (hover: hover) {
+  .circle.active:hover {
+    background: #F1CDB3;
+  }
+  .our-friends_item:hover {
+    background: #FFFFFF;
+  }
+  .our-friends_item:hover > button {
+    background: #F1CDB3;
+  }
+}
 footer {
   background: #211F20;
   background: linear-gradient(to left, #262425, #5B483A);
@@ -254,6 +285,7 @@ footer {
   line-height: 115%;
   letter-spacing: 0.06em;
   color: #F1CDB3;
+  transition: 0.3s;
 }
 .footer_link > img {
   margin-right: 20px;
@@ -261,6 +293,12 @@ footer {
 
 .footer_pet {
   margin-left: 23px;
+}
+
+@media (hover: hover) {
+  .footer_link:hover > p {
+    color: #FFFFFF;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

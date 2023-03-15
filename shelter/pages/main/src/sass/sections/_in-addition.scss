@@ -28,11 +28,13 @@
         color: $dark;
     }
     > a {
-        width: 97%;
-        min-height: 43px;
+        width: 96%;
+        min-height: 39px;
         background: $beige;
+        border: 2px solid $beige;
         border-radius: 9px;
         margin-bottom: 20px;
+        transition: .3s;
     }
 }
 
@@ -51,7 +53,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 15px;
+    margin: 0 13px;
     height: 100%;
     > p {
         font-family: 'Georgia';
@@ -71,4 +73,10 @@
     font-size: 12px;
     line-height: 18px;
     color: $gray-lite;
+}
+
+@include hover-for-desktop {
+    .in-addition_text > a:hover {
+        background: $white;
+    }
 }

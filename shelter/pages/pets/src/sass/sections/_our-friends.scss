@@ -34,6 +34,8 @@ main {
     background: $lite;
     align-items: center;
     border-radius: 9px;
+    transition: .3s;
+    cursor: pointer;
     > img {
         margin-bottom: 30px;
     }
@@ -63,6 +65,7 @@ main {
         letter-spacing: 0.06em;
         color: $dark-gray;
         cursor: pointer;
+        transition: .3s;
     }
 }
 
@@ -79,7 +82,6 @@ main {
         font-size: 2rem;
         line-height: 115%;
         letter-spacing: 0.06em;
-        cursor: pointer;
     }
 }
 
@@ -87,22 +89,37 @@ main {
     width: 52px;
     height: 52px;
     border-radius: 50%;
+    transition: .3s;
 }
 
-.gray {
+.disabled {
     border: 2px solid $dark-lite;
     background: $gray;
     color: $dark-lite;
+    cursor: not-allowed;
 }
 
-.beige {
+.active {
     border: 2px solid $beige;
     background: $gray;
     color: $dark-gray;
+    cursor: pointer;
 }
 
 .full {
     border: 2px solid $beige;
     background: $beige;
     color: $dark-gray;
+}
+
+@include hover-for-desktop {
+    .circle.active:hover {
+        background: $beige;
+    }
+    .our-friends_item:hover {
+        background: $white;
+        > button {
+            background: $beige;
+        }
+    }
 }

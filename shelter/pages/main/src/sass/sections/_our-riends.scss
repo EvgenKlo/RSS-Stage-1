@@ -39,8 +39,8 @@
 
 .our-friends_button {
     display: flex;
-    width: 261px;
-    height: 52px;
+    width: 257px;
+    height: 48px;
     background: $beige;
     border-radius: 100px;
     justify-content: center;
@@ -54,6 +54,8 @@
     color: $dark-gray;
     margin: 0 auto;
     margin-bottom: 100px;
+    border: 2px solid $beige;
+    transition: .3s;
 }
 
 .arrow-prev {
@@ -66,6 +68,8 @@
     background-repeat: no-repeat;
     background-position: center;
     flex-shrink: 0;
+    cursor: pointer;
+    transition: .3s;
 }
 
 .arrow-next {
@@ -79,6 +83,8 @@
     background-position: center;
     transform: rotate(180deg);
     flex-shrink: 0;
+    cursor: pointer;
+    transition: .3s;
 }
 
 .slider_item {
@@ -89,6 +95,8 @@
     flex-direction: column;
     background: $lite;
     border-radius: 9px;
+    cursor: pointer;
+    transition: .3s;
     > h3 {
         font-family: 'Georgia';
         font-style: normal;
@@ -115,6 +123,8 @@
         line-height: 130%;
         letter-spacing: 0.06em;
         color: $dark-gray;
+        cursor: pointer;
+        transition: .3s;
     }
 }
 
@@ -122,4 +132,19 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+}
+
+@include hover-for-desktop {
+    .slider_item:hover {
+        background: $white;
+        > button {
+            background: $beige;
+        }
+    }
+    .our-friends_button:hover {
+        background-color: $lite;
+    }
+    .arrow-prev:hover, .arrow-next:hover {
+        background-color: $beige;
+    }
 }

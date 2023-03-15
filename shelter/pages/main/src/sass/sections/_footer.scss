@@ -37,6 +37,7 @@ footer {
         line-height: 115%;
         letter-spacing: 0.06em;
         color: $beige;
+        transition: .3s;
     }
     > img {
         margin-right: 20px;
@@ -45,4 +46,10 @@ footer {
 
 .footer_pet {
     margin-left: 23px;
+}
+
+@include hover-for-desktop {
+    .footer_link:hover > p {
+        color: $white;
+    }
 }

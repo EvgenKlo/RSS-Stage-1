@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="src/assets/icons/favicon.png">
-    <title>Document</title>
+    <title>Pets</title>
     <link rel="stylesheet" href="src/sass/style.css">
 </head>
 <body>
@@ -17,10 +17,10 @@
             </a>
             <nav>
                 <ul class="header_menu">
-                    <li class="menu_item"><a href="../main/index.html">About the shelter</a></li>
-                    <li class="menu_item selected"><a href="../pets/index.html">Our pets</a></li>
-                    <li class="menu_item"><a href="#Help">Help the shelter</a></li>
-                    <li class="menu_item"><a href="#Footer">Contacts</a></li>
+                    <li class="menu_item"><a class="menu_item-link" href="../main/index.html">About the shelter</a></li>
+                    <li class="menu_item selected"><a class="menu_item-link" href="#">Our pets</a></li>
+                    <li class="menu_item"><a class="menu_item-link" href="../main/index.html#Help">Help the shelter</a></li>
+                    <li class="menu_item"><a class="menu_item-link" href="#Footer">Contacts</a></li>
                 </ul>
             </nav>
         </div>
@@ -71,11 +71,11 @@
                     </div>                    
                 </div>
                 <div class="our-friends_nav">
-                    <button class="circle gray">&lt;&lt;</button>
-                    <button class="circle gray">&lt;</button>
+                    <button disabled class="circle disabled">&lt;&lt;</button>
+                    <button disabled class="circle disabled">&lt;</button>
                     <button class="circle full">1</button>
-                    <button class="circle beige">&gt;</button>
-                    <button class="circle beige">&gt;&gt;</button>
+                    <button class="circle active">&gt;</button>
+                    <button class="circle active">&gt;&gt;</button>
                 </div>
         </section>
     </main>

@@ -16,6 +16,7 @@ header {
     font-size: 3.2rem;
     letter-spacing: 0.06em;
     color: $beige;
+    transition: .3s;
 }
 
 .logo_text {
@@ -26,6 +27,7 @@ header {
     font-size: 1.3rem;
     letter-spacing: 0.1em;
     color: $white;
+    transition: .3s;
 }
 
 nav {
@@ -45,11 +47,7 @@ nav {
     margin-left: 36px;
     padding-bottom: 5px;
     color: $dark-lite;
-    :hover {
-        border-bottom: 3px solid $beige;
-        padding-bottom: 5px;
-        color: $lite;
-    }
+    transition: .3s;
     > a {
         color: $dark-lite;
     }
@@ -59,5 +57,27 @@ nav {
     border-bottom: 3px solid $beige;
     > a {
         color: $lite;
+    }
+}
+
+.menu_item-link {
+    border-bottom: 3px solid transparent;
+    transition: all .3s;
+    padding-bottom: 5px;
+}
+
+@include hover-for-desktop {
+    .menu_item-link:hover {
+        border-bottom: 3px solid $beige;
+        padding-bottom: 5px;
+        color: $lite;
+    }
+    .container-header > a:hover {
+        .logo {
+            color: $white;
+        }
+        .logo_text {
+            color: $beige;
+        }
     }
 }
