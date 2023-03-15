@@ -1,6 +1,7 @@
 header {
     background: #211F20;
-    background: linear-gradient(to left, #262425, #5B483A);
+    background-image: url('/pages/main/src/assets/images/noise_transparent@2x.png');
+    background-image: url('/pages/main/src/assets/images/noise_transparent@2x.png'), linear-gradient(to left, #262425, #5B483A);
 }
 
 .container-header {
