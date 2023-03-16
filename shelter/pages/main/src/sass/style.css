@@ -37,7 +37,11 @@ li {
   margin: 0 auto;
   max-width: 1280px;
   padding: 0 40px;
-  /* border: 1px solid red; */
+}
+@media (max-width: 768px) {
+  .container {
+    padding: 0 30px;
+  }
 }
 
 header {
@@ -50,6 +54,11 @@ header {
   justify-content: space-between;
   align-items: center;
   padding-top: 59px;
+}
+@media (max-width: 768px) {
+  .container-header {
+    padding-top: 30px;
+  }
 }
 
 .logo {
@@ -71,6 +80,11 @@ header {
   letter-spacing: 0.1em;
   color: #FFFFFF;
   transition: 0.3s;
+}
+@media (max-width: 768px) {
+  .logo_text {
+    margin: 9px 0 0 4px;
+  }
 }
 
 nav {
@@ -128,16 +142,34 @@ nav {
   background-image: url("./../assets/images/noise_transparent@2x.png"), linear-gradient(to left, #262425, #5B483A);
 }
 
+@media (max-width: 768px) {
+  .not-only-container {
+    flex-direction: column;
+  }
+}
+
 .not-only-text {
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-right: 41px;
 }
+@media (max-width: 768px) {
+  .not-only-text {
+    max-width: 460px;
+    margin-right: 0;
+    margin: 0 auto;
+  }
+}
 
 .not-only_title-container {
   max-width: 310px;
   margin: -21px 0 40px 0;
+}
+@media (max-width: 768px) {
+  .not-only_title-container {
+    margin: 61px 0 41px 0;
+  }
 }
 
 .not-only_title {
@@ -181,16 +213,26 @@ nav {
   color: #292929;
   transition: all 0.3s;
 }
+@media (max-width: 768px) {
+  .not-only_button {
+    margin: 0 auto;
+  }
+}
 
 .not-only_image {
   display: flex;
   max-width: 698px;
-  max-height: 728px;
   margin-top: 61px;
 }
 .not-only_image > img {
   max-width: 100%;
-  max-width: 100%;
+}
+@media (max-width: 768px) {
+  .not-only_image {
+    max-width: 569px;
+    margin-top: 100px;
+    margin-left: auto;
+  }
 }
 
 @media (hover: hover) {
@@ -203,9 +245,28 @@ nav {
   justify-content: center;
   padding-bottom: 97px;
 }
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column-reverse;
+    padding-bottom: 100px;
+  }
+}
 
 .about-image > img {
   margin-right: 120px;
+}
+@media (max-width: 768px) {
+  .about-image > img {
+    margin-right: 0;
+    margin-top: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-image {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .about_text-contant {
@@ -233,6 +294,14 @@ nav {
   color: #4C4C4C;
   margin-top: 24px;
 }
+@media (max-width: 768px) {
+  .about_text-contant {
+    margin: 0 auto;
+  }
+  .about_text-contant > h2 {
+    margin-top: 0;
+  }
+}
 
 .our-friends {
   background: #F6F6F6;
@@ -259,6 +328,11 @@ nav {
   margin-top: 78px;
   text-align: center;
 }
+@media (max-width: 768px) {
+  .our-friends-title > h2 {
+    margin-top: 81px;
+  }
+}
 
 .our-friends_slider {
   margin-top: 60px;
@@ -266,11 +340,21 @@ nav {
   flex-direction: column;
   width: 100%;
 }
+@media (max-width: 768px) {
+  .our-friends_slider {
+    margin-top: 57px;
+  }
+}
 
 .our-friends_slider-items {
   display: flex;
   margin-bottom: 58px;
   align-items: center;
+}
+@media (max-width: 768px) {
+  .our-friends_slider-items {
+    margin-bottom: 60px;
+  }
 }
 
 .our-friends_button {
@@ -307,13 +391,18 @@ nav {
   cursor: pointer;
   transition: 0.3s;
 }
+@media (max-width: 768px) {
+  .arrow-prev {
+    margin-right: 12px;
+    margin-top: 3px;
+  }
+}
 
 .arrow-next {
   width: 48px;
   height: 48px;
   border: 2px solid #F1CDB3;
   border-radius: 50%;
-  margin-left: 53px;
   background: url("./../assets/icons/arrow.svg");
   background-repeat: no-repeat;
   background-position: center;
@@ -321,6 +410,11 @@ nav {
   flex-shrink: 0;
   cursor: pointer;
   transition: 0.3s;
+}
+@media (max-width: 768px) {
+  .arrow-next {
+    margin-top: 3px;
+  }
 }
 
 .slider_item {
@@ -347,6 +441,11 @@ nav {
 .slider_item > img {
   margin-bottom: 28px;
 }
+@media (max-width: 768px) {
+  .slider_item > img {
+    margin-bottom: 31px;
+  }
+}
 .slider_item > button {
   width: 187px;
   height: 52px;
@@ -368,6 +467,16 @@ nav {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  margin-right: 53px;
+}
+@media (max-width: 768px) {
+  .layout-3-columns {
+    overflow: hidden;
+    margin-right: 12px;
+  }
+  .layout-3-columns > :last-child {
+    display: none;
+  }
 }
 
 @media (hover: hover) {
@@ -408,22 +517,17 @@ nav {
   text-align: center;
 }
 
-.layout-5-columns {
+.help_content {
   display: flex;
-  width: 85.5%;
-  justify-content: space-between;
-  margin-top: 58px;
-}
-
-.layout-4-columns {
-  display: flex;
-  width: 82%;
-  justify-content: space-around;
-  margin: 55px 0 100px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1150px;
+  margin: 59px 0 37px;
 }
 
 .help_item {
   text-align: center;
+  margin: 0 60px 59px;
 }
 .help_item > img {
   margin-bottom: 26px;
@@ -451,6 +555,12 @@ nav {
   margin: 90px 0 100px;
   max-width: 914px;
 }
+@media (max-width: 768px) {
+  .in-addition__content {
+    flex-direction: column-reverse;
+    margin: 80px 0 96px;
+  }
+}
 
 .in-addition_text {
   display: flex;
@@ -468,6 +578,11 @@ nav {
   letter-spacing: 0.06em;
   color: #545454;
 }
+@media (max-width: 768px) {
+  .in-addition_text > h2 {
+    margin: 0px 0 19px;
+  }
+}
 .in-addition_text > a {
   width: 97%;
   min-height: 43px;
@@ -475,6 +590,17 @@ nav {
   border-radius: 9px;
   margin-bottom: 20px;
   transition: 0.3s;
+}
+@media (max-width: 768px) {
+  .in-addition_text > a {
+    width: 92%;
+  }
+}
+@media (max-width: 768px) {
+  .in-addition_text {
+    max-width: 380px;
+    margin: 0 auto 60px;
+  }
 }
 
 .name_bank {
@@ -528,6 +654,17 @@ footer {
 .footer-container {
   justify-content: space-between;
   padding-top: 40px;
+  flex-wrap: wrap;
+}
+@media (max-width: 768px) {
+  .footer-container {
+    padding-top: 15px;
+    padding: 15px 56px 0;
+    justify-content: space-between;
+  }
+  .footer-container > :first-child {
+    margin-left: 9px;
+  }
 }
 
 .footer_item {
@@ -548,6 +685,11 @@ footer {
   letter-spacing: 0.06em;
   color: #FFFFFF;
 }
+@media (max-width: 768px) {
+  .footer_item {
+    min-height: 239px;
+  }
+}
 
 .footer_link {
   display: flex;
@@ -563,11 +705,17 @@ footer {
   transition: 0.3s;
 }
 .footer_link > img {
-  margin-right: 20px;
+  margin: 0 20px 2px 0;
 }
 
 .footer_pet {
   margin-left: 23px;
+}
+@media (max-width: 768px) {
+  .footer_pet {
+    margin-left: 0;
+    margin: 0 auto;
+  }
 }
 
 @media (hover: hover) {

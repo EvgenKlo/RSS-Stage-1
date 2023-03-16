@@ -10,6 +10,10 @@
     display: flex;
     margin: 90px 0 100px;
     max-width: 914px;
+    @include media-tablet {
+        flex-direction: column-reverse;
+        margin: 80px 0 96px;
+    }
 }
 
 .in-addition_text {
@@ -26,6 +30,9 @@
         line-height: 130%;
         letter-spacing: 0.06em;
         color: $dark;
+        @include media-tablet {
+            margin: 0px 0 19px;
+        }
     }
     > a {
         width: 97%;
@@ -34,6 +41,13 @@
         border-radius: 9px;
         margin-bottom: 20px;
         transition: .3s;
+        @include media-tablet {
+            width: 92%;
+        }
+    }
+    @include media-tablet {
+        max-width: 380px;
+        margin: 0 auto 60px;
     }
 }
 

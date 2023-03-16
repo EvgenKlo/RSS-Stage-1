@@ -8,6 +8,9 @@ header {
     justify-content: space-between;
     align-items: center;
     padding-top: 59px;
+    @include media-tablet {
+        padding-top: 30px;
+    }
 }
 
 .logo {
@@ -29,6 +32,9 @@ header {
     letter-spacing: 0.1em;
     color: $white;
     transition: .3s;
+    @include media-tablet {
+        margin: 9px 0 0 4px;
+    }
 }
 
 nav {

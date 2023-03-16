@@ -38,5 +38,7 @@ li {
     margin: 0 auto;
     max-width: $container_max-width;
     padding: 0 40px;
-    /* border: 1px solid red; */
+    @include media-tablet {
+        padding: 0 30px;
+    }
 }
