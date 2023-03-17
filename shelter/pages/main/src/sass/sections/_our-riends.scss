@@ -72,7 +72,6 @@
     height: 48px;
     border: 2px solid $beige;
     border-radius: 50%;
-    margin-right: 53px;
     background: url("./../assets/icons/arrow.svg");
     background-repeat: no-repeat;
     background-position: center;
@@ -80,7 +79,6 @@
     cursor: pointer;
     transition: .3s;
     @include media-tablet {
-        margin-right: 12px;
         margin-top: 3px;
     }
 }
@@ -150,10 +148,10 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-right: 53px;
+    margin: 0 4.5%;
     @include media-tablet {
         overflow: hidden;
-        margin-right: 12px;
+        margin: 0 1.5%;
         > :last-child {
             display: none;
         }

@@ -24,13 +24,15 @@
     flex-wrap: wrap;
     justify-content: center;
     max-width: 1150px;
-    margin: 59px 0 37px;
+    margin: 59px 0 43px;
+    @include media-tablet {
+        max-width: 675px;
+        justify-content: space-between;
+        margin: 59px 0 48px;
+    }
 }
 
 .help_item {
-    > img {
-        margin-bottom: 26px;
-    }
     > p {
         font-family: 'Georgia';
         font-style: normal;
@@ -41,5 +43,13 @@
         color: $dark;
     }
     text-align: center;
-    margin: 0 60px 59px;
+    margin: 0 60px 56px;
+    display: flex;
+    flex-direction: column;
+    height: 113px;
+    justify-content: space-between;
+    @include media-tablet {
+        margin: 0 23px 54px;
+        width: 170px;
+    }
 }

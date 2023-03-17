@@ -383,7 +383,6 @@ nav {
   height: 48px;
   border: 2px solid #F1CDB3;
   border-radius: 50%;
-  margin-right: 53px;
   background: url("./../assets/icons/arrow.svg");
   background-repeat: no-repeat;
   background-position: center;
@@ -393,7 +392,6 @@ nav {
 }
 @media (max-width: 768px) {
   .arrow-prev {
-    margin-right: 12px;
     margin-top: 3px;
   }
 }
@@ -467,12 +465,12 @@ nav {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-right: 53px;
+  margin: 0 4.5%;
 }
 @media (max-width: 768px) {
   .layout-3-columns {
     overflow: hidden;
-    margin-right: 12px;
+    margin: 0 1.5%;
   }
   .layout-3-columns > :last-child {
     display: none;
@@ -522,15 +520,23 @@ nav {
   flex-wrap: wrap;
   justify-content: center;
   max-width: 1150px;
-  margin: 59px 0 37px;
+  margin: 59px 0 43px;
+}
+@media (max-width: 768px) {
+  .help_content {
+    max-width: 675px;
+    justify-content: space-between;
+    margin: 59px 0 48px;
+  }
 }
 
 .help_item {
   text-align: center;
-  margin: 0 60px 59px;
-}
-.help_item > img {
-  margin-bottom: 26px;
+  margin: 0 60px 56px;
+  display: flex;
+  flex-direction: column;
+  height: 113px;
+  justify-content: space-between;
 }
 .help_item > p {
   font-family: "Georgia";
@@ -540,6 +546,12 @@ nav {
   line-height: 115%;
   letter-spacing: 0.06em;
   color: #545454;
+}
+@media (max-width: 768px) {
+  .help_item {
+    margin: 0 23px 54px;
+    width: 170px;
+  }
 }
 
 .in-addition {
