@@ -39,6 +39,9 @@ header {
 
 nav {
     padding-top: 3px;
+    @media (max-width: 767px) {
+        display: none;
+    }
 }
 
 .header_menu {

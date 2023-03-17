@@ -90,6 +90,11 @@ header {
 nav {
   padding-top: 3px;
 }
+@media (max-width: 767px) {
+  nav {
+    display: none;
+  }
+}
 
 .header_menu {
   display: flex;
@@ -461,18 +466,18 @@ nav {
   transition: 0.3s;
 }
 
-.layout-3-columns {
+.slider-3-columns {
   display: flex;
   justify-content: space-between;
   width: 100%;
   margin: 0 4.5%;
 }
 @media (max-width: 768px) {
-  .layout-3-columns {
+  .slider-3-columns {
     overflow: hidden;
     margin: 0 1.5%;
   }
-  .layout-3-columns > :last-child {
+  .slider-3-columns > :last-child {
     display: none;
   }
 }
@@ -566,6 +571,8 @@ nav {
   display: flex;
   margin: 90px 0 100px;
   max-width: 914px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 @media (max-width: 768px) {
   .in-addition__content {
@@ -578,6 +585,7 @@ nav {
   display: flex;
   flex-direction: column;
   margin: 0 19px 0 30px;
+  max-width: 360px;
 }
 .in-addition_text > h2 {
   max-width: 300px;
