@@ -157,3 +157,15 @@ main {
         }
     }
 }
+
+.circle.active:active {
+    background: $beige-ligth;
+    border: 2px solid $beige-ligth;
+}
+.our-friends_item:active {
+    background: $white;
+    > button {
+        background: $beige-ligth;
+        border: 2px solid $beige-ligth;
+    }
+}

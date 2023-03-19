@@ -68,6 +68,22 @@ nav {
     padding-bottom: 5px;
 }
 
+.hamb {
+    @include no-nav {
+        width: 30px;
+        height: 22px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        margin-right: 2px;
+        z-index: 15;
+        span {
+            border: 1px solid #000000;
+            transition: all .3s;
+        }
+    }
+}
+
 @include hover-for-desktop {
     .menu_item-link:hover {
         border-bottom: 3px solid $beige;
@@ -81,5 +97,19 @@ nav {
         .logo_text {
             color: $beige;
         }
+    }
+}
+
+.menu_item-link:active {
+    border-bottom: 3px solid $beige;
+    padding-bottom: 5px;
+    color: $dark-gray;
+}
+.container-header > a:active {
+    .logo {
+        color: $beige;
+    }
+    .logo_text {
+        color: $beige;
     }
 }

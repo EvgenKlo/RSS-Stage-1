@@ -245,3 +245,19 @@
         border: 2px solid $beige-ligth;
     }
 }
+
+.slider_item:active {
+    background: $white;
+    > button {
+        background: $beige-ligth;
+        border: 2px solid $beige-ligth;
+    }
+}
+.our-friends_button:active {
+    background-color: $beige-ligth;
+    border: 2px solid $beige-ligth;
+}
+.arrow-prev:active, .arrow-next:active {
+    background-color: $beige-ligth;
+    border: 2px solid $beige-ligth;
+}

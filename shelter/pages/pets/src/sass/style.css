@@ -121,6 +121,22 @@ nav {
   padding-bottom: 5px;
 }
 
+@media (max-width: 767px) {
+  .hamb {
+    width: 30px;
+    height: 22px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-right: 2px;
+    z-index: 15;
+  }
+  .hamb span {
+    border: 1px solid #000000;
+    transition: all 0.3s;
+  }
+}
+
 @media (hover: hover) {
   .menu_item-link:hover {
     border-bottom: 3px solid #F1CDB3;
@@ -134,6 +150,19 @@ nav {
     color: #F1CDB3;
   }
 }
+.menu_item-link:active {
+  border-bottom: 3px solid #F1CDB3;
+  padding-bottom: 5px;
+  color: #292929;
+}
+
+.container-header > a:active .logo {
+  color: #F1CDB3;
+}
+.container-header > a:active .logo_text {
+  color: #F1CDB3;
+}
+
 main {
   background: #F6F6F6;
 }
@@ -305,6 +334,19 @@ main {
     border: 2px solid #FDDCC4;
   }
 }
+.circle.active:active {
+  background: #FDDCC4;
+  border: 2px solid #FDDCC4;
+}
+
+.our-friends_item:active {
+  background: #FFFFFF;
+}
+.our-friends_item:active > button {
+  background: #FDDCC4;
+  border: 2px solid #FDDCC4;
+}
+
 footer {
   background: #211F20;
   background-image: url("./../assets/images/noise_transparent@2x.png");
@@ -343,9 +385,9 @@ footer {
 }
 
 .footer_item {
-  margin: 16px 0 63px;
+  margin: 15px 0 67px;
   max-width: 310px;
-  min-height: 234px;
+  min-height: 231px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -442,6 +484,9 @@ footer {
   .footer_link:hover > p {
     color: #FFFFFF;
   }
+}
+.footer_link:active > p {
+  color: #FFFFFF;
 }
 
 /*# sourceMappingURL=style.css.map */

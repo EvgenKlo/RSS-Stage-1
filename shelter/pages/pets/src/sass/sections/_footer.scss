@@ -116,3 +116,7 @@ footer {
         color: $white;
     }
 }
+
+.footer_link:active > p {
+    color: $white;
+}
