@@ -41,4 +41,7 @@ li {
     @include media-tablet {
         padding: 0 30px;
     }
+    @include media-mobile {
+        padding: 0 10px;
+    }
 }

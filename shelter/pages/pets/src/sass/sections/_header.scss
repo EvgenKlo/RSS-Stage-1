@@ -4,6 +4,9 @@ header {
 
 nav {
     margin-top: 3px;
+    @include no-nav {
+        display: none;
+    }
 }
 
 .container-header {

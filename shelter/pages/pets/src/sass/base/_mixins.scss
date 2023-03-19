@@ -6,6 +6,22 @@
     @media (max-width: $mobile-width) { @content; }
 }
 
+@mixin to-slider-tablet {
+    @media (max-width: 1110px) { @content }
+}
+
+@mixin to-slider-mobile {
+    @media (max-width: 810px) { @content }
+}
+
+@mixin to-slider-mobile-arrow {
+    @media (max-width: 470px) { @content }
+}
+
+@mixin no-nav {
+    @media (max-width: 767px) { @content }
+}
+
 @mixin hover-for-desktop {
     @media (hover: hover) { @content }
 }

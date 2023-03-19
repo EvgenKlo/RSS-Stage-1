@@ -39,7 +39,7 @@ header {
 
 nav {
     padding-top: 3px;
-    @media (max-width: 767px) {
+    @include no-nav {
         display: none;
     }
 }

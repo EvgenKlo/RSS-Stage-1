@@ -6,6 +6,10 @@
         flex-direction: column-reverse;
         padding-bottom: 100px;
     }
+    @include media-mobile {
+        padding-top: 43px;
+        padding-bottom: 43px;
+    }
 }
 
 .about-image > img {
@@ -13,6 +17,10 @@
     @include media-tablet {
         margin-right: 0;
         margin-top: 80px;
+    }
+    @include media-mobile {
+        max-width: 260px;
+        margin-top: 42px;
     }
 }
 
@@ -23,7 +31,7 @@
     }
 }
 
-.about_text-contant {
+.about_text-content {
     max-width: 430px;
     > h2 {
         display: block;
@@ -36,6 +44,10 @@
         letter-spacing: 0.06em;
         color: $dark;
         margin-top: 14px;
+        @include media-mobile {
+            font-size: 2.5rem;
+            text-align: center;
+        }
     }
     > p {
         display: block;
@@ -46,11 +58,18 @@
         line-height: 160%;
         color: $darkq-gray-lite;
         margin-top: 24px;
+        @include media-mobile {
+            text-align: justify;
+            margin-bottom: -2px;
+        }
     }
     @include media-tablet {
         margin: 0 auto      ;
         > h2 {
             margin-top: 0;
         }
+    }
+    @include media-mobile {
+        max-width: 270px;
     }
 }
