@@ -50,9 +50,7 @@ li {
 }
 
 header {
-  background: #211F20;
-  background-image: url("./../assets/images/noise_transparent@2x.png");
-  background-image: url("./../assets/images/noise_transparent@2x.png"), linear-gradient(to left, #262425, #5B483A);
+  background: url("./../assets/images/noise_transparent@2x.png"), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
 }
 
 .container-header {
@@ -176,9 +174,7 @@ nav {
 }
 
 .not-only {
-  background: #211F20;
-  background-image: url("./../assets/images/noise_transparent@2x.png");
-  background-image: url("./../assets/images/noise_transparent@2x.png"), linear-gradient(to left, #262425, #5B483A);
+  background: url("./../assets/images/noise_transparent@2x.png"), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
 }
 
 @media (max-width: 768px) {
@@ -972,9 +968,7 @@ nav {
 }
 
 footer {
-  background: #211F20;
-  background-image: url("./../assets/images/noise_transparent@2x.png");
-  background-image: url("./../assets/images/noise_transparent@2x.png"), linear-gradient(to left, #262425, #5B483A);
+  background: url("./../assets/images/noise_transparent@2x.png"), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
 }
 
 .footer-container {
