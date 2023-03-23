@@ -17,6 +17,13 @@ main {
         max-width: 400px;
         text-align: center;
         margin: 80px 0 60px;
+        @include media-tablet {
+            margin: 80px 0 30px;
+        }
+        @include media-mobile {
+            margin: 41px 0 42px;
+            font-size: 2.5rem;
+        }
     }
 }
 
@@ -25,6 +32,9 @@ main {
     width: 100%;
     flex-wrap: wrap;
     justify-content: space-between;
+    @include media-tablet {
+        max-width: 580px;
+    }
 }
 
 .our-friends_item {
@@ -36,6 +46,9 @@ main {
     border-radius: 9px;
     transition: .3s;
     cursor: pointer;
+    @include media-mobile {
+        margin: 0 auto 30px;
+    }
     > img {
         margin-bottom: 30px;
     }
@@ -69,11 +82,24 @@ main {
     }
 }
 
+.invisible-on-tablet {
+    @include media-tablet {
+        display: none;
+    }
+}
+
+.invisible-on-mobile {
+    @include media-mobile {
+        display: none;
+    }
+}
+
 .our-friends_nav {
     display: flex;
     margin: 30px 0 99px;
-    width: 339px;
+    max-width: 339px;
     justify-content: space-between;
+    width: 100%;
     > button {
         padding: 0;
         font-family: 'Georgia';
@@ -82,6 +108,12 @@ main {
         font-size: 2rem;
         line-height: 115%;
         letter-spacing: 0.06em;
+    }
+    @include media-tablet {
+        margin: 8px 0 78px;
+    }
+    @include media-mobile {
+        margin: 12px 0 42px;
     }
 }
 
@@ -123,5 +155,17 @@ main {
             background: $beige-ligth;
             border: 2px solid $beige-ligth;
         }
+    }
+}
+
+.circle.active:active {
+    background: $beige-ligth;
+    border: 2px solid $beige-ligth;
+}
+.our-friends_item:active {
+    background: $white;
+    > button {
+        background: $beige-ligth;
+        border: 2px solid $beige-ligth;
     }
 }
