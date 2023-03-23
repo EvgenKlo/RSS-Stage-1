@@ -12,31 +12,22 @@
         line-height: 130%;
         letter-spacing: 0.06em;
         color: $dark;
-        text-align: center; 
+        text-align: center;
     }
-    margin-top: 82px;
+    margin-top: 80px;
     max-width: 310px;
-    justify-content: center;    
+    justify-content: center;
 }
 
-.layout-5-columns {
+.help_content {
     display: flex;
-    width: 85.5%;
-    justify-content: space-between;
-    margin-top: 58px;
-}
-
-.layout-4-columns {
-    display: flex;
-    width: 82%;
-    justify-content: space-around;
-    margin: 55px 0 100px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1150px;
+    margin: 59px 0 43px;
 }
 
 .help_item {
-    > img {
-        margin-bottom: 26px;
-    }
     > p {
         font-family: 'Georgia';
         font-style: normal;
@@ -47,4 +38,9 @@
         color: $dark;
     }
     text-align: center;
+    margin: 0 60px 56px;
+    display: flex;
+    flex-direction: column;
+    height: 113px;
+    justify-content: space-between;
 }

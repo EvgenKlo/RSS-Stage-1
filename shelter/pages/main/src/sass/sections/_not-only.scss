@@ -1,7 +1,5 @@
 .not-only {
-    background: #211F20;
-    background-image: url('./../assets/images/noise_transparent@2x.png');
-    background-image: url('./../assets/images/noise_transparent@2x.png'), linear-gradient(to left, #262425, #5B483A);
+    background: url('./../assets/images/noise_transparent@2x.png'), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
 }
 
 .not-only-text {
@@ -13,7 +11,7 @@
 
 .not-only_title-container {
     max-width: 310px;
-    margin: -21px 0 40px 0;
+    margin: -19px 0 40px 0;
 }
 
 .not-only_title {

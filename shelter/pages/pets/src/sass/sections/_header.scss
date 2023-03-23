@@ -53,9 +53,10 @@ nav {
 
 .selected {
     border-bottom: 3px solid $beige;
-    color: $dark;
+    color: $dark-gray;
     > a {
-        color: $dark;
+        color: $dark-gray;
+        cursor: default;
     }
 }
 
