@@ -39,6 +39,10 @@ li {
   padding: 0 40px;
 }
 
+header, main, footer {
+  min-width: 1280px;
+}
+
 header {
   min-height: 120px;
 }
