@@ -36,7 +36,6 @@ li {
     display: flex;
     box-sizing: border-box;
     margin: 0 auto;
-    max-width: $container_max-width;
+    width: $container_max-width;
     padding: 0 40px;
-    /* border: 1px solid red; */
 }

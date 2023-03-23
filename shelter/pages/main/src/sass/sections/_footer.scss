@@ -1,17 +1,15 @@
 footer {
-    background: #211F20;
-    background-image: url('./../assets/images/noise_transparent@2x.png');
-    background-image: url('./../assets/images/noise_transparent@2x.png'), linear-gradient(to left, #262425, #5B483A);
+    background: url('./../assets/images/noise_transparent@2x.png'), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
 }
 
 .footer-container {
     justify-content: space-between;
     padding-top: 40px;
+    flex-wrap: wrap;
 }
 
 .footer_item {
-    margin-top: 16px;
-    margin-bottom: 60px;
+    margin: 16px 0 63px;
     max-width: 310px;
     min-height: 234px;
     display: flex;
@@ -31,6 +29,7 @@ footer {
 .footer_link {
     display: flex;
     > p {
+        display: flex;
         font-family: 'Georgia';
         font-style: normal;
         font-weight: 400;
@@ -39,18 +38,27 @@ footer {
         letter-spacing: 0.06em;
         color: $beige;
         transition: .3s;
+        align-items: center;
     }
     > img {
-        margin-right: 20px;
+        margin: 0 20px 0px 0;
     }
 }
 
 .footer_pet {
     margin-left: 23px;
+    max-width: 300px;
+    > img {
+        width: 100%;
+    }
 }
 
 @include hover-for-desktop {
     .footer_link:hover > p {
         color: $white;
     }
+}
+
+.footer_link:active > p {
+    color: $white;
 }

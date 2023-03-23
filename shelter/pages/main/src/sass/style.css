@@ -35,15 +35,12 @@ li {
   display: flex;
   box-sizing: border-box;
   margin: 0 auto;
-  max-width: 1280px;
+  width: 1280px;
   padding: 0 40px;
-  /* border: 1px solid red; */
 }
 
 header {
-  background: #211F20;
-  background-image: url("./../assets/images/noise_transparent@2x.png");
-  background-image: url("./../assets/images/noise_transparent@2x.png"), linear-gradient(to left, #262425, #5B483A);
+  background: url("./../assets/images/noise_transparent@2x.png"), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
 }
 
 .container-header {
@@ -101,6 +98,7 @@ nav {
 }
 .selected > a {
   color: #FAFAFA;
+  cursor: default;
 }
 
 .menu_item-link {
@@ -123,9 +121,7 @@ nav {
   }
 }
 .not-only {
-  background: #211F20;
-  background-image: url("./../assets/images/noise_transparent@2x.png");
-  background-image: url("./../assets/images/noise_transparent@2x.png"), linear-gradient(to left, #262425, #5B483A);
+  background: url("./../assets/images/noise_transparent@2x.png"), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
 }
 
 .not-only-text {
@@ -137,7 +133,7 @@ nav {
 
 .not-only_title-container {
   max-width: 310px;
-  margin: -21px 0 40px 0;
+  margin: -19px 0 40px 0;
 }
 
 .not-only_title {
@@ -242,7 +238,7 @@ nav {
 .our-friends-container {
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 1280px;
 }
 
 .our-friends-title {
@@ -256,7 +252,7 @@ nav {
   line-height: 130%;
   letter-spacing: 0.06em;
   color: #545454;
-  margin-top: 78px;
+  margin-top: 80px;
   text-align: center;
 }
 
@@ -264,7 +260,7 @@ nav {
   margin-top: 60px;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 1200px;
 }
 
 .our-friends_slider-items {
@@ -306,6 +302,7 @@ nav {
   flex-shrink: 0;
   cursor: pointer;
   transition: 0.3s;
+  margin-bottom: 2px;
 }
 
 .arrow-next {
@@ -321,6 +318,7 @@ nav {
   flex-shrink: 0;
   cursor: pointer;
   transition: 0.3s;
+  margin-bottom: 2px;
 }
 
 .slider_item {
@@ -393,7 +391,7 @@ nav {
 }
 
 .help_title {
-  margin-top: 82px;
+  margin-top: 80px;
   max-width: 310px;
   justify-content: center;
 }
@@ -408,25 +406,21 @@ nav {
   text-align: center;
 }
 
-.layout-5-columns {
+.help_content {
   display: flex;
-  width: 85.5%;
-  justify-content: space-between;
-  margin-top: 58px;
-}
-
-.layout-4-columns {
-  display: flex;
-  width: 82%;
-  justify-content: space-around;
-  margin: 55px 0 100px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1150px;
+  margin: 59px 0 43px;
 }
 
 .help_item {
   text-align: center;
-}
-.help_item > img {
-  margin-bottom: 26px;
+  margin: 0 60px 56px;
+  display: flex;
+  flex-direction: column;
+  height: 113px;
+  justify-content: space-between;
 }
 .help_item > p {
   font-family: "Georgia";
@@ -448,7 +442,7 @@ nav {
 
 .in-addition__content {
   display: flex;
-  margin: 90px 0 100px;
+  margin: 90px 0 99px;
   max-width: 914px;
 }
 
@@ -520,19 +514,17 @@ nav {
   }
 }
 footer {
-  background: #211F20;
-  background-image: url("./../assets/images/noise_transparent@2x.png");
-  background-image: url("./../assets/images/noise_transparent@2x.png"), linear-gradient(to left, #262425, #5B483A);
+  background: url("./../assets/images/noise_transparent@2x.png"), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
 }
 
 .footer-container {
   justify-content: space-between;
   padding-top: 40px;
+  flex-wrap: wrap;
 }
 
 .footer_item {
-  margin-top: 16px;
-  margin-bottom: 60px;
+  margin: 16px 0 63px;
   max-width: 310px;
   min-height: 234px;
   display: flex;
@@ -553,6 +545,7 @@ footer {
   display: flex;
 }
 .footer_link > p {
+  display: flex;
   font-family: "Georgia";
   font-style: normal;
   font-weight: 400;
@@ -561,19 +554,27 @@ footer {
   letter-spacing: 0.06em;
   color: #F1CDB3;
   transition: 0.3s;
+  align-items: center;
 }
 .footer_link > img {
-  margin-right: 20px;
+  margin: 0 20px 0px 0;
 }
 
 .footer_pet {
   margin-left: 23px;
+  max-width: 300px;
+}
+.footer_pet > img {
+  width: 100%;
 }
 
 @media (hover: hover) {
   .footer_link:hover > p {
     color: #FFFFFF;
   }
+}
+.footer_link:active > p {
+  color: #FFFFFF;
 }
 
 /*# sourceMappingURL=style.css.map */

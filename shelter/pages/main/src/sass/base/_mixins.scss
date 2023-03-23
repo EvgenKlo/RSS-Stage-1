@@ -9,3 +9,7 @@
 @mixin hover-for-desktop {
     @media (hover: hover) { @content }
 }
+
+@mixin to-slider-mobile-arrow {
+    @media (max-width: 470px) { @content }
+}
