@@ -123,6 +123,7 @@ nav {
 }
 .selected > a {
   color: #FAFAFA;
+  cursor: default;
 }
 
 .menu_item-link {
