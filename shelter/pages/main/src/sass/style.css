@@ -1,3 +1,24 @@
+@font-face {
+  font-family: "Georgia";
+  src: url("../../../../assets/fonts/georgia/Georgia.woff2") format("woff2"), url("../../../../assets/fonts/georgia/Georgia.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Arial";
+  src: url("../../../../assets/fonts/arial/ArialMT.woff2") format("woff2"), url("../../../../assets/fonts/arial/ArialMT.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Arial";
+  src: url("../../../../assets/fonts/arial/Arial-ItalicMT.woff2") format("woff2"), url("../../../../assets/fonts/arial/Arial-ItalicMT.woff") format("woff");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
 body {
   margin: 0;
   font-size: 1.6rem;
@@ -61,6 +82,11 @@ header {
 @media (max-width: 768px) {
   .container-header {
     padding-top: 30px;
+  }
+}
+@media (max-width: 320px) {
+  .container-header {
+    padding: 30px 20px 0;
   }
 }
 
@@ -139,7 +165,6 @@ nav {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    margin-right: 43px;
     z-index: 15;
   }
   .hamb span {
