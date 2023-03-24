@@ -12,7 +12,10 @@ nav {
 .container-header {
     justify-content: space-between;
     align-items: center;
-    padding-top: 30px;  
+    padding-top: 30px;
+    @include media-mobile {
+        padding: 30px 20px 0;
+    }
 }
 
 .logo {
@@ -76,7 +79,6 @@ nav {
         display: flex;
         justify-content: space-between;
         flex-direction: column;
-        margin-right: 2px;
         z-index: 15;
         span {
             border: 1px solid #000000;
