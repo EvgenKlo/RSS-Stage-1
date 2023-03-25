@@ -108,6 +108,29 @@ main {
         font-size: 2rem;
         line-height: 115%;
         letter-spacing: 0.06em;
+        &.circle {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            transition: .3s;
+        }
+        &.disabled {
+            border: 2px solid $dark-lite;
+            background: $gray;
+            color: $dark-lite;
+            cursor: not-allowed;
+        }
+        &.active {
+            border: 2px solid $beige;
+            background: $gray;
+            color: $dark-gray;
+            cursor: pointer;
+        }
+        &.full {
+            border: 2px solid $beige;
+            background: $beige;
+            color: $dark-gray;
+        }
     }
     @include media-tablet {
         margin: 8px 0 78px;
@@ -115,33 +138,6 @@ main {
     @include media-mobile {
         margin: 12px 0 42px;
     }
-}
-
-.circle {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    transition: .3s;
-}
-
-.disabled {
-    border: 2px solid $dark-lite;
-    background: $gray;
-    color: $dark-lite;
-    cursor: not-allowed;
-}
-
-.active {
-    border: 2px solid $beige;
-    background: $gray;
-    color: $dark-gray;
-    cursor: pointer;
-}
-
-.full {
-    border: 2px solid $beige;
-    background: $beige;
-    color: $dark-gray;
 }
 
 @include hover-for-desktop {

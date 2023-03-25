@@ -3,6 +3,7 @@ console.log('Оценка за работу 100 баллов.\nСтраница 
 const hamb = document.querySelector("#hamb");
 const popup = document.querySelector("#popup");
 const menu = document.querySelector("#menu").cloneNode(1);
+const blackout = document.querySelector('.blackout');
 const body = document.body;
 
 //  Бургер
@@ -13,7 +14,8 @@ function hambHandler(e) {
     // Переключаем стили элементов при клике
     popup.classList.toggle("open");
     hamb.classList.toggle("active");
-    body.classList.toggle("noscroll");    
+    body.classList.toggle("noscroll");
+    blackout.classList.toggle('active');
     renderPopup();
   }
 
@@ -34,6 +36,7 @@ function closeOnClick() {
   popup.classList.remove("open");
   hamb.classList.remove("active");
   body.classList.remove("noscroll");
+  blackout.classList.remove('active');
 };
 
 popup.addEventListener("click", outsideMenuCloseClick);
@@ -43,4 +46,13 @@ function outsideMenuCloseClick(e) {
   if(e.target.className !== "nav-list") {
     closeOnClick();
   };
+};
+
+// Закрытие попапа при клике по затемненной области
+
+blackout.addEventListener("click", closeBalckOut);
+
+function closeBalckOut() {
+  blackout.classList.remove('active');
+  closeOnClick();
 };
