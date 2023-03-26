@@ -108,15 +108,6 @@ main {
     max-width: 339px;
     justify-content: space-between;
     width: 100%;
-    > button {
-        padding: 0;
-        font-family: 'Georgia';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 2rem;
-        line-height: 115%;
-        letter-spacing: 0.06em;        
-    }
     @include media-tablet {
         margin: 8px 0 78px;
     }
@@ -126,10 +117,19 @@ main {
 }
 
 .circle {
-    width: 52px;
-    height: 52px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     transition: .3s;
+    padding: 0;
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2rem;
+    line-height: 115%;
+    letter-spacing: 0.06em;
+    text-align: center;
+    line-height: 45px;
     &.disabled {
         border: 2px solid $dark-lite;
         background: $gray;
