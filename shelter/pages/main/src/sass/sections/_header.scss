@@ -1,5 +1,5 @@
 header {
-    background: url('./../assets/images/noise_transparent@2x.png'), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
+    background: url('./../assets/images/noise_transparent@2x.png'), radial-gradient(at top left, #513D2F 0%, #1A1A1C 100%);
 }
 
 .container-header {
@@ -76,6 +76,11 @@ nav {
     border-bottom: 3px solid transparent;
     transition: all .3s;
     padding-bottom: 5px;
+    &:active {
+        border-bottom: 3px solid $beige;
+        padding-bottom: 5px;
+        color: $lite;
+    }
 }
 
 .hamb {
@@ -95,9 +100,14 @@ nav {
 
 @include hover-for-desktop {
     .menu_item-link:hover {
-        border-bottom: 3px solid $beige;
+        border-bottom: 3px solid transparent;
         padding-bottom: 5px;
         color: $lite;
+        &:active {
+            border-bottom: 3px solid $beige;
+            padding-bottom: 5px;
+            color: $lite;
+        }
     }
     .container-header > a:hover {
         .logo {
