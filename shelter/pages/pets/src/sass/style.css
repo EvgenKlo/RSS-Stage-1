@@ -131,9 +131,19 @@ nav {
   transition: all 0.3s;
   padding-bottom: 5px;
 }
+.menu_item-link:active {
+  border-bottom: 3px solid #F1CDB3;
+  padding-bottom: 5px;
+  color: #292929;
+}
 
 @media (hover: hover) {
   .menu_item-link:hover {
+    border-bottom: 3px solid transparent;
+    padding-bottom: 5px;
+    color: #292929;
+  }
+  .menu_item-link:hover:active {
     border-bottom: 3px solid #F1CDB3;
     padding-bottom: 5px;
     color: #292929;
@@ -183,6 +193,14 @@ main {
   border-radius: 9px;
   transition: 0.3s;
   cursor: pointer;
+}
+.our-friends_item:active {
+  background: #FFFFFF;
+  box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+}
+.our-friends_item:active > button {
+  background: #FDDCC4;
+  border: 2px solid #FDDCC4;
 }
 .our-friends_item > img {
   margin-bottom: 30px;
@@ -238,22 +256,23 @@ main {
   border-radius: 50%;
   transition: 0.3s;
 }
-
-.disabled {
+.circle.disabled {
   border: 2px solid #CDCDCD;
   background: #F6F6F6;
   color: #CDCDCD;
   cursor: not-allowed;
 }
-
-.active {
+.circle.active {
   border: 2px solid #F1CDB3;
   background: #F6F6F6;
   color: #292929;
   cursor: pointer;
 }
-
-.full {
+.circle.active:active {
+  background: #FDDCC4;
+  border: 2px solid #FDDCC4;
+}
+.circle.full {
   border: 2px solid #F1CDB3;
   background: #F1CDB3;
   color: #292929;
@@ -266,14 +285,23 @@ main {
   }
   .our-friends_item:hover {
     background: #FFFFFF;
+    box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
   }
   .our-friends_item:hover > button {
     background: #FDDCC4;
     border: 2px solid #FDDCC4;
   }
+  .our-friends_item:hover:active {
+    background: #FFFFFF;
+    box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+  }
+  .our-friends_item:hover:active > button {
+    background: #FDDCC4;
+    border: 2px solid #FDDCC4;
+  }
 }
 footer {
-  background: url("./../assets/images/noise_transparent@2x.png"), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
+  background: url("./../assets/images/noise_transparent@2x.png"), radial-gradient(at top left, #513D2F, #1A1A1C);
 }
 
 .footer-container {

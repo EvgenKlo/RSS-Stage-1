@@ -68,13 +68,23 @@ nav {
     border-bottom: 3px solid transparent;
     transition: all .3s;
     padding-bottom: 5px;
+    &:active {
+        border-bottom: 3px solid $beige;
+        padding-bottom: 5px;
+        color: $dark-gray;
+    }
 }
 
 @include hover-for-desktop {
     .menu_item-link:hover {
-        border-bottom: 3px solid $beige;
+        border-bottom: 3px solid transparent;
         padding-bottom: 5px;
         color: $dark-gray;
+        &:active {
+            border-bottom: 3px solid $beige;
+            padding-bottom: 5px;
+            color: $dark-gray;
+        }
     }
     .container-header > a:hover {
         .logo {
