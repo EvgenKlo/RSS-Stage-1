@@ -240,7 +240,12 @@ main {
   width: 339px;
   justify-content: space-between;
 }
-.our-friends_nav > button {
+
+.circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  transition: 0.3s;
   padding: 0;
   font-family: "Georgia";
   font-style: normal;
@@ -248,13 +253,8 @@ main {
   font-size: 2rem;
   line-height: 115%;
   letter-spacing: 0.06em;
-}
-
-.circle {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  transition: 0.3s;
+  text-align: center;
+  line-height: 45px;
 }
 .circle.disabled {
   border: 2px solid #CDCDCD;
