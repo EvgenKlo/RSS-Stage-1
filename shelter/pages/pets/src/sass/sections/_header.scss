@@ -86,6 +86,7 @@ nav {
         flex-direction: column;
         z-index: 15;
         transition: all .3s;
+        cursor: pointer;
         span {
             border: 1px solid $beige;
         }
