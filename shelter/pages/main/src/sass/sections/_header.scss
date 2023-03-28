@@ -5,9 +5,11 @@ header {
 .container-header {
     justify-content: space-between;
     align-items: center;
-    padding-top: 59px;
+    padding-top: 30px;
+    padding-bottom: 29px;
     @include media-tablet {
         padding-top: 30px;
+        padding-bottom: 0;
     }
     @include media-mobile {
         padding: 30px 20px 0;
