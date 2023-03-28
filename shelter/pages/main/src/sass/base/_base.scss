@@ -8,6 +8,15 @@
 }
 
 @font-face {
+    font-family: 'Georgia';
+    src: url('../../../../assets/fonts/georgia/Georgia-bold.woff2') format('woff2'),
+        url('../../../../assets/fonts/georgia/Georgia-bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
     font-family: 'Arial';
     src: url('../../../../assets/fonts/arial/ArialMT.woff2') format('woff2'),
         url('../../../../assets/fonts/arial/ArialMT.woff') format('woff');
@@ -93,6 +102,7 @@ li {
     justify-content: center;
     width: 952px;
     height: 552px;
+    margin-left: 50px;
 }
 
 .closeModalBtn {
@@ -112,10 +122,85 @@ li {
     }
 }
 
-
 .modalContent {
+    display: flex;
     width: 900px;
     height: 500px;
     background: $lite;
     border-radius: 9px;
+}
+
+.modalContent_pet {
+    height: 100%;
+    > img {
+        height: 100%;
+        border-radius: 9px;
+    }
+}
+
+.modalContent_text {
+    box-sizing: border-box;
+    padding: 50px 20px 0 30px;
+}
+
+.modalContent_text-title {
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 3.5rem;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.modalContent_text-type-breed {
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2rem;
+    line-height: 115%;
+    letter-spacing: 0.06em;
+    color: #000000;
+    margin-bottom: 40px;
+}
+
+.modalContent_text-description {
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 110%;
+    letter-spacing: 0.06em;
+    color: #000000;
+    margin-bottom: 40px;
+}
+
+.modalContent_text_options {
+    list-style-type: disc;
+    list-style-position: inside;
+}
+
+.modalContent_text_option {
+    margin-bottom: 11px;
+    color: $beige;
+    > :first-child {
+        font-family: 'Georgia';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 1.5rem;
+        line-height: 110%;
+        letter-spacing: 0.06em;
+        color: #000000;
+        margin-left: -10px;
+    }
+    > :last-child {
+        font-family: 'Georgia';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1.5rem;
+        line-height: 110%;
+        letter-spacing: 0.06em;
+        color: #000000;
+    }
 }

@@ -61,6 +61,8 @@ function closeBalckOut() {
 
 //Модальное окно
 
+//Модальное окно
+
 const petsCards = [
   {
     "name": "Jennifer",
@@ -75,7 +77,7 @@ const petsCards = [
   },
   {
     "name": "Sophia",
-    "img": "../../assets/images/sophia.png",
+    "img": "../pets/src/assets/images/pets-sophia.png",
     "type": "Dog",
     "breed": "Shih tzu",
     "description": "Sophia here and I'm looking for my forever home to live out the best years of my life. I am full of energy. Everyday I'm learning new things, like how to walk on a leash, go potty outside, bark and play with toys and I still need some practice.",
@@ -86,7 +88,7 @@ const petsCards = [
   },
   {
     "name": "Woody",
-    "img": "../../assets/images/woody.png",
+    "img": "../pets/src/assets/images/pets-woody.png",
     "type": "Dog",
     "breed": "Golden Retriever",
     "description": "Woody is a handsome 3 1/2 year old boy. Woody does know basic commands and is a smart pup. Since he is on the stronger side, he will learn a lot from your training. Woody will be happier when he finds a new family that can spend a lot of time with him.",
@@ -97,7 +99,7 @@ const petsCards = [
   },
   {
     "name": "Scarlett",
-    "img": "../../assets/images/scarlett.png",
+    "img": "../pets/src/assets/images/pets-scarlet.png",
     "type": "Dog",
     "breed": "Jack Russell Terrier",
     "description": "Scarlett is a happy, playful girl who will make you laugh and smile. She forms a bond quickly and will make a loyal companion and a wonderful family dog or a good companion for a single individual too since she likes to hang out and be with her human.",
@@ -108,7 +110,7 @@ const petsCards = [
   },
   {
     "name": "Katrine",
-    "img": "../../assets/images/katrine.png",
+    "img": "../pets/src/assets/images/pets-katrine.png",
     "type": "Cat",
     "breed": "British Shorthair",
     "description": "Katrine is a beautiful girl. She is as soft as the finest velvet with a thick lush fur. Will love you until the last breath she takes as long as you are the one. She is picky about her affection. She loves cuddles and to stretch into your hands for a deeper relaxations.",
@@ -119,7 +121,7 @@ const petsCards = [
   },
   {
     "name": "Timmy",
-    "img": "../../assets/images/timmy.png",
+    "img": "../pets/src/assets/images/pets-timmy.png",
     "type": "Cat",
     "breed": "British Shorthair",
     "description": "Timmy is an adorable grey british shorthair male. He loves to play and snuggle. He is neutered and up to date on age appropriate vaccinations. He can be chatty and enjoys being held. Timmy has a lot to say and wants a person to share his thoughts with.",
@@ -130,7 +132,7 @@ const petsCards = [
   },
   {
     "name": "Freddie",
-    "img": "../../assets/images/freddie.png",
+    "img": "../pets/src/assets/images/pets-freddie.png",
     "type": "Cat",
     "breed": "British Shorthair",
     "description": "Freddie is a little shy at first, but very sweet when he warms up. He likes playing with shoe strings and bottle caps. He is quick to learn the rhythms of his human’s daily life. Freddie has bounced around a lot in his life, and is looking to find his forever home.",
@@ -141,7 +143,7 @@ const petsCards = [
   },
   {
     "name": "Charly",
-    "img": "../../assets/images/charly.png",
+    "img": "../pets/src/assets/images/pets-charly.png",
     "type": "Dog",
     "breed": "Jack Russell Terrier",
     "description": "This cute boy, Charly, is three years old and he likes adults and kids. He isn’t fond of many other dogs, so he might do best in a single dog home. Charly has lots of energy, and loves to run and play. We think a fenced yard would make him very happy.",
@@ -154,13 +156,14 @@ const petsCards = [
 
 const sliderItem = document.querySelectorAll('.our-friends_item');
 let selectedItem;
+let date;
 
 function clickHandlerOnSliderItem () {
   sliderItem.forEach(item => {
     item.addEventListener('click', () => {
       selectedItem = item.children[1].textContent;
+      date = petsCards.find(element => element.name === selectedItem);
       getModalWindow();
-      console.log(selectedItem)
     });
   });
 }
@@ -180,6 +183,27 @@ function getModalWindow () {
     template += `<div class="closeModalBtn">`;
     template += `</div>`;
     template += `<div class="modalContent">`;
+      template += `<div class="modalContent_pet">`;
+        template += `<img src="${date.img}" alt="${date.name}">`;
+      template += `</div>`;
+      template += `<div class="modalContent_text">`;
+        template += `<h3 class="modalContent_text-title">${date.name}`;
+        template += `</h3>`;
+        template += `<h4 class="modalContent_text-type-breed">${date.type} - ${date.breed}`;
+        template += `</h4>`;
+        template += `<p class="modalContent_text-description">${date.description}`;
+        template += `</p>`;
+        template += `<ul class="modalContent_text_options">`;
+          template += `<li class="modalContent_text_option"><span>Age: </span><span>${date.age}</span>`;
+          template += `</li>`;
+          template += `<li class="modalContent_text_option"><span>Inoculations: </span><span>${date.inoculations}</span>`;
+          template += `</li>`;
+          template += `<li class="modalContent_text_option"><span>Diseases: </span><span>${date.diseases}</span>`;
+          template += `</li>`;
+          template += `<li class="modalContent_text_option"><span>Parasites: </span><span>${date.parasites}</span>`;
+          template += `</li>`;
+        template += `</ul>`;
+      template += `</div>`;
     template += `</div>`;
   template += `</div>`;
   modal.innerHTML = template;
@@ -189,7 +213,7 @@ function getModalWindow () {
   const closeBtnModalWindow = document.querySelector('.overlay');
 
   closeBtnModalWindow.addEventListener('click', (e) => {
-    if (!e.target.classList.contains('modalContent')) {
+    if (!e.target.closest('.modalContent')) {
       document.body.removeChild(modal);
       modal = undefined;
       body.classList.remove("noscroll");
