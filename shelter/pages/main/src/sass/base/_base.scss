@@ -98,11 +98,13 @@ li {
 }
 
 .modal {
-    align-items: center;
+    /* align-items: center;
     justify-content: center;
     width: 952px;
-    height: 552px;
+    height: 552px; */
     margin-left: 50px;
+    display: flex;
+    flex-direction: column;
 }
 
 .closeModalBtn {
@@ -124,23 +126,25 @@ li {
 
 .modalContent {
     display: flex;
-    width: 900px;
-    height: 500px;
+    max-width: 900px;
+    min-height: 500px;
     background: $lite;
     border-radius: 9px;
+    margin-right: 42px;
 }
 
 .modalContent_pet {
-    height: 100%;
+    width: 500px;
     > img {
-        height: 100%;
+        width: 100%;
         border-radius: 9px;
     }
 }
 
 .modalContent_text {
     box-sizing: border-box;
-    padding: 50px 20px 0 30px;
+    padding: 52px 20px 0 30px;
+    max-width: 400px;
 }
 
 .modalContent_text-title {
@@ -170,7 +174,7 @@ li {
     font-style: normal;
     font-weight: 400;
     font-size: 1.5rem;
-    line-height: 110%;
+    line-height: 113%;
     letter-spacing: 0.06em;
     color: #000000;
     margin-bottom: 40px;
@@ -182,7 +186,7 @@ li {
 }
 
 .modalContent_text_option {
-    margin-bottom: 11px;
+    margin-bottom: 10px;
     color: $beige;
     > :first-child {
         font-family: 'Georgia';

@@ -174,7 +174,7 @@ let modal;
 
 function getModalWindow () {
   if (modal){
-    document.body.removeChild(modal);
+    document.querySelector('.our-friends').removeChild(modal);
   }
   let template = '';
   modal = document.createElement('div');
@@ -207,14 +207,14 @@ function getModalWindow () {
     template += `</div>`;
   template += `</div>`;
   modal.innerHTML = template;
-  document.body.append(modal);
+  document.querySelector('.our-friends').append(modal);
   body.classList.add("noscroll");
 
   const closeBtnModalWindow = document.querySelector('.overlay');
 
   closeBtnModalWindow.addEventListener('click', (e) => {
     if (!e.target.closest('.modalContent')) {
-      document.body.removeChild(modal);
+      document.querySelector('.our-friends').removeChild(modal);
       modal = undefined;
       body.classList.remove("noscroll");
     }
