@@ -56,7 +56,7 @@ li {
   display: flex;
   box-sizing: border-box;
   margin: 0 auto;
-  width: 1280px;
+  max-width: 1280px;
   padding: 0 40px;
 }
 @media (max-width: 768px) {
@@ -199,7 +199,6 @@ nav {
     color: #F1CDB3;
   }
 }
-
 .menu_item-link:active {
   border-bottom: 3px solid #F1CDB3;
   padding-bottom: 5px;
@@ -472,7 +471,7 @@ nav {
   margin-top: 58px;
   display: flex;
   flex-direction: column;
-  width: 1200px;
+  width: 100%;
 }
 @media (max-width: 768px) {
   .our-friends_slider {
@@ -544,7 +543,6 @@ nav {
   flex-shrink: 0;
   cursor: pointer;
   transition: 0.3s;
-  margin-bottom: 2px;
 }
 @media (max-width: 768px) {
   .arrow-prev {
@@ -590,17 +588,6 @@ nav {
   flex-shrink: 0;
   cursor: pointer;
   transition: 0.3s;
-  margin-bottom: 2px;
-}
-
-.our-friends_button:active {
-  background-color: #FDDCC4;
-  border: 2px solid #FDDCC4;
-}
-
-.arrow-prev:active, .arrow-next:active {
-  background-color: #FDDCC4;
-  border: 2px solid #FDDCC4;
 }
 @media (max-width: 768px) {
   .arrow-next {
