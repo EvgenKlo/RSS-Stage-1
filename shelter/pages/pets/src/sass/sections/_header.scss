@@ -8,12 +8,18 @@ header {
 
 nav {
     margin-top: 3px;
+    @include no-nav {
+        display: none;
+    }
 }
 
 .container-header {
     justify-content: space-between;
     align-items: center;
-    padding-top: 30px;  
+    padding-top: 30px;
+    @include media-mobile {
+        padding: 30px 20px 0;
+    }
 }
 
 .logo {
@@ -75,6 +81,22 @@ nav {
     }
 }
 
+.hamb {
+    @include no-nav {
+        width: 30px;
+        height: 22px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        z-index: 15;
+        cursor: pointer;
+        span {
+            border: 1px solid #000000;
+            transition: all .3s;
+        }
+    }
+}
+
 @include hover-for-desktop {
     .menu_item-link:hover {
         border-bottom: 3px solid transparent;
@@ -93,5 +115,14 @@ nav {
         .logo_text {
             color: $beige;
         }
+    }
+}
+
+.container-header > a:active {
+    .logo {
+        color: $beige;
+    }
+    .logo_text {
+        color: $beige;
     }
 }
