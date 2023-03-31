@@ -173,6 +173,7 @@ nav {
     justify-content: space-between;
     flex-direction: column;
     z-index: 15;
+    cursor: pointer;
   }
   .hamb span {
     border: 1px solid #F1CDB3;

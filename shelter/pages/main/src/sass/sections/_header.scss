@@ -93,6 +93,7 @@ nav {
         justify-content: space-between;
         flex-direction: column;
         z-index: 15;
+        cursor: pointer;
         span {
             border: 1px solid $beige;
             transition: all .3s;
