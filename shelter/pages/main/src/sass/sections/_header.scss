@@ -1,3 +1,7 @@
+header, main, footer {
+    min-width: 1280px;
+}
+
 header {
     background: url('./../assets/images/noise_transparent@2x.png'), radial-gradient(at top left, #513D2F 0%, #1A1A1C 100%);
 }
