@@ -21,20 +21,43 @@
         color: $dark;
         margin-top: 80px;
         text-align: center;
+        @include media-tablet {
+            margin-top: 81px;
+        }
+        @include media-mobile {
+            font-size: 2.5rem;
+            margin-top: 42px;
+        }
     }
 }
 
 .our-friends_slider {
-    margin-top: 60px;
+    margin-top: 58px;
     display: flex;
     flex-direction: column;
-    width: 1200px;
+    width: 100%;
+    @include media-tablet {
+        margin-top: 57px;
+    }
+    @include media-mobile {
+        margin-top: 42px;
+    }
 }
 
 .our-friends_slider-items {
     display: flex;
-    margin-bottom: 58px;
+    margin-bottom: 60px;
     align-items: center;
+    @include media-tablet {
+        margin-bottom: 60px;
+    }
+    @include to-slider-mobile-arrow {
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+    @include media-mobile {
+        margin-bottom: 42px;
+    }
 }
 
 .our-friends_button {
@@ -56,6 +79,9 @@
     margin-bottom: 100px;
     border: 2px solid $beige;
     transition: .3s;
+    @include media-mobile {
+        margin-bottom: 42px;
+    }
 }
 
 .arrow-prev {
@@ -63,14 +89,37 @@
     height: 48px;
     border: 2px solid $beige;
     border-radius: 50%;
-    margin-right: 53px;
     background: url("./../assets/icons/arrow.svg");
     background-repeat: no-repeat;
     background-position: center;
     flex-shrink: 0;
     cursor: pointer;
     transition: .3s;
-    margin-bottom: 2px;
+    @include media-tablet {
+        margin-top: 3px;
+    }
+    @include to-slider-mobile-arrow {
+        display: none;
+        margin-top: 0;
+        margin-right: 23px;
+    }
+}
+
+.mobile-arrow-prev {
+    display: none;
+    width: 48px;
+    height: 48px;
+    border: 2px solid $beige;
+    border-radius: 50%;
+    background: url("./../assets/icons/arrow.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: .3s;
+    @include to-slider-mobile-arrow {
+        display: block;
+    }
 }
 
 .arrow-next {
@@ -78,7 +127,6 @@
     height: 48px;
     border: 2px solid $beige;
     border-radius: 50%;
-    margin-left: 53px;
     background: url("./../assets/icons/arrow.svg");
     background-repeat: no-repeat;
     background-position: center;
@@ -86,16 +134,12 @@
     flex-shrink: 0;
     cursor: pointer;
     transition: .3s;
-    margin-bottom: 2px;
-}
-
-.our-friends_button:active {
-    background-color: $beige-ligth;
-    border: 2px solid $beige-ligth;
-}
-.arrow-prev:active, .arrow-next:active {
-    background-color: $beige-ligth;
-    border: 2px solid $beige-ligth;
+    @include media-tablet {
+        margin-top: 3px;
+    }
+    @include to-slider-mobile-arrow {
+        margin-top: 0;
+    }
 }
 
 .slider_item {
@@ -127,7 +171,10 @@
         margin-bottom: 30px;
     }
     > img {
-        margin-bottom: 28px;
+        margin-bottom: 30px;
+        @include media-tablet {
+            margin-bottom: 31px;
+        }
     }
     > button {
         width: 187px;
@@ -145,12 +192,48 @@
         cursor: pointer;
         transition: .3s;
     }
+    @include media-mobile {
+        > img {
+            margin-bottom: 29px;
+        }
+    }
 }
 
-.layout-3-columns {
+.slider {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    margin: 0 4.5%;
+    @include media-tablet {
+        overflow: hidden;
+        margin: 0 1.5%;
+        justify-content: space-between;
+        > :last-child {
+            display: none;
+        }
+    }
+    @include to-slider-mobile {
+        justify-content: space-between;
+        margin: 0 1.5%;
+    }
+    @include no-second-slider-item {
+        justify-content: center;
+    }
+    @include media-mobile {
+        margin-bottom: 19px;
+    }
+}
+
+.third-item {
+    @include to-slider-tablet {
+        display: none;
+    }
+}
+
+.second-item {
+    @include no-second-slider-item {
+        display: none;
+    }
 }
 
 @include hover-for-desktop {
@@ -178,4 +261,21 @@
         background-color: $beige-ligth;
         border: 2px solid $beige-ligth;
     }
+}
+
+.slider_item:active {
+    background: $white;
+    box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+    > button {
+        background: $beige-ligth;
+        border: 2px solid $beige-ligth;
+    }
+}
+.our-friends_button:active {
+    background-color: $beige-ligth;
+    border: 2px solid $beige-ligth;
+}
+.arrow-prev:active, .arrow-next:active {
+    background-color: $beige-ligth;
+    border: 2px solid $beige-ligth;
 }

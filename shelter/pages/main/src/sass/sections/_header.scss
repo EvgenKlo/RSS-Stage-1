@@ -11,6 +11,13 @@ header {
     align-items: center;
     padding-top: 30px;
     padding-bottom: 29px;
+    @include media-tablet {
+        padding-top: 30px;
+        padding-bottom: 0;
+    }
+    @include media-mobile {
+        padding: 30px 20px 0;
+    }
 }
 
 .logo {
@@ -32,10 +39,16 @@ header {
     letter-spacing: 0.1em;
     color: $white;
     transition: .3s;
+    @include media-tablet {
+        margin: 9px 0 0 4px;
+    }
 }
 
 nav {
     padding-top: 3px;
+    @include no-nav {
+        display: none;
+    }
 }
 
 .header_menu {
@@ -76,6 +89,22 @@ nav {
     }
 }
 
+.hamb {
+    @include no-nav {
+        width: 30px;
+        height: 22px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        z-index: 15;
+        cursor: pointer;
+        span {
+            border: 1px solid $beige;
+            transition: all .3s;
+        }
+    }
+}
+
 @include hover-for-desktop {
     .menu_item-link:hover {
         border-bottom: 3px solid transparent;
@@ -94,5 +123,19 @@ nav {
         .logo_text {
             color: $beige;
         }
+    }
+}
+
+.menu_item-link:active {
+    border-bottom: 3px solid $beige;
+    padding-bottom: 5px;
+    color: $lite;
+}
+.container-header > a:active {
+    .logo {
+        color: $white;
+    }
+    .logo_text {
+        color: $beige;
     }
 }
