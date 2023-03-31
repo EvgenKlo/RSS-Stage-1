@@ -1,0 +1,98 @@
+header, main, footer {
+    min-width: 1280px;
+}
+
+header {
+    background: url('./../assets/images/noise_transparent@2x.png'), radial-gradient(at top left, #513D2F 0%, #1A1A1C 100%);
+}
+
+.container-header {
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 30px;
+    padding-bottom: 29px;
+}
+
+.logo {
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 3.2rem;
+    letter-spacing: 0.06em;
+    color: $beige;
+    transition: .3s;
+}
+
+.logo_text {
+    margin: 9px 0 0 3px;
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.3rem;
+    letter-spacing: 0.1em;
+    color: $white;
+    transition: .3s;
+}
+
+nav {
+    padding-top: 3px;
+}
+
+.header_menu {
+    display: flex;
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: $lite;
+}
+
+.menu_item {
+    margin-left: 36px;
+    padding-bottom: 5px;
+    color: $dark-lite;
+    transition: .3s;
+    > a {
+        color: $dark-lite;
+    }
+}
+
+.selected {
+    border-bottom: 3px solid $beige;
+    > a {
+        color: $lite;
+        cursor: default;
+    }
+}
+
+.menu_item-link {
+    border-bottom: 3px solid transparent;
+    transition: all .3s;
+    padding-bottom: 5px;
+    &:active {
+        border-bottom: 3px solid $beige;
+        padding-bottom: 5px;
+        color: $lite;
+    }
+}
+
+@include hover-for-desktop {
+    .menu_item-link:hover {
+        border-bottom: 3px solid transparent;
+        padding-bottom: 5px;
+        color: $lite;
+        &:active {
+            border-bottom: 3px solid $beige;
+            padding-bottom: 5px;
+            color: $lite;
+        }
+    }
+    .container-header > a:hover {
+        .logo {
+            color: $white;
+        }
+        .logo_text {
+            color: $beige;
+        }
+    }
+}
