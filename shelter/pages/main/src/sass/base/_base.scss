@@ -98,13 +98,13 @@ li {
 }
 
 .modal {
-    /* align-items: center;
-    justify-content: center;
-    width: 952px;
-    height: 552px; */
     margin-left: 50px;
     display: flex;
     flex-direction: column;
+    @include mobile-modal {
+        margin-left: 30px;
+        max-width: 271px;
+    }
 }
 
 .closeModalBtn {
@@ -112,7 +112,7 @@ li {
     height: 48px;
     border-radius: 50%;
     border: 2px solid $beige;
-    background: url('../assets/icons/Vector_close_btn.svg');
+    background: url('../../../../assets/images/icons/Vector_close_btn.svg');
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
@@ -131,6 +131,14 @@ li {
     background: $lite;
     border-radius: 9px;
     margin-right: 42px;
+    @include media-tablet {
+        max-width: 630px;
+        min-height: 350px;
+    }
+    @include mobile-modal {
+        margin-right: 31px;
+        min-height: 341px;
+    }
 }
 
 .modalContent_pet {
@@ -138,6 +146,13 @@ li {
     > img {
         width: 100%;
         border-radius: 9px;
+        display: block;
+    }
+    @include media-tablet {
+        width: 350px;
+    }
+    @include mobile-modal {
+        display: none;
     }
 }
 
@@ -145,6 +160,10 @@ li {
     box-sizing: border-box;
     padding: 52px 20px 0 30px;
     max-width: 400px;
+    @include media-tablet {
+        max-width: 280px;
+        padding: 12px 8px 0 11px;
+    }
 }
 
 .modalContent_text-title {
@@ -156,6 +175,10 @@ li {
     letter-spacing: 0.06em;
     color: #000000;
     margin-bottom: 10px;
+    @include mobile-modal {
+        text-align: center;
+        margin-bottom: 8px;
+    }
 }
 
 .modalContent_text-type-breed {
@@ -167,6 +190,12 @@ li {
     letter-spacing: 0.06em;
     color: #000000;
     margin-bottom: 40px;
+    @include media-tablet {
+        margin-bottom: 20px;
+    }
+    @include mobile-modal{
+        text-align: center;
+    }
 }
 
 .modalContent_text-description {
@@ -178,6 +207,15 @@ li {
     letter-spacing: 0.06em;
     color: #000000;
     margin-bottom: 40px;
+    @include media-tablet {
+        font-size: 1.3rem;
+        line-height: 110%;
+        margin-bottom: 17px;
+    }
+    @include media-mobile {
+        text-align: justify;
+        margin-bottom: 22px;
+    }
 }
 
 .modalContent_text_options {
@@ -197,6 +235,9 @@ li {
         letter-spacing: 0.06em;
         color: #000000;
         margin-left: -10px;
+        @include mobile-modal {
+            margin-left: -8px;
+        }
     }
     > :last-child {
         font-family: 'Georgia';
@@ -206,5 +247,8 @@ li {
         line-height: 110%;
         letter-spacing: 0.06em;
         color: #000000;
+    }
+    @include media-tablet {
+        margin-bottom: 5px;
     }
 }

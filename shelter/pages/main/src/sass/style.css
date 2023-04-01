@@ -93,13 +93,15 @@ li {
 }
 
 .modal {
-  /* align-items: center;
-  justify-content: center;
-  width: 952px;
-  height: 552px; */
   margin-left: 50px;
   display: flex;
   flex-direction: column;
+}
+@media (max-width: 594px) {
+  .modal {
+    margin-left: 30px;
+    max-width: 271px;
+  }
 }
 
 .closeModalBtn {
@@ -107,7 +109,7 @@ li {
   height: 48px;
   border-radius: 50%;
   border: 2px solid #F1CDB3;
-  background: url("../assets/icons/Vector_close_btn.svg");
+  background: url("../../../../assets/images/icons/Vector_close_btn.svg");
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
@@ -127,6 +129,18 @@ li {
   border-radius: 9px;
   margin-right: 42px;
 }
+@media (max-width: 768px) {
+  .modalContent {
+    max-width: 630px;
+    min-height: 350px;
+  }
+}
+@media (max-width: 594px) {
+  .modalContent {
+    margin-right: 31px;
+    min-height: 341px;
+  }
+}
 
 .modalContent_pet {
   width: 500px;
@@ -134,12 +148,29 @@ li {
 .modalContent_pet > img {
   width: 100%;
   border-radius: 9px;
+  display: block;
+}
+@media (max-width: 768px) {
+  .modalContent_pet {
+    width: 350px;
+  }
+}
+@media (max-width: 594px) {
+  .modalContent_pet {
+    display: none;
+  }
 }
 
 .modalContent_text {
   box-sizing: border-box;
   padding: 52px 20px 0 30px;
   max-width: 400px;
+}
+@media (max-width: 768px) {
+  .modalContent_text {
+    max-width: 280px;
+    padding: 12px 8px 0 11px;
+  }
 }
 
 .modalContent_text-title {
@@ -152,6 +183,12 @@ li {
   color: #000000;
   margin-bottom: 10px;
 }
+@media (max-width: 594px) {
+  .modalContent_text-title {
+    text-align: center;
+    margin-bottom: 8px;
+  }
+}
 
 .modalContent_text-type-breed {
   font-family: "Georgia";
@@ -163,6 +200,16 @@ li {
   color: #000000;
   margin-bottom: 40px;
 }
+@media (max-width: 768px) {
+  .modalContent_text-type-breed {
+    margin-bottom: 20px;
+  }
+}
+@media (max-width: 594px) {
+  .modalContent_text-type-breed {
+    text-align: center;
+  }
+}
 
 .modalContent_text-description {
   font-family: "Georgia";
@@ -173,6 +220,19 @@ li {
   letter-spacing: 0.06em;
   color: #000000;
   margin-bottom: 40px;
+}
+@media (max-width: 768px) {
+  .modalContent_text-description {
+    font-size: 1.3rem;
+    line-height: 110%;
+    margin-bottom: 17px;
+  }
+}
+@media (max-width: 320px) {
+  .modalContent_text-description {
+    text-align: justify;
+    margin-bottom: 22px;
+  }
 }
 
 .modalContent_text_options {
@@ -194,6 +254,11 @@ li {
   color: #000000;
   margin-left: -10px;
 }
+@media (max-width: 594px) {
+  .modalContent_text_option > :first-child {
+    margin-left: -8px;
+  }
+}
 .modalContent_text_option > :last-child {
   font-family: "Georgia";
   font-style: normal;
@@ -203,9 +268,14 @@ li {
   letter-spacing: 0.06em;
   color: #000000;
 }
+@media (max-width: 768px) {
+  .modalContent_text_option {
+    margin-bottom: 5px;
+  }
+}
 
 header {
-  background: url("./../assets/images/noise_transparent@2x.png"), radial-gradient(at top left, #513D2F 0%, #1A1A1C 100%);
+  background: url("../../../../assets/images/img/noise_transparent@2x.png"), radial-gradient(at top left, #513D2F 0%, #1A1A1C 100%);
 }
 
 .container-header {
@@ -730,7 +800,7 @@ nav {
   height: 48px;
   border: 2px solid #F1CDB3;
   border-radius: 50%;
-  background: url("./../assets/icons/arrow.svg");
+  background: url("../../../../assets/images/icons/arrow.svg");
   background-repeat: no-repeat;
   background-position: center;
   flex-shrink: 0;
@@ -756,7 +826,7 @@ nav {
   height: 48px;
   border: 2px solid #F1CDB3;
   border-radius: 50%;
-  background: url("./../assets/icons/arrow.svg");
+  background: url("../../../../assets/images/icons/arrow.svg");
   background-repeat: no-repeat;
   background-position: center;
   flex-shrink: 0;
@@ -774,7 +844,7 @@ nav {
   height: 48px;
   border: 2px solid #F1CDB3;
   border-radius: 50%;
-  background: url("./../assets/icons/arrow.svg");
+  background: url("../../../../assets/images/icons/arrow.svg");
   background-repeat: no-repeat;
   background-position: center;
   transform: rotate(180deg);
@@ -1205,7 +1275,7 @@ nav {
 }
 
 footer {
-  background: url("./../assets/images/noise_transparent@2x.png"), radial-gradient(at top left, #513D2F 0%, #1A1A1C 100%);
+  background: url("../../../../assets/images/img/noise_transparent@2x.png"), radial-gradient(at top left, #513D2F 0%, #1A1A1C 100%);
 }
 
 .footer-container {
