@@ -65,7 +65,7 @@ function closeBalckOut() {
 
 const petsCards = [
   {
-    id: 1,
+    id: 0,
     "name": "Jennifer",
     "img": "../../assets/images/img/pets-jennifer.png",
     "type": "Dog",
@@ -77,7 +77,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
-    id: 2,
+    id: 1,
     "name": "Sophia",
     "img": "../../assets/images/img/pets-sophia.png",
     "type": "Dog",
@@ -89,7 +89,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
-    id: 3,
+    id: 2,
     "name": "Woody",
     "img": "../../assets/images/img/pets-woody.png",
     "type": "Dog",
@@ -101,7 +101,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
-    id: 4,
+    id: 3,
     "name": "Scarlett",
     "img": "../../assets/images/img/pets-scarlet.png",
     "type": "Dog",
@@ -113,7 +113,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
-    id: 5,
+    id: 4,
     "name": "Katrine",
     "img": "../../assets/images/img/pets-katrine.png",
     "type": "Cat",
@@ -125,7 +125,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
-    id: 6,
+    id: 5,
     "name": "Timmy",
     "img": "../../assets/images/img/pets-timmy.png",
     "type": "Cat",
@@ -137,7 +137,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
-    id: 7,
+    id: 6,
     "name": "Freddie",
     "img": "../../assets/images/img/pets-freddie.png",
     "type": "Cat",
@@ -149,7 +149,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
-    id: 8,
+    id: 7,
     "name": "Charly",
     "img": "../../assets/images/img/pets-charly.png",
     "type": "Dog",
@@ -166,7 +166,7 @@ const sliderItem = document.querySelectorAll('.slider_item');
 let selectedItem;
 let date;
 
-function clickHandlerOnSliderItem () {
+const clickHandlerOnSliderItem = () => {
   sliderItem.forEach(item => {
     item.addEventListener('click', () => {
       selectedItem = item.children[1].textContent;
@@ -175,8 +175,6 @@ function clickHandlerOnSliderItem () {
     });
   });
 }
-
-clickHandlerOnSliderItem();
 
 let modal;
 
@@ -235,6 +233,8 @@ function getModalWindow () {
 window.onload = function () {
   console.log('У тебя все получится!')
 
+  clickHandlerOnSliderItem();
+
   generateArrayNumbers();
 
   generateSlider();
@@ -268,6 +268,7 @@ const generateArrayNumbers = () => {
 const generateSlider = () => {
   let itemNumber = 0;
   sliderItem.forEach(item => {
+    item.id = petsCards[randomNumbersArray[itemNumber]].id;
     let templateSliderItem = '';
     templateSliderItem += `<img src="${petsCards[randomNumbersArray[itemNumber]].img}" alt="${petsCards[randomNumbersArray[itemNumber]].name}">`;
     templateSliderItem += `<h3>${petsCards[randomNumbersArray[itemNumber]].name}</h3>`;
@@ -305,36 +306,53 @@ slider.addEventListener('animationend', () => {
   let rightSliderBlock = document.querySelector('.slider_right');
   if (slider.classList.contains('transition-left')) {
     rightSliderBlock.innerHTML = `${activeSliderBlock.innerHTML}`;
-    activeSliderBlock.innerHTML = `${leftSliderBlock.innerHTML}`;    
+    activeSliderBlock.innerHTML = `${leftSliderBlock.innerHTML}`;
+    generateSliderBlock(leftSliderBlock);
     slider.classList.remove('transition-left');
   } else if (slider.classList.contains('transition-right')) {
     leftSliderBlock.innerHTML = `${activeSliderBlock.innerHTML}`;
     activeSliderBlock.innerHTML = `${rightSliderBlock.innerHTML}`;
+    generateSliderBlock(rightSliderBlock);
     slider.classList.remove('transition-right');
   }
+  const sliderItem = document.querySelectorAll('.slider_item');
+  const clickHandlerOnSliderItem = () => {
+    sliderItem.forEach(item => {
+      item.addEventListener('click', () => {
+        selectedItem = item.children[1].textContent;
+        date = petsCards.find(element => element.name === selectedItem);
+        getModalWindow();
+      });
+    });
+  }
+  clickHandlerOnSliderItem();
 })
 
-const generateSliderBlock = () => {
-  let itemNumber = 0;
-  sliderItem.forEach(item => {
-    let templateSliderItem = '';
-    templateSliderItem += `<img src="${petsCards[randomNumbersArray[itemNumber]].img}" alt="${petsCards[randomNumbersArray[itemNumber]].name}">`;
-    templateSliderItem += `<h3>${petsCards[randomNumbersArray[itemNumber]].name}</h3>`;
-    templateSliderItem += `<button>Learn more</button>`;
-    item.innerHTML = templateSliderItem;
-    itemNumber++;
-  })
+const generateSliderBlock = (block) => {
+  if (block.className === 'slider_left') {
+    for (let i = 0; i < 3; i++) {
+      randomNumbersArray.pop();
+      randomNumbersArray.unshift(randomNumbersArray[randomNumbersArray.length - 1]);
+    }
+    for (let i = 0; i < 3; i++) {
+      let template = '';
+      template += `<img src="${petsCards[randomNumbersArray[i]].img}" alt="${petsCards[randomNumbersArray[i]].name}">`;
+      template += `<h3>${petsCards[randomNumbersArray[i]].name}</h3>`;
+      template += `<button>Learn more</button>`;
+      block.children[i].innerHTML = template;
+    }
+  } else {
+    for (let i = 0; i < 3; i++) {
+      randomNumbersArray.shift();
+      randomNumbersArray.push(randomNumbersArray[0]);
+    }
+    for (let i = 0; i < 3; i++) {
+      let template = '';
+      template += `<img src="${petsCards[randomNumbersArray[randomNumbersArray.length - (3 + i)]].img}" alt="${petsCards[randomNumbersArray[randomNumbersArray.length - (3 + i)]].name}">`;
+      template += `<h3>${petsCards[randomNumbersArray[randomNumbersArray.length - (3 + i)]].name}</h3>`;
+      template += `<button>Learn more</button>`;
+      block.children[i].innerHTML = template;
+    }
+  }
+  console.log(randomNumbersArray)
 }
-
-const changeLeftSliderItem = () => {
-  const itemsLeftSliderBlock = document.querySelector('.slider_left').children;
-  itemsLeftSliderBlock.forEach(item => {
-    item.innerHTML = '';
-    let templateLeftSliderBlock = '';
-    templateLeftSliderBlock += `<img src="${petsCards[randomNumbersArray[itemNumber]].img}" alt="${petsCards[randomNumbersArray[itemNumber]].name}">`;
-    templateLeftSliderBlock += `<h3>${petsCards[randomNumbersArray[itemNumber]].name}</h3>`;
-    templateLeftSliderBlock += `<button>Learn more</button>`;
-  })
-}
-
-console.log('hi')
