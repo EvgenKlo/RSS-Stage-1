@@ -32,7 +32,7 @@
 }
 
 .our-friends_slider {
-    margin-top: 58px;
+    margin-top: 4px;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -46,7 +46,7 @@
 
 .our-friends_slider-items {
     display: flex;
-    margin-bottom: 60px;
+    margin-bottom: 6px;
     align-items: center;
     @include media-tablet {
         margin-bottom: 60px;
@@ -89,7 +89,7 @@
     height: 48px;
     border: 2px solid $beige;
     border-radius: 50%;
-    background: url("../../../../assets/images/icons/arrow.svg");
+    background: url("../../../assets/images/icons/arrow.svg");
     background-repeat: no-repeat;
     background-position: center;
     flex-shrink: 0;
@@ -111,7 +111,7 @@
     height: 48px;
     border: 2px solid $beige;
     border-radius: 50%;
-    background: url("../../../../assets/images/icons/arrow.svg");
+    background: url("../../../assets/images/icons/arrow.svg");
     background-repeat: no-repeat;
     background-position: center;
     flex-shrink: 0;
@@ -127,7 +127,7 @@
     height: 48px;
     border: 2px solid $beige;
     border-radius: 50%;
-    background: url("../../../../assets/images/icons/arrow.svg");
+    background: url("../../../assets/images/icons/arrow.svg");
     background-repeat: no-repeat;
     background-position: center;
     transform: rotate(180deg);
@@ -152,6 +152,7 @@
     border-radius: 9px;
     cursor: pointer;
     transition: .3s;
+    margin: 0 45px;
     &:active {
         background: $white;
         box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
@@ -203,7 +204,53 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin: 0 4.5%;
+    position: relative;
+    left: -1125px;
+    @include media-tablet {
+        overflow: hidden;
+        justify-content: space-between;
+        > :last-child {
+            display: none;
+        }
+    }
+    @include to-slider-mobile {
+        justify-content: space-between;
+    }
+    @include no-second-slider-item {
+        justify-content: center;
+    }
+    @include media-mobile {
+        margin-bottom: 19px;
+    }
+}
+
+@keyframes move-left {
+    from {left: -1125px;}
+    to {left: -45px;}
+}
+
+.transition-left {
+    animation-name: move-left;
+    animation-duration: 2s;
+}
+
+@keyframes move-right {
+    from {left: -1125px;}
+    to {left: -2205px;}
+}
+
+.transition-right {
+    animation-name: move-right;
+    animation-duration: 2s;
+}
+
+.slider__container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 4.5% 4.5%;
+    overflow: hidden;
+    box-sizing: border-box;
     @include media-tablet {
         overflow: hidden;
         margin: 0 1.5%;
@@ -270,4 +317,8 @@
 .arrow-prev:active, .arrow-next:active {
     background-color: $beige-ligth;
     border: 2px solid $beige-ligth;
+}
+
+.slider_left, .slider_active, .slider_right {
+    display: flex;
 }

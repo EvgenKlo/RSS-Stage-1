@@ -65,6 +65,7 @@ function closeBalckOut() {
 
 const petsCards = [
   {
+    id: 1,
     "name": "Jennifer",
     "img": "../../assets/images/img/pets-jennifer.png",
     "type": "Dog",
@@ -76,6 +77,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
+    id: 2,
     "name": "Sophia",
     "img": "../../assets/images/img/pets-sophia.png",
     "type": "Dog",
@@ -87,6 +89,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
+    id: 3,
     "name": "Woody",
     "img": "../../assets/images/img/pets-woody.png",
     "type": "Dog",
@@ -98,6 +101,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
+    id: 4,
     "name": "Scarlett",
     "img": "../../assets/images/img/pets-scarlet.png",
     "type": "Dog",
@@ -109,6 +113,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
+    id: 5,
     "name": "Katrine",
     "img": "../../assets/images/img/pets-katrine.png",
     "type": "Cat",
@@ -120,6 +125,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
+    id: 6,
     "name": "Timmy",
     "img": "../../assets/images/img/pets-timmy.png",
     "type": "Cat",
@@ -131,6 +137,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
+    id: 7,
     "name": "Freddie",
     "img": "../../assets/images/img/pets-freddie.png",
     "type": "Cat",
@@ -142,6 +149,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
+    id: 8,
     "name": "Charly",
     "img": "../../assets/images/img/pets-charly.png",
     "type": "Dog",

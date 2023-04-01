@@ -65,6 +65,7 @@ function closeBalckOut() {
 
 const petsCards = [
   {
+    id: 1,
     "name": "Jennifer",
     "img": "../../assets/images/img/pets-jennifer.png",
     "type": "Dog",
@@ -76,6 +77,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
+    id: 2,
     "name": "Sophia",
     "img": "../../assets/images/img/pets-sophia.png",
     "type": "Dog",
@@ -87,6 +89,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
+    id: 3,
     "name": "Woody",
     "img": "../../assets/images/img/pets-woody.png",
     "type": "Dog",
@@ -98,6 +101,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
+    id: 4,
     "name": "Scarlett",
     "img": "../../assets/images/img/pets-scarlet.png",
     "type": "Dog",
@@ -109,6 +113,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
+    id: 5,
     "name": "Katrine",
     "img": "../../assets/images/img/pets-katrine.png",
     "type": "Cat",
@@ -120,6 +125,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
+    id: 6,
     "name": "Timmy",
     "img": "../../assets/images/img/pets-timmy.png",
     "type": "Cat",
@@ -131,6 +137,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
+    id: 7,
     "name": "Freddie",
     "img": "../../assets/images/img/pets-freddie.png",
     "type": "Cat",
@@ -142,6 +149,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
+    id: 8,
     "name": "Charly",
     "img": "../../assets/images/img/pets-charly.png",
     "type": "Dog",
@@ -220,3 +228,113 @@ function getModalWindow () {
     }
   })
 }
+
+
+//Слайдер
+
+window.onload = function () {
+  console.log('У тебя все получится!')
+
+  generateArrayNumbers();
+
+  generateSlider();
+}
+
+let randomNumber;
+
+const generateRandomNumber = () => {
+  randomNumber = Math.round(Math.random() * (petsCards.length - 1));
+  return randomNumber;
+};
+
+let randomNumbersArray = [];
+
+const generateArrayNumbers = () => {
+  for (let i = 0; i < petsCards.length; i++) {
+    generateRandomNumber();
+    if(randomNumbersArray.length === 0) {
+      randomNumbersArray.push(randomNumber);
+    } else {
+      if((randomNumbersArray.find((i) => i === randomNumber)) === undefined) {
+        randomNumbersArray.push(randomNumber);
+      } else {
+        i--;
+      }
+    }
+  }
+  return randomNumbersArray.push(randomNumbersArray[0])
+}
+
+const generateSlider = () => {
+  let itemNumber = 0;
+  sliderItem.forEach(item => {
+    let templateSliderItem = '';
+    templateSliderItem += `<img src="${petsCards[randomNumbersArray[itemNumber]].img}" alt="${petsCards[randomNumbersArray[itemNumber]].name}">`;
+    templateSliderItem += `<h3>${petsCards[randomNumbersArray[itemNumber]].name}</h3>`;
+    templateSliderItem += `<button>Learn more</button>`;
+    item.innerHTML = templateSliderItem;
+    itemNumber++;
+  })
+}
+
+const slider = document.querySelector('.slider');
+const LEFT_BTN_SLIDER = document.querySelector('.arrow-prev');
+const RIGHT_BTN_SLIDER = document.querySelector('.arrow-next');
+
+const moveLeft = () => {
+  slider.classList.add('transition-left');
+  LEFT_BTN_SLIDER.removeEventListener('click', moveLeft);
+  RIGHT_BTN_SLIDER.removeEventListener('click', moveRight);
+}
+
+LEFT_BTN_SLIDER.addEventListener('click', moveLeft)
+
+const moveRight = () => {
+  slider.classList.add('transition-right');
+  RIGHT_BTN_SLIDER.removeEventListener('click', moveRight);
+  LEFT_BTN_SLIDER.removeEventListener('click', moveLeft);
+}
+
+RIGHT_BTN_SLIDER.addEventListener('click', moveRight);
+
+slider.addEventListener('animationend', () => {
+  LEFT_BTN_SLIDER.addEventListener('click', moveLeft);
+  RIGHT_BTN_SLIDER.addEventListener('click', moveRight);
+  let leftSliderBlock = document.querySelector('.slider_left');
+  let activeSliderBlock = document.querySelector('.slider_active');
+  let rightSliderBlock = document.querySelector('.slider_right');
+  if (slider.classList.contains('transition-left')) {
+    rightSliderBlock.innerHTML = `${activeSliderBlock.innerHTML}`;
+    activeSliderBlock.innerHTML = `${leftSliderBlock.innerHTML}`;    
+    slider.classList.remove('transition-left');
+  } else if (slider.classList.contains('transition-right')) {
+    leftSliderBlock.innerHTML = `${activeSliderBlock.innerHTML}`;
+    activeSliderBlock.innerHTML = `${rightSliderBlock.innerHTML}`;
+    slider.classList.remove('transition-right');
+  }
+})
+
+const generateSliderBlock = () => {
+  let itemNumber = 0;
+  sliderItem.forEach(item => {
+    let templateSliderItem = '';
+    templateSliderItem += `<img src="${petsCards[randomNumbersArray[itemNumber]].img}" alt="${petsCards[randomNumbersArray[itemNumber]].name}">`;
+    templateSliderItem += `<h3>${petsCards[randomNumbersArray[itemNumber]].name}</h3>`;
+    templateSliderItem += `<button>Learn more</button>`;
+    item.innerHTML = templateSliderItem;
+    itemNumber++;
+  })
+}
+
+const changeLeftSliderItem = () => {
+  const itemsLeftSliderBlock = document.querySelector('.slider_left').children;
+  itemsLeftSliderBlock.forEach(item => {
+    item.innerHTML = '';
+    let templateLeftSliderBlock = '';
+    templateLeftSliderBlock += `<img src="${petsCards[randomNumbersArray[itemNumber]].img}" alt="${petsCards[randomNumbersArray[itemNumber]].name}">`;
+    templateLeftSliderBlock += `<h3>${petsCards[randomNumbersArray[itemNumber]].name}</h3>`;
+    templateLeftSliderBlock += `<button>Learn more</button>`;
+  })
+}
+
+console.log('hi')

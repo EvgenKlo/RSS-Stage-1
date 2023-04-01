@@ -7,8 +7,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "style-main": "sass --watch pages/main/src/sass/style.scss pages/main/src/sass/style.css",
-    "style-pets": "sass --watch pages/pets/src/sass/style.scss pages/pets/src/sass/style.css",
+    "style-main": "sass --watch pages/main/sass/style.scss pages/main/sass/style.css",
+    "style-pets": "sass --watch pages/pets/sass/style.scss pages/pets/sass/style.css",
     "build": "webpack --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
