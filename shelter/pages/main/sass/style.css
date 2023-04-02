@@ -883,6 +883,11 @@ nav {
   background: #FDDCC4;
   border: 2px solid #FDDCC4;
 }
+@media (max-width: 1110px) {
+  .slider_item {
+    margin: 0 20px;
+  }
+}
 .slider_item > h3 {
   font-family: "Georgia";
   font-style: normal;
@@ -930,28 +935,25 @@ nav {
   position: relative;
   left: -1125px;
 }
+@media (max-width: 1110px) {
+  .slider {
+    left: -670px;
+  }
+}
 @media (max-width: 768px) {
   .slider {
-    overflow: hidden;
     justify-content: space-between;
-  }
-  .slider > :last-child {
-    display: none;
   }
 }
 @media (max-width: 810px) {
   .slider {
     justify-content: space-between;
+    left: 0px;
   }
 }
 @media (max-width: 750px) {
   .slider {
     justify-content: center;
-  }
-}
-@media (max-width: 320px) {
-  .slider {
-    margin-bottom: 19px;
   }
 }
 
@@ -963,9 +965,35 @@ nav {
     left: -45px;
   }
 }
+@keyframes move-left-tablet {
+  from {
+    left: -670px;
+  }
+  to {
+    left: -50px;
+  }
+}
+@keyframes move-left-mobile {
+  from {
+    left: 0px;
+  }
+  to {
+    left: 310px;
+  }
+}
 .transition-left {
   animation-name: move-left;
   animation-duration: 2s;
+}
+@media (max-width: 1110px) {
+  .transition-left {
+    animation-name: move-left-tablet;
+  }
+}
+@media (max-width: 810px) {
+  .transition-left {
+    animation-name: move-left-mobile;
+  }
 }
 
 @keyframes move-right {
@@ -976,9 +1004,35 @@ nav {
     left: -2205px;
   }
 }
+@keyframes move-right-tablet {
+  from {
+    left: -670px;
+  }
+  to {
+    left: -1290px;
+  }
+}
+@keyframes move-right-mobile {
+  from {
+    left: 0px;
+  }
+  to {
+    left: -310px;
+  }
+}
 .transition-right {
   animation-name: move-right;
   animation-duration: 2s;
+}
+@media (max-width: 1110px) {
+  .transition-right {
+    animation-name: move-right-tablet;
+  }
+}
+@media (max-width: 810px) {
+  .transition-right {
+    animation-name: move-right-mobile;
+  }
 }
 
 .slider__container {
@@ -991,12 +1045,8 @@ nav {
 }
 @media (max-width: 768px) {
   .slider__container {
-    overflow: hidden;
     margin: 0 1.5%;
     justify-content: space-between;
-  }
-  .slider__container > :last-child {
-    display: none;
   }
 }
 @media (max-width: 810px) {

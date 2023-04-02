@@ -281,25 +281,30 @@ const generateSlider = () => {
 const slider = document.querySelector('.slider');
 const LEFT_BTN_SLIDER = document.querySelector('.arrow-prev');
 const RIGHT_BTN_SLIDER = document.querySelector('.arrow-next');
+const LEFT_BTN_SLIDER_MOBILE = document.querySelector('.mobile-arrow-prev');
 
 const moveLeft = () => {
   slider.classList.add('transition-left');
   LEFT_BTN_SLIDER.removeEventListener('click', moveLeft);
+  LEFT_BTN_SLIDER_MOBILE.removeEventListener('click', moveLeft);
   RIGHT_BTN_SLIDER.removeEventListener('click', moveRight);
 }
 
-LEFT_BTN_SLIDER.addEventListener('click', moveLeft)
+LEFT_BTN_SLIDER.addEventListener('click', moveLeft);
+LEFT_BTN_SLIDER_MOBILE.addEventListener('click', moveLeft);
 
 const moveRight = () => {
   slider.classList.add('transition-right');
   RIGHT_BTN_SLIDER.removeEventListener('click', moveRight);
   LEFT_BTN_SLIDER.removeEventListener('click', moveLeft);
+  LEFT_BTN_SLIDER_MOBILE.removeEventListener('click', moveLeft);
 }
 
 RIGHT_BTN_SLIDER.addEventListener('click', moveRight);
 
 slider.addEventListener('animationend', () => {
   LEFT_BTN_SLIDER.addEventListener('click', moveLeft);
+  LEFT_BTN_SLIDER_MOBILE.addEventListener('click', moveLeft);
   RIGHT_BTN_SLIDER.addEventListener('click', moveRight);
   let leftSliderBlock = document.querySelector('.slider_left');
   let activeSliderBlock = document.querySelector('.slider_active');
@@ -340,6 +345,7 @@ const generateSliderBlock = (block) => {
       template += `<h3>${petsCards[randomNumbersArray[i]].name}</h3>`;
       template += `<button>Learn more</button>`;
       block.children[i].innerHTML = template;
+      block.children[i].id = petsCards[randomNumbersArray[i]].id;
     }
   } else {
     for (let i = 0; i < 3; i++) {
@@ -348,11 +354,11 @@ const generateSliderBlock = (block) => {
     }
     for (let i = 0; i < 3; i++) {
       let template = '';
-      template += `<img src="${petsCards[randomNumbersArray[randomNumbersArray.length - (3 + i)]].img}" alt="${petsCards[randomNumbersArray[randomNumbersArray.length - (3 + i)]].name}">`;
-      template += `<h3>${petsCards[randomNumbersArray[randomNumbersArray.length - (3 + i)]].name}</h3>`;
+      template += `<img src="${petsCards[randomNumbersArray[randomNumbersArray.length - (3 - i)]].img}" alt="${petsCards[randomNumbersArray[randomNumbersArray.length - (3 + i)]].name}">`;
+      template += `<h3>${petsCards[randomNumbersArray[randomNumbersArray.length - (3 - i)]].name}</h3>`;
       template += `<button>Learn more</button>`;
       block.children[i].innerHTML = template;
+      block.children[i].id = petsCards[randomNumbersArray[randomNumbersArray.length - (3 - i)]].id;
     }
   }
-  console.log(randomNumbersArray)
 }

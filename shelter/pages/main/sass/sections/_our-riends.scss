@@ -161,6 +161,9 @@
             border: 2px solid $beige-ligth;
         } 
     }
+    @include to-slider-tablet {
+        margin: 0 20px;;
+    }
     > h3 {
         font-family: 'Georgia';
         font-style: normal;
@@ -206,21 +209,18 @@
     width: 100%;
     position: relative;
     left: -1125px;
+    @include to-slider-tablet {
+        left: -670px;
+    }
     @include media-tablet {
-        overflow: hidden;
         justify-content: space-between;
-        > :last-child {
-            display: none;
-        }
     }
     @include to-slider-mobile {
         justify-content: space-between;
+        left: 0px;
     }
     @include no-second-slider-item {
         justify-content: center;
-    }
-    @include media-mobile {
-        margin-bottom: 19px;
     }
 }
 
@@ -229,9 +229,25 @@
     to {left: -45px;}
 }
 
+@keyframes move-left-tablet {
+    from {left: -670px;}
+    to {left: -50px;}
+}
+
+@keyframes move-left-mobile {
+    from {left: 0px;}
+    to {left: 310px;}
+}
+
 .transition-left {
     animation-name: move-left;
     animation-duration: 2s;
+    @include to-slider-tablet {
+        animation-name: move-left-tablet;
+    }
+    @include to-slider-mobile {
+        animation-name: move-left-mobile;
+    }
 }
 
 @keyframes move-right {
@@ -239,9 +255,25 @@
     to {left: -2205px;}
 }
 
+@keyframes move-right-tablet {
+    from {left: -670px;}
+    to {left: -1290px;}
+}
+
+@keyframes move-right-mobile {
+    from {left: 0px;}
+    to {left: -310px;}
+}
+
 .transition-right {
     animation-name: move-right;
     animation-duration: 2s;
+    @include to-slider-tablet {
+        animation-name: move-right-tablet;
+    }
+    @include to-slider-mobile {
+        animation-name: move-right-mobile;
+    }
 }
 
 .slider__container {
@@ -252,12 +284,8 @@
     overflow: hidden;
     box-sizing: border-box;
     @include media-tablet {
-        overflow: hidden;
         margin: 0 1.5%;
         justify-content: space-between;
-        > :last-child {
-            display: none;
-        }
     }
     @include to-slider-mobile {
         justify-content: space-between;
