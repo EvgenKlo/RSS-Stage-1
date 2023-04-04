@@ -1,4 +1,9 @@
 //console.log('Оценка за работу 100 баллов.\nСтраница Main (60):\n1. Проверка верстки +6;\n2. Вёрстка соответствует макету +35;\n3. Требования к css +7;\n4. Интерактивность элементов +12.\nСтраница Pets(40):\n1. Проверка верстки +6;\n2. Вёрстка соответствует макету +15;\n3. Требования к css +5;\n4. Интерактивность элементов +14.');
+window.onload = function () {
+  generatePetsCards();
+
+  //clickHandlerOnSliderItem();
+}
 
 const hamb = document.querySelector("#hamb");
 const popup = document.querySelector("#popup");
@@ -65,7 +70,7 @@ function closeBalckOut() {
 
 const petsCards = [
   {
-    id: 1,
+    id: 0,
     "name": "Jennifer",
     "img": "../../assets/images/img/pets-jennifer.png",
     "type": "Dog",
@@ -77,7 +82,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
-    id: 2,
+    id: 1,
     "name": "Sophia",
     "img": "../../assets/images/img/pets-sophia.png",
     "type": "Dog",
@@ -89,7 +94,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
-    id: 3,
+    id: 2,
     "name": "Woody",
     "img": "../../assets/images/img/pets-woody.png",
     "type": "Dog",
@@ -101,7 +106,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
-    id: 4,
+    id: 3,
     "name": "Scarlett",
     "img": "../../assets/images/img/pets-scarlet.png",
     "type": "Dog",
@@ -113,7 +118,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
-    id: 5,
+    id: 4,
     "name": "Katrine",
     "img": "../../assets/images/img/pets-katrine.png",
     "type": "Cat",
@@ -125,7 +130,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
-    id: 6,
+    id: 5,
     "name": "Timmy",
     "img": "../../assets/images/img/pets-timmy.png",
     "type": "Cat",
@@ -137,7 +142,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
-    id: 7,
+    id: 6,
     "name": "Freddie",
     "img": "../../assets/images/img/pets-freddie.png",
     "type": "Cat",
@@ -149,7 +154,7 @@ const petsCards = [
     "parasites": ["none"]
   },
   {
-    id: 8,
+    id: 7,
     "name": "Charly",
     "img": "../../assets/images/img/pets-charly.png",
     "type": "Dog",
@@ -162,28 +167,16 @@ const petsCards = [
   }
 ]
 
-const sliderItem = document.querySelectorAll('.our-friends_item');
-let selectedItem;
-let date;
-
 function clickHandlerOnSliderItem () {
-  sliderItem.forEach(item => {
+  document.querySelectorAll('.our-friends_item').forEach(item => {
     item.addEventListener('click', () => {
-      selectedItem = item.children[1].textContent;
-      date = petsCards.find(element => element.name === selectedItem);
-      getModalWindow();
+      getModalWindow(petsCards[item.id]);
     });
   });
 }
 
-clickHandlerOnSliderItem();
-
-let modal;
-
-function getModalWindow () {
-  if (modal){
-    document.querySelector('.our-friends').removeChild(modal);
-  }
+function getModalWindow (date) {
+  let modal;
   let template = '';
   modal = document.createElement('div');
   modal.className = 'overlay';
@@ -229,5 +222,23 @@ function getModalWindow () {
   })
 }
 
+//Генерируем карточки питомцев
 
+function generatePetsCards () {
+  let itemNumber = 0;
+  document.querySelectorAll('.our-friends_item').forEach(item => {
+    let template = '';
+    item.id = petsCards[itemNumber].id;
+    template += `<img src="${petsCards[itemNumber].img}" alt="pets-${petsCards[itemNumber].name}">`;
+    template += `<p>${petsCards[itemNumber].name}</p>`;
+    template += `<button>Learn more</button>`;
+    itemNumber++;
+    item.innerHTML = template;
+  })
+  let ourFriendsItemContent = document.querySelector('.our-friends_content');
+  for(let i = 0; i < 2; i++) {
+    ourFriendsItemContent.innerHTML += `${ourFriendsItemContent.innerHTML}`;
+  }
+  clickHandlerOnSliderItem();
+}
 

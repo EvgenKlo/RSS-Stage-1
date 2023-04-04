@@ -162,26 +162,16 @@ const petsCards = [
   }
 ]
 
-const sliderItem = document.querySelectorAll('.slider_item');
-let selectedItem;
-let date;
-
 const clickHandlerOnSliderItem = () => {
-  sliderItem.forEach(item => {
+  document.querySelectorAll('.slider_item').forEach(item => {
     item.addEventListener('click', () => {
-      selectedItem = item.children[1].textContent;
-      date = petsCards.find(element => element.name === selectedItem);
-      getModalWindow();
+      getModalWindow(petsCards[item.id]);
     });
   });
 }
 
-let modal;
-
-function getModalWindow () {
-  if (modal){
-    document.querySelector('.our-friends').removeChild(modal);
-  }
+function getModalWindow (date) {
+  let modal;
   let template = '';
   modal = document.createElement('div');
   modal.className = 'overlay';
@@ -267,7 +257,7 @@ const generateArrayNumbers = () => {
 
 const generateSlider = () => {
   let itemNumber = 0;
-  sliderItem.forEach(item => {
+  document.querySelectorAll('.slider_item').forEach(item => {
     item.id = petsCards[randomNumbersArray[itemNumber]].id;
     let templateSliderItem = '';
     templateSliderItem += `<img src="${petsCards[randomNumbersArray[itemNumber]].img}" alt="${petsCards[randomNumbersArray[itemNumber]].name}">`;
@@ -319,16 +309,6 @@ slider.addEventListener('animationend', () => {
     activeSliderBlock.innerHTML = `${rightSliderBlock.innerHTML}`;
     generateSliderBlock(rightSliderBlock);
     slider.classList.remove('transition-right');
-  }
-  const sliderItem = document.querySelectorAll('.slider_item');
-  const clickHandlerOnSliderItem = () => {
-    sliderItem.forEach(item => {
-      item.addEventListener('click', () => {
-        selectedItem = item.children[1].textContent;
-        date = petsCards.find(element => element.name === selectedItem);
-        getModalWindow();
-      });
-    });
   }
   clickHandlerOnSliderItem();
 })
