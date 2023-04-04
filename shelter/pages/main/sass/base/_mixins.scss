@@ -6,6 +6,10 @@
     @media (max-width: $mobile-width) { @content; }
 }
 
+@mixin slider-tablet {
+    @media (max-width: 1270px) { @content }
+}
+
 @mixin to-slider-tablet {
     @media (max-width: 1110px) { @content }
 }
@@ -27,7 +31,7 @@
 }
 
 @mixin to-slider-mobile-arrow {
-    @media (max-width: 470px) { @content }
+    @media (max-width: 480px) { @content }
 }
 
 @mixin hover-for-desktop {

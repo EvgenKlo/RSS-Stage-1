@@ -7,6 +7,9 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    @include no-nav {
+        padding: 0 10px;
+    }
 }
 
 .our-friends-title {
@@ -37,10 +40,10 @@
     flex-direction: column;
     width: 100%;
     @include media-tablet {
-        margin-top: 57px;
+        margin-top: 25px;
     }
     @include media-mobile {
-        margin-top: 42px;
+        margin-top: 29px;
     }
 }
 
@@ -49,7 +52,7 @@
     margin-bottom: 6px;
     align-items: center;
     @include media-tablet {
-        margin-bottom: 60px;
+        margin-bottom: 29px;
     }
     @include to-slider-mobile-arrow {
         flex-wrap: wrap;
@@ -145,6 +148,7 @@
 .slider_item {
     width: 270px;
     height: 435px;
+    text-align: center;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -161,8 +165,8 @@
             border: 2px solid $beige-ligth;
         } 
     }
-    @include to-slider-tablet {
-        margin: 0 20px;;
+    @include slider-tablet {
+        margin: 0 20px;
     }
     > h3 {
         font-family: 'Georgia';
@@ -205,22 +209,14 @@
 
 .slider {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
     position: relative;
     left: -1125px;
-    @include to-slider-tablet {
-        left: -670px;
+    @include slider-tablet {
+        left: -660px;
     }
-    @include media-tablet {
-        justify-content: space-between;
-    }
-    @include to-slider-mobile {
-        justify-content: space-between;
-        left: 0px;
-    }
-    @include no-second-slider-item {
-        justify-content: center;
+    @include no-nav {
+        left: -330px;
+        padding-bottom: 5px;
     }
 }
 
@@ -230,22 +226,22 @@
 }
 
 @keyframes move-left-tablet {
-    from {left: -670px;}
-    to {left: -50px;}
+    from {left: -660px;}
+    to {left: -40px;}
 }
 
 @keyframes move-left-mobile {
-    from {left: 0px;}
-    to {left: 310px;}
+    from {left: -330px;}
+    to {left: -20px;}
 }
 
 .transition-left {
     animation-name: move-left;
     animation-duration: 2s;
-    @include to-slider-tablet {
+    @include slider-tablet {
         animation-name: move-left-tablet;
     }
-    @include to-slider-mobile {
+    @include no-nav {
         animation-name: move-left-mobile;
     }
 }
@@ -256,22 +252,22 @@
 }
 
 @keyframes move-right-tablet {
-    from {left: -670px;}
-    to {left: -1290px;}
+    from {left: -660px;}
+    to {left: -1280px;}
 }
 
 @keyframes move-right-mobile {
-    from {left: 0px;}
-    to {left: -310px;}
+    from {left: -330px;}
+    to {left: -640px;}
 }
 
 .transition-right {
     animation-name: move-right;
     animation-duration: 2s;
-    @include to-slider-tablet {
+    @include slider-tablet {
         animation-name: move-right-tablet;
     }
-    @include to-slider-mobile {
+    @include no-nav {
         animation-name: move-right-mobile;
     }
 }
@@ -279,34 +275,27 @@
 .slider__container {
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 1080px;
     padding: 4.5% 4.5%;
     overflow: hidden;
     box-sizing: border-box;
-    @include media-tablet {
-        margin: 0 1.5%;
-        justify-content: space-between;
+    @include slider-tablet {
+        width: 660px;
+        margin: 0 auto;
     }
-    @include to-slider-mobile {
-        justify-content: space-between;
-        margin: 0 1.5%;
-    }
-    @include no-second-slider-item {
-        justify-content: center;
-    }
-    @include media-mobile {
-        margin-bottom: 19px;
+    @include no-nav {
+        width: 300px;
     }
 }
 
 .third-item {
-    @include to-slider-tablet {
+    @include slider-tablet {
         display: none;
     }
 }
 
 .second-item {
-    @include no-second-slider-item {
+    @include no-nav {
         display: none;
     }
 }
