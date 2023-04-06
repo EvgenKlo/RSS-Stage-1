@@ -64,6 +64,11 @@ li {
     padding: 0 30px;
   }
 }
+@media (max-width: 470px) {
+  .container {
+    padding: 0 10px;
+  }
+}
 @media (max-width: 320px) {
   .container {
     padding: 0 10px;
