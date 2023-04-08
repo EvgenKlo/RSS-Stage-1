@@ -1,8 +1,8 @@
 //console.log('Оценка за работу 100 баллов.\nСтраница Main (60):\n1. Проверка верстки +6;\n2. Вёрстка соответствует макету +35;\n3. Требования к css +7;\n4. Интерактивность элементов +12.\nСтраница Pets(40):\n1. Проверка верстки +6;\n2. Вёрстка соответствует макету +15;\n3. Требования к css +5;\n4. Интерактивность элементов +14.');
 window.onload = function () {
-  generatePetsCards();
-
-  //clickHandlerOnSliderItem();
+  getSixTimesArrayNumbers();
+  generatePaginationPage();
+  clickHandlerOnSliderItem();
 }
 
 const hamb = document.querySelector("#hamb");
@@ -63,8 +63,6 @@ function closeBalckOut() {
 };
 
 
-
-//Модальное окно
 
 //Модальное окно
 
@@ -222,23 +220,141 @@ function getModalWindow (date) {
   })
 }
 
+
 //Генерируем карточки питомцев
 
-function generatePetsCards () {
+function generatePaginationPage () {
+  let pageNumber = document.querySelector('.circle.full').innerText;
   let itemNumber = 0;
   document.querySelectorAll('.our-friends_item').forEach(item => {
     let template = '';
-    item.id = petsCards[itemNumber].id;
-    template += `<img src="${petsCards[itemNumber].img}" alt="pets-${petsCards[itemNumber].name}">`;
-    template += `<p>${petsCards[itemNumber].name}</p>`;
+    item.id = petsCards[sixTimesArr[pageNumber - 1][itemNumber]].id;
+    template += `<img src="${petsCards[sixTimesArr[pageNumber - 1][itemNumber]].img}" alt="pets-${petsCards[sixTimesArr[pageNumber - 1][itemNumber]].name}">`;
+    template += `<p>${petsCards[sixTimesArr[pageNumber - 1][itemNumber]].name}</p>`;
     template += `<button>Learn more</button>`;
     itemNumber++;
     item.innerHTML = template;
   })
-  let ourFriendsItemContent = document.querySelector('.our-friends_content');
-  for(let i = 0; i < 2; i++) {
-    ourFriendsItemContent.innerHTML += `${ourFriendsItemContent.innerHTML}`;
-  }
-  clickHandlerOnSliderItem();
 }
 
+//Генерируем случайный массив
+
+let randomNumber;
+
+const generateRandomNumber = () => {
+  randomNumber = Math.round(Math.random() * (petsCards.length - 1));
+};
+
+const generateArrayNumbers = () => {
+  let randomNumbersArray = [];
+  for (let i = 0; i < petsCards.length; i++) {
+    generateRandomNumber();
+    if(randomNumbersArray.length === 0) {
+      randomNumbersArray.push(randomNumber);
+    } else {
+      if((randomNumbersArray.find((i) => i === randomNumber)) === undefined) {
+        randomNumbersArray.push(randomNumber);
+      } else {
+        i--;
+      }
+    }
+  }
+  return randomNumbersArray;
+}
+
+
+//Создаем шесть случайных последовательностей и объединяем их в один массив
+
+let sixTimesArr = [];
+
+const getSixTimesArrayNumbers = () => {  
+  for (let i = 0; i < 6; i++) {
+    sixTimesArr.push(generateArrayNumbers());
+  }
+}
+
+//Активирую кнопки и индикатор страницы
+
+const BTN_NEXT = document.querySelector('.next-page');
+const BTN_LAST = document.querySelector('.last-page');
+const BTN_PREV = document.querySelector('.prev-page');
+const BTN_FIRST = document.querySelector('.first-page');
+
+BTN_NEXT.addEventListener('click', pushNextBtn);
+
+function pushNextBtn () {
+  let pageNumber = +document.querySelector('.circle.full').innerText;
+  document.querySelector('.circle.full').innerText = pageNumber + 1;
+  BTN_FIRST.addEventListener('click', pushFirstBtn);
+  BTN_PREV.classList.add('active');
+  BTN_FIRST.classList.add('active');
+  BTN_PREV.classList.remove('disabled');
+  BTN_FIRST.classList.remove('disabled');
+  BTN_PREV.addEventListener('click', pushPrevBtn);
+  if (pageNumber === sixTimesArr.length - 1) {
+    BTN_NEXT.removeEventListener('click', pushNextBtn);
+    BTN_LAST.removeEventListener('click', pushLastBtn);
+    BTN_NEXT.classList.add('disabled');
+    BTN_LAST.classList.add('disabled');
+    BTN_NEXT.classList.remove('active');
+    BTN_LAST.classList.remove('active');
+  }
+  generatePaginationPage();
+}
+
+BTN_LAST.addEventListener('click', pushLastBtn);
+
+function pushLastBtn () {
+  document.querySelector('.circle.full').innerText = `${sixTimesArr.length}`;
+  BTN_FIRST.addEventListener('click', pushFirstBtn);
+  BTN_PREV.addEventListener('click', pushPrevBtn);
+  BTN_LAST.removeEventListener('click', pushLastBtn);
+  BTN_NEXT.removeEventListener('click', pushNextBtn);
+  BTN_NEXT.classList.add('disabled');
+  BTN_LAST.classList.add('disabled');
+  BTN_NEXT.classList.remove('active');
+  BTN_LAST.classList.remove('active');
+  BTN_PREV.classList.add('active');
+  BTN_FIRST.classList.add('active');
+  BTN_PREV.classList.remove('disabled');
+  BTN_FIRST.classList.remove('disabled');
+  BTN_PREV.addEventListener('click', pushPrevBtn);
+  generatePaginationPage();
+}
+
+function pushPrevBtn () {
+  let pageNumber = +document.querySelector('.circle.full').innerText;
+  document.querySelector('.circle.full').innerText = pageNumber - 1;
+  BTN_NEXT.addEventListener('click', pushNextBtn);
+  BTN_LAST.addEventListener('click', pushLastBtn);
+  BTN_NEXT.classList.remove('disabled');
+  BTN_LAST.classList.remove('disabled');
+  BTN_NEXT.classList.add('active');
+  BTN_LAST.classList.add('active');
+  if (pageNumber === 2) {
+    BTN_PREV.removeEventListener('click', pushPrevBtn);
+    BTN_FIRST.removeEventListener('click', pushFirstBtn);
+    BTN_PREV.classList.remove('active');
+    BTN_FIRST.classList.remove('active');
+    BTN_PREV.classList.add('disabled');
+    BTN_FIRST.classList.add('disabled');
+  }
+  generatePaginationPage();
+}
+
+function pushFirstBtn () {
+  document.querySelector('.circle.full').innerText = 1;
+  BTN_FIRST.removeEventListener('click', pushFirstBtn);
+  BTN_PREV.classList.remove('active');
+  BTN_FIRST.classList.remove('active');
+  BTN_PREV.classList.add('disabled');
+  BTN_FIRST.classList.add('disabled');
+  BTN_NEXT.classList.remove('disabled');
+  BTN_LAST.classList.remove('disabled');
+  BTN_NEXT.classList.add('active');
+  BTN_LAST.classList.add('active');
+  BTN_NEXT.addEventListener('click', pushNextBtn);
+  BTN_LAST.addEventListener('click', pushLastBtn);
+  BTN_PREV.removeEventListener('click', pushPrevBtn);
+  generatePaginationPage();
+}
