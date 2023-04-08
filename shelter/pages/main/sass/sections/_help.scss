@@ -1,0 +1,84 @@
+.help-container {
+    flex-direction: column;
+    align-items: center;
+}
+
+.help_title {
+    > h2 {
+        font-family: 'Georgia';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 3.5rem;
+        line-height: 130%;
+        letter-spacing: 0.06em;
+        color: $dark;
+        text-align: center;
+        @include media-mobile {
+            font-size: 2.5rem;
+        }
+    }
+    margin-top: 80px;
+    max-width: 310px;
+    justify-content: center;
+    @include media-tablet {
+        margin-top: 82px;
+    }
+    @include media-mobile {
+        max-width: 270px;
+        margin-top: 42px;
+    }
+}
+
+.help_content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1150px;
+    margin: 59px 0 43px;
+    @include media-tablet {
+        max-width: 675px;
+        justify-content: space-between;
+        margin: 59px 0 48px;
+    }
+    @include media-mobile {
+        margin: 41px 0 12px;
+    }
+}
+
+.help_item {
+    > p {
+        font-family: 'Georgia';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 2rem;
+        line-height: 115%;
+        letter-spacing: 0.06em;
+        color: $dark;
+        @include media-mobile {
+            font-size: 1.5rem;
+            line-height: 110%;
+        }
+    }
+    text-align: center;
+    margin: 0 60px 56px;
+    display: flex;
+    flex-direction: column;
+    height: 113px;
+    justify-content: space-between;
+    @include media-tablet {
+        margin: 0 23px 54px;
+        width: 170px;
+    }
+    @include media-mobile {
+        width: 130px;
+        height: 87px;
+        margin: 0 5px 30px;
+    }
+}
+
+.help_img {
+    @include media-mobile {
+        width: 50px;
+        height: 50px;
+    }
+}
