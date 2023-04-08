@@ -1,27 +1,27 @@
 @font-face {
   font-family: "Georgia";
-  src: url("../../../../assets/fonts/georgia/Georgia.woff2") format("woff2"), url("../../../../assets/fonts/georgia/Georgia.woff") format("woff");
+  src: url("../../../assets/fonts/georgia/Georgia.woff2") format("woff2"), url("../../../assets/fonts/georgia/Georgia.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Georgia";
-  src: url("../../../../assets/fonts/georgia/Georgia-bold.woff2") format("woff2"), url("../../../../assets/fonts/georgia/Georgia-bold.woff") format("woff");
+  src: url("../../../assets/fonts/georgia/Georgia-bold.woff2") format("woff2"), url("../../../assets/fonts/georgia/Georgia-bold.woff") format("woff");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Arial";
-  src: url("../../../../assets/fonts/arial/ArialMT.woff2") format("woff2"), url("../../../../assets/fonts/arial/ArialMT.woff") format("woff");
+  src: url("../../../assets/fonts/arial/ArialMT.woff2") format("woff2"), url("../../../assets/fonts/arial/ArialMT.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Arial";
-  src: url("../../../../assets/fonts/arial/Arial-ItalicMT.woff2") format("woff2"), url("../../../../assets/fonts/arial/Arial-ItalicMT.woff") format("woff");
+  src: url("../../../assets/fonts/arial/Arial-ItalicMT.woff2") format("woff2"), url("../../../assets/fonts/arial/Arial-ItalicMT.woff") format("woff");
   font-weight: normal;
   font-style: italic;
   font-display: swap;
