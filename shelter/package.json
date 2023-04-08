@@ -1,17 +1,21 @@
 {
   "dependencies": {
-    "normalize.css": "^8.0.1"
+    "normalize.css": "^8.0.1",
+    "webpack": "^5.76.3"
   },
   "name": "shelter",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
-    "style-main": "sass --watch pages/main/src/sass/style.scss pages/main/src/sass/style.css",
-    "style-pets": "sass --watch pages/pets/src/sass/style.scss pages/pets/src/sass/style.css",
+    "style-main": "sass --watch pages/main/sass/style.scss pages/main/sass/style.css",
+    "style-pets": "sass --watch pages/pets/sass/style.scss pages/pets/sass/style.css",
+    "build": "webpack --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "webpack-cli": "^5.0.1"
+  }
 }

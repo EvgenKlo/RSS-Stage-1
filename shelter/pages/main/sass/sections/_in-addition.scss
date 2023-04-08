@@ -1,0 +1,146 @@
+.in-addition {
+    background: $gray;
+}
+
+.in-addition-container {
+    justify-content: center;
+}
+
+.in-addition__content {
+    display: flex;
+    margin: 90px 0 99px;
+    max-width: 914px;
+    flex-wrap: wrap;
+    justify-content: center;
+    @include media-tablet {
+        flex-direction: column-reverse;
+        margin: 80px 0 96px;
+    }
+    @include media-mobile {
+        margin: 42px 0 38px;
+        align-items: center;
+    }
+}
+
+.in-addition_dog {
+    max-width: 505px;
+    > img {
+        width: 100%;
+    }
+    @include media-mobile {
+        max-width: 260px;
+    }
+    > img {
+        @include media-mobile {
+            width: 100%;
+        }
+    }
+}
+
+.in-addition_text {
+    display: flex;
+    flex-direction: column;
+    margin: 0 19px 0 30px;
+    max-width: 360px;
+    > h2 {
+        max-width: 300px;
+        margin: -10px 0 20px;
+        font-family: 'Georgia';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 3.5rem;
+        line-height: 130%;
+        letter-spacing: 0.06em;
+        color: $dark;
+        @include media-tablet {
+            margin: 0px 0 19px;
+        }
+        @include media-mobile {
+            font-size: 2.5rem;
+            text-align: center;
+            max-width: 210px;
+            margin: 0px 0 23px;
+        }
+    }
+    > a {
+        width: 97%;
+        min-height: 43px;
+        background: $beige;
+        border-radius: 9px;
+        margin-bottom: 20px;
+        transition: .3s;
+        @include media-tablet {
+            width: 92%;
+        }
+        @include media-mobile {
+            width: 100%;
+        }
+    }
+    @include media-tablet {
+        max-width: 380px;
+        margin: 0 auto 60px;
+    }
+    @include media-mobile {
+        max-width: 280px;
+        align-items: center;
+        margin: 0 auto 42px;
+    }
+}
+
+.name_bank {
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 110%;
+    letter-spacing: 0.06em;
+    color: $dark;
+    margin-bottom: 20px;
+    @include media-mobile {
+        letter-spacing: 0;
+        margin-bottom: 24px;
+    }
+}
+
+.bank_link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 15px;
+    height: 100%;
+    > p {
+        font-family: 'Georgia';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 2rem;
+        line-height: 115%;
+        letter-spacing: 0.06em;
+        color: $dark;
+        @include media-mobile {
+            font-size: 1.5rem;
+            line-height: 110%;
+        }
+    }
+}
+
+.in-addition_cursive {
+    font-family: 'Arial';
+    font-style: italic;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: $gray-lite;
+    @include media-mobile {
+        text-align: justify;
+    }
+}
+
+@include hover-for-desktop {
+    .in-addition_text > a:hover {
+        background: $beige-ligth;
+    }
+}
+
+.in-addition_text > a:active {
+    background: $beige-ligth;
+}

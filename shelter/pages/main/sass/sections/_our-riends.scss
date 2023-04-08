@@ -1,0 +1,341 @@
+.our-friends {
+    background: $gray;
+    display: flex;
+}
+
+.our-friends-container {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    @include no-nav {
+        padding: 0 10px;
+    }
+}
+
+.our-friends-title {
+    max-width: 400px;
+    > h2 {
+        font-family: 'Georgia';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 3.5rem;
+        line-height: 130%;
+        letter-spacing: 0.06em;
+        color: $dark;
+        margin-top: 80px;
+        text-align: center;
+        @include media-tablet {
+            margin-top: 81px;
+        }
+        @include media-mobile {
+            font-size: 2.5rem;
+            margin-top: 42px;
+        }
+    }
+}
+
+.our-friends_slider {
+    margin-top: 4px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    @include media-tablet {
+        margin-top: 25px;
+    }
+    @include media-mobile {
+        margin-top: 29px;
+    }
+}
+
+.our-friends_slider-items {
+    display: flex;
+    margin-bottom: 6px;
+    align-items: center;
+    @include media-tablet {
+        margin-bottom: 29px;
+    }
+    @include to-slider-mobile-arrow {
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+    @include media-mobile {
+        margin-bottom: 42px;
+    }
+}
+
+.our-friends_button {
+    display: flex;
+    width: 257px;
+    height: 48px;
+    background: $beige;
+    border-radius: 100px;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Georgia';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.7rem;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+    color: $dark-gray;
+    margin: 0 auto;
+    margin-bottom: 100px;
+    border: 2px solid $beige;
+    transition: .3s;
+    @include media-mobile {
+        margin-bottom: 42px;
+    }
+}
+
+.arrow-prev {
+    width: 48px;
+    height: 48px;
+    border: 2px solid $beige;
+    border-radius: 50%;
+    background: url("../../../assets/images/icons/arrow.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: .3s;
+    @include media-tablet {
+        margin-top: 3px;
+    }
+    @include to-slider-mobile-arrow {
+        display: none;
+        margin-top: 0;
+        margin-right: 23px;
+    }
+}
+
+.mobile-arrow-prev {
+    display: none;
+    width: 48px;
+    height: 48px;
+    border: 2px solid $beige;
+    border-radius: 50%;
+    background: url("../../../assets/images/icons/arrow.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: .3s;
+    @include to-slider-mobile-arrow {
+        display: block;
+    }
+}
+
+.arrow-next {
+    width: 48px;
+    height: 48px;
+    border: 2px solid $beige;
+    border-radius: 50%;
+    background: url("../../../assets/images/icons/arrow.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: rotate(180deg);
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: .3s;
+    @include media-tablet {
+        margin-top: 3px;
+    }
+    @include to-slider-mobile-arrow {
+        margin-top: 0;
+    }
+}
+
+.slider_item {
+    width: 270px;
+    height: 435px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: $lite;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: .3s;
+    margin: 0 45px;
+    &:active {
+        background: $white;
+        box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+        > button {
+            background: $beige-ligth;
+            border: 2px solid $beige-ligth;
+        } 
+    }
+    @include slider-tablet {
+        margin: 0 20px;
+    }
+    > h3 {
+        font-family: 'Georgia';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 2rem;
+        line-height: 2.3rem;
+        letter-spacing: 0.06em;
+        color: $dark;
+        margin-bottom: 30px;
+    }
+    > img {
+        margin-bottom: 30px;
+        @include media-tablet {
+            margin-bottom: 31px;
+        }
+    }
+    > button {
+        width: 187px;
+        height: 52px;
+        border: 2px solid $beige;
+        border-radius: 100px;
+        background: $lite;
+        font-family: 'Georgia';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1.7rem;
+        line-height: 130%;
+        letter-spacing: 0.06em;
+        color: $dark-gray;
+        cursor: pointer;
+        transition: .3s;
+    }
+    @include media-mobile {
+        > img {
+            margin-bottom: 29px;
+        }
+    }
+}
+
+.slider {
+    display: flex;
+    position: relative;
+    left: -1125px;
+    @include slider-tablet {
+        left: -660px;
+    }
+    @include no-nav {
+        left: -330px;
+        padding-bottom: 5px;
+    }
+}
+
+@keyframes move-left {
+    from {left: -1125px;}
+    to {left: -45px;}
+}
+
+@keyframes move-left-tablet {
+    from {left: -660px;}
+    to {left: -40px;}
+}
+
+@keyframes move-left-mobile {
+    from {left: -330px;}
+    to {left: -20px;}
+}
+
+.transition-left {
+    animation-name: move-left;
+    animation-duration: 2s;
+    @include slider-tablet {
+        animation-name: move-left-tablet;
+    }
+    @include no-nav {
+        animation-name: move-left-mobile;
+    }
+}
+
+@keyframes move-right {
+    from {left: -1125px;}
+    to {left: -2205px;}
+}
+
+@keyframes move-right-tablet {
+    from {left: -660px;}
+    to {left: -1280px;}
+}
+
+@keyframes move-right-mobile {
+    from {left: -330px;}
+    to {left: -640px;}
+}
+
+.transition-right {
+    animation-name: move-right;
+    animation-duration: 2s;
+    @include slider-tablet {
+        animation-name: move-right-tablet;
+    }
+    @include no-nav {
+        animation-name: move-right-mobile;
+    }
+}
+
+.slider__container {
+    display: flex;
+    justify-content: space-between;
+    width: 1080px;
+    padding: 4.5% 4.5%;
+    overflow: hidden;
+    box-sizing: border-box;
+    @include slider-tablet {
+        width: 660px;
+        margin: 0 auto;
+    }
+    @include no-nav {
+        width: 300px;
+    }
+}
+
+.third-item {
+    @include slider-tablet {
+        display: none;
+    }
+}
+
+.second-item {
+    @include no-nav {
+        display: none;
+    }
+}
+
+@include hover-for-desktop {
+    .slider_item:hover {
+        background: $white;
+        box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+        > button {
+            background: $beige-ligth;
+            border: 2px solid $beige-ligth;
+        }
+        &:active {
+            background: $white;
+            box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+            > button {
+                background: $beige-ligth;
+                border: 2px solid $beige-ligth;
+            } 
+        }
+    }
+    .our-friends_button:hover {
+        background-color: $beige-ligth;
+        border: 2px solid $beige-ligth;
+    }
+    .arrow-prev:hover, .arrow-next:hover {
+        background-color: $beige-ligth;
+        border: 2px solid $beige-ligth;
+    }
+}
+
+.our-friends_button:active {
+    background-color: $beige-ligth;
+    border: 2px solid $beige-ligth;
+}
+.arrow-prev:active, .arrow-next:active {
+    background-color: $beige-ligth;
+    border: 2px solid $beige-ligth;
+}
+
+.slider_left, .slider_active, .slider_right {
+    display: flex;
+}

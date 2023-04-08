@@ -1,0 +1,120 @@
+footer {
+    background: url('../../../assets/images/img/noise_transparent@2x.png'), radial-gradient(at top left, #513D2F 0%, #1A1A1C 100%);
+}
+
+.footer-container {
+    justify-content: space-between;
+    padding-top: 40px;
+    flex-wrap: wrap;
+    @include media-tablet {
+        padding-top: 15px;
+        padding: 15px 56px 0;
+        justify-content: space-between;
+        > :first-child {
+            margin-left: 9px;
+            @include media-mobile {
+                margin-left: 0;
+            }
+        }
+    }
+    @include to-slider-mobile-arrow {
+        padding: 15px 10px 0;
+    }
+    @include media-mobile {
+        padding: 15px 10px 0;
+    }
+}
+
+.footer_item {
+    margin: 15px 0 67px;
+    max-width: 310px;
+    min-height: 231px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    > h2 {
+        font-family: 'Georgia';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 35px;
+        line-height: 130%;
+        letter-spacing: 0.06em;
+        color: $white;
+        @include media-mobile {
+            font-size: 2.5rem;
+            text-align: center;
+        }
+    }
+    @include media-tablet {
+        min-height: 231px;
+        margin: 16px 0 67px;
+    }
+    @include media-mobile {
+        margin: 15px 0 24px;
+        min-height: 209px;
+    }
+}
+
+.second-footer-item {
+    @include media-mobile {
+        align-items: center;
+        min-height: 223px;
+        margin-bottom: 38px;
+        > h2 {
+            max-width: 280px;
+        }
+        > :last-child {
+            margin-right: 30px;
+        }
+    }
+}
+
+.footer_link {
+    display: flex;
+    > p {
+        display: flex;
+        font-family: 'Georgia';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 2rem;
+        line-height: 115%;
+        letter-spacing: 0.06em;
+        color: $beige;
+        transition: .3s;
+        align-items: center;
+    }
+    > img {
+        margin: 0 20px 0px 0;
+    }
+    @include media-mobile {
+        justify-content: center;
+    }
+}
+
+.footer_pet {
+    margin-left: 23px;
+    max-width: 300px;
+    > img {
+        width: 100%;
+    }
+    @include media-tablet {
+        margin-left: 0;
+        margin: 0 auto;
+    }
+    @include media-mobile {
+        max-width: 260px;
+        > img {
+            width: 100%;
+        }
+    }
+}
+
+@include hover-for-desktop {
+    .footer_link:hover > p {
+        color: $white;
+    }
+}
+
+.footer_link:active > p {
+    color: $white;
+}
