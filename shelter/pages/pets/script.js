@@ -1,6 +1,7 @@
 //console.log('Оценка за работу 100 баллов.\nСтраница Main (60):\n1. Проверка верстки +6;\n2. Вёрстка соответствует макету +35;\n3. Требования к css +7;\n4. Интерактивность элементов +12.\nСтраница Pets(40):\n1. Проверка верстки +6;\n2. Вёрстка соответствует макету +15;\n3. Требования к css +5;\n4. Интерактивность элементов +14.');
 window.onload = function () {
   getSixTimesArrayNumbers();
+  generateLongArray(generateArrayNumbers());
   generatePaginationPage();
   clickHandlerOnSliderItem();
 }
@@ -224,17 +225,47 @@ function getModalWindow (date) {
 //Генерируем карточки питомцев
 
 function generatePaginationPage () {
-  let pageNumber = document.querySelector('.circle.full').innerText;
-  let itemNumber = 0;
-  document.querySelectorAll('.our-friends_item').forEach(item => {
-    let template = '';
-    item.id = petsCards[sixTimesArr[pageNumber - 1][itemNumber]].id;
-    template += `<img src="${petsCards[sixTimesArr[pageNumber - 1][itemNumber]].img}" alt="pets-${petsCards[sixTimesArr[pageNumber - 1][itemNumber]].name}">`;
-    template += `<p>${petsCards[sixTimesArr[pageNumber - 1][itemNumber]].name}</p>`;
-    template += `<button>Learn more</button>`;
-    itemNumber++;
-    item.innerHTML = template;
-  })
+  if (innerWidth > 768) {
+    let pageNumber = document.querySelector('.circle.full').innerText;
+    let itemNumber = 0;
+    document.querySelectorAll('.our-friends_item').forEach(item => {
+      let template = '';
+      item.id = petsCards[sixTimesArr[pageNumber - 1][itemNumber]].id;
+      template += `<img src="${petsCards[sixTimesArr[pageNumber - 1][itemNumber]].img}" alt="pets-${petsCards[sixTimesArr[pageNumber - 1][itemNumber]].name}">`;
+      template += `<p>${petsCards[sixTimesArr[pageNumber - 1][itemNumber]].name}</p>`;
+      template += `<button>Learn more</button>`;
+      itemNumber++;
+      item.innerHTML = template;
+    });
+  } else if (innerWidth < 768 && innerWidth > 320) {
+    let pageNumber = document.querySelector('.circle.full').innerText;
+    let itemNumber = 0;
+    document.querySelectorAll('.our-friends_item').forEach(item => {
+      if (!item.classList.contains('invisible-on-tablet')) {
+        let template = '';
+        item.id = petsCards[bigArrayFortyEigth[((pageNumber * 6) - 6) + itemNumber]].id;
+        template += `<img src="${petsCards[bigArrayFortyEigth[((pageNumber * 6) - 6) + itemNumber]].img}" alt="pets-${petsCards[bigArrayFortyEigth[((pageNumber * 6) - 6) + itemNumber]].name}">`;
+        template += `<p>${petsCards[bigArrayFortyEigth[((pageNumber * 6) - 6) + itemNumber]].name}</p>`;
+        template += `<button>Learn more</button>`;
+        itemNumber++;
+        item.innerHTML = template;
+      }
+    })
+  } else {
+    let pageNumber = document.querySelector('.circle.full').innerText;
+    let itemNumber = 0;
+    document.querySelectorAll('.our-friends_item').forEach(item => {
+      if (!item.classList.contains('invisible-on-tablet') && !item.classList.contains('invisible-on-mobile')) {
+        let template = '';
+        item.id = petsCards[bigArrayFortyEigth[((pageNumber * 3) - 3) + itemNumber]].id;
+        template += `<img src="${petsCards[bigArrayFortyEigth[((pageNumber * 3) - 3) + itemNumber]].img}" alt="pets-${petsCards[bigArrayFortyEigth[((pageNumber * 3) - 3) + itemNumber]].name}">`;
+        template += `<p>${petsCards[bigArrayFortyEigth[((pageNumber * 3) - 3) + itemNumber]].name}</p>`;
+        template += `<button>Learn more</button>`;
+        itemNumber++;
+        item.innerHTML = template;
+      }
+    })
+  }
 }
 
 //Генерируем случайный массив
@@ -260,6 +291,27 @@ const generateArrayNumbers = () => {
     }
   }
   return randomNumbersArray;
+}
+
+let bigArrayFortyEigth = [];
+
+function generateLongArray (arr) {
+  bigArrayFortyEigth = bigArrayFortyEigth.concat(arr);
+  for(let i = 0; i < 5; i++){
+    let firstPart = arr.slice(0, 3);
+    let secondPart = arr.slice(3, 6);
+    let thirdPart = arr.slice(6, 8);
+    let randomOneTwo = Math.floor(Math.random() * 2 + 1);
+    arr = [];
+    arr.push(firstPart[randomOneTwo]);
+    firstPart.splice(randomOneTwo, 1);
+    arr = arr.concat(firstPart);
+    arr.push(secondPart[2]);
+    secondPart.splice(2, 1);
+    arr = arr.concat(secondPart);
+    arr = arr.concat(thirdPart);
+    bigArrayFortyEigth = bigArrayFortyEigth.concat(arr);
+  }
 }
 
 
@@ -291,21 +343,47 @@ function pushNextBtn () {
   BTN_PREV.classList.remove('disabled');
   BTN_FIRST.classList.remove('disabled');
   BTN_PREV.addEventListener('click', pushPrevBtn);
-  if (pageNumber === sixTimesArr.length - 1) {
-    BTN_NEXT.removeEventListener('click', pushNextBtn);
-    BTN_LAST.removeEventListener('click', pushLastBtn);
-    BTN_NEXT.classList.add('disabled');
-    BTN_LAST.classList.add('disabled');
-    BTN_NEXT.classList.remove('active');
-    BTN_LAST.classList.remove('active');
+  if (innerWidth > 768) {
+    if (pageNumber === sixTimesArr.length - 1) {
+      BTN_NEXT.removeEventListener('click', pushNextBtn);
+      BTN_LAST.removeEventListener('click', pushLastBtn);
+      BTN_NEXT.classList.add('disabled');
+      BTN_LAST.classList.add('disabled');
+      BTN_NEXT.classList.remove('active');
+      BTN_LAST.classList.remove('active');
+    }
+  } else if (innerWidth < 768 && innerWidth > 320) {
+    if (pageNumber === (bigArrayFortyEigth.length / 6) - 1) {
+      BTN_NEXT.removeEventListener('click', pushNextBtn);
+      BTN_LAST.removeEventListener('click', pushLastBtn);
+      BTN_NEXT.classList.add('disabled');
+      BTN_LAST.classList.add('disabled');
+      BTN_NEXT.classList.remove('active');
+      BTN_LAST.classList.remove('active');
+    }
+  } else if (innerWidth <= 320) {
+    if (pageNumber === (bigArrayFortyEigth.length / 3) - 1) {
+      BTN_NEXT.removeEventListener('click', pushNextBtn);
+      BTN_LAST.removeEventListener('click', pushLastBtn);
+      BTN_NEXT.classList.add('disabled');
+      BTN_LAST.classList.add('disabled');
+      BTN_NEXT.classList.remove('active');
+      BTN_LAST.classList.remove('active');
+    }
   }
-  generatePaginationPage();
+  generatePaginationPage(); 
 }
 
 BTN_LAST.addEventListener('click', pushLastBtn);
 
 function pushLastBtn () {
-  document.querySelector('.circle.full').innerText = `${sixTimesArr.length}`;
+  if(innerWidth > 768){
+    document.querySelector('.circle.full').innerText = `${sixTimesArr.length}`;
+  } else if (innerWidth < 768 && innerWidth > 320) {
+    document.querySelector('.circle.full').innerText = `${bigArrayFortyEigth.length / 6}`;
+  } else if (innerWidth <= 320) {
+    document.querySelector('.circle.full').innerText = `${bigArrayFortyEigth.length / 3}`;
+  }
   BTN_FIRST.addEventListener('click', pushFirstBtn);
   BTN_PREV.addEventListener('click', pushPrevBtn);
   BTN_LAST.removeEventListener('click', pushLastBtn);
@@ -339,7 +417,7 @@ function pushPrevBtn () {
     BTN_PREV.classList.add('disabled');
     BTN_FIRST.classList.add('disabled');
   }
-  generatePaginationPage();
+  generatePaginationPage(); 
 }
 
 function pushFirstBtn () {
@@ -356,5 +434,5 @@ function pushFirstBtn () {
   BTN_NEXT.addEventListener('click', pushNextBtn);
   BTN_LAST.addEventListener('click', pushLastBtn);
   BTN_PREV.removeEventListener('click', pushPrevBtn);
-  generatePaginationPage();
+  generatePaginationPage(); 
 }
