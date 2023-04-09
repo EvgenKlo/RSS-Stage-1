@@ -855,6 +855,7 @@ nav {
   background-position: center;
   transform: rotate(180deg);
   flex-shrink: 0;
+  margin-left: 16px;
   cursor: pointer;
   transition: 0.3s;
 }
@@ -978,7 +979,7 @@ nav {
 }
 .transition-left {
   animation-name: move-left;
-  animation-duration: 2s;
+  animation-duration: 1.5s;
 }
 @media (max-width: 1270px) {
   .transition-left {
@@ -1017,7 +1018,7 @@ nav {
 }
 .transition-right {
   animation-name: move-right;
-  animation-duration: 2s;
+  animation-duration: 1.5s;
 }
 @media (max-width: 1270px) {
   .transition-right {
