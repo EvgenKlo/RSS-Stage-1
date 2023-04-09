@@ -1,6 +1,12 @@
 //const { node } = require("webpack");
 
 //console.log('Оценка за работу 100 баллов.\nСтраница Main (60):\n1. Проверка верстки +6;\n2. Вёрстка соответствует макету +35;\n3. Требования к css +7;\n4. Интерактивность элементов +12.\nСтраница Pets(40):\n1. Проверка верстки +6;\n2. Вёрстка соответствует макету +15;\n3. Требования к css +5;\n4. Интерактивность элементов +14.');
+window.onload = function () {
+
+  generateArrayNumbers();
+
+  generateSlider();
+}
 
 const hamb = document.querySelector("#hamb");
 const popup = document.querySelector("#popup");
@@ -162,7 +168,7 @@ const petsCards = [
   }
 ]
 
-const clickHandlerOnSliderItem = () => {
+function clickHandlerOnSliderItem () {
   document.querySelectorAll('.slider_item').forEach(item => {
     item.addEventListener('click', () => {
       getModalWindow(petsCards[item.id]);
@@ -220,15 +226,6 @@ function getModalWindow (date) {
 
 //Слайдер
 
-window.onload = function () {
-
-  clickHandlerOnSliderItem();
-
-  generateArrayNumbers();
-
-  generateSlider();
-}
-
 let randomNumber;
 
 const generateRandomNumber = () => {
@@ -264,6 +261,7 @@ const generateSlider = () => {
     item.innerHTML = templateSliderItem;
     itemNumber++;
   })
+  clickHandlerOnSliderItem();
 }
 
 const slider = document.querySelector('.slider');
