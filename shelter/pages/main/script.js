@@ -169,13 +169,12 @@ const petsCards = [
 
 function clickHandlerOnSliderItem () {
   document.querySelectorAll('.slider_item').forEach(item => {
-    item.addEventListener('click', () => {
-      getModalWindow(petsCards[item.id]);
-    });
+    item.addEventListener('click', getModalWindow);
   });
 }
 
-function getModalWindow (date) {
+function getModalWindow () {
+  let date = petsCards[this.id];
   let modal;
   let template = '';
   modal = document.createElement('div');
