@@ -135,6 +135,7 @@
     background-position: center;
     transform: rotate(180deg);
     flex-shrink: 0;
+    margin-left: 16px;
     cursor: pointer;
     transition: .3s;
     @include media-tablet {
@@ -237,7 +238,7 @@
 
 .transition-left {
     animation-name: move-left;
-    animation-duration: 2s;
+    animation-duration: 1.5s;
     @include slider-tablet {
         animation-name: move-left-tablet;
     }
@@ -263,7 +264,7 @@
 
 .transition-right {
     animation-name: move-right;
-    animation-duration: 2s;
+    animation-duration: 1.5s;
     @include slider-tablet {
         animation-name: move-right-tablet;
     }
