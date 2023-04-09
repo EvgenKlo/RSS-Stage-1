@@ -221,7 +221,6 @@ function getModalWindow (date) {
 //Слайдер
 
 window.onload = function () {
-  console.log('У тебя все получится!')
 
   clickHandlerOnSliderItem();
 
@@ -234,7 +233,6 @@ let randomNumber;
 
 const generateRandomNumber = () => {
   randomNumber = Math.round(Math.random() * (petsCards.length - 1));
-  return randomNumber;
 };
 
 let randomNumbersArray = [];

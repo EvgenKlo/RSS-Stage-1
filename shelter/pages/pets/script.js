@@ -1,8 +1,9 @@
 //console.log('Оценка за работу 100 баллов.\nСтраница Main (60):\n1. Проверка верстки +6;\n2. Вёрстка соответствует макету +35;\n3. Требования к css +7;\n4. Интерактивность элементов +12.\nСтраница Pets(40):\n1. Проверка верстки +6;\n2. Вёрстка соответствует макету +15;\n3. Требования к css +5;\n4. Интерактивность элементов +14.');
 window.onload = function () {
-  generatePetsCards();
-
-  //clickHandlerOnSliderItem();
+  getSixTimesArrayNumbers();
+  generateLongArray(generateArrayNumbers());
+  generatePaginationPage();
+  clickHandlerOnSliderItem();
 }
 
 const hamb = document.querySelector("#hamb");
@@ -63,8 +64,6 @@ function closeBalckOut() {
 };
 
 
-
-//Модальное окно
 
 //Модальное окно
 
@@ -222,23 +221,218 @@ function getModalWindow (date) {
   })
 }
 
+
 //Генерируем карточки питомцев
 
-function generatePetsCards () {
-  let itemNumber = 0;
-  document.querySelectorAll('.our-friends_item').forEach(item => {
-    let template = '';
-    item.id = petsCards[itemNumber].id;
-    template += `<img src="${petsCards[itemNumber].img}" alt="pets-${petsCards[itemNumber].name}">`;
-    template += `<p>${petsCards[itemNumber].name}</p>`;
-    template += `<button>Learn more</button>`;
-    itemNumber++;
-    item.innerHTML = template;
-  })
-  let ourFriendsItemContent = document.querySelector('.our-friends_content');
-  for(let i = 0; i < 2; i++) {
-    ourFriendsItemContent.innerHTML += `${ourFriendsItemContent.innerHTML}`;
+function generatePaginationPage () {
+  if (innerWidth > 768) {
+    let pageNumber = document.querySelector('.circle.full').innerText;
+    let itemNumber = 0;
+    document.querySelectorAll('.our-friends_item').forEach(item => {
+      let template = '';
+      item.id = petsCards[sixTimesArr[pageNumber - 1][itemNumber]].id;
+      template += `<img src="${petsCards[sixTimesArr[pageNumber - 1][itemNumber]].img}" alt="pets-${petsCards[sixTimesArr[pageNumber - 1][itemNumber]].name}">`;
+      template += `<p>${petsCards[sixTimesArr[pageNumber - 1][itemNumber]].name}</p>`;
+      template += `<button>Learn more</button>`;
+      itemNumber++;
+      item.innerHTML = template;
+    });
+  } else if (innerWidth < 768 && innerWidth > 320) {
+    let pageNumber = document.querySelector('.circle.full').innerText;
+    let itemNumber = 0;
+    document.querySelectorAll('.our-friends_item').forEach(item => {
+      if (!item.classList.contains('invisible-on-tablet')) {
+        let template = '';
+        item.id = petsCards[bigArrayFortyEigth[((pageNumber * 6) - 6) + itemNumber]].id;
+        template += `<img src="${petsCards[bigArrayFortyEigth[((pageNumber * 6) - 6) + itemNumber]].img}" alt="pets-${petsCards[bigArrayFortyEigth[((pageNumber * 6) - 6) + itemNumber]].name}">`;
+        template += `<p>${petsCards[bigArrayFortyEigth[((pageNumber * 6) - 6) + itemNumber]].name}</p>`;
+        template += `<button>Learn more</button>`;
+        itemNumber++;
+        item.innerHTML = template;
+      }
+    })
+  } else {
+    let pageNumber = document.querySelector('.circle.full').innerText;
+    let itemNumber = 0;
+    document.querySelectorAll('.our-friends_item').forEach(item => {
+      if (!item.classList.contains('invisible-on-tablet') && !item.classList.contains('invisible-on-mobile')) {
+        let template = '';
+        item.id = petsCards[bigArrayFortyEigth[((pageNumber * 3) - 3) + itemNumber]].id;
+        template += `<img src="${petsCards[bigArrayFortyEigth[((pageNumber * 3) - 3) + itemNumber]].img}" alt="pets-${petsCards[bigArrayFortyEigth[((pageNumber * 3) - 3) + itemNumber]].name}">`;
+        template += `<p>${petsCards[bigArrayFortyEigth[((pageNumber * 3) - 3) + itemNumber]].name}</p>`;
+        template += `<button>Learn more</button>`;
+        itemNumber++;
+        item.innerHTML = template;
+      }
+    })
   }
-  clickHandlerOnSliderItem();
 }
 
+//Генерируем случайный массив
+
+let randomNumber;
+
+const generateRandomNumber = () => {
+  randomNumber = Math.round(Math.random() * (petsCards.length - 1));
+};
+
+const generateArrayNumbers = () => {
+  let randomNumbersArray = [];
+  for (let i = 0; i < petsCards.length; i++) {
+    generateRandomNumber();
+    if(randomNumbersArray.length === 0) {
+      randomNumbersArray.push(randomNumber);
+    } else {
+      if((randomNumbersArray.find((i) => i === randomNumber)) === undefined) {
+        randomNumbersArray.push(randomNumber);
+      } else {
+        i--;
+      }
+    }
+  }
+  return randomNumbersArray;
+}
+
+let bigArrayFortyEigth = [];
+
+function generateLongArray (arr) {
+  bigArrayFortyEigth = bigArrayFortyEigth.concat(arr);
+  for(let i = 0; i < 5; i++){
+    let firstPart = arr.slice(0, 3);
+    let secondPart = arr.slice(3, 6);
+    let thirdPart = arr.slice(6, 8);
+    let randomOneTwo = Math.floor(Math.random() * 2 + 1);
+    arr = [];
+    arr.push(firstPart[randomOneTwo]);
+    firstPart.splice(randomOneTwo, 1);
+    arr = arr.concat(firstPart);
+    arr.push(secondPart[2]);
+    secondPart.splice(2, 1);
+    arr = arr.concat(secondPart);
+    arr = arr.concat(thirdPart);
+    bigArrayFortyEigth = bigArrayFortyEigth.concat(arr);
+  }
+}
+
+
+//Создаем шесть случайных последовательностей и объединяем их в один массив
+
+let sixTimesArr = [];
+
+const getSixTimesArrayNumbers = () => {  
+  for (let i = 0; i < 6; i++) {
+    sixTimesArr.push(generateArrayNumbers());
+  }
+}
+
+//Активирую кнопки и индикатор страницы
+
+const BTN_NEXT = document.querySelector('.next-page');
+const BTN_LAST = document.querySelector('.last-page');
+const BTN_PREV = document.querySelector('.prev-page');
+const BTN_FIRST = document.querySelector('.first-page');
+
+BTN_NEXT.addEventListener('click', pushNextBtn);
+
+function pushNextBtn () {
+  let pageNumber = +document.querySelector('.circle.full').innerText;
+  document.querySelector('.circle.full').innerText = pageNumber + 1;
+  BTN_FIRST.addEventListener('click', pushFirstBtn);
+  BTN_PREV.classList.add('active');
+  BTN_FIRST.classList.add('active');
+  BTN_PREV.classList.remove('disabled');
+  BTN_FIRST.classList.remove('disabled');
+  BTN_PREV.addEventListener('click', pushPrevBtn);
+  if (innerWidth > 768) {
+    if (pageNumber === sixTimesArr.length - 1) {
+      BTN_NEXT.removeEventListener('click', pushNextBtn);
+      BTN_LAST.removeEventListener('click', pushLastBtn);
+      BTN_NEXT.classList.add('disabled');
+      BTN_LAST.classList.add('disabled');
+      BTN_NEXT.classList.remove('active');
+      BTN_LAST.classList.remove('active');
+    }
+  } else if (innerWidth < 768 && innerWidth > 320) {
+    if (pageNumber === (bigArrayFortyEigth.length / 6) - 1) {
+      BTN_NEXT.removeEventListener('click', pushNextBtn);
+      BTN_LAST.removeEventListener('click', pushLastBtn);
+      BTN_NEXT.classList.add('disabled');
+      BTN_LAST.classList.add('disabled');
+      BTN_NEXT.classList.remove('active');
+      BTN_LAST.classList.remove('active');
+    }
+  } else if (innerWidth <= 320) {
+    if (pageNumber === (bigArrayFortyEigth.length / 3) - 1) {
+      BTN_NEXT.removeEventListener('click', pushNextBtn);
+      BTN_LAST.removeEventListener('click', pushLastBtn);
+      BTN_NEXT.classList.add('disabled');
+      BTN_LAST.classList.add('disabled');
+      BTN_NEXT.classList.remove('active');
+      BTN_LAST.classList.remove('active');
+    }
+  }
+  generatePaginationPage(); 
+}
+
+BTN_LAST.addEventListener('click', pushLastBtn);
+
+function pushLastBtn () {
+  if(innerWidth > 768){
+    document.querySelector('.circle.full').innerText = `${sixTimesArr.length}`;
+  } else if (innerWidth < 768 && innerWidth > 320) {
+    document.querySelector('.circle.full').innerText = `${bigArrayFortyEigth.length / 6}`;
+  } else if (innerWidth <= 320) {
+    document.querySelector('.circle.full').innerText = `${bigArrayFortyEigth.length / 3}`;
+  }
+  BTN_FIRST.addEventListener('click', pushFirstBtn);
+  BTN_PREV.addEventListener('click', pushPrevBtn);
+  BTN_LAST.removeEventListener('click', pushLastBtn);
+  BTN_NEXT.removeEventListener('click', pushNextBtn);
+  BTN_NEXT.classList.add('disabled');
+  BTN_LAST.classList.add('disabled');
+  BTN_NEXT.classList.remove('active');
+  BTN_LAST.classList.remove('active');
+  BTN_PREV.classList.add('active');
+  BTN_FIRST.classList.add('active');
+  BTN_PREV.classList.remove('disabled');
+  BTN_FIRST.classList.remove('disabled');
+  BTN_PREV.addEventListener('click', pushPrevBtn);
+  generatePaginationPage();
+}
+
+function pushPrevBtn () {
+  let pageNumber = +document.querySelector('.circle.full').innerText;
+  document.querySelector('.circle.full').innerText = pageNumber - 1;
+  BTN_NEXT.addEventListener('click', pushNextBtn);
+  BTN_LAST.addEventListener('click', pushLastBtn);
+  BTN_NEXT.classList.remove('disabled');
+  BTN_LAST.classList.remove('disabled');
+  BTN_NEXT.classList.add('active');
+  BTN_LAST.classList.add('active');
+  if (pageNumber === 2) {
+    BTN_PREV.removeEventListener('click', pushPrevBtn);
+    BTN_FIRST.removeEventListener('click', pushFirstBtn);
+    BTN_PREV.classList.remove('active');
+    BTN_FIRST.classList.remove('active');
+    BTN_PREV.classList.add('disabled');
+    BTN_FIRST.classList.add('disabled');
+  }
+  generatePaginationPage(); 
+}
+
+function pushFirstBtn () {
+  document.querySelector('.circle.full').innerText = 1;
+  BTN_FIRST.removeEventListener('click', pushFirstBtn);
+  BTN_PREV.classList.remove('active');
+  BTN_FIRST.classList.remove('active');
+  BTN_PREV.classList.add('disabled');
+  BTN_FIRST.classList.add('disabled');
+  BTN_NEXT.classList.remove('disabled');
+  BTN_LAST.classList.remove('disabled');
+  BTN_NEXT.classList.add('active');
+  BTN_LAST.classList.add('active');
+  BTN_NEXT.addEventListener('click', pushNextBtn);
+  BTN_LAST.addEventListener('click', pushLastBtn);
+  BTN_PREV.removeEventListener('click', pushPrevBtn);
+  generatePaginationPage(); 
+}
