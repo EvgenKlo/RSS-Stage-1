@@ -1,9 +1,11 @@
-//console.log('Оценка за работу 100 баллов.\nСтраница Main (60):\n1. Проверка верстки +6;\n2. Вёрстка соответствует макету +35;\n3. Требования к css +7;\n4. Интерактивность элементов +12.\nСтраница Pets(40):\n1. Проверка верстки +6;\n2. Вёрстка соответствует макету +15;\n3. Требования к css +5;\n4. Интерактивность элементов +14.');
+console.log('Оценка за работу 110 баллов.\nРеализация burger menu на обеих страницах: +26;\nРеализация слайдера-карусели на странице Main: +36;\nРеализация пагинации на странице Pets: +36;\nРеализация попап на обеих страницах: +12.');
+
 window.onload = function () {
   getSixTimesArrayNumbers();
   generateLongArray(generateArrayNumbers());
   generatePaginationPage();
   clickHandlerOnSliderItem();
+  console.log(bigArrayFortyEigth)
 }
 
 const hamb = document.querySelector("#hamb");
@@ -251,7 +253,7 @@ function generatePaginationPage () {
         item.innerHTML = template;
       }
     })
-  } else {
+  } else if (innerWidth <= 320) {
     let pageNumber = document.querySelector('.circle.full').innerText;
     let itemNumber = 0;
     document.querySelectorAll('.our-friends_item').forEach(item => {
