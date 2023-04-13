@@ -328,7 +328,7 @@ const generateSliderBlock = (block) => {
     }
     for (let i = 0; i < 3; i++) {
       let template = '';
-      template += `<img src="${petsCards[randomNumbersArray[randomNumbersArray.length - (3 - i)]].img}" alt="${petsCards[randomNumbersArray[randomNumbersArray.length - (3 + i)]].name}">`;
+      template += `<img src="${petsCards[randomNumbersArray[randomNumbersArray.length - (3 - i)]].img}" alt="${petsCards[randomNumbersArray[randomNumbersArray.length - (3 - i)]].name}">`;
       template += `<h3>${petsCards[randomNumbersArray[randomNumbersArray.length - (3 - i)]].name}</h3>`;
       template += `<button>Learn more</button>`;
       block.children[i].innerHTML = template;
