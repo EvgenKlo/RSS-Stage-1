@@ -319,6 +319,9 @@ function addClickHandlerOnCells (item) {
       clickCount++;
       installBombs(howNeedBobms);
       installSign();
+      if (item.classList.length === 3) {
+        openEmptyCells(item);
+      }
     } else if (!item.classList.contains('maybeBomb')) {
       item.classList.remove('close');
       clickCount++;
@@ -336,6 +339,8 @@ function addClickHandlerOnCells (item) {
         clearTimeout(t);
         seconds = 0;
         minutes = 0;
+      } else if (item.classList.length === 2) {
+        openEmptyCells(item);
       }
     }
     checkCellWithBomb();
@@ -377,4 +382,191 @@ function checkCellWithBomb () {
   }
 }
 
-checkCellWithBomb ();
+//checkCellWithBomb ();
+
+// Раскрываю часть поля при клике напустую ячейку
+
+function openEmptyCells (cell) {
+  const classCountEmptyCell = 2;
+  const rowCell = cell.parentElement.classList[1][cell.parentElement.classList[1].length - 1] * 1;
+  const numberCell = cell.classList[1][cell.classList[1].length - 1] * 1;
+  const rows = document.getElementsByClassName('row');
+  if (cell.classList.contains('no-bomb') || cell.classList.length === classCountEmptyCell) {
+    if (rowCell === 0) {
+      if (numberCell === 0) {
+        if (rows[rowCell].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell].childNodes[numberCell + 1].classList.contains('bomb')) {
+          rows[rowCell].childNodes[numberCell + 1].classList.remove('close');
+          openEmptyCells(rows[rowCell].childNodes[numberCell + 1]);
+        };
+        if (rows[rowCell + 1].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell + 1].classList.contains('bomb')) {
+          rows[rowCell + 1].childNodes[numberCell + 1].classList.remove('close');
+          openEmptyCells(rows[rowCell + 1].childNodes[numberCell + 1]);
+        };
+        if (rows[rowCell + 1].childNodes[numberCell].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell].classList.contains('bomb')) {
+          rows[rowCell + 1].childNodes[numberCell].classList.remove('close');
+          openEmptyCells(rows[rowCell + 1].childNodes[numberCell]);
+        };
+      } else if (numberCell === 9) {
+        if (rows[rowCell].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell].childNodes[numberCell - 1].classList.contains('bomb')) {
+          rows[rowCell].childNodes[numberCell - 1].classList.remove('close');
+          openEmptyCells(rows[rowCell].childNodes[numberCell - 1]);
+        };
+        if (rows[rowCell + 1].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell - 1].classList.contains('bomb')) {
+          rows[rowCell + 1].childNodes[numberCell - 1].classList.remove('close');
+          openEmptyCells(rows[rowCell + 1].childNodes[numberCell - 1]);
+        };
+        if (rows[rowCell + 1].childNodes[numberCell].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell].classList.contains('bomb')) {
+          rows[rowCell + 1].childNodes[numberCell].classList.remove('close');
+          openEmptyCells(rows[rowCell + 1].childNodes[numberCell]);
+        };
+      } else {
+        if (rows[rowCell].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell].childNodes[numberCell - 1].classList.contains('bomb')) {
+          rows[rowCell].childNodes[numberCell - 1].classList.remove('close');
+          openEmptyCells(rows[rowCell].childNodes[numberCell - 1]);
+        };
+        if (rows[rowCell + 1].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell - 1].classList.contains('bomb')) {
+          rows[rowCell + 1].childNodes[numberCell - 1].classList.remove('close');
+          openEmptyCells(rows[rowCell + 1].childNodes[numberCell - 1]);
+        };
+        if (rows[rowCell].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell].childNodes[numberCell + 1].classList.contains('bomb')) {
+          rows[rowCell].childNodes[numberCell + 1].classList.remove('close');
+          openEmptyCells(rows[rowCell].childNodes[numberCell + 1]);
+        };
+        if (rows[rowCell + 1].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell + 1].classList.contains('bomb')) {
+          rows[rowCell + 1].childNodes[numberCell + 1].classList.remove('close');
+          openEmptyCells(rows[rowCell + 1].childNodes[numberCell + 1]);
+        };
+        if (rows[rowCell + 1].childNodes[numberCell].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell].classList.contains('bomb')) {
+          rows[rowCell + 1].childNodes[numberCell].classList.remove('close');
+          openEmptyCells(rows[rowCell + 1].childNodes[numberCell]);
+        };
+      };
+    } else if (rowCell === 9) {
+      if (numberCell === 0) {
+        if (rows[rowCell].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell].childNodes[numberCell + 1].classList.contains('bomb')) {
+          rows[rowCell].childNodes[numberCell + 1].classList.remove('close');
+          openEmptyCells(rows[rowCell].childNodes[numberCell + 1]);
+        };
+        if (rows[rowCell - 1].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell + 1].classList.contains('bomb')) {
+          rows[rowCell - 1].childNodes[numberCell + 1].classList.remove('close');
+          openEmptyCells(rows[rowCell - 1].childNodes[numberCell + 1]);
+        };
+        if (rows[rowCell - 1].childNodes[numberCell].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell].classList.contains('bomb')) {
+          rows[rowCell - 1].childNodes[numberCell].classList.remove('close');
+          openEmptyCells(rows[rowCell - 1].childNodes[numberCell]);
+        };
+      } else if (numberCell === 9) {
+        if (rows[rowCell].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell].childNodes[numberCell - 1].classList.contains('bomb')) {
+          rows[rowCell].childNodes[numberCell - 1].classList.remove('close');
+          openEmptyCells(rows[rowCell].childNodes[numberCell - 1]);
+        };
+        if (rows[rowCell - 1].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell - 1].classList.contains('bomb')) {
+          rows[rowCell - 1].childNodes[numberCell - 1].classList.remove('close');
+          openEmptyCells(rows[rowCell - 1].childNodes[numberCell - 1]);
+        };
+        if (rows[rowCell - 1].childNodes[numberCell].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell].classList.contains('bomb')) {
+          rows[rowCell - 1].childNodes[numberCell].classList.remove('close');
+          openEmptyCells(rows[rowCell - 1].childNodes[numberCell]);
+        };
+      } else {
+        if (rows[rowCell].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell].childNodes[numberCell - 1].classList.contains('bomb')) {
+          rows[rowCell].childNodes[numberCell - 1].classList.remove('close');
+          openEmptyCells(rows[rowCell].childNodes[numberCell - 1]);
+        };
+        if (rows[rowCell - 1].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell - 1].classList.contains('bomb')) {
+          rows[rowCell - 1].childNodes[numberCell - 1].classList.remove('close');
+          openEmptyCells(rows[rowCell - 1].childNodes[numberCell - 1]);
+        };
+        if (rows[rowCell].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell].childNodes[numberCell + 1].classList.contains('bomb')) {
+          rows[rowCell].childNodes[numberCell + 1].classList.remove('close');
+          openEmptyCells(rows[rowCell].childNodes[numberCell + 1]);
+        };
+        if (rows[rowCell - 1].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell + 1].classList.contains('bomb')) {
+          rows[rowCell - 1].childNodes[numberCell + 1].classList.remove('close');
+          openEmptyCells(rows[rowCell - 1].childNodes[numberCell + 1]);
+        };
+        if (rows[rowCell - 1].childNodes[numberCell].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell].classList.contains('bomb')) {
+          rows[rowCell - 1].childNodes[numberCell].classList.remove('close');
+          openEmptyCells(rows[rowCell - 1].childNodes[numberCell]);
+        };
+      };
+    } else {
+      if (numberCell === 0) {
+        if (rows[rowCell + 1].childNodes[numberCell].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell].classList.contains('bomb')) {
+          rows[rowCell + 1].childNodes[numberCell].classList.remove('close');
+          openEmptyCells(rows[rowCell + 1].childNodes[numberCell]);
+        };
+        if (rows[rowCell + 1].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell + 1].classList.contains('bomb')) {
+          rows[rowCell + 1].childNodes[numberCell + 1].classList.remove('close');
+          openEmptyCells(rows[rowCell + 1].childNodes[numberCell + 1]);
+        };
+        if (rows[rowCell].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell].childNodes[numberCell + 1].classList.contains('bomb')) {
+          rows[rowCell].childNodes[numberCell + 1].classList.remove('close');
+          openEmptyCells(rows[rowCell].childNodes[numberCell + 1]);
+        };
+        if (rows[rowCell - 1].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell + 1].classList.contains('bomb')) {
+          rows[rowCell - 1].childNodes[numberCell + 1].classList.remove('close');
+          openEmptyCells(rows[rowCell - 1].childNodes[numberCell + 1]);
+        };
+        if (rows[rowCell - 1].childNodes[numberCell].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell].classList.contains('bomb')) {
+          rows[rowCell - 1].childNodes[numberCell].classList.remove('close');
+          openEmptyCells(rows[rowCell - 1].childNodes[numberCell]);
+        };
+      } else if (numberCell === 9) {
+        if (rows[rowCell - 1].childNodes[numberCell].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell].classList.contains('bomb')) {
+          rows[rowCell - 1].childNodes[numberCell].classList.remove('close');
+          openEmptyCells(rows[rowCell - 1].childNodes[numberCell]);
+        };
+        if (rows[rowCell - 1].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell - 1].classList.contains('bomb')) {
+          rows[rowCell - 1].childNodes[numberCell - 1].classList.remove('close');
+          openEmptyCells(rows[rowCell - 1].childNodes[numberCell - 1]);
+        };
+        if (rows[rowCell].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell].childNodes[numberCell - 1].classList.contains('bomb')) {
+          rows[rowCell].childNodes[numberCell - 1].classList.remove('close');
+          openEmptyCells(rows[rowCell].childNodes[numberCell - 1]);
+        };
+        if (rows[rowCell + 1].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell - 1].classList.contains('bomb')) {
+          rows[rowCell + 1].childNodes[numberCell - 1].classList.remove('close');
+          openEmptyCells(rows[rowCell + 1].childNodes[numberCell - 1]);
+        };
+        if (rows[rowCell + 1].childNodes[numberCell].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell].classList.contains('bomb')) {
+          rows[rowCell + 1].childNodes[numberCell].classList.remove('close');
+          openEmptyCells(rows[rowCell + 1].childNodes[numberCell]);
+        };
+      } else {
+        if (rows[rowCell].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell].childNodes[numberCell - 1].classList.contains('bomb')) {
+          rows[rowCell].childNodes[numberCell - 1].classList.remove('close');
+          openEmptyCells(rows[rowCell].childNodes[numberCell - 1]);
+        };
+        if (rows[rowCell + 1].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell - 1].classList.contains('bomb')) {
+          rows[rowCell + 1].childNodes[numberCell - 1].classList.remove('close');
+          openEmptyCells(rows[rowCell + 1].childNodes[numberCell - 1]);
+        };
+        if (rows[rowCell + 1].childNodes[numberCell].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell].classList.contains('bomb')) {
+          rows[rowCell + 1].childNodes[numberCell].classList.remove('close');
+          openEmptyCells(rows[rowCell + 1].childNodes[numberCell]);
+        };
+        if (rows[rowCell + 1].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell + 1].classList.contains('bomb')) {
+          rows[rowCell + 1].childNodes[numberCell + 1].classList.remove('close');
+          openEmptyCells(rows[rowCell + 1].childNodes[numberCell + 1]);
+        };
+        if (rows[rowCell].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell].childNodes[numberCell + 1].classList.contains('bomb')) {
+          rows[rowCell].childNodes[numberCell + 1].classList.remove('close');
+          openEmptyCells(rows[rowCell].childNodes[numberCell + 1]);
+        };
+        if (rows[rowCell - 1].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell + 1].classList.contains('bomb')) {
+          rows[rowCell - 1].childNodes[numberCell + 1].classList.remove('close');
+          openEmptyCells(rows[rowCell - 1].childNodes[numberCell + 1]);
+        };
+        if (rows[rowCell - 1].childNodes[numberCell].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell].classList.contains('bomb')) {
+          rows[rowCell - 1].childNodes[numberCell].classList.remove('close');
+          openEmptyCells(rows[rowCell - 1].childNodes[numberCell]);
+        };
+        if (rows[rowCell - 1].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell - 1].classList.contains('bomb')) {
+          rows[rowCell - 1].childNodes[numberCell - 1].classList.remove('close');
+          openEmptyCells(rows[rowCell - 1].childNodes[numberCell - 1]);
+        };
+      };
+    };
+  };
+};
