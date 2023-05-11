@@ -86,23 +86,36 @@ $size-int: 80%;
   border: 3px solid black;
   border-radius: 5px;
   cursor: pointer;
+  .row {
+    display: flex;
+    height: 50px;
+  }
 }
 
 .playing-field-15 {
-  display: flex;
+  display: block;
+  margin: auto;
+  max-width: 500px;
   border: 3px solid black;
   border-radius: 5px;
+  cursor: pointer;
+  .row {
+    display: flex;
+    height: 33px;
+  }
 }
 
 .playing-field-25 {
-  display: flex;
+  display: block;
+  margin: auto;
+  max-width: 500px;
   border: 3px solid black;
   border-radius: 5px;
-}
-
-.row {
-  display: flex;
-  height: 50px;
+  cursor: pointer;
+  .row {
+    display: flex;
+    height: 20px;
+  }
 }
 
 .item {
@@ -112,10 +125,11 @@ $size-int: 80%;
   &.open {
     background: rgb(187, 236, 154);
   }
-  &.maybeBomb {
+/*   &.maybeBomb {
     background: brown;
     background-image: url(./image/icons8-плюс.svg);
-  }
+    background-size: 100%;
+  } */
   &.bomb {
     background-size: 100%;
     background-repeat: no-repeat;
@@ -176,6 +190,8 @@ $size-int: 80%;
     &.maybeBomb {
       background: brown;
       background-image: url(./image/icons8-плюс.svg);
+      background-size: 100%;
+      background-position: center;
     }
   }
 }

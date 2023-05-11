@@ -1,6 +1,8 @@
-// Колличество кликов по игровому полю
+let playingFieldSize = 10; // Размер игрового поля
 
-let clickCount = 0;
+let clickCount = 0; // Колличество кликов по игровому полю
+
+let howNeedBobms = 10; // Сколько нужно бомб
 
 // Добавляю класс body к body
 
@@ -82,7 +84,7 @@ refreshBtn.addEventListener('click', () => {
   clickCounter();
   const playingField = document.querySelector('.playing-field');
   playingField.remove();
-  createPlayingField(10);
+  createPlayingField(playingFieldSize);
   invisPlayingField();
   maybeBomb();
 })
@@ -98,7 +100,7 @@ function clickCounter () {
   clickCountPanel.innerText = `Steps: ${clickCount}`;
 }
 
-// Создаю игровое поле
+// Создаю игровое полеs
 
 function createPlayingField (size) {
   const playingField = document.createElement('div');
@@ -116,16 +118,14 @@ function createPlayingField (size) {
   body.append(playingField);
 }
 
-createPlayingField(10);
+createPlayingField(playingFieldSize);
 
 // Расставляю бомбы
 
-let howNeedBobms = 10;
-
 function installBombs (count) {
-  let randomRow = Math.floor(Math.random() * 10);
+  let randomRow = Math.floor(Math.random() * playingFieldSize);
   const rows = document.getElementsByClassName('row');
-  let randomItem = Math.floor(Math.random() * 10);
+  let randomItem = Math.floor(Math.random() * playingFieldSize);
   const item = rows[randomRow].childNodes[randomItem];
   if (!item.classList.contains('bomb') && !item.classList.contains('no-bomb')) {
     let bombOrNot = Math.random();
@@ -148,8 +148,8 @@ function installBombs (count) {
 function installSign () {
   const cells = document.querySelectorAll('.item');
   cells.forEach(cell => {
-    const rowCell = cell.parentElement.classList[1][cell.parentElement.classList[1].length - 1] * 1;
-    const numberCell = cell.classList[1][cell.classList[1].length - 1] * 1;
+    const rowCell = cell.parentElement.classList[1].split('-')[1] * 1;
+    const numberCell = cell.classList[1].split('-')[1] * 1;
     const rows = document.getElementsByClassName('row');
     let nearBombs = 0;
     if (!cell.classList.contains('bomb')) {
@@ -164,7 +164,7 @@ function installSign () {
           if (rows[rowCell + 1].childNodes[numberCell].classList.contains('bomb')) {
             nearBombs++;
           }
-        } else if (numberCell === 9) {
+        } else if (numberCell === playingFieldSize - 1) {
           if (rows[rowCell].childNodes[numberCell - 1].classList.contains('bomb')) {
             nearBombs++;
           }
@@ -191,7 +191,7 @@ function installSign () {
             nearBombs++;
           }
         }
-      } else if (rowCell === 9) {
+      } else if (rowCell === playingFieldSize - 1) {
         if (numberCell === 0) {
           if (rows[rowCell].childNodes[numberCell + 1].classList.contains('bomb')) {
             nearBombs++;
@@ -202,7 +202,7 @@ function installSign () {
           if (rows[rowCell - 1].childNodes[numberCell].classList.contains('bomb')) {
             nearBombs++;
           }
-        } else if (numberCell === 9) {
+        } else if (numberCell === playingFieldSize - 1) {
           if (rows[rowCell].childNodes[numberCell - 1].classList.contains('bomb')) {
             nearBombs++;
           }
@@ -246,7 +246,7 @@ function installSign () {
           if (rows[rowCell + 1].childNodes[numberCell].classList.contains('bomb')) {
             nearBombs++;
           }
-        } else if (numberCell === 9) {
+        } else if (numberCell === playingFieldSize - 1) {
           if (rows[rowCell - 1].childNodes[numberCell].classList.contains('bomb')) {
             nearBombs++;
           }
@@ -366,7 +366,7 @@ function maybeBomb () {
 
 maybeBomb();
 
-// Проверка что не открытыми остались только ячеки с бомбами
+// Проверка, что не открытыми остались только ячеки с бомбами
 
 function checkCellWithBomb () {
   const cells = document.querySelectorAll('.close');
@@ -382,14 +382,12 @@ function checkCellWithBomb () {
   }
 }
 
-//checkCellWithBomb ();
-
-// Раскрываю часть поля при клике напустую ячейку
+// Раскрываю часть поля при клике на пустую ячейку
 
 function openEmptyCells (cell) {
   const classCountEmptyCell = 2;
-  const rowCell = cell.parentElement.classList[1][cell.parentElement.classList[1].length - 1] * 1;
-  const numberCell = cell.classList[1][cell.classList[1].length - 1] * 1;
+  const rowCell = cell.parentElement.classList[1].split('-')[1] * 1;
+  const numberCell = cell.classList[1].split('-')[1] * 1;
   const rows = document.getElementsByClassName('row');
   if (cell.classList.contains('no-bomb') || cell.classList.length === classCountEmptyCell) {
     if (rowCell === 0) {
@@ -406,7 +404,7 @@ function openEmptyCells (cell) {
           rows[rowCell + 1].childNodes[numberCell].classList.remove('close');
           openEmptyCells(rows[rowCell + 1].childNodes[numberCell]);
         };
-      } else if (numberCell === 9) {
+      } else if (numberCell === playingFieldSize - 1) {
         if (rows[rowCell].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell].childNodes[numberCell - 1].classList.contains('bomb')) {
           rows[rowCell].childNodes[numberCell - 1].classList.remove('close');
           openEmptyCells(rows[rowCell].childNodes[numberCell - 1]);
@@ -441,7 +439,7 @@ function openEmptyCells (cell) {
           openEmptyCells(rows[rowCell + 1].childNodes[numberCell]);
         };
       };
-    } else if (rowCell === 9) {
+    } else if (rowCell === playingFieldSize - 1) {
       if (numberCell === 0) {
         if (rows[rowCell].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell].childNodes[numberCell + 1].classList.contains('bomb')) {
           rows[rowCell].childNodes[numberCell + 1].classList.remove('close');
@@ -455,7 +453,7 @@ function openEmptyCells (cell) {
           rows[rowCell - 1].childNodes[numberCell].classList.remove('close');
           openEmptyCells(rows[rowCell - 1].childNodes[numberCell]);
         };
-      } else if (numberCell === 9) {
+      } else if (numberCell === playingFieldSize - 1) {
         if (rows[rowCell].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell].childNodes[numberCell - 1].classList.contains('bomb')) {
           rows[rowCell].childNodes[numberCell - 1].classList.remove('close');
           openEmptyCells(rows[rowCell].childNodes[numberCell - 1]);
@@ -512,7 +510,7 @@ function openEmptyCells (cell) {
           rows[rowCell - 1].childNodes[numberCell].classList.remove('close');
           openEmptyCells(rows[rowCell - 1].childNodes[numberCell]);
         };
-      } else if (numberCell === 9) {
+      } else if (numberCell === playingFieldSize - 1) {
         if (rows[rowCell - 1].childNodes[numberCell].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell].classList.contains('bomb')) {
           rows[rowCell - 1].childNodes[numberCell].classList.remove('close');
           openEmptyCells(rows[rowCell - 1].childNodes[numberCell]);
