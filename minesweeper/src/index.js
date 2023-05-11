@@ -76,6 +76,10 @@ refreshBtn.classList.add('refresh-btn');
 refreshBtn.innerText = 'Refresh';
 controlPanel.append(refreshBtn);
 refreshBtn.addEventListener('click', () => {
+  refresh();
+})
+
+function refresh () {
   clearTimeout(t);
   seconds = 0;
   minutes = 0;
@@ -87,7 +91,7 @@ refreshBtn.addEventListener('click', () => {
   createPlayingField(playingFieldSize);
   invisPlayingField();
   maybeBomb();
-})
+}
 
 // Добавляем счетчик кликов
 
@@ -99,6 +103,48 @@ controlPanel.append(clickCountPanel);
 function clickCounter () {
   clickCountPanel.innerText = `Steps: ${clickCount}`;
 }
+
+// Добавляю кнопки изменения уровня сложности
+
+const difficult = document.createElement('div');
+difficult.classList.add('difficult');
+controlPanel.append(difficult);
+const difficultTitle = document.createElement('p');
+difficultTitle.classList.add('difficult-title')
+difficultTitle.innerText = 'Difficult';
+difficult.append(difficultTitle);
+const difficultBtns = ['Easy', 'Medium', 'Hard'];
+difficultBtns.forEach(btn => {
+  const difficultBtn = document.createElement('div');
+  difficultBtn.classList.add('difficult-dtn', `${btn}`);
+  difficultBtn.innerText = `${btn}`;
+  difficult.append(difficultBtn);
+})
+
+// Выбор сложности
+
+function difficultCelect () {
+  const difficultBtns = document.querySelectorAll('.difficult-dtn');
+  difficultBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('active');
+      if (btn.classList.contains('Easy')) {
+        playingFieldSize = 10;
+      } else if (btn.classList.contains('Medium')) {
+        playingFieldSize = 15;
+      } else if (btn.classList.contains('Hard')) {
+        playingFieldSize = 25;
+      }
+      difficultBtns.forEach(btn => {
+        btn.classList.remove('active');
+      })
+      btn.classList.add('active');
+      refresh();
+    })
+  })
+}
+
+difficultCelect();
 
 // Создаю игровое полеs
 
