@@ -74,6 +74,9 @@ refreshBtn.classList.add('refresh-btn');
 refreshBtn.innerText = 'Refresh';
 controlPanel.append(refreshBtn);
 refreshBtn.addEventListener('click', () => {
+  clearTimeout(t);
+  seconds = 0;
+  minutes = 0;
   time.innerText = 'Timer: 00:00';
   clickCount = 0;
   clickCounter();
