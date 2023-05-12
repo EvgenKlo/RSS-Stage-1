@@ -174,14 +174,9 @@ function installBombs (count) {
   let randomItem = Math.floor(Math.random() * playingFieldSize);
   const item = rows[randomRow].childNodes[randomItem];
   if (!item.classList.contains('bomb') && !item.classList.contains('no-bomb')) {
-    let bombOrNot = Math.random();
-    if (bombOrNot > 0.85) {
-      item.classList.add('bomb');
-      count--;
-      if (count > 0) {
-        installBombs(count);
-      }
-    } else {
+    item.classList.add('bomb');
+    count--;
+    if (count > 0) {
       installBombs(count);
     }
   } else {
