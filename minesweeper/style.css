@@ -1,52 +1,48 @@
-$size-int: 80%;
-
+/*!*********************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/style.scss ***!
+  \*********************************************************************************************************/
+@charset "UTF-8";
 .body {
   padding: 0;
-  background: rgb(187, 236, 154);
-}
+  background: #bbec9a; }
 
 .title {
-  text-align: center;
-}
+  text-align: center; }
 
 .control-panel {
   display: flex;
   margin: 0 auto 30px;
   max-width: 500px;
   justify-content: space-between;
-  flex-wrap: wrap;
-}
+  flex-wrap: wrap; }
 
 .timer {
   width: 100px;
   height: 50px;
   border: 2px solid black;
   border-radius: 5px;
-  background: rgb(148, 252, 221);
+  background: #94fcdd;
   text-align: center;
-  line-height: 45px;
-}
+  line-height: 45px; }
 
 .refresh-btn {
   width: 100px;
   height: 50px;
   border: 2px solid black;
   border-radius: 5px;
-  background: rgb(148, 252, 221);
+  background: #94fcdd;
   text-align: center;
   line-height: 45px;
-  cursor: pointer;
-}
+  cursor: pointer; }
 
 .click-count-panel {
   width: 100px;
   height: 50px;
   border: 2px solid black;
   border-radius: 5px;
-  background: rgb(148, 252, 221);
+  background: #94fcdd;
   text-align: center;
-  line-height: 45px;
-}
+  line-height: 45px; }
 
 .difficult {
   display: block;
@@ -54,13 +50,11 @@ $size-int: 80%;
   width: 200px;
   border: 2px solid black;
   border-radius: 5px;
-  background: rgb(148, 252, 221);
-  text-align: center;
-}
+  background: #94fcdd;
+  text-align: center; }
 
 .difficult-title {
-  margin: 0;
-}
+  margin: 0; }
 
 .Easy,
 .Medium,
@@ -70,18 +64,18 @@ $size-int: 80%;
   width: 70%;
   height: 20px;
   margin: 5px auto;
-  cursor: pointer;
-  &.active {
-    background: green;
-  }
-  &:hover {
-    background: red;
-  }
-}
+  cursor: pointer; }
+  .Easy.active,
+  .Medium.active,
+  .Hard.active {
+    background: green; }
+  .Easy:hover,
+  .Medium:hover,
+  .Hard:hover {
+    background: red; }
 
 .playing-field {
-  position: relative;
-}
+  position: relative; }
 
 .layout-on-plaing-field {
   position: absolute;
@@ -94,8 +88,7 @@ $size-int: 80%;
   font-weight: bold;
   color: red;
   text-align: center;
-  line-height: 500px;
-}
+  line-height: 500px; }
 
 .layout-on-plaing-field-win {
   position: absolute;
@@ -106,10 +99,9 @@ $size-int: 80%;
   background: rgba(49, 77, 43, 0.329);
   font-size: 60px;
   font-weight: bold;
-  color: rgb(0, 255, 21);
+  color: #00ff15;
   text-align: center;
-  line-height: 500px;
-}
+  line-height: 500px; }
 
 .playing-field-10 {
   display: block;
@@ -117,12 +109,10 @@ $size-int: 80%;
   max-width: 500px;
   border: 3px solid black;
   border-radius: 5px;
-  cursor: pointer;
-  .row {
+  cursor: pointer; }
+  .playing-field-10 .row {
     display: flex;
-    height: 50px;
-  }
-}
+    height: 50px; }
 
 .playing-field-15 {
   display: block;
@@ -130,12 +120,10 @@ $size-int: 80%;
   max-width: 500px;
   border: 3px solid black;
   border-radius: 5px;
-  cursor: pointer;
-  .row {
+  cursor: pointer; }
+  .playing-field-15 .row {
     display: flex;
-    height: 33px;
-  }
-}
+    height: 33px; }
 
 .playing-field-25 {
   display: block;
@@ -143,85 +131,72 @@ $size-int: 80%;
   max-width: 500px;
   border: 3px solid black;
   border-radius: 5px;
-  cursor: pointer;
-  .row {
+  cursor: pointer; }
+  .playing-field-25 .row {
     display: flex;
-    height: 20px;
-    .item {
-      border-radius: 2px;
-    }
-  }
-}
+    height: 20px; }
+    .playing-field-25 .row .item {
+      border-radius: 2px; }
 
 .item {
   border: 1px solid black;
   border-radius: 5px;
-  width: 100%;
-  &.open {
-    background: rgb(187, 236, 154);
-  }
-  &.bomb {
+  width: 100%; }
+  .item.open {
+    background: #bbec9a; }
+  .item.bomb {
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url(./image/409bomb_100833.svg);
-  }
-  &.int1 {
-    background-size: $size-int;
+    background-image: url(7634573a600035882b41.svg); }
+  .item.int1 {
+    background-size: 80%;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url(./image/1.svg);
-  }
-  &.int2 {
-    background-size: $size-int;
+    background-image: url(83968c18ac274d2fa87f.svg); }
+  .item.int2 {
+    background-size: 80%;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url(./image/2.svg);
-  }
-  &.int3 {
-    background-size: $size-int;
+    background-image: url(b08314de0d23b09ea21d.svg); }
+  .item.int3 {
+    background-size: 80%;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url(./image/3.svg);
-  }
-  &.int4 {
-    background-size: $size-int;
+    background-image: url(40befb188cf08c591b92.svg); }
+  .item.int4 {
+    background-size: 80%;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url(./image/4.svg);
-  }
-  &.int5 {
-    background-size: $size-int;
+    background-image: url(540e5e4bdb2752465ba6.svg); }
+  .item.int5 {
+    background-size: 80%;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url(./image/5.svg);
-  }
-  &.int6 {
-    background-size: $size-int;
+    background-image: url(3c6382c69e7f6759273b.svg); }
+  .item.int6 {
+    background-size: 80%;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url(./image/6.svg);
-  }
-  &.int7 {
-    background-size: $size-int;
+    background-image: url(ed14b423e06567d1126f.svg); }
+  .item.int7 {
+    background-size: 80%;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url(./image/7.svg);
-  }
-  &.int8 {
-    background-size: $size-int;
+    background-image: url(1e000cd30f7e3afe83a8.svg); }
+  .item.int8 {
+    background-size: 80%;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url(./image/8.svg);
-  }
-  &.close {
+    background-image: url(6f2c655dccea54dc82b1.svg); }
+  .item.close {
     background-image: none;
-    background: brown;
-    &.maybeBomb {
+    background: brown; }
+    .item.close.maybeBomb {
       background: brown;
-      background-image: url(./image/icons8-плюс.svg);
+      background-image: url(b2ece1cf4cd0ca9a00b5.svg);
       background-size: 100%;
-      background-position: center;
-    }
-  }
-}
+      background-position: center; }
+
+
+/*# sourceMappingURL=style.css.map*/

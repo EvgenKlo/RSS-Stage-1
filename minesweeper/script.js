@@ -1,3 +1,26 @@
+/******/ (() => { // webpackBootstrap
+/******/ 	// The require scope
+/******/ 	var __webpack_require__ = {};
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other entry modules.
+(() => {
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
 let playingFieldSize = 10; // Размер игрового поля
 
 let clickCount = 0; // Колличество кликов по игровому полю
@@ -11,16 +34,15 @@ body.classList.add('body');
 
 // Убираю стандартное поведение при нажатии на правую кнопку мыши
 
-document.addEventListener('contextmenu', (event) => {
+document.addEventListener('contextmenu', event => {
   event.preventDefault();
-})
+});
 
 // Добавляю заголовок
 
 const title = document.createElement('h1');
 title.classList.add('title');
 title.innerText = 'Minesweeper';
-
 body.append(title);
 
 // Добавляю панель управления
@@ -40,8 +62,7 @@ timer.append(time);
 let seconds = 0;
 let minutes = 0;
 let t;
-
-function gameTimer () {
+function gameTimer() {
   seconds++;
   if (seconds < 10 && minutes < 10) {
     time.innerText = `Timer: 0${minutes}:0${seconds}`;
@@ -77,9 +98,8 @@ refreshBtn.innerText = 'Refresh';
 controlPanel.append(refreshBtn);
 refreshBtn.addEventListener('click', () => {
   refresh();
-})
-
-function refresh () {
+});
+function refresh() {
   clearTimeout(t);
   seconds = 0;
   minutes = 0;
@@ -99,8 +119,7 @@ const clickCountPanel = document.createElement('div');
 clickCountPanel.classList.add('click-count-panel');
 clickCountPanel.innerText = `Steps: ${clickCount}`;
 controlPanel.append(clickCountPanel);
-
-function clickCounter () {
+function clickCounter() {
   clickCountPanel.innerText = `Steps: ${clickCount}`;
 }
 
@@ -110,7 +129,7 @@ const difficult = document.createElement('div');
 difficult.classList.add('difficult');
 controlPanel.append(difficult);
 const difficultTitle = document.createElement('p');
-difficultTitle.classList.add('difficult-title')
+difficultTitle.classList.add('difficult-title');
 difficultTitle.innerText = 'Difficult';
 difficult.append(difficultTitle);
 const difficultBtns = ['Easy', 'Medium', 'Hard'];
@@ -119,11 +138,11 @@ difficultBtns.forEach(btn => {
   difficultBtn.classList.add('difficult-dtn', `${btn}`);
   difficultBtn.innerText = `${btn}`;
   difficult.append(difficultBtn);
-})
+});
 
 // Выбор сложности
 
-function difficultCelect () {
+function difficultCelect() {
   const difficultBtns = document.querySelectorAll('.difficult-dtn');
   difficultBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -137,18 +156,17 @@ function difficultCelect () {
       }
       difficultBtns.forEach(btn => {
         btn.classList.remove('active');
-      })
+      });
       btn.classList.add('active');
       refresh();
-    })
-  })
+    });
+  });
 }
-
 difficultCelect();
 
 // Создаю игровое полеs
 
-function createPlayingField (size) {
+function createPlayingField(size) {
   const playingField = document.createElement('div');
   playingField.classList.add('playing-field', `playing-field-${size}`);
   for (let i = 0; i < size; i++) {
@@ -163,12 +181,11 @@ function createPlayingField (size) {
   }
   body.append(playingField);
 }
-
 createPlayingField(playingFieldSize);
 
 // Расставляю бомбы
 
-function installBombs (count) {
+function installBombs(count) {
   let randomRow = Math.floor(Math.random() * playingFieldSize);
   const rows = document.getElementsByClassName('row');
   let randomItem = Math.floor(Math.random() * playingFieldSize);
@@ -186,7 +203,7 @@ function installBombs (count) {
 
 // Расставляю указатели около бомб
 
-function installSign () {
+function installSign() {
   const cells = document.querySelectorAll('.item');
   cells.forEach(cell => {
     const rowCell = cell.parentElement.classList[1].split('-')[1] * 1;
@@ -334,25 +351,24 @@ function installSign () {
     if (nearBombs !== 0) {
       cell.classList.add(`int${nearBombs}`);
     }
-  })
+  });
   gameTimer();
 }
 
 // Скрываю игровое поле
 
-function invisPlayingField () {
+function invisPlayingField() {
   const items = document.querySelectorAll('.item');
   items.forEach(item => {
     item.classList.add('close');
     addClickHandlerOnCells(item);
-  })
+  });
 }
-
 invisPlayingField();
 
 // Добавляю кликхендлеры на ячейки поля
 
-function addClickHandlerOnCells (item) {
+function addClickHandlerOnCells(item) {
   item.addEventListener('click', () => {
     if (clickCount === 0) {
       item.classList.add('no-bomb');
@@ -375,7 +391,7 @@ function addClickHandlerOnCells (item) {
         const playingField = document.querySelector('.playing-field');
         const layoutOnPlaingField = document.createElement('div');
         layoutOnPlaingField.classList.add('layout-on-plaing-field');
-        layoutOnPlaingField.innerText = 'ПОТРАЧЕНО =('
+        layoutOnPlaingField.innerText = 'ПОТРАЧЕНО =(';
         playingField.append(layoutOnPlaingField);
         clearTimeout(t);
         seconds = 0;
@@ -386,36 +402,34 @@ function addClickHandlerOnCells (item) {
     }
     checkCellWithBomb();
     clickCounter();
-  })
+  });
 }
 
 // Ставлю предположение о бомбе
 
 const items = document.getElementsByClassName('item');
-
-function maybeBomb () {
+function maybeBomb() {
   for (let item of items) {
-    item.addEventListener('contextmenu', (event) => {
+    item.addEventListener('contextmenu', event => {
       if (event.target.classList.contains('close') && !event.target.classList.contains('maybeBomb') && clickCount !== 0) {
         event.target.classList.add('maybeBomb');
       } else if (event.target.classList.contains('close') && event.target.classList.contains('maybeBomb') && clickCount !== 0) {
         event.target.classList.remove('maybeBomb');
       }
-    })
+    });
   }
 }
-
 maybeBomb();
 
 // Проверка, что не открытыми остались только ячеки с бомбами
 
-function checkCellWithBomb () {
+function checkCellWithBomb() {
   const cells = document.querySelectorAll('.close');
   if (cells.length === howNeedBobms) {
     const playingField = document.querySelector('.playing-field');
     const layoutOnPlaingField = document.createElement('div');
     layoutOnPlaingField.classList.add('layout-on-plaing-field-win');
-    layoutOnPlaingField.innerText = 'Congratulations!!!'
+    layoutOnPlaingField.innerText = 'Congratulations!!!';
     playingField.append(layoutOnPlaingField);
     clearTimeout(t);
     seconds = 0;
@@ -425,7 +439,7 @@ function checkCellWithBomb () {
 
 // Раскрываю часть поля при клике на пустую ячейку
 
-function openEmptyCells (cell) {
+function openEmptyCells(cell) {
   const classCountEmptyCell = 2;
   const rowCell = cell.parentElement.classList[1].split('-')[1] * 1;
   const numberCell = cell.classList[1].split('-')[1] * 1;
@@ -436,176 +450,238 @@ function openEmptyCells (cell) {
         if (rows[rowCell].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell].childNodes[numberCell + 1].classList.contains('bomb')) {
           rows[rowCell].childNodes[numberCell + 1].classList.remove('close');
           openEmptyCells(rows[rowCell].childNodes[numberCell + 1]);
-        };
+        }
+        ;
         if (rows[rowCell + 1].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell + 1].classList.contains('bomb')) {
           rows[rowCell + 1].childNodes[numberCell + 1].classList.remove('close');
           openEmptyCells(rows[rowCell + 1].childNodes[numberCell + 1]);
-        };
+        }
+        ;
         if (rows[rowCell + 1].childNodes[numberCell].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell].classList.contains('bomb')) {
           rows[rowCell + 1].childNodes[numberCell].classList.remove('close');
           openEmptyCells(rows[rowCell + 1].childNodes[numberCell]);
-        };
+        }
+        ;
       } else if (numberCell === playingFieldSize - 1) {
         if (rows[rowCell].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell].childNodes[numberCell - 1].classList.contains('bomb')) {
           rows[rowCell].childNodes[numberCell - 1].classList.remove('close');
           openEmptyCells(rows[rowCell].childNodes[numberCell - 1]);
-        };
+        }
+        ;
         if (rows[rowCell + 1].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell - 1].classList.contains('bomb')) {
           rows[rowCell + 1].childNodes[numberCell - 1].classList.remove('close');
           openEmptyCells(rows[rowCell + 1].childNodes[numberCell - 1]);
-        };
+        }
+        ;
         if (rows[rowCell + 1].childNodes[numberCell].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell].classList.contains('bomb')) {
           rows[rowCell + 1].childNodes[numberCell].classList.remove('close');
           openEmptyCells(rows[rowCell + 1].childNodes[numberCell]);
-        };
+        }
+        ;
       } else {
         if (rows[rowCell].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell].childNodes[numberCell - 1].classList.contains('bomb')) {
           rows[rowCell].childNodes[numberCell - 1].classList.remove('close');
           openEmptyCells(rows[rowCell].childNodes[numberCell - 1]);
-        };
+        }
+        ;
         if (rows[rowCell + 1].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell - 1].classList.contains('bomb')) {
           rows[rowCell + 1].childNodes[numberCell - 1].classList.remove('close');
           openEmptyCells(rows[rowCell + 1].childNodes[numberCell - 1]);
-        };
+        }
+        ;
         if (rows[rowCell].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell].childNodes[numberCell + 1].classList.contains('bomb')) {
           rows[rowCell].childNodes[numberCell + 1].classList.remove('close');
           openEmptyCells(rows[rowCell].childNodes[numberCell + 1]);
-        };
+        }
+        ;
         if (rows[rowCell + 1].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell + 1].classList.contains('bomb')) {
           rows[rowCell + 1].childNodes[numberCell + 1].classList.remove('close');
           openEmptyCells(rows[rowCell + 1].childNodes[numberCell + 1]);
-        };
+        }
+        ;
         if (rows[rowCell + 1].childNodes[numberCell].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell].classList.contains('bomb')) {
           rows[rowCell + 1].childNodes[numberCell].classList.remove('close');
           openEmptyCells(rows[rowCell + 1].childNodes[numberCell]);
-        };
-      };
+        }
+        ;
+      }
+      ;
     } else if (rowCell === playingFieldSize - 1) {
       if (numberCell === 0) {
         if (rows[rowCell].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell].childNodes[numberCell + 1].classList.contains('bomb')) {
           rows[rowCell].childNodes[numberCell + 1].classList.remove('close');
           openEmptyCells(rows[rowCell].childNodes[numberCell + 1]);
-        };
+        }
+        ;
         if (rows[rowCell - 1].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell + 1].classList.contains('bomb')) {
           rows[rowCell - 1].childNodes[numberCell + 1].classList.remove('close');
           openEmptyCells(rows[rowCell - 1].childNodes[numberCell + 1]);
-        };
+        }
+        ;
         if (rows[rowCell - 1].childNodes[numberCell].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell].classList.contains('bomb')) {
           rows[rowCell - 1].childNodes[numberCell].classList.remove('close');
           openEmptyCells(rows[rowCell - 1].childNodes[numberCell]);
-        };
+        }
+        ;
       } else if (numberCell === playingFieldSize - 1) {
         if (rows[rowCell].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell].childNodes[numberCell - 1].classList.contains('bomb')) {
           rows[rowCell].childNodes[numberCell - 1].classList.remove('close');
           openEmptyCells(rows[rowCell].childNodes[numberCell - 1]);
-        };
+        }
+        ;
         if (rows[rowCell - 1].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell - 1].classList.contains('bomb')) {
           rows[rowCell - 1].childNodes[numberCell - 1].classList.remove('close');
           openEmptyCells(rows[rowCell - 1].childNodes[numberCell - 1]);
-        };
+        }
+        ;
         if (rows[rowCell - 1].childNodes[numberCell].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell].classList.contains('bomb')) {
           rows[rowCell - 1].childNodes[numberCell].classList.remove('close');
           openEmptyCells(rows[rowCell - 1].childNodes[numberCell]);
-        };
+        }
+        ;
       } else {
         if (rows[rowCell].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell].childNodes[numberCell - 1].classList.contains('bomb')) {
           rows[rowCell].childNodes[numberCell - 1].classList.remove('close');
           openEmptyCells(rows[rowCell].childNodes[numberCell - 1]);
-        };
+        }
+        ;
         if (rows[rowCell - 1].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell - 1].classList.contains('bomb')) {
           rows[rowCell - 1].childNodes[numberCell - 1].classList.remove('close');
           openEmptyCells(rows[rowCell - 1].childNodes[numberCell - 1]);
-        };
+        }
+        ;
         if (rows[rowCell].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell].childNodes[numberCell + 1].classList.contains('bomb')) {
           rows[rowCell].childNodes[numberCell + 1].classList.remove('close');
           openEmptyCells(rows[rowCell].childNodes[numberCell + 1]);
-        };
+        }
+        ;
         if (rows[rowCell - 1].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell + 1].classList.contains('bomb')) {
           rows[rowCell - 1].childNodes[numberCell + 1].classList.remove('close');
           openEmptyCells(rows[rowCell - 1].childNodes[numberCell + 1]);
-        };
+        }
+        ;
         if (rows[rowCell - 1].childNodes[numberCell].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell].classList.contains('bomb')) {
           rows[rowCell - 1].childNodes[numberCell].classList.remove('close');
           openEmptyCells(rows[rowCell - 1].childNodes[numberCell]);
-        };
-      };
+        }
+        ;
+      }
+      ;
     } else {
       if (numberCell === 0) {
         if (rows[rowCell + 1].childNodes[numberCell].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell].classList.contains('bomb')) {
           rows[rowCell + 1].childNodes[numberCell].classList.remove('close');
           openEmptyCells(rows[rowCell + 1].childNodes[numberCell]);
-        };
+        }
+        ;
         if (rows[rowCell + 1].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell + 1].classList.contains('bomb')) {
           rows[rowCell + 1].childNodes[numberCell + 1].classList.remove('close');
           openEmptyCells(rows[rowCell + 1].childNodes[numberCell + 1]);
-        };
+        }
+        ;
         if (rows[rowCell].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell].childNodes[numberCell + 1].classList.contains('bomb')) {
           rows[rowCell].childNodes[numberCell + 1].classList.remove('close');
           openEmptyCells(rows[rowCell].childNodes[numberCell + 1]);
-        };
+        }
+        ;
         if (rows[rowCell - 1].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell + 1].classList.contains('bomb')) {
           rows[rowCell - 1].childNodes[numberCell + 1].classList.remove('close');
           openEmptyCells(rows[rowCell - 1].childNodes[numberCell + 1]);
-        };
+        }
+        ;
         if (rows[rowCell - 1].childNodes[numberCell].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell].classList.contains('bomb')) {
           rows[rowCell - 1].childNodes[numberCell].classList.remove('close');
           openEmptyCells(rows[rowCell - 1].childNodes[numberCell]);
-        };
+        }
+        ;
       } else if (numberCell === playingFieldSize - 1) {
         if (rows[rowCell - 1].childNodes[numberCell].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell].classList.contains('bomb')) {
           rows[rowCell - 1].childNodes[numberCell].classList.remove('close');
           openEmptyCells(rows[rowCell - 1].childNodes[numberCell]);
-        };
+        }
+        ;
         if (rows[rowCell - 1].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell - 1].classList.contains('bomb')) {
           rows[rowCell - 1].childNodes[numberCell - 1].classList.remove('close');
           openEmptyCells(rows[rowCell - 1].childNodes[numberCell - 1]);
-        };
+        }
+        ;
         if (rows[rowCell].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell].childNodes[numberCell - 1].classList.contains('bomb')) {
           rows[rowCell].childNodes[numberCell - 1].classList.remove('close');
           openEmptyCells(rows[rowCell].childNodes[numberCell - 1]);
-        };
+        }
+        ;
         if (rows[rowCell + 1].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell - 1].classList.contains('bomb')) {
           rows[rowCell + 1].childNodes[numberCell - 1].classList.remove('close');
           openEmptyCells(rows[rowCell + 1].childNodes[numberCell - 1]);
-        };
+        }
+        ;
         if (rows[rowCell + 1].childNodes[numberCell].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell].classList.contains('bomb')) {
           rows[rowCell + 1].childNodes[numberCell].classList.remove('close');
           openEmptyCells(rows[rowCell + 1].childNodes[numberCell]);
-        };
+        }
+        ;
       } else {
         if (rows[rowCell].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell].childNodes[numberCell - 1].classList.contains('bomb')) {
           rows[rowCell].childNodes[numberCell - 1].classList.remove('close');
           openEmptyCells(rows[rowCell].childNodes[numberCell - 1]);
-        };
+        }
+        ;
         if (rows[rowCell + 1].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell - 1].classList.contains('bomb')) {
           rows[rowCell + 1].childNodes[numberCell - 1].classList.remove('close');
           openEmptyCells(rows[rowCell + 1].childNodes[numberCell - 1]);
-        };
+        }
+        ;
         if (rows[rowCell + 1].childNodes[numberCell].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell].classList.contains('bomb')) {
           rows[rowCell + 1].childNodes[numberCell].classList.remove('close');
           openEmptyCells(rows[rowCell + 1].childNodes[numberCell]);
-        };
+        }
+        ;
         if (rows[rowCell + 1].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell + 1].childNodes[numberCell + 1].classList.contains('bomb')) {
           rows[rowCell + 1].childNodes[numberCell + 1].classList.remove('close');
           openEmptyCells(rows[rowCell + 1].childNodes[numberCell + 1]);
-        };
+        }
+        ;
         if (rows[rowCell].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell].childNodes[numberCell + 1].classList.contains('bomb')) {
           rows[rowCell].childNodes[numberCell + 1].classList.remove('close');
           openEmptyCells(rows[rowCell].childNodes[numberCell + 1]);
-        };
+        }
+        ;
         if (rows[rowCell - 1].childNodes[numberCell + 1].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell + 1].classList.contains('bomb')) {
           rows[rowCell - 1].childNodes[numberCell + 1].classList.remove('close');
           openEmptyCells(rows[rowCell - 1].childNodes[numberCell + 1]);
-        };
+        }
+        ;
         if (rows[rowCell - 1].childNodes[numberCell].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell].classList.contains('bomb')) {
           rows[rowCell - 1].childNodes[numberCell].classList.remove('close');
           openEmptyCells(rows[rowCell - 1].childNodes[numberCell]);
-        };
+        }
+        ;
         if (rows[rowCell - 1].childNodes[numberCell - 1].classList.contains('close') && !rows[rowCell - 1].childNodes[numberCell - 1].classList.contains('bomb')) {
           rows[rowCell - 1].childNodes[numberCell - 1].classList.remove('close');
           openEmptyCells(rows[rowCell - 1].childNodes[numberCell - 1]);
-        };
-      };
-    };
-  };
-};
+        }
+        ;
+      }
+      ;
+    }
+    ;
+  }
+  ;
+}
+;
+})();
+
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
+"use strict";
+/*!************************!*\
+  !*** ./src/style.scss ***!
+  \************************/
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+})();
+
+/******/ })()
+;
+//# sourceMappingURL=script.js.map
