@@ -73,7 +73,7 @@ function gameTimer () {
 
 const refreshBtn = document.createElement('div');
 refreshBtn.classList.add('refresh-btn');
-refreshBtn.innerText = 'Refresh';
+refreshBtn.innerText = 'New Game';
 controlPanel.append(refreshBtn);
 refreshBtn.addEventListener('click', () => {
   refresh();
@@ -84,6 +84,7 @@ function refresh () {
   seconds = 0;
   minutes = 0;
   time.innerText = 'Timer: 00:00';
+  checkedBombsCount.innerText = `x ${howNeedBobms}`;
   clickCount = 0;
   clickCounter();
   const playingField = document.querySelector('.playing-field');
@@ -104,6 +105,82 @@ function clickCounter () {
   clickCountPanel.innerText = `Steps: ${clickCount}`;
 }
 
+// Добавляю счетчик отмеченных бомб
+
+const checkedBombs = document.createElement('div');
+checkedBombs.classList.add('checked-bombs');
+const bombImg = document.createElement('div');
+bombImg.classList.add('bomb-img');
+controlPanel.append(checkedBombs);
+checkedBombs.append(bombImg);
+const checkedBombsCount = document.createElement('div');
+checkedBombsCount.classList.add('checked-bombs-count');
+checkedBombs.append(checkedBombsCount);
+checkedBombsCount.innerText = `x ${howNeedBobms}`;
+
+function howManyBombsAreLeft (bombsCount) {
+  const flagsCount = document.querySelectorAll('.maybeBomb').length;
+  checkedBombsCount.innerText = `x ${bombsCount - flagsCount}`;
+}
+
+//Добавляю выбор колличества бомб
+
+const selectBombsCount = document.createElement('div');
+selectBombsCount.classList.add('select-bombs-count');
+checkedBombs.append(selectBombsCount);
+
+const selectLine = document.createElement('div');
+selectLine.classList.add('select-line');
+selectBombsCount.append(selectLine);
+
+const selectSlider = document.createElement('div');
+selectSlider.classList.add('select-slider');
+selectBombsCount.append(selectSlider);
+
+const widthSelectLine = window.getComputedStyle(selectLine).width.replace('px', '') * 1; // Ширина полоски выбора колличества бомб
+const widthSlider = window.getComputedStyle(selectSlider).width.replace('px', '') * 1; // Ширина ползунка выбора колличества бомб
+
+let layerX;
+let clientX;
+let crossX;
+const coefficient = (widthSelectLine - widthSlider) / 99;
+
+selectSlider.style.left = `${coefficient * 10}px`;
+
+let sliderPosition = window.getComputedStyle(selectSlider).left.replace('px', '') * 1;
+
+const moveSelectSlider = (event) => {
+  clientX = event.clientX;
+  layerX = event.layerX;
+  selectSlider.classList.add('active');
+  selectSlider.addEventListener('mousemove', moveSlider);
+}
+
+const choosNumberBombs = () => {
+  selectSlider.classList.remove('active');
+  selectSlider.removeEventListener('mousemove', moveSlider);
+}
+
+const moveSlider = (event) => {
+  crossX = event.clientX - clientX;
+  clientX = event.clientX;
+  if (sliderPosition + crossX > -1 && sliderPosition + crossX < widthSelectLine - widthSlider + 1) {
+    event.target.style.left = `${sliderPosition + crossX}px`;
+    sliderPosition = window.getComputedStyle(selectSlider).left.replace('px', '') * 1;
+    const intBombs = Math.round(sliderPosition / coefficient);
+    if(intBombs > 9) {
+      howNeedBobms = intBombs;
+      checkedBombsCount.innerText = `x ${howNeedBobms}`;
+    }
+  } else {
+    selectSlider.classList.remove('active');
+    selectSlider.removeEventListener('mousemove', moveSlider);
+  }
+}
+
+selectSlider.addEventListener('mousedown', moveSelectSlider);
+selectSlider.addEventListener('mouseup', choosNumberBombs);
+
 // Добавляю кнопки изменения уровня сложности
 
 const difficult = document.createElement('div');
@@ -117,6 +194,9 @@ const difficultBtns = ['Easy', 'Medium', 'Hard'];
 difficultBtns.forEach(btn => {
   const difficultBtn = document.createElement('div');
   difficultBtn.classList.add('difficult-dtn', `${btn}`);
+  if (btn === 'Easy') {
+    difficultBtn.classList.add('active');
+  }
   difficultBtn.innerText = `${btn}`;
   difficult.append(difficultBtn);
 })
@@ -400,7 +480,8 @@ function maybeBomb () {
         event.target.classList.add('maybeBomb');
       } else if (event.target.classList.contains('close') && event.target.classList.contains('maybeBomb') && clickCount !== 0) {
         event.target.classList.remove('maybeBomb');
-      }
+      };
+      howManyBombsAreLeft(howNeedBobms);
     })
   }
 }
