@@ -1,3 +1,5 @@
+import State from "./script/State";
+
 let playingFieldSize = 10; // Размер игрового поля
 
 let clickCount = 0; // Колличество кликов по игровому полю
@@ -80,6 +82,7 @@ refreshBtn.addEventListener('click', () => {
 })
 
 function refresh () {
+  selectBombsCountBlur.classList.remove('active');
   clearTimeout(t);
   seconds = 0;
   minutes = 0;
@@ -137,6 +140,10 @@ const selectSlider = document.createElement('div');
 selectSlider.classList.add('select-slider');
 selectBombsCount.append(selectSlider);
 
+const selectBombsCountBlur = document.createElement('div');
+selectBombsCountBlur.classList.add('select-bombs-count-blur');
+selectBombsCount.append(selectBombsCountBlur);
+
 const widthSelectLine = window.getComputedStyle(selectLine).width.replace('px', '') * 1; // Ширина полоски выбора колличества бомб
 const widthSlider = window.getComputedStyle(selectSlider).width.replace('px', '') * 1; // Ширина ползунка выбора колличества бомб
 
@@ -164,7 +171,7 @@ const choosNumberBombs = () => {
 const moveSlider = (event) => {
   crossX = event.clientX - clientX;
   clientX = event.clientX;
-  if (sliderPosition + crossX > -1 && sliderPosition + crossX < widthSelectLine - widthSlider + 1) {
+  if (sliderPosition + crossX > coefficient * 10 - 1 && sliderPosition + crossX < widthSelectLine - widthSlider + 1) {
     event.target.style.left = `${sliderPosition + crossX}px`;
     sliderPosition = window.getComputedStyle(selectSlider).left.replace('px', '') * 1;
     const intBombs = Math.round(sliderPosition / coefficient);
@@ -228,6 +235,10 @@ difficultCelect();
 
 // Создаю игровое полеs
 
+const fieldContainer = document.createElement('div');
+fieldContainer.classList.add('field-container');
+body.append(fieldContainer);
+
 function createPlayingField (size) {
   const playingField = document.createElement('div');
   playingField.classList.add('playing-field', `playing-field-${size}`);
@@ -241,7 +252,15 @@ function createPlayingField (size) {
     }
     playingField.append(row);
   }
-  body.append(playingField);
+  fieldContainer.append(playingField);
+
+  const stateWindow = document.createElement('div');
+  stateWindow.classList.add('state-window');
+  playingField.append(stateWindow);
+
+  const stateTableContainer = document.createElement('div');
+  stateTableContainer.classList.add('state-table-container');
+  stateWindow.append(stateTableContainer);
 }
 
 createPlayingField(playingFieldSize);
@@ -435,6 +454,7 @@ invisPlayingField();
 function addClickHandlerOnCells (item) {
   item.addEventListener('click', () => {
     if (clickCount === 0) {
+      selectBombsCountBlur.classList.add('active'); 
       item.classList.add('no-bomb');
       item.classList.remove('close');
       clickCount++;
@@ -460,6 +480,7 @@ function addClickHandlerOnCells (item) {
         clearTimeout(t);
         seconds = 0;
         minutes = 0;
+        saveState(layoutOnPlaingField.classList[0]);
       } else if (item.classList.length === 2) {
         openEmptyCells(item);
       }
@@ -501,6 +522,7 @@ function checkCellWithBomb () {
     clearTimeout(t);
     seconds = 0;
     minutes = 0;
+    saveState(layoutOnPlaingField.classList[0]);
   }
 }
 
@@ -690,3 +712,75 @@ function openEmptyCells (cell) {
     };
   };
 };
+
+// Сохраняем статистику
+
+const state = [];
+
+const saveState = (layoutClass) => {
+  const difficult = document.querySelector('.difficult-dtn.active');
+  const result = new State (time.innerText, clickCount, difficult.innerText, layoutClass);
+  if (state.length === 10) {
+    state.unshift(result);
+    state.pop();
+  } else {
+    state.unshift(result);
+  }
+}
+
+// Создаю кнопку для показа статистики
+
+const stateBtn = document.createElement('div');
+stateBtn.classList.add('state-btn');
+const stateBtnTitle = document.createElement('p');
+stateBtnTitle.classList.add('state-btn-title');
+stateBtnTitle.innerText = 'Statistics'
+stateBtn.append(stateBtnTitle);
+body.append(stateBtn);
+
+function addClickHendlerOnStateBtn () {
+  stateBtn.addEventListener('click', () => {
+    const stateWindow = document.querySelector('.state-window');
+    stateWindow.classList.toggle('active');
+    if (stateWindow.classList.contains('active')) {
+      const stateTableContainer = document.querySelector('.state-table-container');
+      stateTableContainer.innerHTML = '';
+      const tableTittle = document.createElement('h2');
+      tableTittle.classList.add('table-tittle');
+      tableTittle.innerText = 'Statistics last 10 games'
+      stateTableContainer.append(tableTittle);
+      const table = document.createElement('table');
+      table.classList.add('table');
+      stateTableContainer.append(table);
+      const tableHeader = document.createElement('tr');
+      tableHeader.classList.add('table-header')
+      table.append(tableHeader);
+      const tableTittleName = ['№', 'Time', 'Steps', 'Difficult', 'Result'];
+      tableTittleName.forEach(item => {
+        const headerName = document.createElement('th');
+        headerName.classList.add('header-name', `header-${item}`);
+        headerName.innerText = `${item}`;
+        table.append(headerName);
+      })
+      let numberItemInArray = 1;
+      state.forEach(item => {
+        const tableRow = document.createElement('tr');
+        tableRow.classList.add('table-item');
+        table.append(tableRow);
+        const rowItem = document.createElement('td');
+        rowItem.classList.add('table-row', 'table-row-№');
+        tableRow.append(rowItem);
+        rowItem.innerText = `${numberItemInArray}`;
+        numberItemInArray++;
+        for (let data in item) {
+          const rowItem = document.createElement('td');
+          rowItem.classList.add('table-row', `table-row-${data}`);
+          tableRow.append(rowItem);
+          rowItem.innerText = `${item[data]}`;
+        }
+      })
+    }
+  })
+}
+
+addClickHendlerOnStateBtn();

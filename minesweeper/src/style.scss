@@ -100,6 +100,20 @@ $size-int: 80%;
   }
 }
 
+.select-bombs-count-blur {
+  position: absolute;
+  width: 105%;
+  height: 125%;
+  background: #5c4b4bcc;
+  left: -5px;
+  top: -5px;
+  border-radius: 5px;
+  display: none;
+  &.active {
+    display: block;
+  }
+}
+
 .difficult {
   display: block;
   margin: 10px auto 0;
@@ -148,6 +162,8 @@ $size-int: 80%;
   color: red;
   text-align: center;
   line-height: 500px;
+  z-index: 2;
+  cursor: auto;
 }
 
 .layout-on-plaing-field-win {
@@ -162,6 +178,8 @@ $size-int: 80%;
   color: rgb(0, 255, 21);
   text-align: center;
   line-height: 500px;
+  z-index: 2;
+  cursor: auto;
 }
 
 .playing-field-10 {
@@ -277,4 +295,68 @@ $size-int: 80%;
       background-position: center;
     }
   }
+}
+
+.state-btn {
+  align-items: center;
+  display: flex;
+  margin: 10px auto 0;
+  width: 300px;
+  height: 50px;
+  border-radius: 5px;
+  background: red;
+  cursor: pointer;
+}
+
+.state-btn-title {
+  margin: auto;
+}
+
+.state-window {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(90, 90, 90, 0.171);
+  cursor: auto;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  &.active {
+    display: flex;
+  }
+}
+
+.state-table-container {
+  width: 300px;
+  height: 480px;
+  background: rgb(199, 199, 199);
+  border-radius: 10px;
+  z-index: 3;
+  cursor: auto;
+}
+
+.table-tittle {
+  text-align: center;
+}
+
+.table {
+  width: 100%;
+}
+
+.table-header {
+  
+}
+
+.header-name {
+  margin: 10px 0;
+}
+
+.table-item {
+
+}
+
+.table-row {
+  text-align: center;
 }
