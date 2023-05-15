@@ -290,9 +290,10 @@ $size-int: 80%;
     background: brown;
     &.maybeBomb {
       background: brown;
-      background-image: url(./image/icons8-плюс.svg);
+      background-image: url(./image/flag.svg);
       background-size: 100%;
       background-position: center;
+      background-repeat: no-repeat;
     }
   }
 }
@@ -345,16 +346,13 @@ $size-int: 80%;
   width: 100%;
 }
 
-.table-header {
-  
-}
-
 .header-name {
   margin: 10px 0;
+  height: 30px;
 }
 
 .table-item {
-
+  height: 30px;
 }
 
 .table-row {

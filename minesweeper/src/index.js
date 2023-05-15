@@ -217,11 +217,16 @@ function difficultCelect () {
       btn.classList.toggle('active');
       if (btn.classList.contains('Easy')) {
         playingFieldSize = 10;
+        howNeedBobms = 10;
       } else if (btn.classList.contains('Medium')) {
         playingFieldSize = 15;
+        howNeedBobms = 42;
       } else if (btn.classList.contains('Hard')) {
         playingFieldSize = 25;
+        howNeedBobms = 99;
       }
+      selectSlider.style.left = `${coefficient * howNeedBobms}px`;
+      sliderPosition = window.getComputedStyle(selectSlider).left.replace('px', '') * 1;
       difficultBtns.forEach(btn => {
         btn.classList.remove('active');
       })
@@ -715,11 +720,11 @@ function openEmptyCells (cell) {
 
 // Сохраняем статистику
 
-const state = [];
+let state = [];
 
 const saveState = (layoutClass) => {
   const difficult = document.querySelector('.difficult-dtn.active');
-  const result = new State (time.innerText, clickCount, difficult.innerText, layoutClass);
+  const result = new State (time.innerText, clickCount, difficult.innerText, howNeedBobms, layoutClass);
   if (state.length === 10) {
     state.unshift(result);
     state.pop();
@@ -752,10 +757,7 @@ function addClickHendlerOnStateBtn () {
       const table = document.createElement('table');
       table.classList.add('table');
       stateTableContainer.append(table);
-      const tableHeader = document.createElement('tr');
-      tableHeader.classList.add('table-header')
-      table.append(tableHeader);
-      const tableTittleName = ['№', 'Time', 'Steps', 'Difficult', 'Result'];
+      const tableTittleName = ['№', 'Time', 'Steps', 'Difficult', 'Bombs', 'Result'];
       tableTittleName.forEach(item => {
         const headerName = document.createElement('th');
         headerName.classList.add('header-name', `header-${item}`);
@@ -784,3 +786,18 @@ function addClickHendlerOnStateBtn () {
 }
 
 addClickHendlerOnStateBtn();
+
+// Сохранение статистики в Local Storage
+
+function setLocalStorage() {
+  const saveStateInLS = JSON.stringify(state);
+  localStorage.setItem('resultsYourLastGame', saveStateInLS);
+}
+window.addEventListener('beforeunload', setLocalStorage);
+
+function getLocalStorage() {
+  if(localStorage.getItem('resultsYourLastGame')) {
+    state = JSON.parse(localStorage.resultsYourLastGame)
+  }
+}
+window.addEventListener('load', getLocalStorage);
