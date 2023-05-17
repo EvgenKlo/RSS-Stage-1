@@ -7,8 +7,14 @@ function setLocalStorage() {
   localStorage.setItem('resultsYourLastGame', saveStateInLS);
   localStorage.setItem('field', fieldContainer.innerHTML);
 
-  localStorage.setItem('time', time.innerText);
+  localStorage.setItem('time-seconds', seconds);
+  localStorage.setItem('time-minutes', minutes);
+  localStorage.setItem('timer-value', time.innerText);
   localStorage.setItem('steps', clickCount);
+  localStorage.setItem('flags-count', checkedBombsCount.innerText);
+  localStorage.setItem('how-need-boms', howNeedBobms);
+  localStorage.setItem('difficult-slider', selectBombsCountBlur.classList);
+  localStorage.setItem('playing-field-size', playingFieldSize);
   const getDifficult = () => {
     const difficultBtns = document.querySelectorAll('.difficult-dtn');
     let btnText = '';
@@ -20,25 +26,60 @@ function setLocalStorage() {
     return btnText;
   };
   localStorage.setItem('difficult', getDifficult());
-  localStorage.setItem('boms', checkedBombsCount.innerText);
 }
 window.addEventListener('beforeunload', setLocalStorage);
 
 function getLocalStorage() {
-  if(localStorage.getItem('resultsYourLastGame')) {
+  if (localStorage.getItem('resultsYourLastGame')) {
     state = JSON.parse(localStorage.resultsYourLastGame);
   }
-  /* if(localStorage.getItem('field')) {
+  if (localStorage.getItem('field')) {
     fieldContainer.innerHTML = localStorage.getItem('field');
+  }
+  if (localStorage.getItem('playing-field-size')) {
+    playingFieldSize = localStorage.getItem('playing-field-size');
+  }
+  if (localStorage.getItem('steps')) {
+    clickCount = localStorage.getItem('steps') * 1;
+    clickCountPanel.innerText = `Steps: ${clickCount}`;
     const items = document.querySelectorAll('.item');
     items.forEach(item => {
       addClickHandlerOnCells(item);
     })
   }
-  if (localStorage.getItem('steps')) {
-    clickCount = localStorage.getItem('steps');
-    console.log(typeof clickCount)
-  } */
+  if (localStorage.getItem('time-seconds') || localStorage.getItem('time-minutes')) {
+    seconds = localStorage.getItem('time-seconds') * 1;
+    minutes = localStorage.getItem('time-minutes') * 1;
+    if(seconds > 0 || minutes > 0)
+    gameTimer();
+  }
+  if (localStorage.getItem('timer-value')){
+    time.innerText = localStorage.getItem('timer-value');
+  }
+  if (localStorage.getItem('flags-count')){
+    checkedBombsCount.innerText = localStorage.getItem('flags-count');
+  }
+  if (localStorage.getItem('how-need-boms')) {
+    howNeedBobms = localStorage.getItem('how-need-boms');
+  }
+  if (localStorage.getItem('difficult')) {
+    const savedifficult = localStorage.getItem('difficult');
+    const difficultBtns = document.querySelectorAll('.difficult-dtn');
+    difficultBtns.forEach(btn => {
+      btn.classList.remove('active');
+    })
+    difficultBtns.forEach(btn => {
+      if (btn.classList.contains(savedifficult)) {
+        btn.classList.add('active');
+      }
+    })
+    selectSlider.style.left = `${coefficient * howNeedBobms}px`;
+    sliderPosition = window.getComputedStyle(selectSlider).left.replace('px', '') * 1;
+  }
+  if (localStorage.getItem('difficult-slider')) {
+    selectBombsCountBlur.classList = localStorage.getItem('difficult-slider');
+  }
+  maybeBomb();
 }
 window.addEventListener('load', getLocalStorage);
 
@@ -280,7 +321,7 @@ function difficultCelect () {
 
 difficultCelect();
 
-// Создаю игровое полеs
+// Создаю игровое поле
 
 const fieldContainer = document.createElement('div');
 fieldContainer.classList.add('field-container');
