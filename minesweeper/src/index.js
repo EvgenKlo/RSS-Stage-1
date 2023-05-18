@@ -568,7 +568,6 @@ function addClickHandlerOnCells (item) {
         clearTimeout(t);
         seconds = 0;
         minutes = 0;
-        saveState(layoutOnPlaingField.classList[0]);
       } else if (item.classList.length === 2) {
         openEmptyCells(item);
       }
@@ -805,9 +804,9 @@ function openEmptyCells (cell) {
 
 let state = [];
 
-const saveState = (layoutClass) => {
+const saveState = () => {
   const difficult = document.querySelector('.difficult-dtn.active');
-  const result = new State (time.innerText, clickCount, difficult.innerText, howNeedBobms, layoutClass);
+  const result = new State (time.innerText, clickCount, difficult.innerText, howNeedBobms);
   if (state.length === 10) {
     state.unshift(result);
     state.pop();
@@ -840,7 +839,7 @@ function addClickHendlerOnStateBtn () {
       const table = document.createElement('table');
       table.classList.add('table');
       stateTableContainer.append(table);
-      const tableTittleName = ['№', 'Time', 'Steps', 'Difficult', 'Bombs', 'Result'];
+      const tableTittleName = ['№', 'Time', 'Steps', 'Difficult', 'Bombs'];
       tableTittleName.forEach(item => {
         const headerName = document.createElement('th');
         headerName.classList.add('header-name', `header-${item}`);
