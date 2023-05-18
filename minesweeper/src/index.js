@@ -1,6 +1,6 @@
 import State from "./script/State";
 
-// Сохранение статистики в Local Storage
+// Сохранение статистики и состояния игры в Local Storage при перезагрзке страницы
 
 function setLocalStorage() {
   const saveStateInLS = JSON.stringify(state);
@@ -50,8 +50,12 @@ function getLocalStorage() {
   if (localStorage.getItem('time-seconds') || localStorage.getItem('time-minutes')) {
     seconds = localStorage.getItem('time-seconds') * 1;
     minutes = localStorage.getItem('time-minutes') * 1;
-    if(seconds > 0 || minutes > 0)
-    gameTimer();
+    const layoutSavePlaingField = document.querySelector('.layout-save-plaing-field.active');
+    if (layoutSavePlaingField) {
+      clearTimeout(t);
+    } else if (seconds > 0 || minutes > 0) {
+      gameTimer();
+    }
   }
   if (localStorage.getItem('timer-value')){
     time.innerText = localStorage.getItem('timer-value');
@@ -179,6 +183,22 @@ function refresh () {
   invisPlayingField();
   maybeBomb();
 }
+
+// Сохранение игры
+
+const gameSaveContinue = document.createElement('div');
+gameSaveContinue.classList.add('game-save-continue-container');
+controlPanel.append(gameSaveContinue);
+
+const gameSaveBtn = document.createElement('div');
+gameSaveBtn.classList.add('game-save-btn');
+gameSaveBtn.innerHTML = '<p>Save Game</p>';
+gameSaveContinue.append(gameSaveBtn);
+
+const gameContinueBtn = document.createElement('div');
+gameContinueBtn.classList.add('game-continue-btn');
+gameContinueBtn.innerHTML = '<p>Continue</p>';
+gameSaveContinue.append(gameContinueBtn);
 
 // Добавляем счетчик кликов
 
@@ -349,6 +369,11 @@ function createPlayingField (size) {
   const stateTableContainer = document.createElement('div');
   stateTableContainer.classList.add('state-table-container');
   stateWindow.append(stateTableContainer);
+
+  const layoutSavePlaingField = document.createElement('div');
+  layoutSavePlaingField.classList.add('layout-save-plaing-field');
+  layoutSavePlaingField.innerHTML = '<p>Game saved.<br>To continue the game, press the button "Continue"</p>';
+  playingField.append(layoutSavePlaingField);
 }
 
 createPlayingField(playingFieldSize);
@@ -815,6 +840,22 @@ const saveState = () => {
   }
 }
 
+// Добавляю подвал
+
+const footer = document.createElement('div');
+footer.classList.add('footer');
+body.append(footer);
+
+// Переключатель выбора темы
+
+const topicSelection = document.createElement('div');
+topicSelection.classList.add('topic-selection');
+footer.append(topicSelection);
+
+const topicSelectionItem = document.createElement('div');
+topicSelectionItem.classList.add('topic-selection-item');
+topicSelection.append(topicSelectionItem);
+
 // Создаю кнопку для показа статистики
 
 const stateBtn = document.createElement('div');
@@ -823,7 +864,7 @@ const stateBtnTitle = document.createElement('p');
 stateBtnTitle.classList.add('state-btn-title');
 stateBtnTitle.innerText = 'Statistics'
 stateBtn.append(stateBtnTitle);
-body.append(stateBtn);
+footer.append(stateBtn);
 
 function addClickHendlerOnStateBtn () {
   stateBtn.addEventListener('click', () => {
@@ -868,3 +909,42 @@ function addClickHendlerOnStateBtn () {
 }
 
 addClickHendlerOnStateBtn();
+
+// Вешаю кликхэндлеры на кнопки Save и Continue
+
+gameSaveBtn.addEventListener('click', () => {
+  const layoutSavePlaingField = document.querySelector('.layout-save-plaing-field');
+  if (!layoutSavePlaingField.classList.contains('active')) {
+    clearTimeout(t);
+    layoutSavePlaingField.classList.add('active');
+    setLocalStorage();
+  };
+});
+
+gameContinueBtn.addEventListener('click', () => {
+  const layoutSavePlaingField = document.querySelector('.layout-save-plaing-field');
+  if (layoutSavePlaingField.classList.contains('active')) {
+    getLocalStorage();
+    const layoutSavePlaingField = document.querySelector('.layout-save-plaing-field');
+    layoutSavePlaingField.classList.remove('active');
+    if (clickCount !== 0) {
+      gameTimer();
+    };
+  };
+});
+
+// Выбор темы
+
+topicSelection.addEventListener('click', () => {
+  topicSelection.classList.toggle('dark');
+  changeTopic(topicSelection.classList);
+})
+
+function changeTopic (topicClasses) {
+  const body = document.querySelector('.body');
+  if (topicClasses.contains('dark')) {
+    body.classList.add('dark');
+  } else {
+    body.classList.remove('dark');
+  }
+};

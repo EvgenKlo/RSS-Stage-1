@@ -1,9 +1,21 @@
 $size-int: 80%;
+$lite-body-color: rgb(187, 236, 154);
+$lite-button-color: rgb(148, 252, 221);
+$lite-button-hover: rgb(117, 155, 120);
+$lite-buttons-difficult: rgb(121, 221, 191);
+
+$dark-body-color: rgb(102, 102, 102);
+$dark-button-color: rgb(51, 51, 51);
+$dark-button-hover: rgb(43, 54, 44);
+$dark-buttons-difficult: rgb(45, 78, 68);
 
 .body {
   padding: 0;
-  background: rgb(187, 236, 154);
+  background: $lite-body-color;
   user-select: none;
+  &.dark {
+    background: $dark-body-color;
+  }
 }
 
 .title {
@@ -23,7 +35,7 @@ $size-int: 80%;
   height: 50px;
   border: 2px solid black;
   border-radius: 5px;
-  background: rgb(148, 252, 221);
+  background: $lite-button-color;
   text-align: center;
   line-height: 45px;
 }
@@ -33,10 +45,58 @@ $size-int: 80%;
   height: 50px;
   border: 2px solid black;
   border-radius: 5px;
-  background: rgb(148, 252, 221);
+  background: $lite-button-color;
   text-align: center;
   line-height: 45px;
   cursor: pointer;
+  &:hover {
+    background: $lite-button-hover;
+  }
+}
+
+.game-save-continue-container {
+  max-height: 54px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.game-save-btn,
+.game-continue-btn {
+  display: flex;
+  width: 100px;
+  height: 40%;
+  border: 2px solid black;
+  border-radius: 5px;
+  background: $lite-button-color;
+  align-items: center;
+  cursor: pointer;
+  &:hover {
+    background: $lite-button-hover;
+  }
+  p {
+    margin: auto;
+  }
+}
+
+.layout-save-plaing-field {
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  cursor: auto;
+  background: rgba(91, 81, 231, 0.349);
+  display: none;
+  &.active {
+    display: flex;
+  }
+  & p {
+    font-size: 30px;
+    text-align: center;
+  }
 }
 
 .click-count-panel {
@@ -44,7 +104,7 @@ $size-int: 80%;
   height: 50px;
   border: 2px solid black;
   border-radius: 5px;
-  background: rgb(148, 252, 221);
+  background: $lite-button-color;
   text-align: center;
   line-height: 45px;
 }
@@ -98,6 +158,9 @@ $size-int: 80%;
   &.active {
     border: 1px solid yellow;
   }
+  &:hover {
+    border: 1px solid yellow;
+  }
 }
 
 .select-bombs-count-blur {
@@ -120,7 +183,7 @@ $size-int: 80%;
   width: 200px;
   border: 2px solid black;
   border-radius: 5px;
-  background: rgb(148, 252, 221);
+  background: $lite-button-color;
   text-align: center;
 }
 
@@ -137,12 +200,12 @@ $size-int: 80%;
   height: 20px;
   margin: 5px auto;
   cursor: pointer;
-  background: rgb(121, 221, 191);
+  background: $lite-buttons-difficult;
   &.active {
     background: green;
   }
   &:hover {
-    background: rgb(117, 155, 120);
+    background: $lite-button-hover;
   }
 }
 
@@ -298,17 +361,54 @@ $size-int: 80%;
   }
 }
 
+.footer {
+  display: flex;
+  max-width: 500px;
+  margin: 10px auto 0;
+  justify-content: space-between;
+}
+
+.topic-selection {
+  display: flex;
+  box-sizing: border-box;
+  padding: 3px;
+  width: 100px;
+  height: 50px;
+  border: 2px solid black;
+  border-radius: 5px;
+  background: $lite-button-color;
+  cursor: pointer;
+  &.dark {
+    justify-content: end;
+  }
+  &:hover {
+    > * {
+      background: $lite-button-hover;
+    }
+  }
+}
+
+.topic-selection-item {
+  box-sizing: border-box;
+  width: 30px;
+  height: 100%;
+  background: green;
+  border-radius: 5px;
+}
+
 .state-btn {
   align-items: center;
   display: flex;
-  margin: 10px auto 0;
   width: 300px;
   height: 50px;
-  background: rgb(148, 252, 221);
+  background: $lite-button-color;
   cursor: pointer;
   border: 2px solid black;
   border-radius: 5px;
   font-size: 20px;
+  &:hover {
+    background: $lite-button-hover;
+  }
 }
 
 .state-btn-title {
