@@ -5,9 +5,10 @@ $lite-button-hover: rgb(117, 155, 120);
 $lite-buttons-difficult: rgb(121, 221, 191);
 
 $dark-body-color: rgb(102, 102, 102);
-$dark-button-color: rgb(51, 51, 51);
+$dark-button-color: rgb(45, 78, 68);
 $dark-button-hover: rgb(43, 54, 44);
 $dark-buttons-difficult: rgb(45, 78, 68);
+$dark-text-color: rgb(214, 211, 211);
 
 .body {
   padding: 0;
@@ -15,6 +16,7 @@ $dark-buttons-difficult: rgb(45, 78, 68);
   user-select: none;
   &.dark {
     background: $dark-body-color;
+    color: $dark-text-color;
   }
 }
 
@@ -38,6 +40,9 @@ $dark-buttons-difficult: rgb(45, 78, 68);
   background: $lite-button-color;
   text-align: center;
   line-height: 45px;
+  &.dark {
+    background: $dark-button-color;
+  }
 }
 
 .refresh-btn {
@@ -51,6 +56,12 @@ $dark-buttons-difficult: rgb(45, 78, 68);
   cursor: pointer;
   &:hover {
     background: $lite-button-hover;
+  }
+  &.dark {
+    background: $dark-button-color;
+    &:hover {
+      background: $dark-button-hover;
+    }
   }
 }
 
@@ -73,6 +84,12 @@ $dark-buttons-difficult: rgb(45, 78, 68);
   cursor: pointer;
   &:hover {
     background: $lite-button-hover;
+  }
+  &.dark {
+    background: $dark-button-color;
+    &:hover {
+      background: $dark-button-hover;
+    }
   }
   p {
     margin: auto;
@@ -107,6 +124,9 @@ $dark-buttons-difficult: rgb(45, 78, 68);
   background: $lite-button-color;
   text-align: center;
   line-height: 45px;
+  &.dark {
+    background: $dark-button-color;
+  }
 }
 
 .checked-bombs {
@@ -185,6 +205,9 @@ $dark-buttons-difficult: rgb(45, 78, 68);
   border-radius: 5px;
   background: $lite-button-color;
   text-align: center;
+  &.dark {
+    background: $dark-button-color;
+  }
 }
 
 .difficult-title {
@@ -206,6 +229,15 @@ $dark-buttons-difficult: rgb(45, 78, 68);
   }
   &:hover {
     background: $lite-button-hover;
+  }
+  &.dark {
+    background: $dark-buttons-difficult;
+    &.active {
+      background: green;
+    }
+    &:hover {
+      background: $dark-button-hover;
+    }
   }
 }
 
@@ -378,8 +410,16 @@ $dark-buttons-difficult: rgb(45, 78, 68);
   border-radius: 5px;
   background: $lite-button-color;
   cursor: pointer;
+  background-image: url(./image/sun.svg);
+  background-repeat: no-repeat;
+  background-position: right;
+  transition: .3s;
   &.dark {
+    background: $dark-button-color;
     justify-content: end;
+    background-image: url(./image/moon.svg);
+    background-repeat: no-repeat;
+    background-position: left;
   }
   &:hover {
     > * {
@@ -408,6 +448,12 @@ $dark-buttons-difficult: rgb(45, 78, 68);
   font-size: 20px;
   &:hover {
     background: $lite-button-hover;
+  }
+  &.dark {
+    background: $dark-button-color;
+    &:hover {
+      background: $dark-button-hover;
+    }
   }
 }
 

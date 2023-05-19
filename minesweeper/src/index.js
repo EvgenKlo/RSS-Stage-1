@@ -26,6 +26,8 @@ function setLocalStorage() {
     return btnText;
   };
   localStorage.setItem('difficult', getDifficult());
+  const topicSelection = document.querySelector('.topic-selection');
+  localStorage.setItem('topic-selection', topicSelection.classList);
 }
 window.addEventListener('beforeunload', setLocalStorage);
 
@@ -82,6 +84,11 @@ function getLocalStorage() {
   }
   if (localStorage.getItem('difficult-slider')) {
     selectBombsCountBlur.classList = localStorage.getItem('difficult-slider');
+  }
+  if (localStorage.getItem('topic-selection')) {
+    const topicSelection = document.querySelector('.topic-selection');
+    topicSelection.classList = localStorage.getItem('topic-selection');
+    changeTopic(topicSelection.classList)
   }
   maybeBomb();
 }
@@ -942,9 +949,23 @@ topicSelection.addEventListener('click', () => {
 
 function changeTopic (topicClasses) {
   const body = document.querySelector('.body');
+  const otherWindowAndBtn = document.querySelectorAll('.timer, .refresh-btn, .refresh-btn, .game-save-btn, .game-continue-btn, .click-count-panel, .difficult, .topic-selection, .state-btn');
+  const difficultBtns = document.querySelectorAll('.difficult-dtn');
   if (topicClasses.contains('dark')) {
     body.classList.add('dark');
+    otherWindowAndBtn.forEach(item => {
+      item.classList.add('dark');
+    })
+    difficultBtns.forEach(item => {
+      item.classList.add('dark');
+    })
   } else {
     body.classList.remove('dark');
+    otherWindowAndBtn.forEach(item => {
+      item.classList.remove('dark');
+    })
+    difficultBtns.forEach(item => {
+      item.classList.remove('dark');
+    })
   }
 };
