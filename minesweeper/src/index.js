@@ -1,5 +1,16 @@
 import State from "./script/State";
 
+// Звуки при кликах
+
+import checkCell from './audio/check-cell.mp3';
+const checkCellAudio = new Audio(checkCell);
+
+import bah from './audio/bah.mp3';
+const mineExplosion = new Audio(bah);
+
+import victory from './audio/victory.mp3';
+const victorySound = new Audio(victory);
+
 // Сохранение статистики и состояния игры в Local Storage при перезагрзке страницы
 
 function setLocalStorage() {
@@ -28,6 +39,7 @@ function setLocalStorage() {
   localStorage.setItem('difficult', getDifficult());
   const topicSelection = document.querySelector('.topic-selection');
   localStorage.setItem('topic-selection', topicSelection.classList);
+  localStorage.setItem('sound-on-off', soundOn.classList);
 }
 window.addEventListener('beforeunload', setLocalStorage);
 
@@ -39,7 +51,7 @@ function getLocalStorage() {
     fieldContainer.innerHTML = localStorage.getItem('field');
   }
   if (localStorage.getItem('playing-field-size')) {
-    playingFieldSize = localStorage.getItem('playing-field-size');
+    playingFieldSize = localStorage.getItem('playing-field-size') * 1;
   }
   if (localStorage.getItem('steps')) {
     clickCount = localStorage.getItem('steps') * 1;
@@ -66,7 +78,7 @@ function getLocalStorage() {
     checkedBombsCount.innerText = localStorage.getItem('flags-count');
   }
   if (localStorage.getItem('how-need-boms')) {
-    howNeedBobms = localStorage.getItem('how-need-boms');
+    howNeedBobms = localStorage.getItem('how-need-boms') * 1;
   }
   if (localStorage.getItem('difficult')) {
     const savedifficult = localStorage.getItem('difficult');
@@ -89,6 +101,9 @@ function getLocalStorage() {
     const topicSelection = document.querySelector('.topic-selection');
     topicSelection.classList = localStorage.getItem('topic-selection');
     changeTopic(topicSelection.classList)
+  }
+  if (localStorage.getItem('sound-on-off')) {
+    soundOn.classList = localStorage.getItem('sound-on-off');
   }
   maybeBomb();
 }
@@ -574,6 +589,9 @@ invisPlayingField();
 function addClickHandlerOnCells (item) {
   item.addEventListener('click', () => {
     if (clickCount === 0) {
+      if (!soundOn.classList.contains('active')) {
+        checkCellAudio.play();
+      }
       selectBombsCountBlur.classList.add('active'); 
       item.classList.add('no-bomb');
       item.classList.remove('close');
@@ -587,6 +605,9 @@ function addClickHandlerOnCells (item) {
       item.classList.remove('close');
       clickCount++;
       if (item.classList.contains('bomb')) {
+        if (!soundOn.classList.contains('active')) {
+          mineExplosion.play();
+        }
         for (let item of items) {
           if (item.classList.contains('bomb')) {
             item.classList.remove('close');
@@ -601,7 +622,16 @@ function addClickHandlerOnCells (item) {
         seconds = 0;
         minutes = 0;
       } else if (item.classList.length === 2) {
+        if (!soundOn.classList.contains('active')) {
+          checkCellAudio.currentTime = 0;
+          checkCellAudio.play();
+        }
         openEmptyCells(item);
+      } else {
+        if (!soundOn.classList.contains('active')) {
+          checkCellAudio.currentTime = 0;
+          checkCellAudio.play();
+        }
       }
     }
     checkCellWithBomb();
@@ -616,6 +646,10 @@ const items = document.getElementsByClassName('item');
 function maybeBomb () {
   for (let item of items) {
     item.addEventListener('contextmenu', (event) => {
+      checkCellAudio.currentTime = 0;
+      if (!soundOn.classList.contains('active')) {
+        checkCellAudio.play();
+      }
       if (event.target.classList.contains('close') && !event.target.classList.contains('maybeBomb') && clickCount !== 0) {
         event.target.classList.add('maybeBomb');
       } else if (event.target.classList.contains('close') && event.target.classList.contains('maybeBomb') && clickCount !== 0) {
@@ -632,7 +666,10 @@ maybeBomb();
 
 function checkCellWithBomb () {
   const cells = document.querySelectorAll('.close');
-  if (cells.length === howNeedBobms) {
+  if (!cells.length === howNeedBobms) {
+    if (soundOn.classList.contains('active')) {
+      victorySound.play();
+    }
     const playingField = document.querySelector('.playing-field');
     const layoutOnPlaingField = document.createElement('div');
     layoutOnPlaingField.classList.add('layout-on-plaing-field-win');
@@ -863,6 +900,16 @@ const topicSelectionItem = document.createElement('div');
 topicSelectionItem.classList.add('topic-selection-item');
 topicSelection.append(topicSelectionItem);
 
+// Переключатель звука
+
+const soundOn = document.createElement('div');
+soundOn.classList.add('sound-on');
+footer.append(soundOn);
+
+soundOn.addEventListener('click', () => {
+  soundOn.classList.toggle('active');
+})
+
 // Создаю кнопку для показа статистики
 
 const stateBtn = document.createElement('div');
@@ -949,7 +996,7 @@ topicSelection.addEventListener('click', () => {
 
 function changeTopic (topicClasses) {
   const body = document.querySelector('.body');
-  const otherWindowAndBtn = document.querySelectorAll('.timer, .refresh-btn, .refresh-btn, .game-save-btn, .game-continue-btn, .click-count-panel, .difficult, .topic-selection, .state-btn');
+  const otherWindowAndBtn = document.querySelectorAll('.timer, .refresh-btn, .refresh-btn, .game-save-btn, .game-continue-btn, .click-count-panel, .difficult, .topic-selection, .state-btn, .sound-on');
   const difficultBtns = document.querySelectorAll('.difficult-dtn');
   if (topicClasses.contains('dark')) {
     body.classList.add('dark');

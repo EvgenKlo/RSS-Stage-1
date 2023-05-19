@@ -405,7 +405,7 @@ $dark-text-color: rgb(214, 211, 211);
   box-sizing: border-box;
   padding: 3px;
   width: 100px;
-  height: 50px;
+  height: 54px;
   border: 2px solid black;
   border-radius: 5px;
   background: $lite-button-color;
@@ -434,6 +434,25 @@ $dark-text-color: rgb(214, 211, 211);
   height: 100%;
   background: green;
   border-radius: 5px;
+}
+
+.sound-on {
+  width: 50px;
+  height: 50px;
+  border: 2px solid black;
+  border-radius: 50%;
+  background: $lite-button-color;
+  background-image: url(./image/sound-on.svg);
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  &.dark {
+    background: $dark-button-color;
+  }
+  &.active {
+    background-image: url(./image/sound-off.svg);
+  }
 }
 
 .state-btn {
@@ -484,6 +503,7 @@ $dark-text-color: rgb(214, 211, 211);
   border-radius: 10px;
   z-index: 3;
   cursor: auto;
+  color: black;
 }
 
 .table-tittle {
