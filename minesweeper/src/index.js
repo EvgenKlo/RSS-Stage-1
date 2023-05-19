@@ -601,7 +601,7 @@ function addClickHandlerOnCells (item) {
       if (item.classList.length === 3) {
         openEmptyCells(item);
       }
-    } else if (!item.classList.contains('maybeBomb')) {
+    } else if (!item.classList.contains('maybeBomb') && item.classList.contains('close')) {
       item.classList.remove('close');
       clickCount++;
       if (item.classList.contains('bomb')) {
@@ -616,7 +616,7 @@ function addClickHandlerOnCells (item) {
         const playingField = document.querySelector('.playing-field');
         const layoutOnPlaingField = document.createElement('div');
         layoutOnPlaingField.classList.add('layout-on-plaing-field');
-        layoutOnPlaingField.innerText = 'ПОТРАЧЕНО =('
+        layoutOnPlaingField.innerHTML = '<p>ПОТРАЧЕНО =(</p>';
         playingField.append(layoutOnPlaingField);
         clearTimeout(t);
         seconds = 0;
@@ -646,13 +646,17 @@ const items = document.getElementsByClassName('item');
 function maybeBomb () {
   for (let item of items) {
     item.addEventListener('contextmenu', (event) => {
-      checkCellAudio.currentTime = 0;
-      if (!soundOn.classList.contains('active')) {
-        checkCellAudio.play();
-      }
       if (event.target.classList.contains('close') && !event.target.classList.contains('maybeBomb') && clickCount !== 0) {
+        if (!soundOn.classList.contains('active')) {
+          checkCellAudio.currentTime = 0;
+          checkCellAudio.play();
+        }
         event.target.classList.add('maybeBomb');
       } else if (event.target.classList.contains('close') && event.target.classList.contains('maybeBomb') && clickCount !== 0) {
+        if (!soundOn.classList.contains('active')) {
+          checkCellAudio.currentTime = 0;
+          checkCellAudio.play();
+        }
         event.target.classList.remove('maybeBomb');
       };
       howManyBombsAreLeft(howNeedBobms);
@@ -666,14 +670,14 @@ maybeBomb();
 
 function checkCellWithBomb () {
   const cells = document.querySelectorAll('.close');
-  if (!cells.length === howNeedBobms) {
-    if (soundOn.classList.contains('active')) {
+  if (cells.length === howNeedBobms) {
+    if (!soundOn.classList.contains('active')) {
       victorySound.play();
     }
     const playingField = document.querySelector('.playing-field');
     const layoutOnPlaingField = document.createElement('div');
     layoutOnPlaingField.classList.add('layout-on-plaing-field-win');
-    layoutOnPlaingField.innerText = 'Congratulations!!!'
+    layoutOnPlaingField.innerHTML = '<p>Congratulations!!!</p>';
     playingField.append(layoutOnPlaingField);
     clearTimeout(t);
     seconds = 0;
