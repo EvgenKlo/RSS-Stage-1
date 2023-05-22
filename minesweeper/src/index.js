@@ -105,6 +105,16 @@ function getLocalStorage() {
     soundOn.classList = localStorage.getItem('sound-on-off');
   }
   maybeBomb();
+
+  // Закрытие статистики
+
+  const closeStateBtn = document.querySelector('.close-state');
+  if (closeStateBtn) {
+    closeStateBtn.addEventListener('click', () => {
+      const stateWindow = document.querySelector('.state-window');
+      stateWindow.classList.toggle('active');
+    })
+  }
 }
 window.addEventListener('load', getLocalStorage);
 
@@ -899,6 +909,12 @@ function addClickHendlerOnStateBtn () {
     if (stateWindow.classList.contains('active')) {
       const stateTableContainer = document.querySelector('.state-table-container');
       stateTableContainer.innerHTML = '';
+      const closeState = document.createElement('div');
+      closeState.classList.add('close-state');
+      stateTableContainer.append(closeState);
+      closeState.addEventListener('click', () => {
+        stateWindow.classList.toggle('active');
+      })
       const tableTittle = document.createElement('h2');
       tableTittle.classList.add('table-tittle');
       tableTittle.innerText = 'Statistics last 10 games'

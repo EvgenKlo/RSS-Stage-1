@@ -529,8 +529,19 @@
   color: black;
 }
 
+.close-state {
+  width: 42px;
+  height: 42px;
+  border: 2px solid black;;
+  border-radius: 50%;
+  margin: 5px 5px 0 auto;
+  cursor: pointer;
+  background-image: url(./image/close.svg);
+}
+
 .table-tittle {
   text-align: center;
+  margin: 0 0 10px;
 }
 
 .table {
