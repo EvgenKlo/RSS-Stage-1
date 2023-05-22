@@ -91,8 +91,7 @@ function getLocalStorage() {
         btn.classList.add('active');
       }
     })
-    selectSlider.style.left = `${coefficient * howNeedBobms}px`;
-    sliderPosition = window.getComputedStyle(selectSlider).left.replace('px', '') * 1;
+    selectLineInput.value = howNeedBobms;
   }
   if (localStorage.getItem('difficult-slider')) {
     selectBombsCountBlur.classList = localStorage.getItem('difficult-slider');
@@ -257,61 +256,31 @@ const selectBombsCount = document.createElement('div');
 selectBombsCount.classList.add('select-bombs-count');
 checkedBombs.append(selectBombsCount);
 
-const selectLine = document.createElement('div');
-selectLine.classList.add('select-line');
-selectBombsCount.append(selectLine);
+const selectLineInput = document.createElement('input');
+selectLineInput.type = 'range';
+selectLineInput.min = 10;
+selectLineInput.max = 99;
+selectLineInput.value = 10;
+selectLineInput.classList.add('select-line-input');
+selectBombsCount.append(selectLineInput);
 
-const selectSlider = document.createElement('div');
-selectSlider.classList.add('select-slider');
-selectBombsCount.append(selectSlider);
+const changeBobmsCount = () => {
+  checkedBombsCount.innerText = `x ${selectLineInput.value}`;
+  howNeedBobms = selectLineInput.value;
+}
+
+selectLineInput.addEventListener('mousedown', () => {
+  selectLineInput.addEventListener('mousemove', () => {
+    changeBobmsCount();
+  })
+  selectLineInput.addEventListener('mouseup', () => {
+    changeBobmsCount();
+  })
+})
 
 const selectBombsCountBlur = document.createElement('div');
 selectBombsCountBlur.classList.add('select-bombs-count-blur');
 selectBombsCount.append(selectBombsCountBlur);
-
-const widthSelectLine = window.getComputedStyle(selectLine).width.replace('px', '') * 1; // Ширина полоски выбора колличества бомб
-const widthSlider = window.getComputedStyle(selectSlider).width.replace('px', '') * 1; // Ширина ползунка выбора колличества бомб
-
-let layerX;
-let clientX;
-let crossX;
-const coefficient = (widthSelectLine - widthSlider) / 99;
-
-selectSlider.style.left = `${coefficient * 10}px`;
-
-let sliderPosition = window.getComputedStyle(selectSlider).left.replace('px', '') * 1;
-
-const moveSelectSlider = (event) => {
-  clientX = event.clientX;
-  layerX = event.layerX;
-  selectSlider.classList.add('active');
-  selectSlider.addEventListener('mousemove', moveSlider);
-}
-
-const choosNumberBombs = () => {
-  selectSlider.classList.remove('active');
-  selectSlider.removeEventListener('mousemove', moveSlider);
-}
-
-const moveSlider = (event) => {
-  crossX = event.clientX - clientX;
-  clientX = event.clientX;
-  if (sliderPosition + crossX > coefficient * 10 - 1 && sliderPosition + crossX < widthSelectLine - widthSlider + 1) {
-    event.target.style.left = `${sliderPosition + crossX}px`;
-    sliderPosition = window.getComputedStyle(selectSlider).left.replace('px', '') * 1;
-    const intBombs = Math.round(sliderPosition / coefficient);
-    if(intBombs > 9) {
-      howNeedBobms = intBombs;
-      checkedBombsCount.innerText = `x ${howNeedBobms}`;
-    }
-  } else {
-    selectSlider.classList.remove('active');
-    selectSlider.removeEventListener('mousemove', moveSlider);
-  }
-}
-
-selectSlider.addEventListener('mousedown', moveSelectSlider);
-selectSlider.addEventListener('mouseup', choosNumberBombs);
 
 // Добавляю кнопки изменения уровня сложности
 
@@ -350,8 +319,7 @@ function difficultCelect () {
         playingFieldSize = 25;
         howNeedBobms = 99;
       }
-      selectSlider.style.left = `${coefficient * howNeedBobms}px`;
-      sliderPosition = window.getComputedStyle(selectSlider).left.replace('px', '') * 1;
+      selectLineInput.value = howNeedBobms;
       difficultBtns.forEach(btn => {
         btn.classList.remove('active');
       })

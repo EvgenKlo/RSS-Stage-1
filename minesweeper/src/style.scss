@@ -151,31 +151,9 @@
   margin-top: 5px;
 }
 
-.select-line {
-  box-sizing: border-box;
+.select-line-input {
   width: 100%;
-  height: 10px;
-  border: 1px solid red;
-  border-radius: 5px;
-  background: red;
-}
-
-.select-slider {
-  box-sizing: border-box;
-  position: absolute;
-  width: 30px;
-  height: 100%;
-  border: 1px solid green;
-  border-radius: 5px;
-  background: green;
   cursor: pointer;
-  left: 0px;
-  &.active {
-    border: 1px solid yellow;
-  }
-  &:hover {
-    border: 1px solid yellow;
-  }
 }
 
 .select-bombs-count-blur {
