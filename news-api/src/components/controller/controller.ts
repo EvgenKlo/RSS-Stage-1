@@ -1,9 +1,9 @@
 import AppLoader from './appLoader';
-import { Callback } from '../../types/types';
+import { Callback, INewsResponse, ISourseResponse } from '../../types/types';
 
 class AppController extends AppLoader {
-    public getSources<T>(callback: Callback<T>): void {
-        super.getResp<T>(
+    public getSources(callback: Callback<ISourseResponse>): void {
+        super.getResp(
             {
                 endpoint: 'sources',
             },
@@ -11,7 +11,7 @@ class AppController extends AppLoader {
         );
     }
 
-    public getNews<T>(e: Event, callback: Callback<T>): void {
+    public getNews(e: Event, callback: Callback<INewsResponse>): void {
         const target = e.target;
         const newsContainer = e.currentTarget;
         if (target instanceof HTMLElement && newsContainer instanceof HTMLElement) {
