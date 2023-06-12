@@ -3,7 +3,7 @@ import { ISourse } from '../../../types/types';
 import './sources.css';
 
 class Sources {
-    public draw(data: ISourse[]) {
+    public draw(data: ISourse[]): void {
         const fragment = document.createDocumentFragment();
         const sourceItemTemp = checkElement<HTMLTemplateElement>('#sourceItemTemp');
 

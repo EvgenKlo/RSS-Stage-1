@@ -3,7 +3,7 @@ import { INewsResponse } from '../../../types/types';
 import './news.css';
 
 class News {
-    public draw(data: INewsResponse["articles"]) {
+    public draw(data: INewsResponse["articles"]): void {
         const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
         const fragment: DocumentFragment = document.createDocumentFragment();
