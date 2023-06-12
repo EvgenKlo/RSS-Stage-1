@@ -34,3 +34,22 @@ footer .copyright a:hover {
 footer .copyright:before {
     content: '©';
 }
+
+.links {
+    display: flex;
+}
+
+.rs-info {
+    width: 100%;
+    height: 50px;
+    background-image: url(./image/rs_school_js.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.rs-info__link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
