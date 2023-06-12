@@ -5,10 +5,6 @@ import Sources from './sources/sources';
 export class AppView {
     public news = new News();;
     public sources = new Sources();;
-    constructor() {
-        /* this.news = new News();
-        this.sources = new Sources(); */
-    }
 
     public drawNews(data: INewsResponse): void {
         const values = data?.articles ? data?.articles : [];

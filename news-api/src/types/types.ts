@@ -31,3 +31,19 @@ export interface INewsArticle {
   urlToImage: string,
   publishedAt: string
 }
+
+export type ApiKey = {
+  [key: string]: string;
+}
+
+export type RequestOptions = {
+  endpoint: string;
+  options?: Options;
+}
+
+export interface Options {
+  sources?: string;
+  [key: string]: string | undefined;
+}
+
+export type Callback<T> = (data: T) => void;
