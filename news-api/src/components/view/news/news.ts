@@ -1,5 +1,6 @@
 import { checkElement } from '../../../helpers/check_element';
 import { INewsResponse } from '../../../types/types';
+import newsPlaceholder from '../../../image/12-696x504.jpg';
 import './news.css';
 
 class News {
@@ -19,7 +20,7 @@ class News {
             if (idx % 2) checkElement<HTMLDivElement>('.news__item', newsClone).classList.add('alt');
 
             checkElement<HTMLDivElement>('.news__meta-photo', newsClone).style.backgroundImage = `url(${
-                item.urlToImage || 'img/news_placeholder.jpg'
+                item.urlToImage || newsPlaceholder
             })`;
             checkElement<HTMLLIElement>('.news__meta-author', newsClone).textContent = item.author || item.source.name;
             checkElement<HTMLLIElement>('.news__meta-date', newsClone).textContent = item.publishedAt
