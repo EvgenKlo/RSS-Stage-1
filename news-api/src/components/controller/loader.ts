@@ -2,7 +2,7 @@ import { ApiKey, Callback, Options, RequestOptions } from "../../types/types";
 
 class Loader {
 
-    constructor(public baseLink: string, public options: ApiKey) {
+    constructor(private baseLink: string, private options: ApiKey) {
     }
 
     public getResp<T>(
@@ -14,7 +14,7 @@ class Loader {
         this.load('GET', endpoint, callback, options);
     }
 
-    public errorHandler(res: Response): Response {
+    private errorHandler(res: Response): Response {
         if (!res.ok) {
             if (res.status === 401 || res.status === 404)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
@@ -24,7 +24,7 @@ class Loader {
         return res;
     }
 
-    public makeUrl(options: Options, endpoint: string): string {
+    private makeUrl(options: Options, endpoint: string): string {
         const urlOptions = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
