@@ -3,8 +3,8 @@ import News from './news/news';
 import Sources from './sources/sources';
 
 export class AppView {
-    public news = new News();;
-    public sources = new Sources();;
+    private news = new News();;
+    private sources = new Sources();;
 
     public drawNews(data: INewsResponse): void {
         const values = data?.articles ? data?.articles : [];
