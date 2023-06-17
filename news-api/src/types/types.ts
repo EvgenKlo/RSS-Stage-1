@@ -21,7 +21,7 @@ export interface INewsResponse {
 
 export interface INewsArticle {
   source: {
-    id: string,
+    id: string | null,
     name: string
     },
   author: string | null,
