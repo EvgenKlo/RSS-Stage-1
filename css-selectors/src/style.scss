@@ -1,0 +1,267 @@
+html {
+  font-size: 10px;
+}
+
+p {
+  margin: 0;
+}
+
+h1, h2, h3, p {
+  cursor: default;
+}
+
+.body {
+  margin: 0;
+  background-image: url(./image/body_background.jpg);
+  background-position: top;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+}
+
+.header {
+  display: flex;
+}
+
+.header__logo {
+  width: 50px;
+  height: 50px;
+  background-image: url(./image/CSS3_logo.png);
+  background-size: contain;
+}
+
+.header__tittle {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.header__text {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.hamb {
+  width: 40px;
+  height: 26px;
+  display: none;
+  justify-content: space-between;
+  flex-direction: column;
+  margin: auto 0 auto auto;
+  cursor: pointer;
+  span {
+    border: 1px solid #214ce5;
+    transition: all .3s;
+  }
+  @media screen and (max-width: 1050px) {
+    display: flex;
+    z-index: 15;
+  }
+}
+
+.hamb.active {
+  .center {
+    transform: scale(0);
+  }
+  .up {
+    transform: translate(7px, -2px) rotate(45deg);
+    transform-origin: left top;
+  }
+  .down {
+    transform: translate(7px, 2px) rotate(-45deg);
+    transform-origin: left bottom;
+  }
+}
+
+.level-tittle {
+  font-size: 4rem;
+  text-align: center;
+}
+
+.playing-field {
+  display: flex;
+  height: 150px;
+  width: 400px;
+  margin: auto;
+  border: 1px solid green;
+}
+
+.code-container {
+  display: flex;
+  box-sizing: border-box;
+  width: 95%;
+  margin: auto;
+  border: 10px solid rgba(104, 101, 101, 0.295);
+  border-radius: 5px;
+  @media screen and (max-width: 650px) {
+    width: 100%;
+  }
+}
+
+.code-container__item{
+  width: 100%;
+}
+
+.code-container__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 42px;
+  background: rgba(97, 97, 97, 0.9);
+}
+
+.code-container__text {
+  margin: 0;
+  padding: 10px;
+  font-size: 2rem;
+}
+
+.code-container__field {
+  height: 460px;
+}
+
+.code-container__field_css {
+  background: #efefef;
+}
+
+.code-container__field_html {
+  background: rgba(0,0,0,.9);
+}
+
+.code-container__string {
+  display: flex;
+  align-items: center;
+  height: 23px;
+}
+
+.code-container__string-number {
+  display: flex;
+  width: 35px;
+  justify-content: center;
+  align-items: center;
+  background: gray;
+  height: 100%;
+  font-size: 1.5rem;
+}
+
+.code-container__string-text {
+  font-size: 1.5rem;
+  padding-left: 10px;
+  cursor: default;
+}
+
+.code-container__string-text_html {
+  font-size: 1.5rem;
+  color: #ffffff8a;
+  padding-left: 10px;
+  cursor: default;
+}
+
+.sidebar {
+  width: 300px;
+  margin-left: auto;
+  flex-shrink: 0;
+  padding: 10px;
+  background: rgba(104, 101, 101, 0.6);
+  height: 100%;
+  transition: .3s;
+  right: 0;
+  @media screen and (max-width: 1050px) {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    z-index: 10;
+    &.open {
+      right: 0;
+    }
+  }
+}
+
+.sidebar__tittle-text {
+  font-size: 3rem;
+  padding: 15px;
+  margin: 0;
+}
+
+.geme-level {
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+
+.geme-level_active {
+  border-radius: 5px;
+  background: #ffffff40;
+}
+
+.geme-level__state {
+  height: 50px;
+  width: 50px;
+}
+
+.geme-level__text {
+  font-size: 2rem;
+}
+
+.geme-level__text_number {
+  padding: 10px;
+}
+
+.geme-level__state_not-done {
+  background-image: url(./image/check-mark_gray.png);
+}
+
+.geme-level__state_done {
+  background-image: url(./image/check-mark_green.png);
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.link-container {
+  display: flex;
+  align-items: center;
+}
+
+.gh-logo {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background-image: url(./image/github_logo.svg);
+  background-size: contain;
+}
+
+.gh-link-text {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 1.5rem;
+  padding: 10px;
+  color: #000;
+  transition: 0.3s;
+  &:hover {
+    color: white;
+  }
+}
+
+.rs-logo {
+  display: inline-block;
+  width: 135px;
+  height: 50px;
+  background-image: url(./image/rs_logo.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+
