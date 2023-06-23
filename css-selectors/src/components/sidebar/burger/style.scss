@@ -1,0 +1,31 @@
+.hamb {
+  width: 40px;
+  height: 26px;
+  display: none;
+  justify-content: space-between;
+  flex-direction: column;
+  margin: auto 0 auto auto;
+  cursor: pointer;
+  span {
+    border: 1px solid #efefef;
+    transition: all .3s;
+  }
+  @media screen and (max-width: 1050px) {
+    display: flex;
+    z-index: 15;
+  }
+}
+
+.hamb.active {
+  .center {
+    transform: scale(0);
+  }
+  .up {
+    transform: translate(7px, -2px) rotate(45deg);
+    transform-origin: left top;
+  }
+  .down {
+    transform: translate(7px, 2px) rotate(-45deg);
+    transform-origin: left bottom;
+  }
+}

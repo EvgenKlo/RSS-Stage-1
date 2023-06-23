@@ -1,8 +1,6 @@
 import './style.scss';
+import { StartApp } from './app/start-app';
 
-const hamb = document.querySelector('.hamb');
+const startApp = new StartApp;
 
-hamb?.addEventListener('click', () => {
-  hamb?.classList.toggle('active');
-  document.querySelector('.sidebar')?.classList.toggle('open')
-})
+startApp.startApp();

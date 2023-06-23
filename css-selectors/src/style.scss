@@ -1,4 +1,5 @@
 html {
+  font-family: 'Poppins', sans-serif;
   font-size: 10px;
 }
 
@@ -8,6 +9,7 @@ p {
 
 h1, h2, h3, p {
   cursor: default;
+  font-weight: 400;
 }
 
 .body {
@@ -40,7 +42,7 @@ h1, h2, h3, p {
   background-size: contain;
 }
 
-.header__tittle {
+.header__title {
   display: flex;
   align-items: center;
   padding: 5px;
@@ -51,56 +53,51 @@ h1, h2, h3, p {
   margin: 0;
 }
 
-.hamb {
-  width: 40px;
-  height: 26px;
-  display: none;
-  justify-content: space-between;
-  flex-direction: column;
-  margin: auto 0 auto auto;
-  cursor: pointer;
-  span {
-    border: 1px solid #214ce5;
-    transition: all .3s;
-  }
-  @media screen and (max-width: 1050px) {
-    display: flex;
-    z-index: 15;
-  }
-}
-
-.hamb.active {
-  .center {
-    transform: scale(0);
-  }
-  .up {
-    transform: translate(7px, -2px) rotate(45deg);
-    transform-origin: left top;
-  }
-  .down {
-    transform: translate(7px, 2px) rotate(-45deg);
-    transform-origin: left bottom;
-  }
-}
-
-.level-tittle {
+.level-title {
   font-size: 4rem;
   text-align: center;
 }
 
-.playing-field {
+.playing-field-container {
   display: flex;
+}
+
+.playing-field {
+  display: inline-block;
+  flex-direction: column;
   height: 150px;
-  width: 400px;
   margin: auto;
-  border: 1px solid green;
+}
+
+.table {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px 30px;
+}
+
+.thickness {
+  width: 100%;
+  height: 10px;
+  background: orange;
+}
+
+.legs-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.leg {
+  width: 50px;
+  height: 20px;
+  background: black;
+  margin: 0 30px;
 }
 
 .code-container {
   display: flex;
   box-sizing: border-box;
   width: 95%;
-  margin: auto;
+  margin: 20px auto;
   border: 10px solid rgba(104, 101, 101, 0.295);
   border-radius: 5px;
   @media screen and (max-width: 650px) {
@@ -135,7 +132,41 @@ h1, h2, h3, p {
 }
 
 .code-container__field_html {
+  display: flex;
   background: rgba(0,0,0,.9);
+}
+
+.code-container__string-number-html {
+  display: inline-block;
+}
+
+.code-container__html-markup {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.code-container__input {
+  border: none;
+  background: #efefef;
+  font-size: 1.5rem;
+  width: 100%;
+  &:focus {
+    outline: none;
+  }
+}
+
+.code-container__button {
+  width: 50px;
+  height: 20px;
+  background: #35b6f0;
+  cursor: pointer;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  margin: auto 10px;
 }
 
 .code-container__string {
@@ -150,12 +181,20 @@ h1, h2, h3, p {
   justify-content: center;
   align-items: center;
   background: gray;
-  height: 100%;
   font-size: 1.5rem;
+  flex-shrink: 0;
 }
 
 .code-container__string-text {
   font-size: 1.5rem;
+  padding-left: 10px;
+  cursor: default;
+  color: #00000060;
+}
+
+.code-container__string-text_html-header {
+  font-size: 1.5rem;
+  color: #ffffff8a;
   padding-left: 10px;
   cursor: default;
 }
@@ -163,8 +202,11 @@ h1, h2, h3, p {
 .code-container__string-text_html {
   font-size: 1.5rem;
   color: #ffffff8a;
-  padding-left: 10px;
+  padding-left: 20px;
   cursor: default;
+  &:hover {
+    color: white;
+  }
 }
 
 .sidebar {
@@ -173,11 +215,11 @@ h1, h2, h3, p {
   flex-shrink: 0;
   padding: 10px;
   background: rgba(104, 101, 101, 0.6);
-  height: 100%;
   transition: .3s;
   right: 0;
   @media screen and (max-width: 1050px) {
     position: fixed;
+    height: 100%;
     top: 0;
     right: -100%;
     z-index: 10;
@@ -187,42 +229,10 @@ h1, h2, h3, p {
   }
 }
 
-.sidebar__tittle-text {
+.sidebar__title-text {
   font-size: 3rem;
   padding: 15px;
   margin: 0;
-}
-
-.geme-level {
-  display: flex;
-  align-items: center;
-  height: 50px;
-}
-
-.geme-level_active {
-  border-radius: 5px;
-  background: #ffffff40;
-}
-
-.geme-level__state {
-  height: 50px;
-  width: 50px;
-}
-
-.geme-level__text {
-  font-size: 2rem;
-}
-
-.geme-level__text_number {
-  padding: 10px;
-}
-
-.geme-level__state_not-done {
-  background-image: url(./image/check-mark_gray.png);
-}
-
-.geme-level__state_done {
-  background-image: url(./image/check-mark_green.png);
 }
 
 .footer {

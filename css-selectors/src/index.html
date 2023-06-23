@@ -4,13 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CSS Selectors</title>
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 <body class="body">
   <div class="container">
     <div class="app-container">
       <header class="header">
         <div class="header__logo"></div>
-        <div class="header__tittle">
+        <div class="header__title">
           <h1 class="header__text">CSS Game</h1>
         </div>
         <div class="hamb">
@@ -21,182 +28,136 @@
         </div>
       </header>
       <main class="main">
-        <h2 class="level-tittle">Level tittle</h2>
-        <div class="playing-field"></div>
+        <h2 class="level-title">Level title</h2>
+        <div class="playing-field-container">
+          <div class="playing-field">
+            <div class="table"></div>
+            <div class="thickness"></div>
+            <div class="legs-container">
+              <div class="leg"></div>
+              <div class="leg"></div>
+            </div>
+          </div>
+        </div>
         <div class="code-container">
           <div class="code-container__item">
             <div class="code-container__header">
-              <h3 class="code-container__text code-container__text_tittle">CSS Editor</h3>
+              <h3 class="code-container__text code-container__text_title">CSS Editor</h3>
               <p class="code-container__text code-container__text_file-name">style.css</p>
             </div>
             <div class="code-container__field code-container__field_css">
               <div class="code-container__string">
                 <div class="code-container__string-number">1</div>
-                <div class="code-container__string-text">Code</div>
+                <input class="code-container__input" type="text" placeholder="Write selectors here"></input>
+                <div class="code-container__button">Enter</div>
               </div>
               <div class="code-container__string">
                 <div class="code-container__string-number">2</div>
-                <div class="code-container__string-text">Code</div>
+                <div class="code-container__string-text"></div>
               </div>
               <div class="code-container__string">
                 <div class="code-container__string-number">3</div>
-                <div class="code-container__string-text">Code</div>
+                <div class="code-container__string-text">/* {</div>
               </div>
               <div class="code-container__string">
                 <div class="code-container__string-number">4</div>
-                <div class="code-container__string-text">Code</div>
+                <div class="code-container__string-text">'Write styles on the first line'</div>
               </div>
               <div class="code-container__string">
                 <div class="code-container__string-number">5</div>
-                <div class="code-container__string-text">Code</div>
+                <div class="code-container__string-text">} */</div>
               </div>
               <div class="code-container__string">
                 <div class="code-container__string-number">6</div>
-                <div class="code-container__string-text">Code</div>
+                <div class="code-container__string-text"></div>
               </div>
               <div class="code-container__string">
                 <div class="code-container__string-number">7</div>
-                <div class="code-container__string-text">Code</div>
+                <div class="code-container__string-text"></div>
               </div>
               <div class="code-container__string">
                 <div class="code-container__string-number">8</div>
-                <div class="code-container__string-text">Code</div>
+                <div class="code-container__string-text"></div>
               </div>
               <div class="code-container__string">
                 <div class="code-container__string-number">9</div>
-                <div class="code-container__string-text">Code</div>
+                <div class="code-container__string-text"></div>
               </div>
               <div class="code-container__string">
                 <div class="code-container__string-number">10</div>
-                <div class="code-container__string-text">Code</div>
+                <div class="code-container__string-text"></div>
               </div>
               <div class="code-container__string">
                 <div class="code-container__string-number">11</div>
-                <div class="code-container__string-text">Code</div>
+                <div class="code-container__string-text"></div>
               </div>
               <div class="code-container__string">
                 <div class="code-container__string-number">12</div>
-                <div class="code-container__string-text">Code</div>
+                <div class="code-container__string-text"></div>
               </div>
               <div class="code-container__string">
                 <div class="code-container__string-number">13</div>
-                <div class="code-container__string-text">Code</div>
+                <div class="code-container__string-text"></div>
               </div>
               <div class="code-container__string">
                 <div class="code-container__string-number">14</div>
-                <div class="code-container__string-text">Code</div>
+                <div class="code-container__string-text"></div>
               </div>
               <div class="code-container__string">
                 <div class="code-container__string-number">15</div>
-                <div class="code-container__string-text">Code</div>
+                <div class="code-container__string-text"></div>
               </div>
               <div class="code-container__string">
                 <div class="code-container__string-number">16</div>
-                <div class="code-container__string-text">Code</div>
+                <div class="code-container__string-text"></div>
               </div>
               <div class="code-container__string">
                 <div class="code-container__string-number">17</div>
-                <div class="code-container__string-text">Code</div>
+                <div class="code-container__string-text"></div>
               </div>
               <div class="code-container__string">
                 <div class="code-container__string-number">18</div>
-                <div class="code-container__string-text">Code</div>
+                <div class="code-container__string-text"></div>
               </div>
               <div class="code-container__string">
                 <div class="code-container__string-number">19</div>
-                <div class="code-container__string-text">Code</div>
+                <div class="code-container__string-text"></div>
               </div>
               <div class="code-container__string">
                 <div class="code-container__string-number">20</div>
-                <div class="code-container__string-text">Code</div>
+                <div class="code-container__string-text"></div>
               </div>
             </div>
           </div>
           <div class="code-container__item">
             <div class="code-container__header">
-              <h3 class="code-container__text code-container__text_tittle">HTML Viewer</h3>
+              <h3 class="code-container__text code-container__text_title">HTML Viewer</h3>
               <p class="code-container__text code-container__text_file-name">table.html</p>
             </div>
             <div class="code-container__field code-container__field_html">
-              <div class="code-container__string">
+              <div class="code-container__string-number-html">
                 <div class="code-container__string-number">1</div>
-                <div class="code-container__string-text_html">Code</div>
-              </div>
-              <div class="code-container__string">
                 <div class="code-container__string-number">2</div>
-                <div class="code-container__string-text_html">Code</div>
-              </div>
-              <div class="code-container__string">
                 <div class="code-container__string-number">3</div>
-                <div class="code-container__string-text_html">Code</div>
-              </div>
-              <div class="code-container__string">
                 <div class="code-container__string-number">4</div>
-                <div class="code-container__string-text_html">Code</div>
-              </div>
-              <div class="code-container__string">
                 <div class="code-container__string-number">5</div>
-                <div class="code-container__string-text_html">Code</div>
-              </div>
-              <div class="code-container__string">
                 <div class="code-container__string-number">6</div>
-                <div class="code-container__string-text_html">Code</div>
-              </div>
-              <div class="code-container__string">
                 <div class="code-container__string-number">7</div>
-                <div class="code-container__string-text_html">Code</div>
-              </div>
-              <div class="code-container__string">
                 <div class="code-container__string-number">8</div>
-                <div class="code-container__string-text_html">Code</div>
-              </div>
-              <div class="code-container__string">
                 <div class="code-container__string-number">9</div>
-                <div class="code-container__string-text_html">Code</div>
-              </div>
-              <div class="code-container__string">
                 <div class="code-container__string-number">10</div>
-                <div class="code-container__string-text_html">Code</div>
-              </div>
-              <div class="code-container__string">
                 <div class="code-container__string-number">11</div>
-                <div class="code-container__string-text_html">Code</div>
-              </div>
-              <div class="code-container__string">
                 <div class="code-container__string-number">12</div>
-                <div class="code-container__string-text_html">Code</div>
-              </div>
-              <div class="code-container__string">
                 <div class="code-container__string-number">13</div>
-                <div class="code-container__string-text_html">Code</div>
-              </div>
-              <div class="code-container__string">
                 <div class="code-container__string-number">14</div>
-                <div class="code-container__string-text_html">Code</div>
-              </div>
-              <div class="code-container__string">
                 <div class="code-container__string-number">15</div>
-                <div class="code-container__string-text_html">Code</div>
-              </div>
-              <div class="code-container__string">
                 <div class="code-container__string-number">16</div>
-                <div class="code-container__string-text_html">Code</div>
-              </div>
-              <div class="code-container__string">
                 <div class="code-container__string-number">17</div>
-                <div class="code-container__string-text_html">Code</div>
-              </div>
-              <div class="code-container__string">
                 <div class="code-container__string-number">18</div>
-                <div class="code-container__string-text_html">Code</div>
-              </div>
-              <div class="code-container__string">
                 <div class="code-container__string-number">19</div>
-                <div class="code-container__string-text_html">Code</div>
-              </div>
-              <div class="code-container__string">
                 <div class="code-container__string-number">20</div>
-                <div class="code-container__string-text_html">Code</div>
+              </div>
+              <div class="code-container__html-markup">
               </div>
             </div>
           </div>
@@ -213,24 +174,6 @@
       </footer>
     </div>
     <div class="sidebar">
-      <div class="sidebar__tittle-container">
-        <h2 class="sidebar__tittle-text">Level 1 of 3</h2>
-      </div>
-      <div class="geme-level geme-level_active">
-        <div class="geme-level__state geme-level__state_not-done"></div>
-        <p class="geme-level__text geme-level__text_number">1</p>
-        <p class="geme-level__text geme-level__text_tittle">Level-tittle</p>
-      </div>
-      <div class="geme-level">
-        <div class="geme-level__state geme-level__state_done"></div>
-        <p class="geme-level__text geme-level__text_number">2</p>
-        <p class="geme-level__text geme-level__text_tittle">Level-tittle</p>
-      </div>
-      <div class="geme-level">
-        <div class="geme-level__state geme-level__state_not-done"></div>
-        <p class="geme-level__text geme-level__text_number">3</p>
-        <p class="geme-level__text geme-level__text_tittle">Level-tittle</p>
-      </div>
     </div>
   </div>
 </body>
