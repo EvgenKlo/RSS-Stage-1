@@ -20,7 +20,7 @@ h1, h2, h3, p {
 
 .container {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .app-container {
@@ -53,7 +53,35 @@ h1, h2, h3, p {
   margin: 0;
 }
 
+.help-btn-container {
+  display: flex;
+  margin-left: auto;
+}
+
+.help-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  width: 70px;
+  height: 35px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.4);
+  transition: 0.3s;
+  margin: auto;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+}
+
+.help-btn__title {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
 .level-title {
+  margin: 10px 0;
   font-size: 4rem;
   text-align: center;
 }
@@ -207,32 +235,6 @@ h1, h2, h3, p {
   &:hover {
     color: white;
   }
-}
-
-.sidebar {
-  width: 300px;
-  margin-left: auto;
-  flex-shrink: 0;
-  padding: 10px;
-  background: rgba(104, 101, 101, 0.6);
-  transition: .3s;
-  right: 0;
-  @media screen and (max-width: 1050px) {
-    position: fixed;
-    height: 100%;
-    top: 0;
-    right: -100%;
-    z-index: 10;
-    &.open {
-      right: 0;
-    }
-  }
-}
-
-.sidebar__title-text {
-  font-size: 3rem;
-  padding: 15px;
-  margin: 0;
 }
 
 .footer {

@@ -3,6 +3,7 @@ import { checkElement } from '../helpers/check_element';
 import { getLevelNubmer } from '../helpers/get_level_number';
 import { ShowTag } from '../show-tag/show_tag';
 import { HtmlViewer } from '../components/html-viewer/html_viewer';
+import { cleanInput } from '../helpers/clean_input'
 
 export class LevelBuilder extends ShowTag {
 
@@ -11,6 +12,7 @@ export class LevelBuilder extends ShowTag {
   public buildLevel (gameLevel: number | null) {
     const playingField = checkElement<HTMLDivElement>('.table');
     playingField.innerHTML = '';
+    cleanInput();
     let selectLevel;
     if (gameLevel !== null) {
       selectLevel = gameLevel;

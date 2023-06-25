@@ -1,7 +1,8 @@
 import './style.scss';
 import { checkElement } from '../../../helpers/check_element';
 import { LevelBuilder } from '../../../level-builder/level_builder';
-import { levels } from '../../../levels/levels'
+import { levels } from '../../../levels/levels';
+import { ResetProgressBtn } from './reset-progress-button/reset_progress'
 
 export class SidebarView extends LevelBuilder {
   public sidebar = checkElement<HTMLDivElement>('.sidebar');
@@ -41,6 +42,9 @@ export class SidebarView extends LevelBuilder {
 
       super.buildLevel(levelNumber);
     })
+
+    this.createResetBtn();
+
   }
 
   private addClickHandlerOnListItem (listItem: HTMLElement) {
@@ -49,9 +53,26 @@ export class SidebarView extends LevelBuilder {
         const activeLevel = checkElement<HTMLElement>('.game-level_active');
         activeLevel.classList.remove('game-level_active');
         listItem.classList.add('game-level_active');
-        const level = new LevelBuilder;
-        level.buildLevel(null);
+        super.buildLevel(null);
       }
+    })
+  }
+
+  private createResetBtn () {
+    const resetBtn = new ResetProgressBtn;
+    resetBtn.createResetBtn();
+    this.sidebar.append(resetBtn.resetBtn);
+    this.addClickHandlerOnResetBtn(resetBtn.resetBtn)
+  }
+
+  private addClickHandlerOnResetBtn (btn: HTMLElement) {
+    btn.addEventListener('click', () => {
+      const levelsList = this.sidebar.querySelectorAll('.game-level');
+      levelsList.forEach((item) => {
+        item.remove();
+      })
+      btn.remove();
+      this.generateLevelsList();
     })
   }
 }

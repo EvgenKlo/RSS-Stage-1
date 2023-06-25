@@ -1,8 +1,40 @@
+.sidebar {
+  width: 300px;
+  margin-left: auto;
+  flex-shrink: 0;
+  padding: 10px;
+  background: rgba(104, 101, 101, 0.6);
+  transition: .3s;
+  right: 0;
+  @media screen and (max-width: 1050px) {
+    position: fixed;
+    height: 100%;
+    top: 0;
+    right: -100%;
+    z-index: 10;
+    &.open {
+      right: 0;
+    }
+  }
+}
+
+.sidebar__title-text {
+  font-size: 3rem;
+  padding: 15px;
+  margin: 0;
+}
+
 .game-level {
   display: flex;
+  padding: 5px;
+  box-sizing: border-box;
   align-items: center;
   height: 50px;
   cursor: pointer;
+  transition: 0.2s;
+  &:hover {
+    background: #ffffff40;
+  }
 }
 
 .game-level_active {
@@ -22,11 +54,22 @@
 .game-level__state {
   height: 25px;
   width: 25px;
-  background-image: url(./../../../image/check-mark_gray.png);
+  background-image: url(./../../../image/check-mark-grey.svg);
   background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .game-level__state_done {
-  background-image: url(./../../../image/check-mark_green.png);
+  background-image: url(./../../../image/check-mark-green.svg);
   background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.game-level__state_help {
+  background-image: url(./../../../image/check-mark-yellow.svg);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
