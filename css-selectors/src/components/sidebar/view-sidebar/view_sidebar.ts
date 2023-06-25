@@ -1,7 +1,7 @@
 import './style.scss';
 import { checkElement } from '../../../helpers/check_element';
 import { LevelBuilder } from '../../../level-builder/level_builder';
-import { levels } from '../../../levels/levels';
+import { levels } from '../../../level-builder/levels/levels';
 import { ResetProgressBtn } from './reset-progress-button/reset_progress'
 
 export class SidebarView extends LevelBuilder {

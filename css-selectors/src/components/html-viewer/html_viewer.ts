@@ -1,5 +1,5 @@
 import { checkElement } from '../../helpers/check_element';
-import { levels } from '../../levels/levels';
+import { levels } from '../../level-builder/levels/levels';
 
 export class HtmlViewer {
   public markupBuild (level: number) {

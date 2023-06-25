@@ -1,10 +1,12 @@
-import './style.scss'
+import './style.scss';
+import { ILevel } from '../../types/types';
 
-export const levels = [
+export const levels: ILevel[] = [
   {
     levelNumber: 1,
     levelTitle: 'Сhoose white cubes',
     items: ['cube', 'cube'],
+    classes: [null, 'cube'],
     answer: 'cube',
     markup: ['<cube />', '<cube />'],
   },
@@ -12,6 +14,7 @@ export const levels = [
     levelNumber: 2,
     levelTitle: 'Сhoose red balls',
     items: ['ball', 'little-ball', 'ball'],
+    classes: [null, null, null],
     answer: 'ball',
     markup: ['<ball />', '<little-ball />', '<ball />'],
   },
@@ -19,6 +22,7 @@ export const levels = [
     levelNumber: 3,
     levelTitle: 'Сhoose red balls',
     items: ['little-cube', 'cube', 'ball'],
+    classes: [null, null, null],
     answer: 'ball',
     markup: ['<little-cube />', '<cube />', '<ball />'],
   },
@@ -26,6 +30,7 @@ export const levels = [
     levelNumber: 4,
     levelTitle: 'Сhoose white cubes',
     items: ['ball', 'cube', 'cube'],
+    classes: [null, null, null],
     answer: 'cube',
     markup: ['<ball />', '<cube />', '<cube />'],
   },
@@ -33,6 +38,7 @@ export const levels = [
     levelNumber: 5,
     levelTitle: 'Сhoose white cubes',
     items: ['ball', 'cube', 'cube', 'ball','ball'],
+    classes: [null, null, null, null, null],
     answer: 'cube',
     markup: ['<ball />', '<cube />', '<cube />', '<ball />','<ball />'],
   },
@@ -40,6 +46,7 @@ export const levels = [
     levelNumber: 6,
     levelTitle: 'Сhoose pyramid',
     items: ['cube', 'pyramid', 'little-cube', 'pyramid','ball'],
+    classes: [null, null, null, null],
     answer: 'pyramid',
     markup: ['<cube />', '<pyramid />', '<little-cube />', '<pyramid />','<ball />'],
   },
@@ -47,6 +54,7 @@ export const levels = [
     levelNumber: 7,
     levelTitle: 'Сhoose pyramid',
     items: ['pyramid', 'little-ball', 'pyramid', 'little-cube','ball'],
+    classes: [null, null, null, null, null],
     answer: 'pyramid',
     markup: ['<pyramid />', '<little-ball />', '<pyramid />', '<little-cube />','<ball />'],
   },
@@ -54,6 +62,7 @@ export const levels = [
     levelNumber: 8,
     levelTitle: 'Сhoose pyramid',
     items: ['pyramid', 'little-cube', 'little-ball', 'pyramid','ball'],
+    classes: [null, null, null, null, null],
     answer: 'pyramid',
     markup: ['<pyramid />', '<little-cube />', '<little-ball />', '<pyramid />','<ball />'],
   },
@@ -61,6 +70,7 @@ export const levels = [
     levelNumber: 9,
     levelTitle: 'Сhoose pyramid',
     items: ['little-ball', 'pyramid', 'ball', 'pyramid','little-cube'],
+    classes: [null, null, null, null, null],
     answer: 'pyramid',
     markup: ['<little-ball />', '<pyramid />', '<ball />', '<pyramid />','<little-cube />'],
   },
@@ -68,6 +78,7 @@ export const levels = [
     levelNumber: 10,
     levelTitle: 'Сhoose pyramid',
     items: ['pyramid', 'little-ball', 'pyramid', 'little-cube','ball'],
+    classes: [null, null, null, null, null],
     answer: 'pyramid',
     markup: ['<pyramid />', '<little-ball />', '<pyramid />', '<little-cube />','<ball />'],
   }

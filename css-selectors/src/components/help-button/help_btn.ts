@@ -1,7 +1,7 @@
 import { checkElement } from './../../helpers/check_element';
 import { getLevelNubmer } from './../../helpers/get_level_number';
 import { cleanInput } from '../../helpers/clean_input';
-import { levels } from './../../levels/levels';
+import { levels } from '../../level-builder/levels/levels';
 
 export class HelpButton {
   public pauseTime = 1000;

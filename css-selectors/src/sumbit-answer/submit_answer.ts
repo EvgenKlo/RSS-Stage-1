@@ -1,7 +1,7 @@
 import { checkElement } from '../helpers/check_element';
 import { getLevelNubmer } from '../helpers/get_level_number';
 import { LevelBuilder } from '../level-builder/level_builder';
-import { levels } from '../levels/levels';
+import { levels } from '../level-builder/levels/levels';
 import { KeyCode } from '../types/types';
 
 export class SubmitAnswer extends LevelBuilder {

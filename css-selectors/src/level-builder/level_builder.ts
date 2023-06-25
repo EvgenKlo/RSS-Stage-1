@@ -1,4 +1,4 @@
-import { levels } from '../levels/levels';
+import { levels } from './levels/levels';
 import { checkElement } from '../helpers/check_element';
 import { getLevelNubmer } from '../helpers/get_level_number';
 import { ShowTag } from '../show-tag/show_tag';
@@ -32,5 +32,6 @@ export class LevelBuilder extends ShowTag {
         super.deleteClue();
       });
     });
+
   }
 }
