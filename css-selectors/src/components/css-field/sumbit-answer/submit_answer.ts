@@ -34,13 +34,15 @@ export class SubmitAnswer extends LevelBuilder {
         this.input.classList.add('code-container__input_strobe');
         this.checkAllTasksDone(gameLevelInSidebar, levelNumber);
       })
+    } else if (this.input.value.length) {
+      this.wrongAnswer();
     }
   }
 
   private checkAllTasksDone (element: HTMLElement, levelNumber: number) {
     const gameState = document.querySelectorAll('.game-level__state_done');
     if (gameState.length === levels.length) {
-      console.log('You Win!')
+      this.victory();
     } else {
       element.classList.remove('game-level_active');
       this.changeLevel(levelNumber);
@@ -63,5 +65,29 @@ export class SubmitAnswer extends LevelBuilder {
       }
     }
   }
-  
+
+  private victory() {
+    const victory = document.createElement('div');
+    victory.classList.add('victory');
+    const victoryText = document.createElement('p');
+    victoryText.classList.add('victory-text');
+    victoryText.innerText = 'Victory!';
+    victory.append(victoryText);
+    const appContainer = checkElement<HTMLDivElement>('.app-container');
+    appContainer.append(victory);
+  }
+
+  private removeMoveClass () {
+    if(this instanceof HTMLElement){
+      this.classList.remove('move');
+      this.removeEventListener('animationend', this.removeMoveClass);
+    }
+  }
+
+  private wrongAnswer() {
+    const codeContainer = checkElement<HTMLElement>('.code-container');
+    codeContainer.classList.add('move');
+    codeContainer.addEventListener('animationend', this.removeMoveClass);
+  }
+
 }
