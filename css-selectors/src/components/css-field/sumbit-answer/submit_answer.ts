@@ -1,8 +1,8 @@
-import { checkElement } from '../helpers/check_element';
-import { getLevelNubmer } from '../helpers/get_level_number';
-import { LevelBuilder } from '../level-builder/level_builder';
-import { levels } from '../level-builder/levels/levels';
-import { KeyCode } from '../types/types';
+import { checkElement } from '../../../helpers/check_element';
+import { getLevelNubmer } from '../../../helpers/get_level_number';
+import { LevelBuilder } from '../../../level-builder/level_builder';
+import { levels } from '../../../level-builder/levels/levels';
+import { KeyCode } from '../../../types/types';
 
 export class SubmitAnswer extends LevelBuilder {
   private submitBtn = checkElement<HTMLDivElement>('.code-container__button');
@@ -28,6 +28,7 @@ export class SubmitAnswer extends LevelBuilder {
       const doneCheck = checkElement<HTMLDivElement>('.game-level__state', selectLevel);
       doneCheck.classList.add('game-level__state_done');
       this.input.value = '';
+      this.input.classList.add('code-container__input_strobe');
       this.checkAllTasksDone(gameLevelInSidebar, levelNumber);
     }
   }
@@ -58,4 +59,5 @@ export class SubmitAnswer extends LevelBuilder {
       }
     }
   }
+  
 }

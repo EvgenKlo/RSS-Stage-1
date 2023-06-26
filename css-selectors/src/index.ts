@@ -1,6 +1,6 @@
 import './style.scss';
-import { StartApp } from './app/start-app';
+import { App } from './app/start-app';
 
-const startApp = new StartApp;
+const app = new App;
 
-startApp.startApp();
+app.start();

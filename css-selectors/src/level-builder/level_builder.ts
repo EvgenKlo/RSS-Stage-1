@@ -13,17 +13,17 @@ export class LevelBuilder extends ShowTag {
     const playingField = checkElement<HTMLDivElement>('.table');
     playingField.innerHTML = '';
     cleanInput();
-    let selectLevel;
-    if (gameLevel !== null) {
-      selectLevel = gameLevel;
-    } else {
-      selectLevel = getLevelNubmer();
-    }
+    const selectLevel = gameLevel ? gameLevel : getLevelNubmer();
     const levelTitle = checkElement<HTMLDivElement>('.level-title');
     this.markup.markupBuild(selectLevel);
     levelTitle.innerText = `${levels[selectLevel - 1].levelTitle}`;
-    levels[selectLevel - 1].items.forEach((item) => {
+    const level = levels[selectLevel - 1];
+    level.items.forEach((item, index) => {
       const element = document.createElement(item);
+      const classItem = level.classes[index] ? level.classes[index] : null;
+      if(classItem) {
+        element.classList.add(`${classItem}`)
+      }
       playingField.append(element);
       element.addEventListener('mouseover', () => {
         super.createClue(element);

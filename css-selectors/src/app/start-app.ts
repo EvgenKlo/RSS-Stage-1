@@ -1,13 +1,14 @@
 import { Burger } from '../components/sidebar/burger/burger';
 import { SidebarView } from '../components/sidebar/view-sidebar/view_sidebar';
-import { SubmitAnswer } from '../sumbit-answer/submit_answer';
+import { SubmitAnswer } from '../components/css-field/sumbit-answer/submit_answer';
 import { AppState } from './app-state';
 import { HelpButton } from './../components/help-button/help_btn';
+import { Input } from './../components/css-field/input/input';
 
-export class StartApp {
+export class App {
   private appState = new AppState;
   
-  public startApp() {
+  public start() {
 
     window.addEventListener('beforeunload', () => {
       this.appState.setState();
@@ -32,7 +33,10 @@ export class StartApp {
       const helpBtn = new HelpButton;
 
       helpBtn.addClickHendlerOnHelpButton();
-      
+
+      const input = new Input;
+
+      input.listnerOnInput();
     });
 
   }

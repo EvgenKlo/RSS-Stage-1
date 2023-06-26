@@ -75,4 +75,5 @@ export class SidebarView extends LevelBuilder {
       this.generateLevelsList();
     })
   }
+  
 }

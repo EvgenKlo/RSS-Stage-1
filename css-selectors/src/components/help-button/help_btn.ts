@@ -2,8 +2,9 @@ import { checkElement } from './../../helpers/check_element';
 import { getLevelNubmer } from './../../helpers/get_level_number';
 import { cleanInput } from '../../helpers/clean_input';
 import { levels } from '../../level-builder/levels/levels';
+import { Input } from '../css-field/input/input';
 
-export class HelpButton {
+export class HelpButton extends Input {
   public pauseTime = 1000;
   public helpButton = checkElement<HTMLElement>('.help-btn');
 
@@ -22,6 +23,7 @@ export class HelpButton {
     const input = cleanInput();
     const answerArr = levels[level - 1].answer.split('');
     input.value += answerArr[0];
+    super.inputNoStrobe();
     answerArr.shift();
     this.printSymbol(answerArr, input);
   }
