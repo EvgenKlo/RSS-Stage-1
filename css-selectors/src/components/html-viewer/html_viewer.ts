@@ -3,6 +3,7 @@ import { ShowTag } from '../../hints/show_tag';
 import { levels } from '../../level-builder/levels/levels';
 
 export class HtmlViewer extends ShowTag {
+  
   public markupBuild (level: number) {
     const markupContainer = checkElement<HTMLElement>('.code-container__html-markup');
     markupContainer.innerText = '';

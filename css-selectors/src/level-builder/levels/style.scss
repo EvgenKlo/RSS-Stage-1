@@ -31,6 +31,9 @@ cube {
   &.move {
     animation: movie-big-element 0.7s infinite;
   }
+  &.active {
+    background-color: rgba(121, 224, 107, 0.5);
+  }
 }
 
 little-cube {
@@ -49,6 +52,9 @@ little-cube {
   &.move {
     animation: movie-small-element 0.6s infinite;
   }
+  &.active {
+    background-color: rgba(121, 224, 107, 0.5);
+  }
 }
 
 ball {
@@ -65,6 +71,9 @@ ball {
   }
   &.move {
     animation: movie-big-element 0.7s infinite;
+  }
+  &.active {
+    background-color: rgba(121, 224, 107, 0.5);
   }
 }
 
@@ -84,6 +93,9 @@ little-ball {
   &.move {
     animation: movie-small-element 0.6s infinite;
   }
+  &.active {
+    background-color: rgba(121, 224, 107, 0.5);
+  }
 }
 
 pyramid {
@@ -100,5 +112,8 @@ pyramid {
   }
   &.move {
     animation: movie-pyramid-element 0.8s infinite;
+  }
+  &.active {
+    background-color: rgba(121, 224, 107, 0.5);
   }
 }
