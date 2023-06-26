@@ -1,7 +1,7 @@
 import { levels } from './levels/levels';
 import { checkElement } from '../helpers/check_element';
 import { getLevelNubmer } from '../helpers/get_level_number';
-import { ShowTag } from '../show-tag/show_tag';
+import { ShowTag } from '../hints/show_tag';
 import { HtmlViewer } from '../components/html-viewer/html_viewer';
 import { cleanInput } from '../helpers/clean_input'
 
@@ -24,6 +24,8 @@ export class LevelBuilder extends ShowTag {
       if(classItem) {
         element.classList.add(`${classItem}`)
       }
+      element.dataset.markup = level.hints[index];
+      element.dataset.item = `${index + 1}`;
       playingField.append(element);
       element.addEventListener('mouseover', () => {
         super.createClue(element);

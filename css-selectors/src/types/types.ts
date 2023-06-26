@@ -14,4 +14,5 @@ export interface ILevel {
   classes: ArrClasses[],
   answer: string,
   markup: string[],
+  hints: string[],
 }

@@ -247,6 +247,9 @@ h1, h2, h3, p {
   &:hover {
     color: white;
   }
+  &.active {
+    color: white;
+  }
 }
 
 .footer {

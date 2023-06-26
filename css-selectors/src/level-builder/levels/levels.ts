@@ -9,6 +9,7 @@ export const levels: ILevel[] = [
     classes: [null, 'move'],
     answer: 'cube',
     markup: ['<cube />', '<cube />'],
+    hints: ['<cube></cube>', '<cube></cube>']
   },
   {
     levelNumber: 2,
@@ -17,6 +18,7 @@ export const levels: ILevel[] = [
     classes: ['move', null, 'move'],
     answer: 'ball',
     markup: ['<ball />', '<little-ball />', '<ball />'],
+    hints: ['<ball></ball>', '<little-ball></little-ball>', '<ball></ball>']
   },
   {
     levelNumber: 3,
@@ -25,6 +27,7 @@ export const levels: ILevel[] = [
     classes: [null, null, 'move'],
     answer: 'ball',
     markup: ['<little-cube />', '<cube />', '<ball />'],
+    hints: ['<little-cube></little-cube>', '<cube></cube>', '<ball></ball>']
   },
   {
     levelNumber: 4,
@@ -33,6 +36,7 @@ export const levels: ILevel[] = [
     classes: [null, 'move', 'move'],
     answer: 'cube',
     markup: ['<ball />', '<cube />', '<cube />'],
+    hints: ['<ball></ball>', '<cube></cube>', '<cube></cube>']
   },
   {
     levelNumber: 5,
@@ -41,6 +45,7 @@ export const levels: ILevel[] = [
     classes: [null, 'move', 'move', null, null],
     answer: 'cube',
     markup: ['<ball />', '<cube />', '<cube />', '<ball />','<ball />'],
+    hints: ['<ball></ball>', '<cube></cube>', '<cube></cube>', '<ball></ball>', '<ball></ball>']
   },
   {
     levelNumber: 6,
@@ -49,6 +54,7 @@ export const levels: ILevel[] = [
     classes: [null, 'move', null, 'move', null],
     answer: 'pyramid',
     markup: ['<cube />', '<pyramid />', '<little-cube />', '<pyramid />','<ball />'],
+    hints: ['<cube></cube>', '<pyramid></pyramid>', '<little-cube></little-cube>', '<pyramid></pyramid>', '<ball></ball>']
   },
   {
     levelNumber: 7,
@@ -57,6 +63,7 @@ export const levels: ILevel[] = [
     classes: ['move', null, 'move', null, null],
     answer: 'pyramid',
     markup: ['<pyramid />', '<little-ball />', '<pyramid />', '<little-cube />','<ball />'],
+    hints: ['<pyramid></pyramid>', '<little-ball></little-ball>', '<pyramid></pyramid>', '<little-cube></little-cube>', '<ball></ball>']
   },
   {
     levelNumber: 8,
@@ -65,6 +72,7 @@ export const levels: ILevel[] = [
     classes: ['move', null, null, 'move', null],
     answer: 'pyramid',
     markup: ['<pyramid />', '<little-cube />', '<little-ball />', '<pyramid />','<ball />'],
+    hints: ['<pyramid></pyramid>', '<little-cube></little-cube>', '<little-ball></little-ball>', '<pyramid></pyramid>', '<ball></ball>']
   },
   {
     levelNumber: 9,
@@ -73,6 +81,7 @@ export const levels: ILevel[] = [
     classes: [null, 'move', null, 'move', null],
     answer: 'pyramid',
     markup: ['<little-ball />', '<pyramid />', '<ball />', '<pyramid />','<little-cube />'],
+    hints: ['<little-ball></little-ball>', '<pyramid></pyramid>', '<ball></ball>', '<pyramid></pyramid>', '<little-cube></little-cube>']
   },
   {
     levelNumber: 10,
@@ -81,5 +90,6 @@ export const levels: ILevel[] = [
     classes: ['move', null, 'move', null, null],
     answer: 'pyramid',
     markup: ['<pyramid />', '<little-ball />', '<pyramid />', '<little-cube />','<ball />'],
+    hints: ['<pyramid></pyramid>', '<little-ball></little-ball>', '<pyramid></pyramid>', '<little-cube></little-cube>', '<ball></ball>']
   }
 ]
