@@ -24,12 +24,16 @@ export class SubmitAnswer extends LevelBuilder {
     const gameLevelInSidebar = checkElement<HTMLInputElement>('.game-level_active');
     const levelNumber = getLevelNubmer();
     if (this.input.value === levels[levelNumber - 1].answer) {
-      const selectLevel = checkElement<HTMLDivElement>('.game-level_active');
-      const doneCheck = checkElement<HTMLDivElement>('.game-level__state', selectLevel);
-      doneCheck.classList.add('game-level__state_done');
-      this.input.value = '';
-      this.input.classList.add('code-container__input_strobe');
-      this.checkAllTasksDone(gameLevelInSidebar, levelNumber);
+      super.goUpElements();
+      const moveElement = checkElement<HTMLElement>('.move');
+      moveElement.addEventListener('animationend', () => {
+        const selectLevel = checkElement<HTMLDivElement>('.game-level_active');
+        const doneCheck = checkElement<HTMLDivElement>('.game-level__state', selectLevel);
+        doneCheck.classList.add('game-level__state_done');
+        this.input.value = '';
+        this.input.classList.add('code-container__input_strobe');
+        this.checkAllTasksDone(gameLevelInSidebar, levelNumber);
+      })
     }
   }
 

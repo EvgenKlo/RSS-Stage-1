@@ -16,6 +16,16 @@
   }
 }
 
+@keyframes go-up {
+  from {
+    position: relative;
+    top: 0;
+  }
+  to {
+    top: -300px;
+  }
+}
+
 cube {
   display: inline-block;
   width: 100px;
@@ -30,6 +40,10 @@ cube {
   }
   &.move {
     animation: movie-big-element 0.7s infinite;
+  }
+  &.go-up {
+    position: relative;
+    animation: go-up 1s;
   }
   &.active {
     background-color: rgba(121, 224, 107, 0.5);
@@ -52,6 +66,10 @@ little-cube {
   &.move {
     animation: movie-small-element 0.6s infinite;
   }
+  &.go-up {
+    position: relative;
+    animation: go-up 1s;
+  }
   &.active {
     background-color: rgba(121, 224, 107, 0.5);
   }
@@ -71,6 +89,10 @@ ball {
   }
   &.move {
     animation: movie-big-element 0.7s infinite;
+  }
+  &.go-up {
+    position: relative;
+    animation: go-up 1s;
   }
   &.active {
     background-color: rgba(121, 224, 107, 0.5);
@@ -93,6 +115,10 @@ little-ball {
   &.move {
     animation: movie-small-element 0.6s infinite;
   }
+  &.go-up {
+    position: relative;
+    animation: go-up 1s;
+  }
   &.active {
     background-color: rgba(121, 224, 107, 0.5);
   }
@@ -112,6 +138,10 @@ pyramid {
   }
   &.move {
     animation: movie-pyramid-element 0.8s infinite;
+  }
+  &.go-up {
+    position: relative;
+    animation: go-up 1s;
   }
   &.active {
     background-color: rgba(121, 224, 107, 0.5);

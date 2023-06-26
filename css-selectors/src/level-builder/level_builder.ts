@@ -8,10 +8,10 @@ import { cleanInput } from '../helpers/clean_input'
 export class LevelBuilder extends ShowTag {
 
   private markup = new HtmlViewer;
+  private playingField = checkElement<HTMLDivElement>('.table');
 
   public buildLevel (gameLevel: number | null) {
-    const playingField = checkElement<HTMLDivElement>('.table');
-    playingField.innerHTML = '';
+    this.playingField.innerHTML = '';
     cleanInput();
     const selectLevel = gameLevel ? gameLevel : getLevelNubmer();
     const levelTitle = checkElement<HTMLDivElement>('.level-title');
@@ -26,7 +26,7 @@ export class LevelBuilder extends ShowTag {
       }
       element.dataset.markup = level.hints[index];
       element.dataset.item = `${index + 1}`;
-      playingField.append(element);
+      this.playingField.append(element);
       element.addEventListener('mouseover', () => {
         super.createClue(element);
       });
@@ -34,6 +34,12 @@ export class LevelBuilder extends ShowTag {
         super.deleteClue();
       });
     });
+  }
 
+  public goUpElements() {
+    const moveElement = this.playingField.querySelectorAll('.move');
+    moveElement.forEach((element) => {
+      element.classList.add('go-up');
+    })
   }
 }
