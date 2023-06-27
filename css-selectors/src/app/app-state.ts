@@ -45,7 +45,7 @@ export class AppState extends SidebarView {
       const gameState = document.querySelectorAll('.game-level__state');
       gameState.forEach((item, index) => {
         if(doneLevel[index] === null) {
-          item.classList.add('game-level__state_help')
+          item.classList.add('game-level__state_help', 'game-level__state_done')
         } else if (doneLevel[index] === true) {
           item.classList.add('game-level__state_done')
         }

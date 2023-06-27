@@ -47,7 +47,7 @@ export class HelpButton extends Input {
   private selectLevelWithHelp() {
     const gameLevelInSidebar = checkElement<HTMLInputElement>('.game-level_active');
     const helpCheck = checkElement<HTMLElement>('.game-level__state', gameLevelInSidebar);
-    helpCheck.classList.add('game-level__state_help');
+    helpCheck.classList.add('game-level__state_help', 'game-level__state_done');
   }
 
 }
