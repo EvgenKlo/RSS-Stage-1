@@ -4,16 +4,16 @@ import { ILevel } from '../../types/types';
 export const levels: ILevel[] = [
   {
     levelNumber: 1,
-    levelTitle: 'Сhoose white cubes',
+    levelTitle: 'Сhoose right cube',
     items: ['cube', 'cube'],
     classes: [null, 'move'],
-    answer: 'cube',
-    markup: ['<cube />', '<cube />'],
-    hints: ['<cube></cube>', '<cube></cube>']
+    answer: '.right-cube',
+    markup: ['<cube class="left-cube" />', '<cube class="right-cube" />'],
+    hints: ['<cube class="left-cube"></cube>', '<cube class="right-cube"></cube>']
   },
   {
     levelNumber: 2,
-    levelTitle: 'Сhoose red balls',
+    levelTitle: 'Сhoose red big balls',
     items: ['ball', 'little-ball', 'ball'],
     classes: ['move', null, 'move'],
     answer: 'ball',
@@ -22,12 +22,12 @@ export const levels: ILevel[] = [
   },
   {
     levelNumber: 3,
-    levelTitle: 'Сhoose red balls',
+    levelTitle: 'Сhoose little cube',
     items: ['little-cube', 'cube', 'ball'],
-    classes: [null, null, 'move'],
-    answer: 'ball',
-    markup: ['<little-cube />', '<cube />', '<ball />'],
-    hints: ['<little-cube></little-cube>', '<cube></cube>', '<ball></ball>']
+    classes: ['move', null, null],
+    answer: '#little-cube',
+    markup: ['<cube id="little-cube" />', '<cube />', '<ball />'],
+    hints: ['<cube id="little-cube></cube>', '<cube></cube>', '<ball></ball>']
   },
   {
     levelNumber: 4,

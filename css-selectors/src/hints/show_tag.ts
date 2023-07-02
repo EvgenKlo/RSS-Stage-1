@@ -1,25 +1,24 @@
 import './show_tag.scss';
-import { checkElement } from '../helpers/check_element';
 import { HoverOnHTMLTags } from './hover-on-html-tags/hover_on_html_tags';
 
 export class ShowTag extends HoverOnHTMLTags {
+  private clue: HTMLElement = document.createElement('div');
 
   public createClue (element: HTMLElement) {
-    const clueContainer = document.createElement('div');
-    clueContainer.classList.add('clue-container');
+    this.clue.classList.add('clue-container');
     const clueText = document.createElement('p');
     clueText.classList.add('clue-text')
     clueText.innerText = `${element.dataset.markup}`;
-    clueContainer.append(clueText);
-    element.append(clueContainer);
+    this.clue.append(clueText);
+    element.append(this.clue);
     element.classList.add('active');
     super.addHover(element);
   }
 
   public deleteClue () {
-    const clue = checkElement<HTMLElement>('.clue-container');
-    clue.parentElement?.classList.remove('active');
-    clue.remove();
+    this.clue.innerHTML = '';
+    this.clue.parentElement?.classList.remove('active');
+    this.clue.remove();
     super.removeHover();
   }
 }
