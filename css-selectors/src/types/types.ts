@@ -12,7 +12,7 @@ export interface ILevel {
   levelTitle: string,
   items: string[],
   classes: ArrClasses[],
-  answer: string,
+  answer: string[],
   markup: string[],
   hints: string[],
 }

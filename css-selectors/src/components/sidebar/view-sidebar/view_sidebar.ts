@@ -12,6 +12,14 @@ export class SidebarView extends LevelBuilder {
     sidebarTitle.classList.add('sidebar__title-text');
     sidebarTitle.textContent = `Level 1 of ${levels.length}`;
     this.sidebar.append(sidebarTitle);
+    this.generateToDoName();
+  }
+
+  private generateToDoName() {
+    const toDoName = document.createElement('p');
+    toDoName.classList.add('sidebar__to-do-name');
+    toDoName.textContent = 'Choose a level:';
+    this.sidebar.append(toDoName);
   }
 
   public generateLevelsList (levelNumber = 1) {
@@ -35,7 +43,11 @@ export class SidebarView extends LevelBuilder {
 
       const gameLevelTitle = document.createElement('p');
       gameLevelTitle.classList.add('game-level__text', 'game-level__text_title');
-      gameLevelTitle.textContent = `${item.levelTitle}`;
+      const gameLevelNameInSidebar = item.levelTitle.slice(7).split('');
+      const first = gameLevelNameInSidebar[0].toUpperCase();
+      gameLevelNameInSidebar[0] = first;
+      const levelName = gameLevelNameInSidebar.join('');
+      gameLevelTitle.textContent = `${levelName}`;
       listItem.append(gameLevelTitle);
 
       this.sidebar.append(listItem);

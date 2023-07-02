@@ -23,7 +23,7 @@ export class SubmitAnswer extends LevelBuilder {
   private submit () {
     const gameLevelInSidebar = checkElement<HTMLInputElement>('.game-level_active');
     const levelNumber = getLevelNubmer();
-    if (this.input.value === levels[levelNumber - 1].answer) {
+    if (levels[levelNumber - 1].answer.includes(this.input.value)) {
       super.goUpElements();
       const moveElement = checkElement<HTMLElement>('.move');
       moveElement.addEventListener('animationend', () => {

@@ -5,7 +5,7 @@ import { levels } from '../../level-builder/levels/levels';
 import { Input } from '../css-field/input/input';
 
 export class HelpButton extends Input {
-  public pauseTime = 1000;
+  public pauseTime = 500;
   public helpButton = checkElement<HTMLElement>('.help-btn');
 
   public addClickHendlerOnHelpButton() {
@@ -21,7 +21,7 @@ export class HelpButton extends Input {
     const level = getLevelNubmer();
     this.selectLevelWithHelp();
     const input = cleanInput();
-    const answerArr = levels[level - 1].answer.split('');
+    const answerArr = levels[level - 1].answer[0].split('');
     input.value += answerArr[0];
     super.inputNoStrobe();
     answerArr.shift();

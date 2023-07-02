@@ -14,129 +14,75 @@
   }
 }
 
-cube {
+@mixin elements {
   display: inline-block;
-  width: 100px;
-  height: 100px;
-  background-image: url(./../../image/cube.svg);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
   border-radius: 10px;
   position: relative;
-  &:hover {
-    background-color: rgba(121, 224, 107, 0.5);
-  }
-  &.move {
-    animation: movie-element 0.7s infinite;
-  }
-  &.go-up {
-    position: relative;
-    animation: go-up 0.6s;
-  }
-  &.active {
-    background-color: rgba(121, 224, 107, 0.5);
-  }
-}
-
-little-cube {
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  background-image: url(./../../image/cube.svg);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  margin: auto;
-  border-radius: 10px;
-  position: relative;
-  &:hover {
-    background-color: rgba(121, 224, 107, 0.5);
-  }
-  &.move {
-    animation: movie-element 0.6s infinite;
-  }
-  &.go-up {
-    position: relative;
-    animation: go-up 0.6s;
-  }
-  &.active {
-    background-color: rgba(121, 224, 107, 0.5);
-  }
-}
-
-ball {
-  display: inline-block;
-  width: 100px;
-  height: 100px;
-  background-image: url(./../../image/ball.svg);
-  background-repeat: no-repeat;
   background-size: 90% 90%;
-  background-position: center;
-  border-radius: 10px;
-  position: relative;
   &:hover {
     background-color: rgba(121, 224, 107, 0.5);
-  }
-  &.move {
-    animation: movie-element 0.7s infinite;
-  }
-  &.go-up {
-    position: relative;
-    animation: go-up 0.6s;
   }
   &.active {
-    background-color: rgba(121, 224, 107, 0.5);
-  }
-}
-
-little-ball {
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  background-image: url(./../../image/ball.svg);
-  background-repeat: no-repeat;
-  background-size: 90% 90%;
-  background-position: center;
-  margin: auto;
-  border-radius: 10px;
-  position: relative;
-  &:hover {
-    background-color: rgba(121, 224, 107, 0.5);
-  }
-  &.move {
-    animation: movie-element 0.6s infinite;
-  }
-  &.go-up {
-    position: relative;
-    animation: go-up 0.6s;
-  }
-  &.active {
-    background-color: rgba(121, 224, 107, 0.5);
-  }
-}
-
-pyramid {
-  display: inline-block;
-  width: 100px;
-  height: 100px;
-  background-image: url(./../../image/pyramid.svg);
-  background-repeat: no-repeat;
-  background-size: 90% 90%;
-  background-position: center;
-  border-radius: 10px;
-  position: relative;
-  &:hover {
     background-color: rgba(121, 224, 107, 0.5);
   }
   &.move {
     animation: movie-element 0.8s infinite;
   }
+}
+
+cube {
+  @include elements();
+  width: 100px;
+  height: 100px;
+  background-image: url(./../../image/cube.svg);
   &.go-up {
     position: relative;
     animation: go-up 0.6s;
   }
-  &.active {
-    background-color: rgba(121, 224, 107, 0.5);
+}
+
+little-cube {
+  @include elements();
+  width: 50px;
+  height: 50px;
+  background-image: url(./../../image/cube.svg);
+  &.go-up {
+    position: relative;
+    animation: go-up 0.6s;
+  }
+}
+
+ball {
+  @include elements();
+  width: 100px;
+  height: 100px;
+  background-image: url(./../../image/ball.svg);
+  &.go-up {
+    position: relative;
+    animation: go-up 0.6s;
+  }
+}
+
+little-ball {
+  @include elements();
+  width: 50px;
+  height: 50px;
+  background-image: url(./../../image/ball.svg);
+  &.go-up {
+    position: relative;
+    animation: go-up 0.6s;
+  }
+}
+
+pyramid {
+  @include elements();
+  width: 100px;
+  height: 100px;
+  background-image: url(./../../image/pyramid.svg);
+  &.go-up {
+    position: relative;
+    animation: go-up 0.6s;
   }
 }
