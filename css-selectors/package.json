@@ -9,7 +9,8 @@
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
-    "start": "webpack serve"
+    "start": "webpack serve",
+    "deploy": "npm run build && gh-pages -d dist -e css-selectors"
   },
   "keywords": [],
   "author": "Evgen Klo",

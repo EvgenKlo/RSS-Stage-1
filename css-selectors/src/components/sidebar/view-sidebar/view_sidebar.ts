@@ -84,6 +84,10 @@ export class SidebarView extends LevelBuilder {
         item.remove();
       })
       btn.remove();
+      const victory = checkElement('.victory');
+      if (victory) {
+        victory.remove();
+      }
       this.generateLevelsList();
     })
   }
