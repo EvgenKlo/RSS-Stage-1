@@ -1,0 +1,52 @@
+html {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+}
+
+body {
+  margin: 0;
+  background-color: gray;
+  font-family: 'Poppins';
+
+}
+
+.root {
+  box-sizing: border-box;
+  height: 100vh;
+  padding: 8px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.header-button {
+  background-color: rgb(255, 255, 0, 0.7);
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 1.5rem;
+  user-select: none;
+  height: 23px;
+  &:hover {
+    background-color: rgb(255, 255, 0);
+  };
+  &_to-winners {
+    margin-left: 10px;
+  }
+}
+
+.tittle-app {
+  margin: auto;
+  font-size: 4rem;
+  cursor: default;
+  user-select: none;
+  color: rgb(145, 5, 5);
+}
+
+.main {
+
+}
