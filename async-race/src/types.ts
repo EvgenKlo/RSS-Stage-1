@@ -3,3 +3,8 @@ export interface ICarResponse {
   color: string,
   id: number
 }
+
+export interface ICreateCarRequest {
+  name: string,
+  color: string
+}

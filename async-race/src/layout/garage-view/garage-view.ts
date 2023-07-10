@@ -1,8 +1,9 @@
 import './garage-view.scss';
 import { createElementInDOM } from '../../6_shared/lib/dom/create-element';
 import { getGarage } from './../../6_shared/api/get-api/get-api-garage';
-import { ICarResponse } from './../../types';
-import { Car } from './../../5_entities/car/car'
+import { ICarResponse, ICreateCarRequest } from './../../types';
+import { Car } from './../../5_entities/car/car';
+import { setCarInGarage } from './../../6_shared/api/create-car'
 
 
 export class GarageView {
@@ -38,23 +39,43 @@ export class GarageView {
     const forms = ['Create', 'Update'];
     forms.forEach((item) => {
       const form = createElementInDOM('form', ['create-car-form'], parent) as HTMLFormElement;
-    form.type = 'POST';
-    this.createInputForCreateCar(form, item);
+      form.type = 'POST';
+      this.createInputForCreateCar(form, item);
     })
   }
 
-  private createInputForCreateCar(parent: HTMLElement, value: string) {
+  private createInputForCreateCar(parent: HTMLFormElement, value: string) {
     const inputs = ['text', 'color'];
     inputs.forEach((item) => {
       const input = createElementInDOM('input', [`create-car-form__input-${item}`], parent) as HTMLInputElement;
       input.type = item;
+      input.name = 'name';
       if(item === 'color') {
         input.value = '#65E6D1';
+        input.name = 'color';
       }
     })
     const submitBtn = createElementInDOM('input', [`create-car-form__submit-btn`], parent) as HTMLInputElement;
     submitBtn.type = 'submit';
     submitBtn.value = value;
+    this.addSubmitCreateCar(parent);
+  }
+
+  private async addSubmitCreateCar(form: HTMLFormElement) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form1 = form.children[0] as HTMLInputElement;
+      const form2 = form.children[1] as HTMLInputElement;
+      const newCarData: ICreateCarRequest = {
+        name: form1.value,
+        color: form2.value
+      }
+      form1.value = '';
+      form2.value = '#65E6D1';
+      
+      await setCarInGarage(newCarData);
+
+    })
   }
 
   private creatBtnsInMenu(parent: HTMLElement) {

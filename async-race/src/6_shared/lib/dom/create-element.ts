@@ -1,8 +1,8 @@
-export function createElementInDOM(
+export function createElementInDOM (
   tagName: string,
   classes: string[],
   parentElement: HTMLElement = document.body
-): HTMLElement {
+) {
   const element = document.createElement(tagName);
   element.classList.add(...classes);
   parentElement.append(element);
