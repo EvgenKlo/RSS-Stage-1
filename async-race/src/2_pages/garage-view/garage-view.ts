@@ -1,7 +1,7 @@
 import './garage-view.scss';
 import { createElementInDOM } from '../../6_shared/lib/dom/create-element';
 import { getGarage } from './../../6_shared/api/get-api/get-api-garage';
-import { ICarResponse, ICreateCarRequest } from './../../types';
+import { IGarageResponse, ICreateCarRequest } from './../../types';
 import { Car } from './../../5_entities/car/car';
 import { setCarInGarage } from './../../6_shared/api/create-car'
 
@@ -91,27 +91,34 @@ export class GarageView {
     })
   }
 
-  private async createGarageContainer(parent: HTMLElement) {
+  private createGarageContainer(parent: HTMLElement) {
     const garageContainer = createElementInDOM('div', ['garage__container'], parent);
-    const garageResponse = await getGarage();
-    this.createGarageTittle(garageContainer, garageResponse);
-    this.createPageNumberText(garageContainer, garageResponse);
-    this.createCars(garageContainer, garageResponse);
+    const garage = createElementInDOM('div', ['garage'], garageContainer);
+    this.createGarage(garage);
     this.createChangePageBtn(garageContainer);
   }
 
-  private createGarageTittle(parent: HTMLElement, response: ICarResponse[]) {
-    const garageTittle = createElementInDOM('h2', ['garage__tittle'], parent);
-    garageTittle.innerText = `Garage (${response.length})`;
+  private async createGarage(parent: HTMLElement) {
+    const garageResponse = await getGarage();
+    if(garageResponse) {
+      this.createGarageTittle(parent, garageResponse);
+      this.createPageNumberText(parent, garageResponse);
+      this.createCars(parent, garageResponse);
+    }
   }
 
-  private createPageNumberText(parent: HTMLElement, response: ICarResponse[]) {
+  private createGarageTittle(parent: HTMLElement, response: IGarageResponse) {
+    const garageTittle = createElementInDOM('h2', ['garage__tittle'], parent);
+    garageTittle.innerText = `Garage (${response.carsCount})`;
+  }
+
+  private createPageNumberText(parent: HTMLElement, response: IGarageResponse) {
     const pageNumberText = createElementInDOM('p', ['garage__page-text'], parent);
     pageNumberText.innerText = `Page #${'Number page'}`;
   }
 
-  private createCars(parent: HTMLElement, response: ICarResponse[]) {
-    response.forEach((item) => {
+  private createCars(parent: HTMLElement, response: IGarageResponse) {
+    response.garage.forEach((item) => {
       const box = new Car(item, parent);
       box.createBox();
     })
