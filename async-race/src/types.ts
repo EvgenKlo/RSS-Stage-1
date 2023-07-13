@@ -9,6 +9,12 @@ export interface ICreateCarRequest {
   color: string
 }
 
+export interface ICreateCarResponse {
+  name: string,
+  color: string,
+  id: number
+}
+
 export interface IQueryParams {
   _page: string,
   _limit: string
@@ -18,3 +24,5 @@ export interface IGarageResponse {
   garage: ICarResponse[],
   carsCount: string | null
 }
+
+

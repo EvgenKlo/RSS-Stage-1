@@ -1,9 +1,10 @@
 import './garage-view.scss';
 import { createElementInDOM } from '../../6_shared/lib/dom/create-element';
-import { getGarage } from './../../6_shared/api/get-api/get-api-garage';
+import { getGarage } from '../../6_shared/api/get-cars';
 import { IGarageResponse, ICreateCarRequest } from './../../types';
-import { Car } from './../../5_entities/car/car';
-import { setCarInGarage } from './../../6_shared/api/create-car'
+import { GarageBox } from '../../5_entities/garage-box/garage-box';
+import { setCarInGarage } from './../../6_shared/api/create-car';
+import { addNewCarInGarage } from './../../6_shared/lib/helpers/add-new-car-in-garage'
 
 
 export class GarageView {
@@ -13,6 +14,8 @@ export class GarageView {
   }
 
   private menu: HTMLElement | undefined;
+  private pageNumber = 1;
+  private countCarsOnThisPage = 0;
 
   public buildGarage() {
     if(!this.main.classList.contains('main_garage') && !this.main.classList.contains('main_winners')) {
@@ -39,12 +42,12 @@ export class GarageView {
     const forms = ['Create', 'Update'];
     forms.forEach((item) => {
       const form = createElementInDOM('form', ['create-car-form'], parent) as HTMLFormElement;
-      form.type = 'POST';
-      this.createInputForCreateCar(form, item);
+      const placeholder = 'Enter car name'
+      this.createInputForCreateCar(form, item, placeholder);
     })
   }
 
-  private createInputForCreateCar(parent: HTMLFormElement, value: string) {
+  private createInputForCreateCar(parent: HTMLFormElement, value: string, placeholder: string) {
     const inputs = ['text', 'color'];
     inputs.forEach((item) => {
       const input = createElementInDOM('input', [`create-car-form__input-${item}`], parent) as HTMLInputElement;
@@ -54,10 +57,14 @@ export class GarageView {
         input.value = '#65E6D1';
         input.name = 'color';
       }
+      if(item === 'text') {
+        input.placeholder = placeholder;
+      }
     })
     const submitBtn = createElementInDOM('input', [`create-car-form__submit-btn`], parent) as HTMLInputElement;
     submitBtn.type = 'submit';
     submitBtn.value = value;
+
     this.addSubmitCreateCar(parent);
   }
 
@@ -67,14 +74,19 @@ export class GarageView {
       const form1 = form.children[0] as HTMLInputElement;
       const form2 = form.children[1] as HTMLInputElement;
       const newCarData: ICreateCarRequest = {
-        name: form1.value,
+        name: form1.value || 'New Car',
         color: form2.value
       }
       form1.value = '';
       form2.value = '#65E6D1';
       
-      await setCarInGarage(newCarData);
+      const response = await setCarInGarage(newCarData);
 
+      if(this.countCarsOnThisPage < 7) {
+        const garage = document.querySelector('.garage');
+        garage?.append(addNewCarInGarage(response));
+      }
+      
     })
   }
 
@@ -114,13 +126,15 @@ export class GarageView {
 
   private createPageNumberText(parent: HTMLElement, response: IGarageResponse) {
     const pageNumberText = createElementInDOM('p', ['garage__page-text'], parent);
-    pageNumberText.innerText = `Page #${'Number page'}`;
+    pageNumberText.innerText = `Page #${this.pageNumber}`;
   }
 
   private createCars(parent: HTMLElement, response: IGarageResponse) {
+    this.countCarsOnThisPage = 0;
     response.garage.forEach((item) => {
-      const box = new Car(item, parent);
-      box.createBox();
+      const garageBox = new GarageBox(item);
+      this.countCarsOnThisPage++;
+      parent.append(garageBox.garageBox)
     })
   }
 

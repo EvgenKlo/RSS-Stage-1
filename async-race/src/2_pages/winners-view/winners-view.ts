@@ -1,5 +1,3 @@
-import { createElementInDOM } from './../../6_shared/lib/dom/create-element'
-
 export class WinnersView {
   private main: HTMLElement;
   constructor(main: HTMLElement) {

@@ -11,9 +11,10 @@ export async function setCarInGarage(request: ICreateCarRequest) {
       },
       body: JSON.stringify(request)
     })
-    console.log(await response.json())
+    return await response.json();
   }
   catch {
-    console.error('Error')
+    /* throw new Error('Error in Set Car Request')
+    console.error('Error') */
   }
 }

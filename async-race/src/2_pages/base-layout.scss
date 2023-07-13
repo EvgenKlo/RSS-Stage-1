@@ -37,6 +37,10 @@ body {
   &_to-winners {
     margin-left: 10px;
   }
+  &.on {
+    background-color: rgb(255, 255, 0);
+    cursor: default;
+  }
 }
 
 .tittle-app {

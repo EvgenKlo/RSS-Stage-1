@@ -1,4 +1,4 @@
-import { IQueryParams, IGarageResponse } from '../../../types';
+import { IQueryParams, IGarageResponse } from '../../types';
 
 export async function getGarage(pageNumber = 1): Promise<IGarageResponse | undefined> {
   const url = 'http://127.0.0.1:3000/garage';
