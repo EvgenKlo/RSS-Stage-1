@@ -1,7 +1,7 @@
 import { GarageBox } from '../../../5_entities/garage-box/garage-box'
-import { ICreateCarResponse } from './../../../types'
+import { ICarResponse } from './../../../types'
 
-export function addNewCarInGarage(response: ICreateCarResponse){
+export function addNewCarInGarage(response: ICarResponse){
   const garageBox = new GarageBox(response);
   return garageBox.garageBox;
 }

@@ -1,10 +1,11 @@
 import './garage-view.scss';
 import { createElementInDOM } from '../../6_shared/lib/dom/create-element';
 import { getGarage } from '../../6_shared/api/get-cars';
-import { IGarageResponse, ICreateCarRequest } from './../../types';
+import { IGarageResponse, ICreateCarRequest, ICarResponse } from './../../types';
 import { GarageBox } from '../../5_entities/garage-box/garage-box';
 import { setCarInGarage } from './../../6_shared/api/create-car';
-import { addNewCarInGarage } from './../../6_shared/lib/helpers/add-new-car-in-garage'
+import { addNewCarInGarage } from './../../6_shared/lib/helpers/add-new-car-in-garage';
+import { Garage } from './../../3_widgets/garage/garage'
 
 
 export class GarageView {
@@ -17,19 +18,39 @@ export class GarageView {
   private pageNumber = 1;
   private countCarsOnThisPage = 0;
 
-  public buildGarage() {
+  public async buildGarage() {
+    //const response = await this.getResponse();
+
+
     if(!this.main.classList.contains('main_garage') && !this.main.classList.contains('main_winners')) {
       this.main.classList.add('main_garage');
       this.createMenu();
-      this.createGarageContainer(this.main);
+      const garage = await this.createGarageContainer()
+      if(garage){
+        this.main.append(garage);
+      }
     } else if(!this.main.classList.contains('main_garage')) {
       this.main.innerHTML = '';
       this.main.classList.toggle('main_garage');
       this.main.classList.toggle('main_winners');
       this.createMenu();
-      this.createGarageContainer(this.main);
+      const garage = await this.createGarageContainer()
+      if(garage){
+        this.main.append(garage);
+      }
     }
   }
+
+  private async getResponse () {
+    try {
+      const response = await getGarage(this.pageNumber);
+      console.log(response)
+      return response;
+    }
+    catch {
+      console.log('hi')
+    }
+  };
 
   private createMenu() {
     const menu = createElementInDOM('div', ['garage-menu'], this.main);
@@ -82,6 +103,8 @@ export class GarageView {
       
       const response = await setCarInGarage(newCarData);
 
+      
+
       if(this.countCarsOnThisPage < 7) {
         const garage = document.querySelector('.garage');
         garage?.append(addNewCarInGarage(response));
@@ -103,19 +126,13 @@ export class GarageView {
     })
   }
 
-  private createGarageContainer(parent: HTMLElement) {
-    const garageContainer = createElementInDOM('div', ['garage__container'], parent);
-    const garage = createElementInDOM('div', ['garage'], garageContainer);
-    this.createGarage(garage);
-    this.createChangePageBtn(garageContainer);
-  }
-
-  private async createGarage(parent: HTMLElement) {
-    const garageResponse = await getGarage();
-    if(garageResponse) {
-      this.createGarageTittle(parent, garageResponse);
-      this.createPageNumberText(parent, garageResponse);
-      this.createCars(parent, garageResponse);
+  private async createGarageContainer() {
+    const garageContainer = createElementInDOM('div', ['garage__container']);
+    const response = await this.getResponse();
+    if(response){
+      const garage = new Garage();
+      garage.createNewPageGarage(response.garage);
+      return garage.garage;
     }
   }
 
@@ -127,15 +144,6 @@ export class GarageView {
   private createPageNumberText(parent: HTMLElement, response: IGarageResponse) {
     const pageNumberText = createElementInDOM('p', ['garage__page-text'], parent);
     pageNumberText.innerText = `Page #${this.pageNumber}`;
-  }
-
-  private createCars(parent: HTMLElement, response: IGarageResponse) {
-    this.countCarsOnThisPage = 0;
-    response.garage.forEach((item) => {
-      const garageBox = new GarageBox(item);
-      this.countCarsOnThisPage++;
-      parent.append(garageBox.garageBox)
-    })
   }
 
   private createChangePageBtn(parent: HTMLElement) {

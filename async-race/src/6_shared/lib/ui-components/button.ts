@@ -1,5 +1,4 @@
 import { createElement } from './../../../6_shared/lib/helpers/create-element';
-import './style.scss'
 
 export class Button {
   name: string;
