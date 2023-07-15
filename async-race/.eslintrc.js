@@ -4,21 +4,26 @@ module.exports = {
       'es2021': true
   },
   'extends': [
-      'eslint:recommended',
-      'plugin:@typescript-eslint/recommended',
-      'prettier'
+    'airbnb-base',
+    'airbnb-typescript/dase',
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended'
   ],
   'overrides': [
   ],
   'parser': '@typescript-eslint/parser',
   'parserOptions': {
       'ecmaVersion': 'latest',
-      'sourceType': 'module'
+      'sourceType': 'module',
+      project: './tsconfig.json'
   },
   'plugins': [
-      '@typescript-eslint'
+    'prettier',
+    '@typescript-eslint'
   ],
   'rules': {
     '@typescript-eslint/no-explicit-any': 'error',
+    'max-lines-per-function': ['error', 40]
   }
 };
