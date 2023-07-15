@@ -1,6 +1,6 @@
-import { IGarageResponse, ICarResponse } from './../../types';
-import { createElement } from './../../6_shared/lib/helpers/create-element';
-import { GarageBox } from './../../5_entities/garage-box/garage-box'
+import { IGarageResponse, ICarResponse } from '../../../types';
+import { createElement } from '../../../6_shared/lib/helpers/create-element';
+import { GarageBox } from '../../../5_entities/garage-box/garage-box'
 import './style.scss'
 
 export class Garage {

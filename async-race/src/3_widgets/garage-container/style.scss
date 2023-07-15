@@ -1,0 +1,35 @@
+.garage__tittle {
+  font-size: 2.5rem;
+  margin: 0 0 10px;
+}
+
+.garage__page-text {
+  font-size: 1.5rem;
+}
+
+.garage__change-page-btn-container {
+  display: flex;
+  width: 150px;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.garage__change-btn {
+  height: 23px;
+  width: 50px;
+  font-size: 1.5rem;
+  text-align: center;
+  background-color: rgb(255, 255, 0, 0.7);
+  transition: all 0.3s;
+  border-radius: 5px;
+  width: 48%;
+  cursor: pointer;
+  user-select: none;
+  &:hover {
+    background-color: rgb(255, 255, 0);
+  }
+  &.off {
+    cursor: default;
+    background: rgb(255, 255, 0, 0.3);;
+  }
+}
