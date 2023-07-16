@@ -44,8 +44,11 @@ class GarageMenu {
       if(item === 'text') {
         input.placeholder = placeholder;
       }
+      if(value === 'Update') {
+        input.disabled = true;
+      }
     })
-    const submitBtn = new Button(value, [`create-car-form__submit-btn`])/*  createElement('div', [`create-car-form__submit-btn`]) */;
+    const submitBtn = new Button(value, [`create-car-form__submit-btn`]);
     parent.append(submitBtn.button);
 
     if(value === 'Create'){
