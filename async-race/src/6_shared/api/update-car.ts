@@ -1,6 +1,6 @@
 import { ICreateCarRequest } from '../../types';
 
-export async function updateCar(request: ICreateCarRequest, id: string) {
+export async function updateCar(request: ICreateCarRequest, id: number) {
   const url = 'http://127.0.0.1:3000/garage';
   const method = 'PUT';
   try {

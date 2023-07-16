@@ -6,10 +6,11 @@ import { IGarageContainer } from './../garage-container/type';
 import { addNewCar } from './../../4_features/add-new-car/addNewCar';
 import { updateCar } from './../../6_shared/api/update-car';
 import { garageContainer } from './../garage-container/garage-container'
+import { Button } from '../../6_shared/lib/ui-components/button';
 
 class GarageMenu {
   public garageMenu = createElement('div', ['garage-menu']);
-  private forms = this.createForm();
+  public forms = this.createForm();
   private buttons = this.createBtnsInMenu();
 
   public buildMenu() {
@@ -44,19 +45,17 @@ class GarageMenu {
         input.placeholder = placeholder;
       }
     })
-    const submitBtn = createElement('input', [`create-car-form__submit-btn`]) as HTMLInputElement;
-    parent.append(submitBtn);
-    submitBtn.type = 'submit';
-    submitBtn.value = value;
+    const submitBtn = new Button(value, [`create-car-form__submit-btn`])/*  createElement('div', [`create-car-form__submit-btn`]) */;
+    parent.append(submitBtn.button);
 
     if(value === 'Create'){
-      this.addSubmitCreateCar(parent);
+      this.addSubmitCreateCar(parent, submitBtn.button);
     }
     
   }
 
-  private async addSubmitCreateCar(form: HTMLFormElement) {
-    form.addEventListener('submit', async (e) => {
+  private async addSubmitCreateCar(form: HTMLFormElement, submitBtn: HTMLElement) {
+    submitBtn.addEventListener('click', async (e) => {
       e.preventDefault();
       const form1 = form.children[0] as HTMLInputElement;
       const form2 = form.children[1] as HTMLInputElement;
@@ -70,25 +69,6 @@ class GarageMenu {
       const response = await setCarInGarage(newCarData);
 
       addNewCar(response, garageContainer);
-      
-    })
-  }
-
-  public updateCar(form: HTMLFormElement) {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const form1 = form.children[0] as HTMLInputElement;
-      const form2 = form.children[1] as HTMLInputElement;
-      const newCarData: ICreateCarRequest = {
-        name: form1.value || 'Selected Car Name',
-        color: form2.value
-      }
-      form1.value = '';
-      form2.value = '#65E6D1';
-      
-      //const response = await updateCar(newCarData, );
-
-      //addNewCar(response, this.garageContainer);
       
     })
   }

@@ -23,8 +23,18 @@
 }
 
 .create-car-form__submit-btn {
+  background: rgb(207, 206, 206);
+  box-sizing: border-box;
+  padding: 1px;
+  font-size: 1.3rem;
+  text-align: center;
+  margin: 1px;
   width: 60px;
   cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    background: rgb(255, 255, 0, 0.7);
+  }
 }
 
 .menu__btn-container {
