@@ -17,7 +17,8 @@ export class GarageView {
       this.main.append(this.menu.buildMenu());
 
       await this.garageContainer.buildAutodrom();
-      this.main.append(this.garageContainer.garageContainer)
+      this.main.append(this.garageContainer.garageContainer);
+
     } else if(!this.main.classList.contains('main_garage')) {
       this.main.innerHTML = '';
       this.main.classList.toggle('main_garage');
@@ -25,7 +26,7 @@ export class GarageView {
       this.main.append(this.menu.buildMenu());
 
       await this.garageContainer.buildAutodrom();
-      this.main.append(this.garageContainer.garageContainer)
+      this.main.append(this.garageContainer.garageContainer);
     }
   }
 

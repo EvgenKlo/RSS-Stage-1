@@ -15,9 +15,13 @@ export class Garage {
   }
 
   public garageItems = new Array<HTMLElement>;
+  public removeBtns = new Array<HTMLElement>;
+  public selectBtns = new Array<HTMLElement>;
 
   public createNewPageGarage(response: ICarResponse[], pageNumber: number) {
     this.garageItems = [];
+    this.removeBtns = [];
+    this.selectBtns = [];
     response.forEach((item) => {
       this.addCar(item, pageNumber)
     })
@@ -36,11 +40,20 @@ export class Garage {
     this.garageContainer.buildAutodrom();
   }
 
+  public async updateCar(garageBox: HTMLElement) {
+    console.log(garageBox)
+  }
+
   private addCar(response: ICarResponse, pageNumber: number = 1) {
     const garageBox = new GarageBox(response);
-    garageBox.removeBtn.button.addEventListener('click', () => {
-      this.deleteCar(garageBox.garageBox, pageNumber);
+    garageBox.removeBtn.button.addEventListener('click', async () => {
+      await this.deleteCar(garageBox.garageBox, pageNumber);
     })
+    garageBox.selectBtn.button.addEventListener('click', async () => {
+      await this.updateCar(garageBox.garageBox);
+    })
+    this.removeBtns.push(garageBox.removeBtn.button);
+    this.selectBtns.push(garageBox.selectBtn.button);
     this.garageItems.push(garageBox.garageBox);
     this.garage.append(garageBox.garageBox)
   }

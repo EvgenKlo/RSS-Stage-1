@@ -14,6 +14,8 @@ export interface IGarageContainer {
 export interface IGarage {
   garage: HTMLElement,
   garageItems: HTMLElement[],
+  removeBtns: Array<HTMLElement>;
+  selectBtns: Array<HTMLElement>;
   addCarInGarage: (response: ICarResponse) => void,
   createNewPageGarage: (response: ICarResponse[], pageNumber: number) => void
 }
