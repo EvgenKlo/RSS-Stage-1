@@ -17,7 +17,7 @@ export class GarageBox {
 
   private garageBoxHeader = createElement('div', ['box__header-container']);
   private selectBtn = new Button('Select', ['box__header-btn', `box__header-btn_select`]);
-  private removeBtn = new Button('Remove', ['box__header-btn', `box__header-btn_remove`]);
+  public removeBtn = new Button('Remove', ['box__header-btn', `box__header-btn_remove`]);
   private carName = createElement('p', ['box__tittle']);
   private startBtn = new Button('Go', ['box__track-btn', 'box__track-btn_go', 'active']);
   private stopBtn = new Button('Off', ['box__track-btn', 'box__track-btn_off']);

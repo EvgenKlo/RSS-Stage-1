@@ -4,11 +4,12 @@ import { getGarage } from './../../6_shared/api/get-cars';
 import { IGarageResponse } from '../../types';
 import { Garage } from './garage/garage';
 import { changePage } from './../../4_features/change-page/change-page'
+import { IGarage } from './type';
 
 export class GarageContainer {
   public garageContainer = createElement('div', ['garage__container']);
   public changePageBtnContainer = createElement('div', ['garage__change-page-btn-container']);
-  public garage = new Garage();
+  public garage: IGarage = new Garage(this);
   public garageTittle = this.createAutodromTittle();
   public pageNumberText = this.createPageNumberText();
   public pageNumber = 1;
@@ -22,7 +23,7 @@ export class GarageContainer {
       this.garageTittle.innerText = `Garage (${response.carsCount})`;
       this.carsCount = Number(response.carsCount);
       this.pageNumberText.innerText = `Page ${this.pageNumber} of ${Math.ceil(Number(response.carsCount) / 7)}`;
-      await this.garage.createNewPageGarage(response.garage);
+      await this.garage.createNewPageGarage(response.garage, this.pageNumber);
       this.garageContainer.append(this.garage.garage);
       this.createChangePageBtn(response);
       this.garageContainer.append(this.changePageBtnContainer);
