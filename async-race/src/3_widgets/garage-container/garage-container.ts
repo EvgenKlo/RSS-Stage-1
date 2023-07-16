@@ -6,7 +6,7 @@ import { Garage } from './garage/garage';
 import { changePage } from './../../4_features/change-page/change-page'
 import { IGarage } from './type';
 
-export class GarageContainer {
+class GarageContainer {
   public garageContainer = createElement('div', ['garage__container']);
   public changePageBtnContainer = createElement('div', ['garage__change-page-btn-container']);
   public garage: IGarage = new Garage(this);
@@ -68,3 +68,5 @@ export class GarageContainer {
   }
 
 }
+
+export const garageContainer = new GarageContainer;

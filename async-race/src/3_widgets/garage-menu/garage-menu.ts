@@ -5,12 +5,9 @@ import { setCarInGarage } from './../../6_shared/api/create-car';
 import { IGarageContainer } from './../garage-container/type';
 import { addNewCar } from './../../4_features/add-new-car/addNewCar';
 import { updateCar } from './../../6_shared/api/update-car';
+import { garageContainer } from './../garage-container/garage-container'
 
-export class GarageMenu {
-  garageContainer: IGarageContainer
-  constructor(garageContainer: IGarageContainer){
-    this.garageContainer = garageContainer
-  }
+class GarageMenu {
   public garageMenu = createElement('div', ['garage-menu']);
   private forms = this.createForm();
   private buttons = this.createBtnsInMenu();
@@ -72,7 +69,7 @@ export class GarageMenu {
       
       const response = await setCarInGarage(newCarData);
 
-      addNewCar(response, this.garageContainer);
+      addNewCar(response, garageContainer);
       
     })
   }
@@ -113,4 +110,4 @@ export class GarageMenu {
   }
 }
 
-//export const menu = new GarageMenu;
+export const garageMenu = new GarageMenu();

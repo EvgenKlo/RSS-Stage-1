@@ -1,5 +1,5 @@
-import { GarageContainer } from './../../3_widgets/garage-container/garage-container';
-import { GarageMenu } from './../../3_widgets/garage-menu/garage-menu'
+import { garageContainer } from './../../3_widgets/garage-container/garage-container';
+import { garageMenu } from './../../3_widgets/garage-menu/garage-menu'
 
 
 export class GarageView {
@@ -8,8 +8,8 @@ export class GarageView {
     this.main = main;
   }
 
-  private garageContainer = new GarageContainer();
-  private menu = new GarageMenu(this.garageContainer);
+  private garageContainer = garageContainer;
+  private menu = garageMenu;
 
   public async buildGarage() {
     if(!this.main.classList.contains('main_garage') && !this.main.classList.contains('main_winners')) {
