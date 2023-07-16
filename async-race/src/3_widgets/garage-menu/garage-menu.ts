@@ -2,8 +2,14 @@ import './style.scss';
 import { createElement } from './../../6_shared/lib/helpers/create-element';
 import { ICreateCarRequest } from './../../types';
 import { setCarInGarage } from './../../6_shared/api/create-car';
+import { IGarageContainer } from './../garage-container/type';
+import { addNewCar } from './../../4_features/add-new-car/addNewCar'
 
 export class GarageMenu {
+  garageContainer: IGarageContainer
+  constructor(garageContainer: IGarageContainer){
+    this.garageContainer = garageContainer
+  }
   public garageMenu = createElement('div', ['garage-menu']);
   private forms = this.createForm();
   private buttons = this.createBtnsInMenu();
@@ -62,10 +68,7 @@ export class GarageMenu {
       
       const response = await setCarInGarage(newCarData);
 
-      /* if(this.countCarsOnThisPage < 7) {
-        const garage = document.querySelector('.garage');
-        garage?.append(addNewCarInGarage(response));
-      } */
+      addNewCar(response, this.garageContainer);
       
     })
   }

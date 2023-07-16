@@ -7,21 +7,25 @@ import { changePage } from './../../4_features/change-page/change-page'
 
 export class GarageContainer {
   public garageContainer = createElement('div', ['garage__container']);
-  private garageTittle = this.createAutodromTittle();
-  private pageNumberText = this.createPageNumberText();
-  private garage = new Garage();
-  private pageNumber = 1;
+  public changePageBtnContainer = createElement('div', ['garage__change-page-btn-container']);
+  public garage = new Garage();
+  public garageTittle = this.createAutodromTittle();
+  public pageNumberText = this.createPageNumberText();
+  public pageNumber = 1;
+  public carsCount = 0;
+  public changePageBtns = new Array<HTMLElement>;
 
   public async buildAutodrom() {
     this.garage.garage.innerHTML = '';
     const response = await getGarage(this.pageNumber);
     if(response){
       this.garageTittle.innerText = `Garage (${response.carsCount})`;
+      this.carsCount = Number(response.carsCount);
       this.pageNumberText.innerText = `Page ${this.pageNumber} of ${Math.ceil(Number(response.carsCount) / 7)}`;
       await this.garage.createNewPageGarage(response.garage);
       this.garageContainer.append(this.garage.garage);
-      const changePageBtn = this.createChangePageBtn(response);
-      this.garageContainer.append(changePageBtn);
+      this.createChangePageBtn(response);
+      this.garageContainer.append(this.changePageBtnContainer);
     }
   }
 
@@ -40,11 +44,12 @@ export class GarageContainer {
   }
 
   private createChangePageBtn(response: IGarageResponse) {
+    this.changePageBtns = [];
+    this.changePageBtnContainer.innerHTML = '';
     const changePageBtn = ['Prev', 'Next'];
-    const changePageBtnContainer = createElement('div', ['garage__change-page-btn-container']);
     changePageBtn.forEach((item) => {
       const btn = createElement('div', ['garage__change-btn', `garage__change-btn_${item.toLocaleLowerCase()}`]);
-      changePageBtnContainer.append(btn);
+      this.changePageBtnContainer.append(btn);
       btn.innerText = item;
       if (this.pageNumber === 1 && item === 'Prev') {
         btn.classList.add('off')
@@ -53,12 +58,12 @@ export class GarageContainer {
       } else {
         btn.addEventListener('click', () => {
           this.pageNumber = changePage(btn, this.pageNumber);
-          changePageBtnContainer.remove();
+          this.changePageBtnContainer.remove();
           this.buildAutodrom();
         })
       }
+      this.changePageBtns.push(btn);
     })
-    return changePageBtnContainer;
   }
 
 }
