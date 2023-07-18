@@ -7,6 +7,8 @@ import { addNewCar } from './../../4_features/add-new-car/addNewCar';
 import { updateCar } from './../../6_shared/api/update-car';
 import { garageContainer } from './../garage-container/garage-container'
 import { Button } from '../../6_shared/lib/ui-components/button';
+import { generate100Cars } from './../../4_features/generate-100-cars/generate-100-cars';
+import { getGarage } from '../../6_shared/api/get-cars';
 
 class GarageMenu {
   public garageMenu = createElement('div', ['garage-menu']);
@@ -85,8 +87,21 @@ class GarageMenu {
       const btn = createElement('div', classes[index]);
       menuBtnContainer.append(btn);
       btn.innerText = item;
-      btn.addEventListener('click', () => {
-        console.log(btn);
+      btn.addEventListener('click', async () => {
+        if(item === 'Generate Cars') {
+          const requestArr = generate100Cars();
+          requestArr.map((item) => setCarInGarage(item))
+          if(garageContainer.changePageBtns[1].classList.contains('off')) {
+            garageContainer.buildAutodrom();
+          } else {
+            const response = await getGarage(garageContainer.pageNumber);
+            if(response?.carsCount){
+              garageContainer.carsCount = +response.carsCount;
+              garageContainer.garageTittle.innerText = `Garage (${garageContainer.carsCount})`;
+              garageContainer.pageNumberText.innerText = `Page ${garageContainer.pageNumber} of ${Math.ceil(garageContainer.carsCount / 7)}`;
+            }
+          }
+        }
       })
     })
     return menuBtnContainer;

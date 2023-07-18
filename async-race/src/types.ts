@@ -19,4 +19,7 @@ export interface IGarageResponse {
   carsCount: string | null
 }
 
-
+export interface ICarRequest {
+  name: string,
+  color: string
+}
