@@ -5,5 +5,6 @@ export interface IGarageBox {
   garageBox: HTMLElement;
   carName: HTMLElement;
   car: HTMLElement;
+  trackLine: HTMLElement;
   buildTrack: () => void;
 }

@@ -23,3 +23,13 @@ export interface ICarRequest {
   name: string,
   color: string
 }
+
+export interface IStartStorParams {
+  _id: string,
+  _status: string
+}
+
+export interface IStartStorResponse {
+  velocity: number,
+  distance: number
+}

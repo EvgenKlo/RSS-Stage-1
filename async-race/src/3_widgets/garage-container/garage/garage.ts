@@ -7,7 +7,9 @@ import { getGarage } from './../../../6_shared/api/get-cars';
 import { IGarageContainer } from '../type';
 import { garageMenu } from '../../garage-menu/garage-menu';
 import { IGarageBox } from './../../../5_entities/garage-box/types'
-import { updateCar } from '../../../6_shared/api/update-car';
+import { updateCar } from '../../../6_shared/api/update-car'
+import { startStopEng } from './../../../6_shared/api/start-stop-eng';
+import { animate } from './../../../6_shared/lib/helpers/animate-car';
 
 export class Garage {
   garage: HTMLElement
@@ -83,6 +85,12 @@ export class Garage {
     })
     garageBox.selectBtn.button.addEventListener('click', async () => {
       await this.updateCar(garageBox);
+    })
+    garageBox.startBtn.button.addEventListener('click', async () => {
+      const response = await startStopEng(garageBox.id, 'started');
+      const car = garageBox.car;
+      const track = garageBox.trackElements.track;
+      animate(car, track, response);
     })
     this.removeBtns.push(garageBox.removeBtn.button);
     this.selectBtns.push(garageBox.selectBtn.button);
