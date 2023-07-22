@@ -8,7 +8,7 @@ import { IGarageContainer } from '../type';
 import { garageMenu } from '../../garage-menu/garage-menu';
 import { IGarageBox } from './../../../5_entities/garage-box/types'
 import { updateCar } from '../../../6_shared/api/update-car'
-import { startStopEng } from './../../../6_shared/api/start-stop-eng';
+import { startEng } from '../../../6_shared/api/start-engine';
 import { animate } from './../../../6_shared/lib/helpers/animate-car';
 
 export class Garage {
@@ -87,10 +87,14 @@ export class Garage {
       await this.updateCar(garageBox);
     })
     garageBox.startBtn.button.addEventListener('click', async () => {
-      const response = await startStopEng(garageBox.id, 'started');
-      const car = garageBox.car;
-      const track = garageBox.trackElements.track;
-      animate(car, track, response);
+      if(garageBox.startBtn.button.classList.contains('active')) {
+        garageBox.startBtn.button.classList.remove('active');
+        garageBox.stopBtn.button.classList.add('active');
+        const response = await startEng(garageBox.id, 'started');
+        const car = garageBox.car;
+        const track = garageBox.trackElements.track;
+        animate(car, track, response, garageBox.id);
+      }
     })
     this.removeBtns.push(garageBox.removeBtn.button);
     this.selectBtns.push(garageBox.selectBtn.button);

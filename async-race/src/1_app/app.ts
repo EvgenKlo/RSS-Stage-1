@@ -1,5 +1,5 @@
-import { BaseLayout } from './../2_pages/base-layout';
+import { BaseLayout } from '../2_pages/base-layout';
 
 export class App {
-  private layout = new BaseLayout;
-} 
+  private layout = new BaseLayout();
+}
