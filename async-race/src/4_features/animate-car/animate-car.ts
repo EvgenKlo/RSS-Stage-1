@@ -12,7 +12,13 @@ export class AnimateCar {
       const response = await startEng(garageBox.id, 'started');
       const car = garageBox.car;
       const track = garageBox.trackElements.track;
-      await this.animate(car, track, response, garageBox.id, garageBox);
+      try {
+        await this.animate(car, track, response, garageBox.id, garageBox);
+        return Promise.resolve(garageBox);
+      } catch {
+        console.log('Crashed car', garageBox.carName.innerText)
+        return Promise.reject();
+      }
     }
   }
 
@@ -32,7 +38,8 @@ export class AnimateCar {
     try {
       await stopEng(id, 'drive');
     } catch {
-      done = true
+      done = true;
+      //return Promise.reject();
     }
   
     function step(timeStamp: number) {
