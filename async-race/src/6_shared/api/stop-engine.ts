@@ -11,9 +11,15 @@ export async function stopEng(id: number, status: string) {
     const response = await fetch(url + '?' + queryParams._id + '&' + queryParams._status, {
       method: method,
     })
-    return await response.status;
+
+    if(response.status === 500) {
+      return await Promise.reject();
+    } else if (response.status === 200) {
+      return await Promise.resolve();
+    }
+    return await Promise.reject();
   }
   catch (error) {
-    console.log('error', error)
+    return Promise.reject();
   }
 }

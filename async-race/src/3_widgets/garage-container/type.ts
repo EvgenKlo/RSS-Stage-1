@@ -1,3 +1,4 @@
+import { IGarageBox } from '../../5_entities/garage-box/types';
 import { ICarResponse } from './../../types'
 
 export interface IGarageContainer {
@@ -14,6 +15,7 @@ export interface IGarageContainer {
 export interface IGarage {
   garage: HTMLElement,
   garageItems: HTMLElement[],
+  garageBoxes: IGarageBox[];
   removeBtns: Array<HTMLElement>;
   selectBtns: Array<HTMLElement>;
   addCarInGarage: (response: ICarResponse) => void,

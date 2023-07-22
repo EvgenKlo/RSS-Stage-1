@@ -9,6 +9,7 @@ import { garageContainer } from './../garage-container/garage-container'
 import { Button } from '../../6_shared/lib/ui-components/button';
 import { generate100Cars } from './../../4_features/generate-100-cars/generate-100-cars';
 import { getGarage } from '../../6_shared/api/get-cars';
+import { Race } from './../../4_features/race/race'
 
 class GarageMenu {
   public garageMenu = createElement('div', ['garage-menu']);
@@ -101,6 +102,9 @@ class GarageMenu {
               garageContainer.pageNumberText.innerText = `Page ${garageContainer.pageNumber} of ${Math.ceil(garageContainer.carsCount / 7)}`;
             }
           }
+        }
+        if(item === 'Race') {
+          Race.startRace(garageContainer.garage.garageBoxes)
         }
       })
     })
