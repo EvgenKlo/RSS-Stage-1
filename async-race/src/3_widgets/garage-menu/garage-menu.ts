@@ -10,6 +10,7 @@ import { Button } from '../../6_shared/lib/ui-components/button';
 import { generate100Cars } from './../../4_features/generate-100-cars/generate-100-cars';
 import { getGarage } from '../../6_shared/api/get-cars';
 import { Race } from './../../4_features/race/race'
+import { AnimateCar } from '../../4_features/animate-car/animate-car';
 
 class GarageMenu {
   public garageMenu = createElement('div', ['garage-menu']);
@@ -105,6 +106,9 @@ class GarageMenu {
         }
         if(item === 'Race') {
           Race.startRace(garageContainer.garage.garageBoxes)
+        }
+        if(item === 'Reset') {
+          Race.resetRace(garageContainer.garage.garageBoxes)
         }
       })
     })

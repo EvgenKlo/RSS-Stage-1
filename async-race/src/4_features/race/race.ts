@@ -7,4 +7,10 @@ export class Race {
       AnimateCar.startAnimate(item);
     })
   }
+
+  static resetRace(garageItems: IGarageBox[]) {
+    garageItems.forEach((item) => {
+      AnimateCar.resetAnimation(item);
+    })
+  }
 }
