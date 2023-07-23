@@ -15,8 +15,9 @@ export class WinnersView {
   public pageNumberText = this.createPageNumberText();
   public pageNumber = 1;
   public winnersCount?: number;
-  public prevBtn = new Button('Prev', ['winners__btn', 'winners__prev-btn', 'off']);
-  public nextBtn = new Button('Next', ['winners__btn', 'winners__next-btn', 'off']);
+  public winnersBtnContainer = createElement('div', ['winners__btn-container']);
+  public prevBtn?: HTMLElement | null;
+  public nextBtn?: HTMLElement | null;
   private table = new WinnersTable();
 
   public async buildWinners() {
@@ -30,9 +31,10 @@ export class WinnersView {
       this.pageNumberText
       )
     const response = await getWinners(this.pageNumber);
+    this.createWinnersBtnContainer();
     this.main.append(
       this.table.table,
-      this.createWinnersBtnContainer()
+      this.winnersBtnContainer
       );
 
     if(response) {
@@ -54,34 +56,33 @@ export class WinnersView {
   }
 
   private createWinnersBtnContainer() {
-    const winnersBtnContainer = createElement('div', ['winners__btn-container']);
-    winnersBtnContainer.append(
-      this.prevBtn.button,
-      this.nextBtn.button
+    this.winnersBtnContainer.innerHTML = '';
+    this.prevBtn = null;
+    this.nextBtn = null;
+    const prevBtn = new Button('Prev', ['winners__btn', 'winners__prev-btn', 'off']);
+    const nextBtn = new Button('Next', ['winners__btn', 'winners__next-btn', 'off']);
+    this.prevBtn = prevBtn.button;
+    this.nextBtn = nextBtn.button;
+    this.winnersBtnContainer.append(
+      prevBtn.button,
+      nextBtn.button
     )
-    return winnersBtnContainer;
   }
 
-  private pageSwitching(response: IWinnersResponse) {
+  private async pageSwitching(response: IWinnersResponse) {
     if(this.pageNumber !== 1) {
-      this.prevBtn.button.classList.remove('off');
-      this.prevBtn.button.addEventListener('click', async () => {
+      this.prevBtn?.classList.remove('off');
+      this.prevBtn?.addEventListener('click', async () => {
         this.pageNumber--;
-        const prevPageResponse = await getWinners(this.pageNumber);
-        if(prevPageResponse) {
-          this.table.buildTable(prevPageResponse);
-        }
+        this.buildWinners();
       })
     }
     if(response.winnersCount) {
       if(+response.winnersCount / 10 > this.pageNumber) {
-        this.nextBtn.button.classList.remove('off');
-        this.nextBtn.button.addEventListener('click', async () => {
+        this.nextBtn?.classList.remove('off');
+        this.nextBtn?.addEventListener('click', async () => {
           this.pageNumber++;
-          const nextPageResponse = await getWinners(this.pageNumber);
-          if(nextPageResponse) {
-            this.table.buildTable(nextPageResponse);
-          }
+          this.buildWinners();
         })
       }
     }

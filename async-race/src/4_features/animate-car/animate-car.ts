@@ -16,15 +16,14 @@ export class AnimateCar {
         await this.animate(car, track, response, garageBox.id, garageBox);
         return Promise.resolve(garageBox);
       } catch {
-        console.log('Crashed car', garageBox.carName.innerText)
         return Promise.reject();
       }
     }
   }
 
   static async animate(car: HTMLElement, track: HTMLElement, resonse: IStartStorResponse, id: number, garageBox: IGarageBox) {
-    garageBox.stopBtn.button.addEventListener('click', () => {
-      this.resetAnimation(garageBox)
+    garageBox.stopBtn.button.addEventListener('click', async () => {
+      await this.resetAnimation(garageBox)
     }, { once: true })
   
     let start: number;
@@ -37,9 +36,10 @@ export class AnimateCar {
   
     try {
       await stopEng(id, 'drive');
+      return Promise.resolve();
     } catch {
       done = true;
-      //return Promise.reject();
+      return Promise.reject();
     }
   
     function step(timeStamp: number) {
@@ -64,9 +64,13 @@ export class AnimateCar {
     }
   }
 
-  static resetAnimation(garageBox: IGarageBox) {
-    garageBox.startBtn.button.classList.add('active');
-    garageBox.stopBtn.button.classList.remove('active');
-    garageBox.car.style.transform = 'translateX(0px)'
+  static async resetAnimation(garageBox: IGarageBox) {
+    const stop = await startEng(garageBox.id, 'stopped');
+    if(stop.velocity === 0) {
+      garageBox.startBtn.button.classList.add('active');
+      garageBox.stopBtn.button.classList.remove('active');
+      garageBox.car.style.transform = 'translateX(0)'
+    }
+    
   }
 }
