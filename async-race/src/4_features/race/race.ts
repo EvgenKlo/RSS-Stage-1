@@ -8,15 +8,15 @@ import { updateWinner } from './../../6_shared/api/update-winner'
 export class Race {
 
   static async startRace (garageItems: IGarageBox[]) {
-    const fastCar = await Promise.any(garageItems.map((item) => AnimateCar.startAnimate(item))); 
-    if(fastCar){
-      try {
+    try {
+      const fastCar = await Promise.any(garageItems.map((item) => AnimateCar.startAnimate(item))); 
+      if(fastCar){
         await this.addWinner(fastCar);
-      } catch {
-        console.log('эта машина уже есть в таблице победителей')
       }
-      
+    } catch {
+      console.log('All cars crashed!')
     }
+    
   }
 
   static resetRace(garageItems: IGarageBox[]) {
