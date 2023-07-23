@@ -14,7 +14,7 @@ export class AnimateCar {
       const track = garageBox.trackElements.track;
       try {
         await this.animate(car, track, response, garageBox.id, garageBox);
-        return Promise.resolve(garageBox);
+        return Promise.resolve({ garageBox, response });
       } catch {
         return Promise.reject();
       }

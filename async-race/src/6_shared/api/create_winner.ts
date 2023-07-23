@@ -11,9 +11,10 @@ export async function createWinner(request: IWinnerResponse) {
       },
       body: JSON.stringify(request)
     })
-    return await response.json();
+    return response;
   }
   catch (error){
-    console.log(error, 'Error in createWinner request')
+    console.log(error)
+    return await Promise.reject()
   }
 }

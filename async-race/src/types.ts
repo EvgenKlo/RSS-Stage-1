@@ -1,3 +1,5 @@
+import { IGarageBox } from "./5_entities/garage-box/types"
+
 export interface ICarResponse {
   name: string,
   color: string,
@@ -47,6 +49,16 @@ export interface IWinnersResponse {
 
 export interface IWinnerResponse {
   id: number,
+  wins: number,
+  time: number
+}
+
+export interface IFastCarResponse {
+  garageBox: IGarageBox,
+  response: IStartStorResponse
+}
+
+export interface IUpdateWinnerRequest {
   wins: number,
   time: number
 }
