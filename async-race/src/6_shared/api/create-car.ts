@@ -13,8 +13,7 @@ export async function setCarInGarage(request: ICreateCarRequest) {
     })
     return await response.json();
   }
-  catch {
-    /* throw new Error('Error in Set Car Request')
-    console.error('Error') */
+  catch (error){
+    console.log(error)
   }
 }

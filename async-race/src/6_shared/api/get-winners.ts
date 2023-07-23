@@ -17,8 +17,8 @@ export async function getWinners(pageNumber: number, sort = 'time'): Promise<IWi
     }
     return resp;
   }
-  catch {
-    console.error('Error')
+  catch (error){
+    console.log(error)
   }
   
 }

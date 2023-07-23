@@ -9,6 +9,7 @@ import { garageMenu } from '../../garage-menu/garage-menu';
 import { IGarageBox } from './../../../5_entities/garage-box/types'
 import { updateCar } from '../../../6_shared/api/update-car'
 import { AnimateCar } from '../../../4_features/animate-car/animate-car';
+import { deleteWinner } from './../../../6_shared/api/delete-winner'
 
 export class Garage {
   garage: HTMLElement
@@ -42,6 +43,7 @@ export class Garage {
   public async deleteCar(garageBox: HTMLElement, pageNumber: number) {
     await deleteCar(garageBox.id);
     const response = await getGarage(pageNumber);
+    deleteWinner(garageBox.id);
     this.garageContainer.pageNumber = pageNumber;
     this.garageContainer.buildAutodrom();
   }

@@ -16,8 +16,8 @@ export async function getGarage(pageNumber: number): Promise<IGarageResponse | u
     }
     return resp;
   }
-  catch {
-    console.error('Error')
+  catch (error){
+    console.log(error)
   }
   
 }

@@ -13,8 +13,7 @@ export async function updateCar(request: ICreateCarRequest, id: number) {
     })
     return await response.json();
   }
-  catch {
-    /* throw new Error('Error in Set Car Request')
-    console.error('Error') */
+  catch (error){
+    console.log(error)
   }
 }
