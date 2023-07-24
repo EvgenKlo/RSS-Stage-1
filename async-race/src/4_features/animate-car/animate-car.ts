@@ -43,13 +43,14 @@ export class AnimateCar {
     }
   
     function step(timeStamp: number) {
+      
       if (start === undefined) {
         start = timeStamp;
       }
       const elapsed = timeStamp - start;
   
       if(elapsed) {
-        const count = (resonse.velocity / 500) * elapsed;
+        const count = trackWidth / (resonse.distance / resonse.velocity) * elapsed;
         
         car.style.transform = `translateX(${count}px)`;
   
