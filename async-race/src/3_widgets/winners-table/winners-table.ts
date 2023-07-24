@@ -2,25 +2,21 @@ import './style.scss'
 import { IWinnersResponse } from '../../types';
 import { createElement } from './../../6_shared/lib/helpers/create-element';
 import { getCar } from './../../6_shared/api/get-car'
+import { WinnersHeader } from './../../4_features/winners-header/winners-header'
 
 export class WinnersTable {
   public table = createElement('table', ['winners__table']);
-
-  public crateTableHead() {
-    const tableHeadRow = createElement('tr', ['table__head']);
-    const tableColumnNames = ['Number', 'Car', 'Name', 'Wins', 'Best time (seconds)'];
-    tableColumnNames.forEach((item) => {
-      const headCeil = createElement('th', ['table__head-ceil', `table__head-ceil_${item.toLocaleLowerCase().split(' ').join('-')}`]);
-      headCeil.innerText = item;
-      tableHeadRow.append(headCeil);
-    })
-    this.table.append(tableHeadRow)
-  }
+  public tableHeader?: HTMLElement;
 
   public buildTable(response: IWinnersResponse) {
-
     this.table.innerHTML = '';
-    this.crateTableHead();
+
+    const header = new WinnersHeader();
+
+    header.appendTo(this.table);
+
+    this.tableHeader = header.tableHeader;
+
     if(response){
       response.winners.forEach(async (winner) => {
         const tableRow = createElement('tr', ['table-row']);
@@ -28,7 +24,7 @@ export class WinnersTable {
         const colorCeil = createElement('td', ['table-ceil', 'table-ceil_color']);
         const nameCeil = createElement('td', ['table-ceil', 'table-ceil_name']);
         const winsCeil = createElement('td', ['table-ceil', 'table-ceil_wins']);
-        const timeCeil = createElement('td', ['table-ceil', 'table-ceil_tume']);
+        const timeCeil = createElement('td', ['table-ceil', 'table-ceil_time']);
         tableRow.append(
           numberCeil,
           colorCeil,

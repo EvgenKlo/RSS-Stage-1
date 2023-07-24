@@ -1,14 +1,15 @@
-import { IQueryWinnersParams, IWinnersResponse } from '../../types';
+import { IQueryWinnersParams, ISortParams, IWinnersResponse } from '../../types';
 
-export async function getWinners(pageNumber: number, sort = 'time'): Promise<IWinnersResponse | undefined> {
+export async function getWinners(pageNumber: number, sortParams: ISortParams): Promise<IWinnersResponse | undefined> {
   const url = 'http://127.0.0.1:3000/winners';
   const queryParams: IQueryWinnersParams = {
     _page: `_page=${pageNumber}`,
     _limit: '_limit=10',
-    _sort: `_sort=${sort}`
+    _sort: `_sort=${sortParams.sort}`,
+    _order: `_order=${sortParams.order}`
   }
   try {
-    const response = await fetch(url + '?' + queryParams._page + '&' + queryParams._limit + '&' + queryParams._sort);
+    const response = await fetch(url + '?' + queryParams._page + '&' + queryParams._limit + '&' + queryParams._sort + '&' + queryParams._order);
     const winnersCount = response.headers.get('X-Total-Count');
     const winners = await response.json();
     const resp: IWinnersResponse = {

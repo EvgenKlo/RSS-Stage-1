@@ -39,7 +39,8 @@ export interface IStartStorResponse {
 export interface IQueryWinnersParams {
   _page: string,
   _limit: string,
-  _sort: string
+  _sort: string,
+  _order: string
 }
 
 export interface IWinnersResponse {
@@ -61,4 +62,9 @@ export interface IFastCarResponse {
 export interface IUpdateWinnerRequest {
   wins: number,
   time: number
+}
+
+export interface ISortParams {
+  sort: string,
+  order: string
 }

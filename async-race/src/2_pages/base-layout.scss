@@ -1,12 +1,12 @@
 html {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', 'Arial', sans-serif;
   font-size: 10px;
 }
 
 body {
   margin: 0;
   background-color: gray;
-  font-family: 'Poppins';
+  font-family: 'Poppins', 'Arial', sans-serif;
 
 }
 
@@ -49,8 +49,4 @@ body {
   cursor: default;
   user-select: none;
   color: rgb(145, 5, 5);
-}
-
-.main {
-
 }
