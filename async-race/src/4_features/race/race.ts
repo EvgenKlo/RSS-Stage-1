@@ -3,7 +3,8 @@ import { AnimateCar } from './../animate-car/animate-car';
 import { createWinner } from './../../6_shared/api/create_winner'
 import { IFastCarResponse, IUpdateWinnerRequest, IWinnerResponse } from '../../types';
 import { getWinner } from './../../6_shared/api/get-winner';
-import { updateWinner } from './../../6_shared/api/update-winner'
+import { updateWinner } from './../../6_shared/api/update-winner';
+import { winnerMassage } from './../../5_entities/win-massege/win-massage';
 
 export class Race {
 
@@ -11,12 +12,14 @@ export class Race {
     try {
       const fastCar = await Promise.any(garageItems.map((item) => AnimateCar.startAnimate(item))); 
       if(fastCar){
-        await this.addWinner(fastCar);
+        const response = await this.addWinner(fastCar);
+        console.log(fastCar)
+        winnerMassage.massageContainer.classList.remove('off');
+        winnerMassage.massage.innerText = `Race winner ${fastCar.garageBox.name} time ${Number((fastCar.response.distance / fastCar.response.velocity / 1000).toFixed(3))} seconds`
       }
     } catch {
       console.log('All cars crashed!')
     }
-    
   }
 
   static resetRace(garageItems: IGarageBox[]) {

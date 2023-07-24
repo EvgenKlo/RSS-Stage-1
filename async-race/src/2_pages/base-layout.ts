@@ -2,6 +2,7 @@ import './base-layout.scss'
 import { createElementInDOM } from '../6_shared/lib/dom/create-element';
 import { GarageView } from './garage-view/garage-view';
 import { WinnersView } from './winners-view/winners-view';
+import { winnerMassage } from './../5_entities/win-massege/win-massage'
 
 export class BaseLayout {
   private buttonsGarageAndWinners = new Array<HTMLElement>;
@@ -14,6 +15,7 @@ export class BaseLayout {
   private winnersView = new WinnersView(this.main);
 
   private createHeader() {
+    this.layout.append(winnerMassage.massageContainer)
     return createElementInDOM('div', ['header'], this.layout)
   }
 
