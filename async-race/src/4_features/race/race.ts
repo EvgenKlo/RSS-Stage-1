@@ -13,7 +13,6 @@ export class Race {
       const fastCar = await Promise.any(garageItems.map((item) => AnimateCar.startAnimate(item))); 
       if(fastCar){
         const response = await this.addWinner(fastCar);
-        console.log(fastCar)
         winnerMassage.massageContainer.classList.remove('off');
         winnerMassage.massage.innerText = `Race winner ${fastCar.garageBox.name} time ${Number((fastCar.response.distance / fastCar.response.velocity / 1000).toFixed(3))} seconds`
       }

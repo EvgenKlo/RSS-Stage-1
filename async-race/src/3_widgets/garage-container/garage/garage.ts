@@ -90,7 +90,12 @@ export class Garage {
       await this.updateCar(garageBox);
     })
     garageBox.startBtn.button.addEventListener('click', async () => {
-      AnimateCar.startAnimate(garageBox);
+      try {
+        await AnimateCar.startAnimate(garageBox);
+      } catch {
+        console.log(garageBox.name, 'crashed!')
+      }
+      
     })
     this.removeBtns.push(garageBox.removeBtn.button);
     this.selectBtns.push(garageBox.selectBtn.button);
