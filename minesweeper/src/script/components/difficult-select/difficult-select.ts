@@ -79,33 +79,3 @@ export class DifficultSelect extends BaseComponent<HTMLElement> {
         this._howNeedBombs = howNeedBombs;
     };
 }
-
-//
-// // Выбор сложности
-//
-// function difficultSelect() {
-//     const difficultButtons = document.querySelectorAll('.difficult-dtn');
-//     difficultButtons.forEach(btn => {
-//         btn.addEventListener('click', () => {
-//             btn.classList.toggle('active');
-//             if (btn.classList.contains('Easy')) {
-//                 playingFieldSize = 10;
-//                 howNeedBombs = 10;
-//             } else if (btn.classList.contains('Medium')) {
-//                 playingFieldSize = 15;
-//                 howNeedBombs = 42;
-//             } else if (btn.classList.contains('Hard')) {
-//                 playingFieldSize = 25;
-//                 howNeedBombs = 99;
-//             }
-//             selectLineInput.value = howNeedBombs;
-//             difficultButtons.forEach(btn => {
-//                 btn.classList.remove('active');
-//             });
-//             btn.classList.add('active');
-//             refresh();
-//         });
-//     });
-// }
-//
-// difficultSelect();
