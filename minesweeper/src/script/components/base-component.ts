@@ -30,7 +30,6 @@ export class BaseComponent<T extends HTMLElement> {
         const index = this._classes.indexOf(className);
         if (index > -1) {
             this._classes.splice(index, 1);
-            console.log(this._classes);
             this.component.classList.remove(className);
         }
     }
