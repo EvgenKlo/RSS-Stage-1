@@ -2,8 +2,9 @@ import {BaseComponent} from '../components/base-component.ts';
 import {cellClickHandler, settings} from '../index.ts';
 import {GameField} from '../components/game-field/game-field.ts';
 import {Cell} from '../components/cell/cell.ts';
+import {maybeBomb} from './maybe-bomb.ts';
 
-export function createPlayingField() {
+export function createPlayingField(soundOn: HTMLElement) {
     const size = settings.playingFieldSize;
     const playingField = new GameField('div', ['playing-field', `playing-field-${size}`]);
     const playingFieldComponent = playingField.getComponent();
@@ -13,6 +14,7 @@ export function createPlayingField() {
             const cell = new Cell('div', ['item', `item-${j}`, 'close']);
             const cellComponent = cell.getComponent();
             cellComponent.addEventListener('click', cellClickHandler.bind(cell));
+            cellComponent.addEventListener('contextmenu', () => maybeBomb(cell, soundOn));
             row.append(cellComponent);
             playingField.addCell(cell);
         }

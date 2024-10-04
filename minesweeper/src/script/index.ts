@@ -202,10 +202,9 @@ function refresh() {
     gameState.reset();
     clickCountPanel.update();
     const playingFieldOld = document.querySelector('.playing-field');
-    playingFieldOld.remove();
-    const {playingField} = createPlayingField();
+    playingFieldOld?.remove();
+    const {playingField} = createPlayingField(soundOn);
     fieldContainer.append(playingField.getComponent());
-    maybeBomb(soundOn);
 }
 
 // Сохранение игры
@@ -307,7 +306,7 @@ export function cellClickHandler(this: Cell) {
         if (item.classList.length === 3) {
             openEmptyCells(item);
         }
-    } else if (!item.classList.contains('maybeBomb') && item.classList.contains('close')) {
+    } else if (!baseItem.classes.includes('maybeBomb') && baseItem.classes.includes('close')) {
         item.classList.remove('close');
         baseItem.removeClassName('close');
         gameState.steps++;
