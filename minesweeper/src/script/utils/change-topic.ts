@@ -5,7 +5,7 @@ import {DifficultSelect} from '../components/difficult-select/difficult-select.t
 const body = document.body;
 
 export function changeTopic(difficult: DifficultSelect) {
-    const otherWindowAndBtn = document.querySelectorAll('.timer, .refresh-btn, .refresh-btn, .game-save-btn, .game-continue-btn, .click-count-panel, .difficult, .topic-selection, .state-btn, .sound-on');
+    const otherWindowAndBtn = document.querySelectorAll('.timer, .refresh-btn, .game-save-btn, .game-continue-btn, .click-count-panel, .topic-selection, .state-btn, .sound-on');
     const difficultButtons = difficult.difficultButtons;
     if (settings.themeColor === ThemeColor.Dark) {
         body.classList.add('dark');
@@ -15,6 +15,7 @@ export function changeTopic(difficult: DifficultSelect) {
         difficultButtons.forEach(item => {
             item.addClassName('dark');
         });
+        difficult.addClassName('dark');
     } else {
         body.classList.remove('dark');
         otherWindowAndBtn.forEach(item => {
@@ -23,5 +24,6 @@ export function changeTopic(difficult: DifficultSelect) {
         difficultButtons.forEach(item => {
             item.removeClassName('dark');
         });
+        difficult.removeClassName('dark');
     }
 }
