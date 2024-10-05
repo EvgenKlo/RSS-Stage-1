@@ -18,10 +18,7 @@ export class Timer {
 
     public tick() {
         this.seconds++;
-        if (this.seconds > 59 && this.minutes < 10) {
-            this.minutes++;
-            this.seconds = 0;
-        } else if (this.minutes > 9 && this.seconds > 59) {
+        if (this.seconds > 59) {
             this.minutes++;
             this.seconds = 0;
         }
@@ -48,22 +45,8 @@ export class Timer {
     }
 
     private setTextInComponent() {
-        if (this.seconds < 10 && this.minutes < 10) {
-            this.component.innerText = `Timer: 0${this.minutes}:0${this.seconds}`;
-        } else if (this.seconds > 9 && this.seconds < 60 && this.minutes < 10) {
-            this.component.innerText = `Timer: 0${this.minutes}:${this.seconds}`;
-        } else if (this.seconds > 59 && this.minutes < 10) {
-            if (this.minutes < 10) {
-                this.component.innerText = `Timer: 0${this.minutes}:0${this.seconds}`;
-            } else if (this.minutes > 9) {
-                this.component.innerText = `Timer: ${this.minutes}:0${this.seconds}`;
-            }
-        } else if (this.minutes > 9 && this.seconds < 10) {
-            this.component.innerText = `Timer: ${this.minutes}:0${this.seconds}`;
-        } else if (this.minutes > 9 && this.seconds > 9 && this.seconds < 60) {
-            this.component.innerText = `Timer: ${this.minutes}:${this.seconds}`;
-        } else if (this.minutes > 9 && this.seconds > 59) {
-            this.component.innerText = `Timer: ${this.minutes}:0${this.seconds}`;
-        }
+        const seconds = String(this.seconds).padStart(2, '0');
+        const minutes = String(this.minutes).padStart(2, '0');
+        this.component.innerText = `Timer: ${minutes}:${seconds}`;
     }
 }
