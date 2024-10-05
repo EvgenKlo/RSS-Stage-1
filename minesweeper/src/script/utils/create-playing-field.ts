@@ -11,7 +11,7 @@ export function createPlayingField(soundOn: HTMLElement) {
     for (let i = 0; i < size; i++) {
         const row = new BaseComponent('div', ['row', `row-${i}`]).getComponent();
         for (let j = 0; j < size; j++) {
-            const cell = new Cell('div', ['item', `item-${j}`, 'close']);
+            const cell = new Cell('div', ['item', `item-${j}`, 'close'], i, j);
             const cellComponent = cell.getComponent();
             cellComponent.addEventListener('click', cellClickHandler.bind(cell));
             cellComponent.addEventListener('contextmenu', () => maybeBomb(cell, soundOn));
@@ -22,11 +22,11 @@ export function createPlayingField(soundOn: HTMLElement) {
     }
 
     const stateWindow = new BaseComponent('div', ['state-window']);
-    const stateWindowComponent = new BaseComponent('div', ['state-window']).getComponent();
+    const stateWindowComponent = stateWindow.getComponent();
     playingFieldComponent.append(stateWindowComponent);
 
     const stateTableContainer = new BaseComponent('div', ['state-table-container']);
-    const stateTableContainerComponent = new BaseComponent('div', ['state-table-container']).getComponent();
+    const stateTableContainerComponent = stateTableContainer.getComponent();
     stateWindowComponent.append(stateTableContainerComponent);
 
     const layoutSavePlayingField = new BaseComponent('div', ['layout-save-playing-field']);

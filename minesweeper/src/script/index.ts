@@ -1,4 +1,4 @@
-import {State} from './State';
+import {State, StateKeys} from './State';
 import checkCell from '../audio/check-cell.mp3';
 import bah from '../audio/bah.mp3';
 import victory from '../audio/victory.mp3';
@@ -9,7 +9,6 @@ import {BombsCount, DifficultLevel, Settings, ThemeColor} from './app/settings.t
 import {GameState} from './app/game-state.ts';
 import {ClickCountPanel} from './components/click-count-panel/click-count-panel.ts';
 import {createPlayingField} from './utils/create-playing-field.ts';
-import {maybeBomb} from './utils/maybe-bomb.ts';
 import {installSign} from './utils/install-sign.ts';
 import {openEmptyCells} from './utils/open-empty-cells.ts';
 import {changeTopic} from './utils/change-topic.ts';
@@ -19,6 +18,10 @@ export const settings = Settings.getInstance(DifficultLevel.Easy, ThemeColor.Lig
 export const gameState = GameState.getInstance();
 
 export const appContainer = new BaseComponent('div', ['appContainer']).getComponent();
+
+// Переключатель звука
+
+const soundOn = new BaseComponent('div', ['sound-on']).getComponent();
 
 // Звуки при кликах
 
@@ -40,7 +43,7 @@ const victorySound = new Audio(victory);
 //     localStorage.setItem('steps', clickCountPanel.clickCount.toString());
 //     localStorage.setItem('flags-count', checkedBombsCount.innerText);
 //     localStorage.setItem('how-need-bombs', difficult.howNeedBombs.toString());
-//     localStorage.setItem('difficult-slider', JSON.stringify(selectBombsCountBlur.classList));
+//     localStorage.setItem('difficult-slider', JSON.stringify(selectBombsCountBlurComponent.classList));
 //     localStorage.setItem('playing-field-size', difficult.playingFieldSize.toString());
 //     const getDifficult = () => {
 //         const difficultButtons = document.querySelectorAll('.difficult-dtn');
@@ -110,7 +113,7 @@ const victorySound = new Audio(victory);
 //         selectLineInput.value = difficult.howNeedBombs;
 //     }
 //     if (localStorage.getItem('difficult-slider')) {
-//         selectBombsCountBlur.classList = localStorage.getItem('difficult-slider');
+//         selectBombsCountBlurComponent.classList = localStorage.getItem('difficult-slider');
 //     }
 //     if (localStorage.getItem('topic-selection')) {
 //         const topicSelection = document.querySelector('.topic-selection');
@@ -193,7 +196,7 @@ controlPanel.append(refreshBtn);
 refreshBtn.addEventListener('click', refresh);
 
 function refresh() {
-    selectBombsCountBlur.classList.remove('active');
+    selectBombsCountBlur.removeClassName('active');
     clearTimeout(t);
     seconds = 0;
     minutes = 0;
@@ -269,8 +272,9 @@ selectLineInput.addEventListener('mousedown', () => {
     selectLineInput.addEventListener('mouseup', changeBombsCount);
 });
 
-const selectBombsCountBlur = new BaseComponent('div', ['select-bombs-count-blur']).getComponent();
-selectBombsCount.append(selectBombsCountBlur);
+const selectBombsCountBlur = new BaseComponent('div', ['select-bombs-count-blur']);
+const selectBombsCountBlurComponent = selectBombsCountBlur.getComponent();
+selectBombsCount.append(selectBombsCountBlurComponent);
 
 // Добавляю кнопки изменения уровня сложности в DOM
 
@@ -281,7 +285,7 @@ controlPanel.append(difficultComponent);
 const fieldContainer = new BaseComponent('div', ['fieldContainer']).getComponent();
 appContainer.append(fieldContainer);
 
-const {playingField, stateTableContainer, stateWindow, layoutSavePlayingField} = createPlayingField();
+const {playingField, stateTableContainer, stateWindow, layoutSavePlayingField} = createPlayingField(soundOn);
 
 fieldContainer.append(playingField.getComponent());
 
@@ -294,9 +298,7 @@ export function cellClickHandler(this: Cell) {
         if (!soundOn.classList.contains('active')) {
             checkCellAudio.play();
         }
-        selectBombsCountBlur.classList.add('active');
-        item.classList.add('no-bomb');
-        item.classList.remove('close');
+        selectBombsCountBlur.addClassName('active');
         baseItem.addClassName('no-bomb');
         baseItem.removeClassName('close');
         gameState.steps++;
@@ -307,7 +309,6 @@ export function cellClickHandler(this: Cell) {
             openEmptyCells(item);
         }
     } else if (!baseItem.classes.includes('maybeBomb') && baseItem.classes.includes('close')) {
-        item.classList.remove('close');
         baseItem.removeClassName('close');
         gameState.steps++;
         clickCountPanel.update();
@@ -317,7 +318,6 @@ export function cellClickHandler(this: Cell) {
             }
             for (let item of items) {
                 if (item.classList.contains('bomb')) {
-                    item.classList.remove('close');
                     baseItem.removeClassName('close');
                 }
             }
@@ -399,9 +399,7 @@ topicSelectionComponent.addEventListener('click', () => {
 const topicSelectionItem = new BaseComponent('div', ['topic-selection-item']).getComponent();
 topicSelectionComponent.append(topicSelectionItem);
 
-// Переключатель звука
 
-const soundOn = new BaseComponent('div', ['sound-on']).getComponent();
 footer.append(soundOn);
 
 soundOn.addEventListener('click', () => {
@@ -422,10 +420,10 @@ function clickHandlerOnStateBtn() {
     if (stateWindow.classes.includes('active')) {
         const stateTableContainerComponent = stateTableContainer.getComponent();
         stateTableContainerComponent.innerHTML = '';
-        const closeState = document.createElement('div');
-        closeState.classList.add('close-state');
-        stateTableContainerComponent.append(closeState);
-        closeState.addEventListener('click', () => {
+        const closeState = new BaseComponent('div', ['close-state']);
+        const closeStateComponent = closeState.getComponent();
+        stateTableContainerComponent.append(closeStateComponent);
+        closeStateComponent.addEventListener('click', () => {
             stateWindow.toggleClassName('active');
         });
         const tableTittle = new BaseComponent('h2', ['table-tittle']).getComponent();
@@ -450,7 +448,7 @@ function clickHandlerOnStateBtn() {
             for (let data in item) {
                 const rowItem = new BaseComponent('td', ['table-row', `table-row-${data}`]).getComponent();
                 tableRow.append(rowItem);
-                rowItem.innerText = `${item[data]}`;
+                rowItem.innerText = `${item.getProperty(data as StateKeys)}`;
             }
         });
     }
