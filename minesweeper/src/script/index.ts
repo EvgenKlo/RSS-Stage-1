@@ -301,6 +301,7 @@ export function cellClickHandler(this: Cell) {
         selectBombsCountBlur.addClassName('active');
         baseItem.addClassName('no-bomb');
         baseItem.removeClassName('close');
+        baseItem.isOpen = true;
         gameState.steps++;
         clickCountPanel.update();
         installBombs(settings.bombsCount);
@@ -310,18 +311,20 @@ export function cellClickHandler(this: Cell) {
         }
     } else if (!baseItem.classes.includes('maybeBomb') && baseItem.classes.includes('close')) {
         baseItem.removeClassName('close');
+        baseItem.isOpen = true;
         gameState.steps++;
         clickCountPanel.update();
-        if (baseItem.classes.includes('bomb')) {
+        if (baseItem.hasBomb) {
             if (!soundOn.classList.contains('active')) {
                 mineExplosion.play();
             }
-            const cells = gameState.allRows.flatMap(item=>item)
-            for (let item of cells) {
-                if (item.classes.includes('bomb')) {
-                    baseItem.removeClassName('close');
+            const cells = gameState.allRows.flatMap(item => item);
+            cells.map(item => {
+                if (item.hasBomb) {
+                    item.removeClassName('close');
+                    item.isOpen = true;
                 }
-            }
+            })
             const layoutOnPlayingField = new BaseComponent('div', ['layout-on-playing-field']).getComponent();
             layoutOnPlayingField.innerHTML = '<p>ПОТРАЧЕНО =(</p>';
             playingField.getComponent().append(layoutOnPlayingField);

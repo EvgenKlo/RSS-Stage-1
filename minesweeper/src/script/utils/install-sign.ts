@@ -10,136 +10,136 @@ export function installSign() {
         if (!cell.hasBomb) {
             if (rowCell === 0) {
                 if (numberCell === 0) {
-                    if (rows[rowCell][numberCell + 1].classes.includes('bomb')) {
+                    if (rows[rowCell][numberCell + 1].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell + 1][numberCell + 1].classes.includes('bomb')) {
+                    if (rows[rowCell + 1][numberCell + 1].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell + 1][numberCell].classes.includes('bomb')) {
+                    if (rows[rowCell + 1][numberCell].hasBomb) {
                         nearBombs++;
                     }
                 } else if (numberCell === settings.playingFieldSize - 1) {
-                    if (rows[rowCell][numberCell - 1].classes.includes('bomb')) {
+                    if (rows[rowCell][numberCell - 1].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell + 1][numberCell - 1].classes.includes('bomb')) {
+                    if (rows[rowCell + 1][numberCell - 1].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell + 1][numberCell].classes.includes('bomb')) {
+                    if (rows[rowCell + 1][numberCell].hasBomb) {
                         nearBombs++;
                     }
                 } else {
-                    if (rows[rowCell][numberCell - 1].classes.includes('bomb')) {
+                    if (rows[rowCell][numberCell - 1].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell + 1][numberCell - 1].classes.includes('bomb')) {
+                    if (rows[rowCell + 1][numberCell - 1].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell + 1][numberCell].classes.includes('bomb')) {
+                    if (rows[rowCell + 1][numberCell].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell + 1][numberCell + 1].classes.includes('bomb')) {
+                    if (rows[rowCell + 1][numberCell + 1].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell][numberCell + 1].classes.includes('bomb')) {
+                    if (rows[rowCell][numberCell + 1].hasBomb) {
                         nearBombs++;
                     }
                 }
             } else if (rowCell === settings.playingFieldSize - 1) {
                 if (numberCell === 0) {
-                    if (rows[rowCell][numberCell + 1].classes.includes('bomb')) {
+                    if (rows[rowCell][numberCell + 1].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell - 1][numberCell + 1].classes.includes('bomb')) {
+                    if (rows[rowCell - 1][numberCell + 1].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell - 1][numberCell].classes.includes('bomb')) {
+                    if (rows[rowCell - 1][numberCell].hasBomb) {
                         nearBombs++;
                     }
                 } else if (numberCell === settings.playingFieldSize - 1) {
-                    if (rows[rowCell][numberCell - 1].classes.includes('bomb')) {
+                    if (rows[rowCell][numberCell - 1].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell - 1][numberCell - 1].classes.includes('bomb')) {
+                    if (rows[rowCell - 1][numberCell - 1].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell - 1][numberCell].classes.includes('bomb')) {
+                    if (rows[rowCell - 1][numberCell].hasBomb) {
                         nearBombs++;
                     }
                 } else {
-                    if (rows[rowCell][numberCell - 1].classes.includes('bomb')) {
+                    if (rows[rowCell][numberCell - 1].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell - 1][numberCell - 1].classes.includes('bomb')) {
+                    if (rows[rowCell - 1][numberCell - 1].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell - 1][numberCell].classes.includes('bomb')) {
+                    if (rows[rowCell - 1][numberCell].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell - 1][numberCell + 1].classes.includes('bomb')) {
+                    if (rows[rowCell - 1][numberCell + 1].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell][numberCell + 1].classes.includes('bomb')) {
+                    if (rows[rowCell][numberCell + 1].hasBomb) {
                         nearBombs++;
                     }
                 }
             } else {
                 if (numberCell === 0) {
-                    if (rows[rowCell - 1][numberCell].classes.includes('bomb')) {
+                    if (rows[rowCell - 1][numberCell].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell - 1][numberCell + 1].classes.includes('bomb')) {
+                    if (rows[rowCell - 1][numberCell + 1].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell][numberCell + 1].classes.includes('bomb')) {
+                    if (rows[rowCell][numberCell + 1].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell + 1][numberCell + 1].classes.includes('bomb')) {
+                    if (rows[rowCell + 1][numberCell + 1].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell + 1][numberCell].classes.includes('bomb')) {
+                    if (rows[rowCell + 1][numberCell].hasBomb) {
                         nearBombs++;
                     }
                 } else if (numberCell === settings.playingFieldSize - 1) {
-                    if (rows[rowCell - 1][numberCell].classes.includes('bomb')) {
+                    if (rows[rowCell - 1][numberCell].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell - 1][numberCell - 1].classes.includes('bomb')) {
+                    if (rows[rowCell - 1][numberCell - 1].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell][numberCell - 1].classes.includes('bomb')) {
+                    if (rows[rowCell][numberCell - 1].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell + 1][numberCell - 1].classes.includes('bomb')) {
+                    if (rows[rowCell + 1][numberCell - 1].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell + 1][numberCell].classes.includes('bomb')) {
+                    if (rows[rowCell + 1][numberCell].hasBomb) {
                         nearBombs++;
                     }
                 } else {
-                    if (rows[rowCell - 1][numberCell - 1].classes.includes('bomb')) {
+                    if (rows[rowCell - 1][numberCell - 1].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell - 1][numberCell].classes.includes('bomb')) {
+                    if (rows[rowCell - 1][numberCell].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell - 1][numberCell + 1].classes.includes('bomb')) {
+                    if (rows[rowCell - 1][numberCell + 1].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell][numberCell - 1].classes.includes('bomb')) {
+                    if (rows[rowCell][numberCell - 1].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell][numberCell + 1].classes.includes('bomb')) {
+                    if (rows[rowCell][numberCell + 1].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell + 1][numberCell - 1].classes.includes('bomb')) {
+                    if (rows[rowCell + 1][numberCell - 1].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell + 1][numberCell].classes.includes('bomb')) {
+                    if (rows[rowCell + 1][numberCell].hasBomb) {
                         nearBombs++;
                     }
-                    if (rows[rowCell + 1][numberCell + 1].classes.includes('bomb')) {
+                    if (rows[rowCell + 1][numberCell + 1].hasBomb) {
                         nearBombs++;
                     }
                 }
