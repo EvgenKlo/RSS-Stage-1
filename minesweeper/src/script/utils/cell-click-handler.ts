@@ -30,7 +30,7 @@ export function cellClickHandler(this: Cell) {
             checkCellAudio.play();
         }
         selectBombsCountBlur.addClassName('active');
-        baseItem.addClassName('no-bomb');
+        baseItem.isFirstClicked = true;
         baseItem.removeClassName('close');
         baseItem.isOpen = true;
         gameState.steps++;

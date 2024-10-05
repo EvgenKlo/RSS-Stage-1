@@ -5,6 +5,7 @@ export class Cell extends BaseComponent<HTMLElement> {
     private _isOpen: boolean = false;
     public row: number;
     public col: number;
+    public isFirstClicked: boolean = false;
 
     constructor(tag: string, classes: string[] = [], row: number, col: number) {
         super(tag, classes);

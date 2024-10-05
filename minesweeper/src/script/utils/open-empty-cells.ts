@@ -8,7 +8,7 @@ import {getCellsAroundCell} from "./get-cells-around-cell.ts";
 export function openEmptyCells(cell: Cell) {
     const classCountEmptyCell = 2;
 
-    if (cell.classes.includes('no-bomb') || cell.classes.length === classCountEmptyCell) {
+    if (!cell.isFirstClicked || cell.classes.length === classCountEmptyCell) {
         const cellsAroundCell = getCellsAroundCell(cell);
 
         cellsAroundCell.map(item => {
