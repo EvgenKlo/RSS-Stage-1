@@ -20,5 +20,5 @@ export function installSign() {
             cell.addClassName(`int${nearBombs}`);
         }
     });
-    gameTimer();
+    gameTimer.tick();
 }
