@@ -23,21 +23,25 @@ export function openEmptyCells(cell: Cell) {
                     rows[rowCell + 1][numberCell + 1].isOpen = true;
                     openEmptyCells(rows[rowCell + 1][numberCell + 1]);
                 }
-                if (rows[rowCell + 1][numberCell].classes.includes('close') && !rows[rowCell + 1][numberCell].hasBomb && !rows[rowCell + 1][numberCell].classes.includes('maybeBomb')) {
+                if (!rows[rowCell + 1][numberCell].isOpen && !rows[rowCell + 1][numberCell].hasBomb && !rows[rowCell + 1][numberCell].classes.includes('maybeBomb')) {
                     rows[rowCell + 1][numberCell].removeClassName('close');
+                    rows[rowCell + 1][numberCell].isOpen = true;
                     openEmptyCells(rows[rowCell + 1][numberCell]);
                 }
             } else if (numberCell === settings.playingFieldSize - 1) {
-                if (rows[rowCell][numberCell - 1].classes.includes('close') && !rows[rowCell][numberCell - 1].hasBomb && !rows[rowCell][numberCell - 1].classes.includes('maybeBomb')) {
+                if (!rows[rowCell][numberCell - 1].isOpen && !rows[rowCell][numberCell - 1].hasBomb && !rows[rowCell][numberCell - 1].classes.includes('maybeBomb')) {
                     rows[rowCell][numberCell - 1].removeClassName('close');
+                    rows[rowCell][numberCell - 1].isOpen = true;
                     openEmptyCells(rows[rowCell][numberCell - 1]);
                 }
-                if (rows[rowCell + 1][numberCell - 1].classes.includes('close') && !rows[rowCell + 1][numberCell - 1].hasBomb && !rows[rowCell + 1][numberCell - 1].classes.includes('maybeBomb')) {
+                if (!rows[rowCell + 1][numberCell - 1].isOpen && !rows[rowCell + 1][numberCell - 1].hasBomb && !rows[rowCell + 1][numberCell - 1].classes.includes('maybeBomb')) {
                     rows[rowCell + 1][numberCell - 1].removeClassName('close');
+                    rows[rowCell + 1][numberCell - 1].isOpen = true;
                     openEmptyCells(rows[rowCell + 1][numberCell - 1]);
                 }
-                if (rows[rowCell + 1][numberCell].classes.includes('close') && !rows[rowCell + 1][numberCell].hasBomb && !rows[rowCell + 1][numberCell].classes.includes('maybeBomb')) {
+                if (!rows[rowCell + 1][numberCell].isOpen && !rows[rowCell + 1][numberCell].hasBomb && !rows[rowCell + 1][numberCell].classes.includes('maybeBomb')) {
                     rows[rowCell + 1][numberCell].removeClassName('close');
+                    rows[rowCell + 1][numberCell].isOpen = true;
                     openEmptyCells(rows[rowCell + 1][numberCell]);
                 }
             } else {
