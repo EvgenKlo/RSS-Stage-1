@@ -1,4 +1,4 @@
-import {gameState, settings} from '../index.ts';
+import {gameState} from '../index.ts';
 import {Cell} from "../components/cell/cell.ts";
 
 /**
@@ -11,187 +11,23 @@ export function openEmptyCells(cell: Cell) {
     const numberCell = cell.col;
     const rows = gameState.allRows;
     if (cell.classes.includes('no-bomb') || cell.classes.length === classCountEmptyCell) {
-        if (rowCell === 0) {
-            if (numberCell === 0) {
-                if (!rows[rowCell][numberCell + 1].isOpen && !rows[rowCell][numberCell + 1].hasBomb && !rows[rowCell][numberCell + 1].classes.includes('maybeBomb')) {
-                    rows[rowCell][numberCell + 1].removeClassName('close');
-                    rows[rowCell][numberCell + 1].isOpen = true;
-                    openEmptyCells(rows[rowCell][numberCell + 1]);
-                }
-                if (!rows[rowCell + 1][numberCell + 1].isOpen && !rows[rowCell + 1][numberCell + 1].hasBomb && !rows[rowCell + 1][numberCell + 1].classes.includes('maybeBomb')) {
-                    rows[rowCell + 1][numberCell + 1].removeClassName('close');
-                    rows[rowCell + 1][numberCell + 1].isOpen = true;
-                    openEmptyCells(rows[rowCell + 1][numberCell + 1]);
-                }
-                if (!rows[rowCell + 1][numberCell].isOpen && !rows[rowCell + 1][numberCell].hasBomb && !rows[rowCell + 1][numberCell].classes.includes('maybeBomb')) {
-                    rows[rowCell + 1][numberCell].removeClassName('close');
-                    rows[rowCell + 1][numberCell].isOpen = true;
-                    openEmptyCells(rows[rowCell + 1][numberCell]);
-                }
-            } else if (numberCell === settings.playingFieldSize - 1) {
-                if (!rows[rowCell][numberCell - 1].isOpen && !rows[rowCell][numberCell - 1].hasBomb && !rows[rowCell][numberCell - 1].classes.includes('maybeBomb')) {
-                    rows[rowCell][numberCell - 1].removeClassName('close');
-                    rows[rowCell][numberCell - 1].isOpen = true;
-                    openEmptyCells(rows[rowCell][numberCell - 1]);
-                }
-                if (!rows[rowCell + 1][numberCell - 1].isOpen && !rows[rowCell + 1][numberCell - 1].hasBomb && !rows[rowCell + 1][numberCell - 1].classes.includes('maybeBomb')) {
-                    rows[rowCell + 1][numberCell - 1].removeClassName('close');
-                    rows[rowCell + 1][numberCell - 1].isOpen = true;
-                    openEmptyCells(rows[rowCell + 1][numberCell - 1]);
-                }
-                if (!rows[rowCell + 1][numberCell].isOpen && !rows[rowCell + 1][numberCell].hasBomb && !rows[rowCell + 1][numberCell].classes.includes('maybeBomb')) {
-                    rows[rowCell + 1][numberCell].removeClassName('close');
-                    rows[rowCell + 1][numberCell].isOpen = true;
-                    openEmptyCells(rows[rowCell + 1][numberCell]);
-                }
-            } else {
-                if (rows[rowCell][numberCell - 1].classes.includes('close') && !rows[rowCell][numberCell - 1].hasBomb && !rows[rowCell][numberCell - 1].classes.includes('maybeBomb')) {
-                    rows[rowCell][numberCell - 1].removeClassName('close');
-                    openEmptyCells(rows[rowCell][numberCell - 1]);
-                }
-                if (rows[rowCell + 1][numberCell - 1].classes.includes('close') && !rows[rowCell + 1][numberCell - 1].hasBomb && !rows[rowCell + 1][numberCell - 1].classes.includes('maybeBomb')) {
-                    rows[rowCell + 1][numberCell - 1].removeClassName('close');
-                    openEmptyCells(rows[rowCell + 1][numberCell - 1]);
-                }
-                if (rows[rowCell][numberCell + 1].classes.includes('close') && !rows[rowCell][numberCell + 1].hasBomb && !rows[rowCell][numberCell + 1].classes.includes('maybeBomb')) {
-                    rows[rowCell][numberCell + 1].removeClassName('close');
-                    openEmptyCells(rows[rowCell][numberCell + 1]);
-                }
-                if (rows[rowCell + 1][numberCell + 1].classes.includes('close') && !rows[rowCell + 1][numberCell + 1].hasBomb && !rows[rowCell + 1][numberCell + 1].classes.includes('maybeBomb')) {
-                    rows[rowCell + 1][numberCell + 1].removeClassName('close');
-                    openEmptyCells(rows[rowCell + 1][numberCell + 1]);
-                }
-                if (rows[rowCell + 1][numberCell].classes.includes('close') && !rows[rowCell + 1][numberCell].hasBomb && !rows[rowCell + 1][numberCell].classes.includes('maybeBomb')) {
-                    rows[rowCell + 1][numberCell].removeClassName('close');
-                    openEmptyCells(rows[rowCell + 1][numberCell]);
-                }
+        const left = rows[rowCell] ? rows[rowCell][numberCell - 1] : undefined;
+        const leftTop = rows[rowCell + 1] ? rows[rowCell + 1][numberCell - 1] : undefined;
+        const top = rows[rowCell + 1] ? rows[rowCell + 1][numberCell] : undefined;
+        const rightTop = rows[rowCell + 1] ? rows[rowCell + 1][numberCell + 1] : undefined;
+        const right = rows[rowCell] ? rows[rowCell][numberCell + 1] : undefined;
+        const rightBottom = rows[rowCell - 1] ? rows[rowCell - 1][numberCell + 1] : undefined;
+        const bottom = rows[rowCell - 1] ? rows[rowCell - 1][numberCell] : undefined;
+        const leftBottom = rows[rowCell - 1] ? rows[rowCell - 1][numberCell - 1] : undefined;
+
+        const nearCells = [left, leftTop, top, rightTop, right, rightBottom, bottom, leftBottom];
+
+        nearCells.map(item => {
+            if (item && !item.isOpen && !item.hasBomb && !item.classes.includes('maybeBomb')) {
+                item.removeClassName('close');
+                item.isOpen = true;
+                openEmptyCells(item);
             }
-        } else if (rowCell === settings.playingFieldSize - 1) {
-            if (numberCell === 0) {
-                if (rows[rowCell][numberCell + 1].classes.includes('close') && !rows[rowCell][numberCell + 1].hasBomb && !rows[rowCell][numberCell + 1].classes.includes('maybeBomb')) {
-                    rows[rowCell][numberCell + 1].removeClassName('close');
-                    openEmptyCells(rows[rowCell][numberCell + 1]);
-                }
-                if (rows[rowCell - 1][numberCell + 1].classes.includes('close') && !rows[rowCell - 1][numberCell + 1].hasBomb && !rows[rowCell - 1][numberCell + 1].classes.includes('maybeBomb')) {
-                    rows[rowCell - 1][numberCell + 1].removeClassName('close');
-                    openEmptyCells(rows[rowCell - 1][numberCell + 1]);
-                }
-                if (rows[rowCell - 1][numberCell].classes.includes('close') && !rows[rowCell - 1][numberCell].hasBomb && !rows[rowCell - 1][numberCell].classes.includes('maybeBomb')) {
-                    rows[rowCell - 1][numberCell].removeClassName('close');
-                    openEmptyCells(rows[rowCell - 1][numberCell]);
-                }
-            } else if (numberCell === settings.playingFieldSize - 1) {
-                if (rows[rowCell][numberCell - 1].classes.includes('close') && !rows[rowCell][numberCell - 1].hasBomb && !rows[rowCell][numberCell - 1].classes.includes('maybeBomb')) {
-                    rows[rowCell][numberCell - 1].removeClassName('close');
-                    openEmptyCells(rows[rowCell][numberCell - 1]);
-                }
-                if (rows[rowCell - 1][numberCell - 1].classes.includes('close') && !rows[rowCell - 1][numberCell - 1].hasBomb && !rows[rowCell - 1][numberCell - 1].classes.includes('maybeBomb')) {
-                    rows[rowCell - 1][numberCell - 1].removeClassName('close');
-                    openEmptyCells(rows[rowCell - 1][numberCell - 1]);
-                }
-                if (rows[rowCell - 1][numberCell].classes.includes('close') && !rows[rowCell - 1][numberCell].hasBomb && !rows[rowCell - 1][numberCell].classes.includes('maybeBomb')) {
-                    rows[rowCell - 1][numberCell].removeClassName('close');
-                    openEmptyCells(rows[rowCell - 1][numberCell]);
-                }
-            } else {
-                if (rows[rowCell][numberCell - 1].classes.includes('close') && !rows[rowCell][numberCell - 1].hasBomb && !rows[rowCell][numberCell - 1].classes.includes('maybeBomb')) {
-                    rows[rowCell][numberCell - 1].removeClassName('close');
-                    openEmptyCells(rows[rowCell][numberCell - 1]);
-                }
-                if (rows[rowCell - 1][numberCell - 1].classes.includes('close') && !rows[rowCell - 1][numberCell - 1].hasBomb && !rows[rowCell - 1][numberCell - 1].classes.includes('maybeBomb')) {
-                    rows[rowCell - 1][numberCell - 1].removeClassName('close');
-                    openEmptyCells(rows[rowCell - 1][numberCell - 1]);
-                }
-                if (rows[rowCell][numberCell + 1].classes.includes('close') && !rows[rowCell][numberCell + 1].hasBomb && !rows[rowCell][numberCell + 1].classes.includes('maybeBomb')) {
-                    rows[rowCell][numberCell + 1].removeClassName('close');
-                    openEmptyCells(rows[rowCell][numberCell + 1]);
-                }
-                if (rows[rowCell - 1][numberCell + 1].classes.includes('close') && !rows[rowCell - 1][numberCell + 1].hasBomb && !rows[rowCell - 1][numberCell + 1].classes.includes('maybeBomb')) {
-                    rows[rowCell - 1][numberCell + 1].removeClassName('close');
-                    openEmptyCells(rows[rowCell - 1][numberCell + 1]);
-                }
-                if (rows[rowCell - 1][numberCell].classes.includes('close') && !rows[rowCell - 1][numberCell].hasBomb && !rows[rowCell - 1][numberCell].classes.includes('maybeBomb')) {
-                    rows[rowCell - 1][numberCell].removeClassName('close');
-                    openEmptyCells(rows[rowCell - 1][numberCell]);
-                }
-            }
-        } else {
-            if (numberCell === 0) {
-                if (rows[rowCell + 1][numberCell].classes.includes('close') && !rows[rowCell + 1][numberCell].hasBomb && !rows[rowCell + 1][numberCell].classes.includes('maybeBomb')) {
-                    rows[rowCell + 1][numberCell].removeClassName('close');
-                    openEmptyCells(rows[rowCell + 1][numberCell]);
-                }
-                if (rows[rowCell + 1][numberCell + 1].classes.includes('close') && !rows[rowCell + 1][numberCell + 1].hasBomb && !rows[rowCell + 1][numberCell + 1].classes.includes('maybeBomb')) {
-                    rows[rowCell + 1][numberCell + 1].removeClassName('close');
-                    openEmptyCells(rows[rowCell + 1][numberCell + 1]);
-                }
-                if (rows[rowCell][numberCell + 1].classes.includes('close') && !rows[rowCell][numberCell + 1].hasBomb && !rows[rowCell][numberCell + 1].classes.includes('maybeBomb')) {
-                    rows[rowCell][numberCell + 1].removeClassName('close');
-                    openEmptyCells(rows[rowCell][numberCell + 1]);
-                }
-                if (rows[rowCell - 1][numberCell + 1].classes.includes('close') && !rows[rowCell - 1][numberCell + 1].hasBomb && !rows[rowCell - 1][numberCell + 1].classes.includes('maybeBomb')) {
-                    rows[rowCell - 1][numberCell + 1].removeClassName('close');
-                    openEmptyCells(rows[rowCell - 1][numberCell + 1]);
-                }
-                if (rows[rowCell - 1][numberCell].classes.includes('close') && !rows[rowCell - 1][numberCell].hasBomb && !rows[rowCell - 1][numberCell].classes.includes('maybeBomb')) {
-                    rows[rowCell - 1][numberCell].removeClassName('close');
-                    openEmptyCells(rows[rowCell - 1][numberCell]);
-                }
-            } else if (numberCell === settings.playingFieldSize - 1) {
-                if (rows[rowCell - 1][numberCell].classes.includes('close') && !rows[rowCell - 1][numberCell].hasBomb && !rows[rowCell - 1][numberCell].classes.includes('maybeBomb')) {
-                    rows[rowCell - 1][numberCell].removeClassName('close');
-                    openEmptyCells(rows[rowCell - 1][numberCell]);
-                }
-                if (rows[rowCell - 1][numberCell - 1].classes.includes('close') && !rows[rowCell - 1][numberCell - 1].hasBomb && !rows[rowCell - 1][numberCell - 1].classes.includes('maybeBomb')) {
-                    rows[rowCell - 1][numberCell - 1].removeClassName('close');
-                    openEmptyCells(rows[rowCell - 1][numberCell - 1]);
-                }
-                if (rows[rowCell][numberCell - 1].classes.includes('close') && !rows[rowCell][numberCell - 1].hasBomb && !rows[rowCell][numberCell - 1].classes.includes('maybeBomb')) {
-                    rows[rowCell][numberCell - 1].removeClassName('close');
-                    openEmptyCells(rows[rowCell][numberCell - 1]);
-                }
-                if (rows[rowCell + 1][numberCell - 1].classes.includes('close') && !rows[rowCell + 1][numberCell - 1].hasBomb && !rows[rowCell + 1][numberCell - 1].classes.includes('maybeBomb')) {
-                    rows[rowCell + 1][numberCell - 1].removeClassName('close');
-                    openEmptyCells(rows[rowCell + 1][numberCell - 1]);
-                }
-                if (rows[rowCell + 1][numberCell].classes.includes('close') && !rows[rowCell + 1][numberCell].hasBomb && !rows[rowCell + 1][numberCell].classes.includes('maybeBomb')) {
-                    rows[rowCell + 1][numberCell].removeClassName('close');
-                    openEmptyCells(rows[rowCell + 1][numberCell]);
-                }
-            } else {
-                if (rows[rowCell][numberCell - 1].classes.includes('close') && !rows[rowCell][numberCell - 1].hasBomb && !rows[rowCell][numberCell - 1].classes.includes('maybeBomb')) {
-                    rows[rowCell][numberCell - 1].removeClassName('close');
-                    openEmptyCells(rows[rowCell][numberCell - 1]);
-                }
-                if (rows[rowCell + 1][numberCell - 1].classes.includes('close') && !rows[rowCell + 1][numberCell - 1].hasBomb && !rows[rowCell + 1][numberCell - 1].classes.includes('maybeBomb')) {
-                    rows[rowCell + 1][numberCell - 1].removeClassName('close');
-                    openEmptyCells(rows[rowCell + 1][numberCell - 1]);
-                }
-                if (rows[rowCell + 1][numberCell].classes.includes('close') && !rows[rowCell + 1][numberCell].hasBomb && !rows[rowCell + 1][numberCell].classes.includes('maybeBomb')) {
-                    rows[rowCell + 1][numberCell].removeClassName('close');
-                    openEmptyCells(rows[rowCell + 1][numberCell]);
-                }
-                if (rows[rowCell + 1][numberCell + 1].classes.includes('close') && !rows[rowCell + 1][numberCell + 1].hasBomb && !rows[rowCell + 1][numberCell + 1].classes.includes('maybeBomb')) {
-                    rows[rowCell + 1][numberCell + 1].removeClassName('close');
-                    openEmptyCells(rows[rowCell + 1][numberCell + 1]);
-                }
-                if (rows[rowCell][numberCell + 1].classes.includes('close') && !rows[rowCell][numberCell + 1].hasBomb && !rows[rowCell][numberCell + 1].classes.includes('maybeBomb')) {
-                    rows[rowCell][numberCell + 1].removeClassName('close');
-                    openEmptyCells(rows[rowCell][numberCell + 1]);
-                }
-                if (rows[rowCell - 1][numberCell + 1].classes.includes('close') && !rows[rowCell - 1][numberCell + 1].hasBomb && !rows[rowCell - 1][numberCell + 1].classes.includes('maybeBomb')) {
-                    rows[rowCell - 1][numberCell + 1].removeClassName('close');
-                    openEmptyCells(rows[rowCell - 1][numberCell + 1]);
-                }
-                if (rows[rowCell - 1][numberCell].classes.includes('close') && !rows[rowCell - 1][numberCell].hasBomb && !rows[rowCell - 1][numberCell].classes.includes('maybeBomb')) {
-                    rows[rowCell - 1][numberCell].removeClassName('close');
-                    openEmptyCells(rows[rowCell - 1][numberCell]);
-                }
-                if (rows[rowCell - 1][numberCell - 1].classes.includes('close') && !rows[rowCell - 1][numberCell - 1].hasBomb && !rows[rowCell - 1][numberCell - 1].classes.includes('maybeBomb')) {
-                    rows[rowCell - 1][numberCell - 1].removeClassName('close');
-                    openEmptyCells(rows[rowCell - 1][numberCell - 1]);
-                }
-            }
-        }
+        })
     }
 }
