@@ -1,16 +1,17 @@
-import {settings} from '../index.ts';
+import {gameState, settings} from '../index.ts';
 
 /**
  * Функция для расстановки бомб на игоровом поле.
  * @param count
  */
 export function installBombs(count: number) {
+    const rows = gameState.allRows;
     const randomRow = Math.floor(Math.random() * settings.playingFieldSize);
-    const rows = document.getElementsByClassName('row');
     const randomItem = Math.floor(Math.random() * settings.playingFieldSize);
-    const item = rows[randomRow].childNodes[randomItem] as HTMLElement;
-    if (!item.classList.contains('bomb') && !item.classList.contains('no-bomb')) {
-        item.classList.add('bomb');
+    const item = rows[randomRow][randomItem];
+    if (!item.hasBomb && !item.classes.includes('no-bomb')) {
+        item.hasBomb = true;
+        item.addClassName('bomb');
         count--;
         if (count > 0) {
             installBombs(count);

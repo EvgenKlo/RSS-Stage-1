@@ -9,10 +9,10 @@ import {BombsCount, DifficultLevel, Settings, ThemeColor} from './app/settings.t
 import {GameState} from './app/game-state.ts';
 import {ClickCountPanel} from './components/click-count-panel/click-count-panel.ts';
 import {createPlayingField} from './utils/create-playing-field.ts';
-import {installSign} from './utils/install-sign.ts';
 import {openEmptyCells} from './utils/open-empty-cells.ts';
 import {changeTopic} from './utils/change-topic.ts';
 import {Cell} from './components/cell/cell.ts';
+import {installSign} from "./utils/install-sign.ts";
 
 export const settings = Settings.getInstance(DifficultLevel.Easy, ThemeColor.Light, true);
 export const gameState = GameState.getInstance();
@@ -305,19 +305,20 @@ export function cellClickHandler(this: Cell) {
         clickCountPanel.update();
         installBombs(settings.bombsCount);
         installSign();
-        if (item.classList.length === 3) {
-            openEmptyCells(item);
+        if (baseItem.classes.length === 3) {
+            openEmptyCells(baseItem);
         }
     } else if (!baseItem.classes.includes('maybeBomb') && baseItem.classes.includes('close')) {
         baseItem.removeClassName('close');
         gameState.steps++;
         clickCountPanel.update();
-        if (item.classList.contains('bomb')) {
+        if (baseItem.classes.includes('bomb')) {
             if (!soundOn.classList.contains('active')) {
                 mineExplosion.play();
             }
-            for (let item of items) {
-                if (item.classList.contains('bomb')) {
+            const cells = gameState.allRows.flatMap(item=>item)
+            for (let item of cells) {
+                if (item.classes.includes('bomb')) {
                     baseItem.removeClassName('close');
                 }
             }
@@ -332,7 +333,7 @@ export function cellClickHandler(this: Cell) {
                 checkCellAudio.currentTime = 0;
                 checkCellAudio.play();
             }
-            openEmptyCells(item);
+            openEmptyCells(baseItem);
         } else {
             if (!soundOn.classList.contains('active')) {
                 checkCellAudio.currentTime = 0;
@@ -342,8 +343,6 @@ export function cellClickHandler(this: Cell) {
     }
     checkCellWithBomb();
 }
-
-const items = document.getElementsByClassName('item');
 
 // Проверка, что не открытыми остались только ячеки с бомбами
 
