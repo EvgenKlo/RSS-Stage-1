@@ -1,20 +1,15 @@
 import {BaseComponent} from "../components/base-component.ts";
 import {GameField} from "../components/game-field/game-field.ts";
-import {gameTimer, saveState, settings, soundOn} from "../index.ts";
-import victory from "../../audio/victory.mp3";
-
-const victorySound = new Audio(victory);
+import {gameSound, gameState, gameTimer, saveState, settings} from "../index.ts";
 
 /**
  * Проверка, что не открытыми остались только ячеки с бомбами
  * @param playingField
  */
 export function checkCellWithBomb(playingField: GameField) {
-    const cells = playingField.cells.filter(item => !item.isOpen);
+    const cells = gameState.allRows.flatMap(item => item).filter(item => !item.isOpen);
     if (cells.length === settings.bombsCount) {
-        if (!soundOn.classList.contains('active')) {
-            victorySound.play();
-        }
+        gameSound.playVictory();
         const layoutOnPlayingField = new BaseComponent('div', ['layout-on-playing-field-win']).getComponent();
         layoutOnPlayingField.innerHTML = '<p>Congratulations!!!</p>';
         playingField.getComponent().append(layoutOnPlayingField);

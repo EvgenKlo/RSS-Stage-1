@@ -8,6 +8,7 @@ import {createPlayingField} from './utils/create-playing-field.ts';
 import {changeTopic} from './utils/change-topic.ts';
 import {Timer} from "./app/timer.ts";
 import {clickHandlerOnStateBtn} from "./utils/click-handler-on-state-button.ts";
+import {Sound} from "./app/sound.ts";
 
 const time = new BaseComponent('div').getComponent();
 time.innerText = 'Timer: 00:00';
@@ -15,12 +16,13 @@ time.innerText = 'Timer: 00:00';
 export const settings = Settings.getInstance(DifficultLevel.Easy, ThemeColor.Light, true);
 export const gameState = GameState.getInstance();
 export const gameTimer = Timer.getInstance(time)
+export const gameSound = Sound.getInstance();
 
 export const appContainer = new BaseComponent('div', ['appContainer']).getComponent();
 
 // Переключатель звука
 
-export const soundOn = new BaseComponent('div', ['sound-on']).getComponent();
+const soundOn = new BaseComponent('div', ['sound-on']).getComponent();
 
 // Сохранение статистики и состояния игры в Local Storage при перезагрзке страницы
 
@@ -161,7 +163,7 @@ function refresh() {
     clickCountPanel.update();
     const playingFieldOld = document.querySelector('.playing-field');
     playingFieldOld?.remove();
-    const {playingField} = createPlayingField(soundOn);
+    const {playingField} = createPlayingField();
     fieldContainer.append(playingField.getComponent());
 }
 
@@ -240,7 +242,7 @@ controlPanel.append(difficultComponent);
 const fieldContainer = new BaseComponent('div', ['fieldContainer']).getComponent();
 appContainer.append(fieldContainer);
 
-export const {playingField, stateTableContainer, stateWindow, layoutSavePlayingField} = createPlayingField(soundOn);
+export const {playingField, stateTableContainer, stateWindow, layoutSavePlayingField} = createPlayingField();
 
 fieldContainer.append(playingField.getComponent());
 
@@ -284,6 +286,7 @@ footer.append(soundOn);
 
 soundOn.addEventListener('click', () => {
     soundOn.classList.toggle('active');
+    gameSound.toggleIsSoundOn();
 });
 
 // Создаю кнопку для показа статистики

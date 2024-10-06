@@ -1,24 +1,17 @@
 import {Cell} from "../components/cell/cell.ts";
 import {
-    clickCountPanel,
+    clickCountPanel, gameSound,
     gameState,
     gameTimer,
     playingField,
     selectBombsCountBlur,
     settings,
-    soundOn
 } from "../index.ts";
-import checkCell from "../../audio/check-cell.mp3";
-import bah from "../../audio/bah.mp3";
 import {installBombs} from "./install-bombs.ts";
 import {installSign} from "./install-sign.ts";
 import {openEmptyCells} from "./open-empty-cells.ts";
 import {BaseComponent} from "../components/base-component.ts";
 import {checkCellWithBomb} from "./check-cell-with-bomb.ts";
-
-const checkCellAudio = new Audio(checkCell);
-
-const mineExplosion = new Audio(bah);
 
 // Кликхендлеры на ячейки поля
 
@@ -31,9 +24,7 @@ export function cellClickHandler(this: Cell) {
         clickCountPanel.update();
     }
     if (gameState.steps === 1) {
-        if (!soundOn.classList.contains('active')) {
-            checkCellAudio.play();
-        }
+        gameSound.playCheckCell();
         selectBombsCountBlur.addClassName('active');
         baseItem.isFirstClicked = true;
         installBombs(settings.bombsCount);
@@ -43,9 +34,7 @@ export function cellClickHandler(this: Cell) {
         }
     } else if (!baseItem.isMaybeBomb) {
         if (baseItem.hasBomb) {
-            if (!soundOn.classList.contains('active')) {
-                mineExplosion.play();
-            }
+            gameSound.playMineExplosion();
             const cells = gameState.allRows.flatMap(item => item);
             cells.map(item => {
                 if (item.hasBomb) {
@@ -58,16 +47,10 @@ export function cellClickHandler(this: Cell) {
             playingField.getComponent().append(layoutOnPlayingField);
             gameTimer.stopTimer();
         } else if (!baseItem.isBombNear) {
-            if (!soundOn.classList.contains('active')) {
-                checkCellAudio.currentTime = 0;
-                checkCellAudio.play();
-            }
+            gameSound.playCheckCell();
             openEmptyCells(baseItem);
         } else {
-            if (!soundOn.classList.contains('active')) {
-                checkCellAudio.currentTime = 0;
-                checkCellAudio.play();
-            }
+            gameSound.playCheckCell();
         }
     }
     checkCellWithBomb(playingField);
