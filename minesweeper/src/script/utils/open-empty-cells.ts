@@ -10,7 +10,7 @@ export function openEmptyCells(cell: Cell) {
         const cellsAroundCell = getCellsAroundCell(cell);
 
         cellsAroundCell.map(item => {
-            if (item && !item.isOpen && !item.hasBomb && !item.classes.includes('maybeBomb')) {
+            if (item && !item.isOpen && !item.hasBomb && !item.isMaybeBomb) {
                 item.removeClassName('close');
                 item.isOpen = true;
                 if (!item.isBombNear) {

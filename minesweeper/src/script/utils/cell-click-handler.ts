@@ -41,7 +41,7 @@ export function cellClickHandler(this: Cell) {
         if (!baseItem.isBombNear) {
             openEmptyCells(baseItem);
         }
-    } else if (!baseItem.classes.includes('maybeBomb')) {
+    } else if (!baseItem.isMaybeBomb) {
         if (baseItem.hasBomb) {
             if (!soundOn.classList.contains('active')) {
                 mineExplosion.play();

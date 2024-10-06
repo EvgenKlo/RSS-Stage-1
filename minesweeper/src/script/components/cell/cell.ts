@@ -7,6 +7,7 @@ export class Cell extends BaseComponent<HTMLElement> {
     public col: number;
     public isFirstClicked: boolean = false;
     public isBombNear: boolean = false;
+    public isMaybeBomb: boolean = false;
 
     constructor(tag: string, classes: string[] = [], row: number, col: number) {
         super(tag, classes);
