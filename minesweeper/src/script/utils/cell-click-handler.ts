@@ -37,7 +37,7 @@ export function cellClickHandler(this: Cell) {
         clickCountPanel.update();
         installBombs(settings.bombsCount);
         installSign();
-        if (baseItem.classes.length === 3) {
+        if (baseItem.classes.length === 1) {
             openEmptyCells(baseItem);
         }
     } else if (!baseItem.classes.includes('maybeBomb') && baseItem.classes.includes('close')) {
@@ -60,7 +60,7 @@ export function cellClickHandler(this: Cell) {
             layoutOnPlayingField.innerHTML = '<p>ПОТРАЧЕНО =(</p>';
             playingField.getComponent().append(layoutOnPlayingField);
             gameTimer.stopTimer();
-        } else if (item.classList.length === 2) {
+        } else if (item.classList.length === 1) {
             if (!soundOn.classList.contains('active')) {
                 checkCellAudio.currentTime = 0;
                 checkCellAudio.play();

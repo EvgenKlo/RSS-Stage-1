@@ -13,10 +13,10 @@ export function createPlayingField(soundOn: HTMLElement) {
     const playingField = new GameField('div', ['playing-field', `playing-field-${size}`]);
     const playingFieldComponent = playingField.getComponent();
     for (let i = 0; i < size; i++) {
-        const row = new BaseComponent('div', ['row', `row-${i}`]).getComponent();
+        const row = new BaseComponent('div', ['row']).getComponent();
         gameState.allRows[i] = []
         for (let j = 0; j < size; j++) {
-            const cell = new Cell('div', ['item', `item-${j}`, 'close'], i, j);
+            const cell = new Cell('div', ['item', 'close'], i, j);
             gameState.allRows[i][j] = cell;
             const cellComponent = cell.getComponent();
             cellComponent.addEventListener('click', cellClickHandler.bind(cell));
