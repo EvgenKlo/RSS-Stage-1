@@ -13,7 +13,7 @@ import {Sound} from "./app/sound.ts";
 const time = new BaseComponent('div').getComponent();
 time.innerText = 'Timer: 00:00';
 
-export const settings = Settings.getInstance(DifficultLevel.Easy, ThemeColor.Light, true);
+export const gameSettings = Settings.getInstance(DifficultLevel.Easy, ThemeColor.Light, true);
 export const gameState = GameState.getInstance();
 export const gameTimer = Timer.getInstance(time)
 export const gameSound = Sound.getInstance();
@@ -158,7 +158,7 @@ refreshBtn.addEventListener('click', refresh);
 function refresh() {
     selectBombsCountBlur.removeClassName('active');
     gameTimer.resetTimer();
-    checkedBombsCount.innerText = `x ${settings.bombsCount}`;
+    checkedBombsCount.innerText = `x ${gameSettings.bombsCount}`;
     gameState.reset();
     clickCountPanel.update();
     const playingFieldOld = document.querySelector('.playing-field');
@@ -201,10 +201,10 @@ controlPanel.append(checkedBombs);
 checkedBombs.append(bombImg);
 const checkedBombsCount = new BaseComponent('div', ['checked-bombs-count']).getComponent();
 checkedBombs.append(checkedBombsCount);
-checkedBombsCount.innerText = `x ${settings.bombsCount}`;
+checkedBombsCount.innerText = `x ${gameSettings.bombsCount}`;
 
 export function howManyBombsAreLeft() {
-    checkedBombsCount.innerText = `x ${settings.bombsCount - gameState.flags}`;
+    checkedBombsCount.innerText = `x ${gameSettings.bombsCount - gameState.flags}`;
 }
 
 //Добавляю выбор колличества бомб
@@ -221,7 +221,7 @@ selectBombsCount.append(selectLineInput);
 
 const changeBombsCount = () => {
     checkedBombsCount.innerText = `x ${selectLineInput.value}`;
-    settings.bombsCount = +selectLineInput.value;
+    gameSettings.bombsCount = +selectLineInput.value;
 };
 
 selectLineInput.addEventListener('mousedown', () => {
@@ -251,7 +251,7 @@ fieldContainer.append(playingField.getComponent());
 export let state: State[] = [];
 
 export const saveState = () => {
-    const result = new State(time.innerText, gameState.steps, settings.difficult, settings.bombsCount);
+    const result = new State(time.innerText, gameState.steps, gameSettings.difficult, gameSettings.bombsCount);
     if (state.length === 10) {
         state.unshift(result);
         state.pop();
@@ -275,7 +275,7 @@ footer.append(topicSelectionComponent);
 
 topicSelectionComponent.addEventListener('click', () => {
     topicSelection.toggleClassName('dark');
-    settings.changeTheme();
+    gameSettings.changeTheme();
     changeTopic(difficult);
 });
 

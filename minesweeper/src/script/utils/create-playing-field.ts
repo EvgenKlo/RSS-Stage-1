@@ -1,14 +1,14 @@
 import {BaseComponent} from '../components/base-component.ts';
-import {gameState, settings} from '../index.ts';
+import {gameState, gameSettings} from '../index.ts';
 import {GameField} from '../components/game-field/game-field.ts';
 import {Cell} from '../components/cell/cell.ts';
 import {maybeBomb} from './maybe-bomb.ts';
 import {cellClickHandler} from "./cell-click-handler.ts";
 
 export function createPlayingField() {
-    const size = settings.playingFieldSize;
+    const size = gameSettings.playingFieldSize;
     //todo: исправить
-    gameState.allRows = Array(settings.playingFieldSize).fill([])
+    gameState.allRows = Array(gameSettings.playingFieldSize).fill([])
 
     const playingField = new GameField('div', ['playing-field', `playing-field-${size}`]);
     const playingFieldComponent = playingField.getComponent();

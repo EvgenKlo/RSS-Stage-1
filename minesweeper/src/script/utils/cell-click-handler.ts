@@ -5,7 +5,7 @@ import {
     gameTimer,
     playingField,
     selectBombsCountBlur,
-    settings,
+    gameSettings,
 } from "../index.ts";
 import {installBombs} from "./install-bombs.ts";
 import {installSign} from "./install-sign.ts";
@@ -27,7 +27,7 @@ export function cellClickHandler(this: Cell) {
         gameSound.playCheckCell();
         selectBombsCountBlur.addClassName('active');
         baseItem.isFirstClicked = true;
-        installBombs(settings.bombsCount);
+        installBombs(gameSettings.bombsCount);
         installSign();
         if (!baseItem.isBombNear) {
             openEmptyCells(baseItem);

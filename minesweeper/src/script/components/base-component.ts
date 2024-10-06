@@ -15,6 +15,10 @@ export class BaseComponent<T extends HTMLElement> {
         return component;
     }
 
+    public addToParent(parent: HTMLElement) {
+        parent.append(this.component);
+    }
+
     public getComponent() {
         return this.component;
     }

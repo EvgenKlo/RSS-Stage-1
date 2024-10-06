@@ -1,6 +1,6 @@
 import {BaseComponent} from '../base-component.ts';
 import {DifficultLevel} from '../../app/settings.ts';
-import {gameState, settings} from '../../index.ts';
+import {gameState, gameSettings} from '../../index.ts';
 
 export class DifficultSelect extends BaseComponent<HTMLElement> {
     public readonly difficultButtons: BaseComponent<HTMLElement>[];
@@ -33,11 +33,11 @@ export class DifficultSelect extends BaseComponent<HTMLElement> {
     private difficultSelect(button: BaseComponent<HTMLElement>) {
         button.toggleClassName('active');
         if (button.classes.includes('Easy')) {
-            settings.changeDifficult(DifficultLevel.Easy);
+            gameSettings.changeDifficult(DifficultLevel.Easy);
         } else if (button.classes.includes('Medium')) {
-            settings.changeDifficult(DifficultLevel.Medium);
+            gameSettings.changeDifficult(DifficultLevel.Medium);
         } else if (button.classes.includes('Hard')) {
-            settings.changeDifficult(DifficultLevel.Hard);
+            gameSettings.changeDifficult(DifficultLevel.Hard);
         }
         // selectLineInput.value = howNeedBombs;
         this.difficultButtons.forEach(btn => {
