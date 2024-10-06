@@ -23,28 +23,25 @@ const mineExplosion = new Audio(bah);
 // Кликхендлеры на ячейки поля
 
 export function cellClickHandler(this: Cell) {
-    const item = this.getComponent();
     const baseItem = this;
-    if (gameState.steps === 0) {
+    if (!baseItem.isOpen) {
+        baseItem.removeClassName('close');
+        baseItem.isOpen = true;
+        gameState.steps++;
+        clickCountPanel.update();
+    }
+    if (gameState.steps === 1) {
         if (!soundOn.classList.contains('active')) {
             checkCellAudio.play();
         }
         selectBombsCountBlur.addClassName('active');
         baseItem.isFirstClicked = true;
-        baseItem.removeClassName('close');
-        baseItem.isOpen = true;
-        gameState.steps++;
-        clickCountPanel.update();
         installBombs(settings.bombsCount);
         installSign();
-        if (baseItem.classes.length === 1) {
+        if (!baseItem.isBombNear) {
             openEmptyCells(baseItem);
         }
-    } else if (!baseItem.classes.includes('maybeBomb') && baseItem.classes.includes('close')) {
-        baseItem.removeClassName('close');
-        baseItem.isOpen = true;
-        gameState.steps++;
-        clickCountPanel.update();
+    } else if (!baseItem.classes.includes('maybeBomb')) {
         if (baseItem.hasBomb) {
             if (!soundOn.classList.contains('active')) {
                 mineExplosion.play();
@@ -60,7 +57,7 @@ export function cellClickHandler(this: Cell) {
             layoutOnPlayingField.innerHTML = '<p>ПОТРАЧЕНО =(</p>';
             playingField.getComponent().append(layoutOnPlayingField);
             gameTimer.stopTimer();
-        } else if (item.classList.length === 1) {
+        } else if (!baseItem.isBombNear) {
             if (!soundOn.classList.contains('active')) {
                 checkCellAudio.currentTime = 0;
                 checkCellAudio.play();

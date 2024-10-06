@@ -6,16 +6,16 @@ import {getCellsAroundCell} from "./get-cells-around-cell.ts";
  * @param cell
  */
 export function openEmptyCells(cell: Cell) {
-    const classCountEmptyCell = 1;
-
-    if (!cell.hasBomb || cell.classes.length === classCountEmptyCell) {
+    if (!cell.hasBomb) {
         const cellsAroundCell = getCellsAroundCell(cell);
 
         cellsAroundCell.map(item => {
             if (item && !item.isOpen && !item.hasBomb && !item.classes.includes('maybeBomb')) {
                 item.removeClassName('close');
                 item.isOpen = true;
-                openEmptyCells(item);
+                if (!item.isBombNear) {
+                    openEmptyCells(item);
+                }
             }
         })
     }

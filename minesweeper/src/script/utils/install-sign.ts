@@ -16,8 +16,9 @@ export function installSign() {
                 }
             })
         }
-        if (nearBombs !== 0) {
+        if (nearBombs > 0) {
             cell.addClassName(`int${nearBombs}`);
+            cell.isBombNear = true;
         }
     });
     gameTimer.tick();
