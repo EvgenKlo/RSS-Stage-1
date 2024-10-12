@@ -3,7 +3,7 @@ import {
     clickCountPanel, gameSound,
     gameState,
     gameTimer,
-    playingField,
+    gameField,
     selectBombsCountBlur,
     gameSettings,
 } from "../index.ts";
@@ -35,7 +35,7 @@ export function cellClickHandler(this: Cell) {
     } else if (!baseItem.isMaybeBomb) {
         if (baseItem.hasBomb) {
             gameSound.playMineExplosion();
-            const cells = gameState.allRows.flatMap(item => item);
+            const cells = gameField.getCells();
             cells.map(item => {
                 if (item.hasBomb) {
                     item.removeClassName('close');
@@ -44,7 +44,7 @@ export function cellClickHandler(this: Cell) {
             })
             const layoutOnPlayingField = new BaseComponent('div', ['layout-on-playing-field']).getComponent();
             layoutOnPlayingField.innerHTML = '<p>ПОТРАЧЕНО =(</p>';
-            playingField.getComponent().append(layoutOnPlayingField);
+            gameField.getComponent().append(layoutOnPlayingField);
             gameTimer.stopTimer();
         } else if (!baseItem.isBombNear) {
             gameSound.playCheckCell();
@@ -53,5 +53,5 @@ export function cellClickHandler(this: Cell) {
             gameSound.playCheckCell();
         }
     }
-    checkCellWithBomb(playingField);
+    checkCellWithBomb(gameField);
 }

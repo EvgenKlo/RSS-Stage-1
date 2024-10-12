@@ -1,9 +1,8 @@
-import {gameState, gameTimer} from '../index.ts';
+import {gameTimer, gameField} from '../index.ts';
 import {getCellsAroundCell} from "./get-cells-around-cell.ts";
 
 export function installSign() {
-    const rows = gameState.allRows;
-    const cells = rows.flatMap(item => item);
+    const cells = gameField.getCells();
 
     cells.forEach(cell => {
         let nearBombs = 0;

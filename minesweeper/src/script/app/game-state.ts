@@ -1,11 +1,8 @@
-import {Cell} from "../components/cell/cell.ts";
-
 export class GameState {
     private static instance: GameState | null = null;
     public steps: number = 0;
     public time: number = 0;
     public flags: number = 0;
-    public allRows: Cell[][] = [];
 
     public static getInstance(): GameState {
         if (this.instance === null) {
@@ -18,6 +15,5 @@ export class GameState {
         this.time = 0;
         this.flags = 0;
         this.steps = 0;
-        this.allRows = [];
     }
 }

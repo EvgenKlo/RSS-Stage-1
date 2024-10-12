@@ -1,12 +1,12 @@
 import {Cell} from "../components/cell/cell.ts";
-import {gameState} from "../index.ts";
+import {gameField} from "../index.ts";
 
 /**
  * Возвращает массив ячеек, находящихся вокруг заданной ячейки.
  * @param cell
  */
 export function getCellsAroundCell(cell: Cell) {
-    const rows = gameState.allRows;
+    const rows = gameField.rows;
     const rowCell = cell.row;
     const numberCell = cell.col;
 

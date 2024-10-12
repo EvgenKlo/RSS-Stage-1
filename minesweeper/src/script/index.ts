@@ -4,7 +4,7 @@ import {BaseComponent} from './components/base-component.ts';
 import {BombsCount, DifficultLevel, Settings, ThemeColor} from './app/settings.ts';
 import {GameState} from './app/game-state.ts';
 import {ClickCountPanel} from './components/click-count-panel/click-count-panel.ts';
-import {createPlayingField} from './utils/create-playing-field.ts';
+import {createGameField} from './utils/create-game-field.ts';
 import {changeTopic} from './utils/change-topic.ts';
 import {Timer} from "./app/timer.ts";
 import {clickHandlerOnStateBtn} from "./utils/click-handler-on-state-button.ts";
@@ -163,8 +163,8 @@ function refresh() {
     clickCountPanel.update();
     const playingFieldOld = document.querySelector('.playing-field');
     playingFieldOld?.remove();
-    const {playingField} = createPlayingField();
-    fieldContainer.append(playingField.getComponent());
+    const {gameField} = createGameField();
+    fieldContainer.append(gameField.getComponent());
 }
 
 // Сохранение игры
@@ -242,13 +242,13 @@ controlPanel.append(difficultComponent);
 const fieldContainer = new BaseComponent('div', ['fieldContainer']).getComponent();
 appContainer.append(fieldContainer);
 
-export const {playingField, stateTableContainer, stateWindow, layoutSavePlayingField} = createPlayingField();
+export const {gameField, stateTableContainer, stateWindow, layoutSavePlayingField} = createGameField();
 
-fieldContainer.append(playingField.getComponent());
+fieldContainer.append(gameField.getComponent());
 
 // Сохраняем статистику
 
-export let state: State[] = [];
+export const state: State[] = [];
 
 export const saveState = () => {
     const result = new State(time.innerText, gameState.steps, gameSettings.difficult, gameSettings.bombsCount);

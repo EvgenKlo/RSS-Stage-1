@@ -1,35 +1,35 @@
 import {BaseComponent} from '../components/base-component.ts';
-import {gameState, gameSettings} from '../index.ts';
+import {gameSettings} from '../index.ts';
 import {GameField} from '../components/game-field/game-field.ts';
 import {Cell} from '../components/cell/cell.ts';
 import {maybeBomb} from './maybe-bomb.ts';
 import {cellClickHandler} from "./cell-click-handler.ts";
 
-export function createPlayingField() {
+export function createGameField() {
     const size = gameSettings.playingFieldSize;
-    //todo: исправить
-    gameState.allRows = Array(gameSettings.playingFieldSize).fill([])
 
-    const playingField = new GameField('div', ['playing-field', `playing-field-${size}`]);
-    const playingFieldComponent = playingField.getComponent();
+    const gameField = new GameField('div', ['playing-field', `playing-field-${size}`]);
+    const gameFieldComponent = gameField.getComponent();
+
+    gameField.rows = Array(gameSettings.playingFieldSize).fill([]);
+
     for (let i = 0; i < size; i++) {
         const row = new BaseComponent('div', ['row']).getComponent();
-        gameState.allRows[i] = []
+        gameField.rows[i] = []
         for (let j = 0; j < size; j++) {
             const cell = new Cell('div', ['item', 'close'], i, j);
-            gameState.allRows[i][j] = cell;
+            gameField.rows[i][j] = cell;
             const cellComponent = cell.getComponent();
             cellComponent.addEventListener('click', cellClickHandler.bind(cell));
             cellComponent.addEventListener('contextmenu', () => maybeBomb(cell));
             row.append(cellComponent);
-            playingField.addCell(cell);
         }
-        playingFieldComponent.append(row);
+        gameFieldComponent.append(row);
     }
 
     const stateWindow = new BaseComponent('div', ['state-window']);
     const stateWindowComponent = stateWindow.getComponent();
-    playingFieldComponent.append(stateWindowComponent);
+    gameFieldComponent.append(stateWindowComponent);
 
     const stateTableContainer = new BaseComponent('div', ['state-table-container']);
     const stateTableContainerComponent = stateTableContainer.getComponent();
@@ -38,7 +38,7 @@ export function createPlayingField() {
     const layoutSavePlayingField = new BaseComponent('div', ['layout-save-playing-field']);
     const layoutSavePlayingFieldComponent = layoutSavePlayingField.getComponent();
     layoutSavePlayingFieldComponent.innerHTML = '<p>Game saved.<br>To continue the game, press the button "Continue"</p>';
-    playingFieldComponent.append(layoutSavePlayingFieldComponent);
+    gameFieldComponent.append(layoutSavePlayingFieldComponent);
 
-    return {playingField, stateTableContainer, stateWindow, layoutSavePlayingField};
+    return {gameField, stateTableContainer, stateWindow, layoutSavePlayingField};
 }

@@ -32,7 +32,7 @@ export function clickHandlerOnStateBtn() {
             tableRow.append(rowItem);
             rowItem.innerText = `${numberItemInArray}`;
             numberItemInArray++;
-            for (let data in item) {
+            for (const data in item) {
                 const rowItem = new BaseComponent('td', ['table-row', `table-row-${data}`]).getComponent();
                 tableRow.append(rowItem);
                 rowItem.innerText = `${item.getProperty(data as StateKeys)}`;
